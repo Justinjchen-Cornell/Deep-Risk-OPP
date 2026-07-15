@@ -1,0 +1,84 @@
+{
+  "updated": "2026-06-19 17:57",
+  "gor_brent": 52.69,
+  "gor_wti": 55.26,
+  "regime": "原油极端低估 🔴",
+  "final_position": 50,
+  "allocation": {
+    "油气": 22,
+    "黄金": 15,
+    "现金": 53,
+    "A股": 7,
+    "铜": 0
+  },
+  "alerts": [
+    {
+      "level": "critical",
+      "title": "🔴 WTI $75.73 距强制减仓线仅 $0.73",
+      "detail": "$75是GOR系统硬止损线。每下跌$1都是风险。若已有油气仓位>5%，准备减仓方案。"
+    },
+    {
+      "level": "warning",
+      "title": "📉 DXY=100.77 > 99 — 强美元压制",
+      "detail": "仓位已自动-10%。强美元压制黄金、新兴市场、大宗商品。"
+    },
+    {
+      "level": "warning",
+      "title": "📉 10Y=4.45% > 4.3% — 高利率压制",
+      "detail": "仓位再-10%。高利率增加所有风险资产的持有成本。"
+    },
+    {
+      "level": "warning",
+      "title": "🛢️ GOR=52.69 — 原油极端低估",
+      "detail": "均值回归方向明确但时间不确定。不加杠杆、分批建仓、等回归。"
+    }
+  ],
+  "data": {
+    "黄金期货": {
+      "price": 4184.5,
+      "change_pct": 0.0
+    },
+    "WTI原油": {
+      "price": 75.73,
+      "change_pct": 0.0
+    },
+    "布伦特原油": {
+      "price": 79.42,
+      "change_pct": 0.0
+    },
+    "美元指数DXY": {
+      "price": 100.77,
+      "change_pct": 0.0
+    },
+    "10Y美债收益率": {
+      "price": 4.45,
+      "change_pct": 0.0
+    },
+    "VIX恐慌指数": {
+      "price": 16.86,
+      "change_pct": 0.0
+    },
+    "COMEX铜": {
+      "price": 6.36,
+      "change_pct": 0.0
+    }
+  },
+  "capital_three_flows": {
+    "total": "收缩",
+    "direction": "向心坍缩",
+    "speed": "放缓",
+    "dxy": 100.77,
+    "vix": 16.86,
+    "tenyear": 4.45,
+    "warsh_alert": true
+  },
+  "ashare_hedge": {
+    "enabled": false,
+    "position_pct": 7,
+    "tool": "沪深300指数Put (IO·CFFEX) 或 300ETF Put (510300)",
+    "strike_hint": "沪深300<4500→Put@4200; 4500-5000→Put@4400; >5000→减仓不做Put",
+    "cost_pct": "A股仓位1-2%/季",
+    "trigger": "A股<10%无需对冲",
+    "reason": "保护A股系统性风险，保留上行空间，已知最大亏损=期权费"
+  }
+}

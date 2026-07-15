@@ -1,0 +1,75 @@
+{
+  "updated": "2026-07-12 12:00",
+  "gor_brent": 54.47,
+  "gor_wti": 57.74,
+  "regime": "原油极端低估",
+  "final_position": 50,
+  "allocation": {
+    "油气": 5,
+    "黄金": 20,
+    "现金": 68,
+    "A股": 7,
+    "铜": 0
+  },
+  "alerts": [
+    {
+      "level": "critical",
+      "title": "WTI $71.5 < $75 硬止损触发!",
+      "detail": "油气仓位强制降至5%"
+    },
+    {
+      "level": "warning",
+      "title": "DXY=100.96 > 99 强美元压制",
+      "detail": "仓位-10%"
+    },
+    {
+      "level": "warning",
+      "title": "10Y=4.56% > 4.3% 高利率压制",
+      "detail": "仓位-10%"
+    }
+  ],
+  "data": {
+    "黄金期货": {
+      "price": 4128.4,
+      "change_pct": 0.0
+    },
+    "WTI原油": {
+      "price": 71.5,
+      "change_pct": 0.0
+    },
+    "布伦特原油": {
+      "price": 75.79,
+      "change_pct": 0.0
+    },
+    "美元指数DXY": {
+      "price": 100.96,
+      "change_pct": 0.0
+    },
+    "10Y美债收益率": {
+      "price": 4.56,
+      "change_pct": 0.0
+    },
+    "VIX恐慌指数": {
+      "price": 15.03,
+      "change_pct": 0.0
+    },
+    "COMEX铜": {
+      "price": 6.2845,
+      "change_pct": 0.0
+    }
+  },
+  "capital_three_flows": {
+    "total": "收缩",
+    "direction": "向心坍缩",
+    "speed": "放缓",
+    "dxy": 100.96,
+    "vix": 15.03,
+    "tenyear": 4.56,
+    "warsh_alert": true
+  },
+  "ashare_hedge": {
+    "enabled": false,
+    "position_pct": 7,
+    "trigger": "A股<10%无需对冲"
+  }
+}

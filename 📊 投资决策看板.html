@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陈嘉 · 投资决策看板</title>
+<style>
+  :root{--bg:#060a10;--card:#0c1119;--c2:#111824;--bdr:#182232;--gold:#e8b41c;--oil:#f06030;--gn:#0ccb9c;--rd:#f04458;--bl:#4d9bff;--pp:#9b7cf4;--cy:#1cc8d8;--tx:#eaedf2;--t2:#8b98a8;--t3:#505d6e;--r:16px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,'Microsoft YaHei','PingFang SC',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;line-height:1.75;font-size:16px}
+  .header{background:rgba(8,11,17,.96);border-bottom:1px solid var(--bdr);padding:20px 36px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(24px)}
+  .header h1{font-size:24px;font-weight:800;letter-spacing:-.5px}.header h1 span{color:var(--gold)}
+  .hstat{display:flex;gap:22px;align-items:center}
+  .hstat .v{font-size:18px;font-weight:700}.hstat .l{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px}
+  .live{width:10px;height:10px;background:var(--gn);border-radius:50%;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.2;transform:scale(2.8)}}
+  .container{max-width:1540px;margin:0 auto;padding:28px 36px}
+  .grid{display:grid;gap:22px;margin-bottom:22px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}.g4{grid-template-columns:1fr 1fr 1fr 1fr}
+  .card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:24px 28px}
+  .card h3{font-size:18px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+  .badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px}
+  .br{background:rgba(240,68,88,.12);color:var(--rd)}.bg{background:rgba(12,203,156,.1);color:var(--gn)}.bp{background:rgba(155,124,244,.1);color:var(--pp)}.by{background:rgba(232,180,28,.1);color:var(--gold)}.bb{background:rgba(77,155,255,.1);color:var(--bl)}
+
+  /* HERO */
+  .hero{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:28px 32px 24px;margin-bottom:20px}
+  .hero-row{display:flex;align-items:flex-start;gap:36px}
+  .hero-num{font-size:120px;font-weight:900;letter-spacing:-4px;line-height:.82;background:linear-gradient(180deg,#f06030,#e8b41c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;flex-shrink:0;min-width:220px}
+  .hero-info{flex:1;min-width:0}
+  .hero-f{font-size:20px;color:var(--t2);margin-bottom:6px}.hero-f b{color:var(--tx)}
+  .hero-d{font-size:17px;color:var(--t2);margin-bottom:18px;line-height:1.65}.hero-d b{font-weight:700}
+  .hero-bar{position:relative;height:14px;background:var(--c2);border-radius:7px;margin-bottom:8px}
+  .hero-bar-f{height:100%;border-radius:7px;background:linear-gradient(90deg,#0ccb9c,#e8b41c 25%,#f06030 55%,#f04458 85%,#f04458)}
+  .hero-marker{position:absolute;top:-7px;width:24px;height:24px;background:#fff;border:3px solid #060a10;border-radius:50%;box-shadow:0 0 20px rgba(240,96,48,.8);transform:translateX(-50%)}
+  .hero-labels{display:flex;justify-content:space-between;font-size:14px;color:var(--t3);font-weight:500}
+  .hero-calc{display:flex;align-items:center;gap:16px;margin-top:20px;font-size:17px;color:var(--t2)}
+  .hero-calc .arrow{color:var(--t3);font-size:20px}
+  .hero-calc .result{font-size:34px;font-weight:900;color:var(--gn);margin-left:12px}
+
+  /* SPOTLIGHT */
+  .spot{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:20px}
+  .spot .card h3{font-size:18px}
+  .srow{font-size:16px;padding:8px 0;display:flex;gap:10px;align-items:flex-start;line-height:1.6}
+  .srow .d{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:8px}
+  .dr{background:var(--rd)}.dg{background:var(--gn)}.db{background:var(--bl)}.dp{background:var(--pp)}.dw{background:var(--gold)}.do{background:var(--oil)}
+
+  /* METRICS */
+  .metric{display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:15px}
+  .metric .v{font-weight:600;font-size:16px}
+  .kpi{display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;margin-top:8px}
+  .kpi-item{display:flex;justify-content:space-between;font-size:14px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.03)}
+  .kpi-item .kv{font-weight:600}
+
+  .alert-i{padding:12px 16px;border-radius:10px;margin-bottom:10px;font-size:15px;line-height:1.7}
+  .ac{background:rgba(240,68,88,.06);border:1px solid rgba(240,68,88,.14)}
+  .aw{background:rgba(232,180,28,.05);border:1px solid rgba(232,180,28,.12)}
+
+  .tl{display:flex;gap:14px;align-items:center;padding:10px 0;font-size:15px}
+  .tl-p{font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;white-space:nowrap}
+  .tp-now{background:rgba(240,68,88,.15);color:var(--rd)}.tp-soon{background:rgba(232,180,28,.12);color:var(--gold)}.tp-later{background:rgba(77,155,255,.1);color:var(--bl)}.tp-warn{background:rgba(155,124,244,.12);color:var(--pp)}
+
+  .chk{display:flex;gap:10px;padding:6px 0;font-size:15px;align-items:flex-start}.chk-i{flex-shrink:0}
+  .insight{margin-top:14px;padding:14px 18px;background:var(--c2);border-radius:10px;font-size:15px;color:var(--t2);line-height:1.75}
+  .sec{font-size:20px;font-weight:700;margin:28px 0 16px;padding-bottom:14px;border-bottom:1px solid var(--bdr)}
+  .footer{text-align:center;padding:32px;font-size:14px;color:var(--t3)}.footer a{color:var(--bl);text-decoration:none;font-weight:600}
+  .tp-row{margin-bottom:10px}.tp-row .tp-lbl{display:flex;justify-content:space-between;font-size:14px;margin-bottom:3px}.tp-row .tp-bar{height:6px;background:var(--c2);border-radius:3px}.tp-row .tp-fill{height:100%;border-radius:3px}
+
+  @media(max-width:960px){.g2,.g3,.g4,.spot{grid-template-columns:1fr}.hero-num{font-size:80px;min-width:0}.hero-row{flex-direction:column}.header{flex-direction:column;gap:10px}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div>
+    <h1>📊 <span>陈嘉</span> · 宏观经济与投资决策看板</h1>
+    <div style="font-size:11px;color:var(--t3);margin-top:2px">GOR 方向引擎 · 资本三流追踪 · 二阶三阶机会捕获 · 每日 08:00 自动更新</div>
+  </div>
+  <div class="hstat">
+    <div class="live"></div>
+    <div><div class="v" style="color:var(--gold)" id="hdr-gold">--</div><div class="l">黄金/oz</div></div>
+    <div><div class="v" style="color:var(--oil)" id="hdr-wti">--</div><div class="l">WTI/bbl</div></div>
+    <div><div class="v" style="color:var(--rd)" id="hdr-dxy">--</div><div class="l">DXY</div></div>
+    <div><div class="v" style="color:var(--cy)" id="hdr-10y">--</div><div class="l">10Y 美债</div></div>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- ===== GOR HERO ===== -->
+<div class="hero">
+  <div class="hero-row">
+    <div class="hero-num" id="hero-num">--</div>
+    <div class="hero-info">
+      <div class="hero-f" id="hero-f">GOR = 黄金 ÷ 布伦特原油</div>
+      <div class="hero-d" id="hero-d"></div>
+      <div class="hero-bar"><div class="hero-bar-f" style="width:100%"></div><div class="hero-marker" style="left:82%"></div></div>
+      <div class="hero-labels">
+        <span style="color:var(--gn)">&lt;20 泡沫风险</span><span>20–30 估值均衡</span><span style="color:var(--gold)">30–45 修复周期</span><span style="color:var(--rd)">≥45 极端低估 ◀ 当前位置</span>
+      </div>
+      <div class="hero-calc">
+        <span>GOR≥45 → 基准 70%</span><span class="arrow">→</span>
+        <span>DXY>99 → <b style="color:var(--rd)">-10%</b></span><span class="arrow">→</span>
+        <span>10Y>4.3% → <b style="color:var(--rd)">-10%</b></span><span class="arrow">→</span>
+        <span>最终仓位</span><span class="result" id="hero-pos">--%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SPOTLIGHT ===== -->
+<div class="spot">
+  <div class="card">
+    <h3>📈 本周重要变化</h3>
+    <div class="srow"><span class="d dr"></span><span id="s-ch1"></span></div>
+    <div class="srow"><span class="d dw"></span><span id="s-ch2"></span></div>
+    <div class="srow"><span class="d dp"></span><span id="s-ch3"></span></div>
+  </div>
+  <div class="card">
+    <h3>💡 投资建议</h3>
+    <div class="srow"><span class="d dg"></span><span id="s-ad1"></span></div>
+    <div class="srow"><span class="d dw"></span><span id="s-ad2"></span></div>
+    <div class="srow"><span class="d db"></span><span id="s-ad3"></span></div>
+    <div class="srow"><span class="d dp"></span><span id="s-ad4"></span></div>
+  </div>
+  <div class="card">
+    <h3>⚠️ 预警信号</h3>
+    <div class="srow"><span class="d dr"></span><span id="s-wn1"></span></div>
+    <div class="srow"><span class="d do"></span><span id="s-wn2"></span></div>
+    <div class="srow"><span class="d dp"></span><span id="s-wn3"></span></div>
+  </div>
+</div>
+
+<!-- ===== ROW 1: 预警 + 配置 + 关键指标 ===== -->
+<div class="grid g3">
+  <div class="card">
+    <h3>🚨 活跃预警 <span class="badge br" id="alert-badge"></span></h3>
+    <div id="alert-list"></div>
+  </div>
+  <div class="card">
+    <h3>💰 今日配置 <span class="badge bg">仓位 <span id="cfg-pos"></span></span></h3>
+    <div class="metric"><span>🛢️ 油气</span><span class="v" style="color:var(--oil)" id="cfg-oil"></span></div>
+    <div class="metric"><span>🥇 黄金</span><span class="v" style="color:var(--gold)" id="cfg-gold"></span></div>
+    <div class="metric"><span>💵 现金</span><span class="v" id="cfg-cash"></span></div>
+    <div class="metric"><span>📈 A股</span><span class="v" style="color:var(--bl)" id="cfg-stock"></span></div>
+    <div class="metric"><span>🔶 铜</span><span class="v" style="color:var(--t3)" id="cfg-copper"></span></div>
+    <div class="insight" style="font-size:14px"><b>操作纪律：</b>油气分批建仓（WTI $70-80区间）· 黄金底仓锁死不动 · 不加杠杆（终身铁律）· 不做空 · WTI<$75=油气强制降至5%</div>
+  </div>
+  <div class="card">
+    <h3>📡 先行指标 <span class="badge bp">多源交叉验证</span></h3>
+    <div class="metric"><span>巴菲特现金储备</span><span class="v" style="color:var(--rd)">$3,974亿</span></div>
+    <div class="metric"><span>BRK现金/总资产</span><span class="v" style="color:var(--rd)">~28%</span></div>
+    <div class="metric"><span>全球央行购金 YoY</span><span class="v" style="color:var(--gold)">+86%</span></div>
+    <div class="metric"><span>中国黄金储备</span><span class="v" style="color:var(--gold)">2,365吨</span></div>
+    <div class="metric"><span>外国持有美债</span><span class="v" style="color:var(--oil)">20% (08年60%)</span></div>
+    <div class="metric"><span>美国利息/财政收入</span><span class="v" style="color:var(--rd)">~20%</span></div>
+    <div class="metric"><span>10Y-2Y利差</span><span class="v" style="color:var(--rd)">倒挂 >12个月</span></div>
+    <div class="metric"><span>精废价差（铜）</span><span class="v" style="color:var(--t2)">待更新</span></div>
+    <div class="insight" style="font-size:14px"><b>信号解读：</b>巴菲特$3,974亿现金=BRK史上最高，他在等。外国持有美债从60%降至20%=官方去美元化加速。10Y-2Y倒挂>12月=衰退概率>70%。精废价差是铜市最敏感的领先指标——价差扩大=供给紧张。</div>
+  </div>
+</div>
+
+<!-- ===== ROW 2: 资本三流 ===== -->
+<div class="sec">🌊 资本三流 · 实时追踪</div>
+<div class="grid g3">
+  <div class="card">
+    <h3>🌊 跨资产流 <span class="badge br">金融资产→商品+现金</span></h3>
+    <div class="metric"><span>GOR 金油比</span><span class="v" id="ca-gor"></span></div>
+    <div class="metric"><span>伦敦金</span><span class="v" id="ca-gold"></span></div>
+    <div class="metric"><span>布伦特原油</span><span class="v" id="ca-brent"></span></div>
+    <div class="metric"><span>WTI 原油</span><span class="v" style="color:var(--rd)" id="ca-wti"></span></div>
+    <div class="metric"><span>COMEX 铜</span><span class="v" id="ca-copper"></span></div>
+    <div class="insight"><b>核心判断：</b>GOR=52意味着每盎司黄金可换52桶原油——历史均值仅20桶。这是1986年以来最极端的偏离。回归方式有两种：油价涨（你买油气赚钱）或金价跌（央行购金锁死这个方向）。方向确定，时间不确定——分批建仓、不加杠杆、等回归。</div>
+  </div>
+  <div class="card">
+    <h3>🌐 跨境流 <span class="badge br">美元短期强 · 长期弱</span></h3>
+    <div class="metric"><span>美元指数 DXY</span><span class="v" id="cb-dxy"></span></div>
+    <div class="metric"><span>10Y 美债收益率</span><span class="v" id="cb-10y"></span></div>
+    <div class="metric"><span>全球稳定币市值</span><span class="v">~$3,186亿</span></div>
+    <div class="metric"><span>人民币贸易结算占比</span><span class="v" style="color:var(--bl)">4% (从3%上升)</span></div>
+    <div class="metric"><span>人民币储备占比</span><span class="v" style="color:var(--rd)">1.95% (下降中)</span></div>
+    <div style="margin-top:16px"><div style="font-size:14px;font-weight:700;margin-bottom:10px">Token 美元换锚进度</div>
+      <div class="tp-row"><div class="tp-lbl"><span>① 稳定币美元</span><span style="color:var(--gn);font-weight:700">90%</span></div><div class="tp-bar"><div class="tp-fill" style="width:90%;background:var(--gn)"></div></div></div>
+      <div class="tp-row"><div class="tp-lbl"><span>② RWA 上链</span><span style="color:var(--bl);font-weight:700">50%</span></div><div class="tp-bar"><div class="tp-fill" style="width:50%;background:var(--bl)"></div></div></div>
+      <div class="tp-row"><div class="tp-lbl"><span>③ 算智美元</span><span style="color:var(--gold);font-weight:700">30%</span></div><div class="tp-bar"><div class="tp-fill" style="width:30%;background:var(--gold)"></div></div></div>
+      <div class="tp-row"><div class="tp-lbl"><span>④ 闭环运行</span><span style="color:var(--rd);font-weight:700">10%</span></div><div class="tp-bar"><div class="tp-fill" style="width:10%;background:var(--rd)"></div></div></div>
+    </div>
+    <div class="insight"><b>核心判断：</b>DXY>100+10Y>4.3%说明市场还"相信美元"。但外国官方持有美债已从2008年60%降至20%，而全球央行购金量同比暴增86%。私人资本还在买美元（惯性），官方资本已在撤离（趋势）。Token美元换锚若失败→DXY和10Y同时暴跌→黄金暴涨。</div>
+  </div>
+  <div class="card">
+    <h3>⏳ 跨周期流 <span class="badge br">远期叙事→现金流回归</span></h3>
+    <div class="metric"><span>VIX 恐慌指数</span><span class="v" id="cc-vix"></span></div>
+    <div class="metric"><span>WTI 距$75强制线</span><span class="v" style="color:var(--rd)" id="cc-wtidiff"></span></div>
+    <div class="metric"><span>Warsh 预警状态</span><span class="v" id="cc-warsh"></span></div>
+    <div class="metric"><span>SOFR 利率</span><span class="v">~4.3%</span></div>
+    <div class="metric"><span>美国财政赤字/GDP</span><span class="v" style="color:var(--oil)">6.7%</span></div>
+    <div class="metric"><span>美联储资产负债表</span><span class="v" style="color:var(--rd)">$7.3万亿(QT中)</span></div>
+    <div class="insight"><b>核心判断：</b>表面平静（VIX偏低）但结构性脆弱在积累。10Y-2Y利差倒挂超过12个月——历史上每次倒挂后必然出现衰退。巴菲特持有$3,974亿现金（占BRK总资产的28%）——他在用真金白银发出最响亮的警报。Taleb的"火鸡问题"：市场越平静，下一次爆发越剧烈。</div>
+  </div>
+</div>
+
+<!-- ===== ROW 3: 卢麒元资本三流 ===== -->
+<div class="sec">🌊 卢麒元 · 资本三流监测（总量 · 方向 · 流速）</div>
+<div class="grid g3">
+  <div class="card">
+    <h3>📦 一流：总量 <span class="badge br">流动性收缩中</span></h3>
+    <div class="metric"><span>美联储资产负债表</span><span class="v" style="color:var(--rd)">$7.3万亿 ↓</span></div>
+    <div class="metric"><span>美国 M2 增速</span><span class="v" style="color:var(--rd)">~2% (峰值25%)</span></div>
+    <div class="metric"><span>财政赤字 / GDP</span><span class="v" style="color:var(--oil)">6.7%</span></div>
+    <div class="metric"><span>年利息支出</span><span class="v" style="color:var(--rd)">$1.1万亿</span></div>
+    <div class="metric"><span>利息 / 财政收入</span><span class="v" style="color:var(--rd)">~20% 🔴 Dalio 红线</span></div>
+    <div class="insight">货币收缩（QT从$8.9万亿→$7.3万亿）+ 财政扩张（赤字6.7% GDP）= 方向矛盾。利息支出$1.1万亿/年已占财政收入20%——Ray Dalio的红线。这个债务轨迹不可持续：要么降息（美元走弱）、要么违约（全球危机）、要么制造通胀稀释债务（Warsh路径）。</div>
+  </div>
+  <div class="card">
+    <h3>🧭 二流：方向 <span class="badge br" id="l2-badge"></span></h3>
+    <div class="metric"><span>DXY 美元指数</span><span class="v" style="color:var(--rd)" id="l2-dxy"></span></div>
+    <div class="metric"><span>外国持有美债</span><span class="v" style="color:var(--oil)">20% (2008年60%)</span></div>
+    <div class="metric"><span>人民币贸易结算</span><span class="v" style="color:var(--bl)">4% (缓慢上升)</span></div>
+    <div class="metric"><span>人民币储备占比</span><span class="v" style="color:var(--rd)">1.95% (下降中)</span></div>
+    <div class="metric"><span>全球央行购金</span><span class="v" style="color:var(--gold)">+86% YoY</span></div>
+    <div class="insight"><b>向心坍缩</b>——卢麒元定义：全球资本被强制拉回美国的过程。通过制造全球危机→恐慌→资本涌入美元/美债→美元走强→美国低价收购全球资产。当前阶段：油价已涨53%（布伦特$60→$93），但粮食尚未暴涨。油粮同时暴涨=向心坍缩进入高潮=现金70%+对冲升级。</div>
+  </div>
+  <div class="card">
+    <h3>⚡ 三流：流速 <span class="badge by" id="l3-badge"></span></h3>
+    <div class="metric"><span>VIX 恐慌指数</span><span class="v" style="color:var(--gn)" id="l3-vix"></span></div>
+    <div class="metric"><span>10Y-2Y 利差</span><span class="v" style="color:var(--rd)">倒挂 >12个月 🔴</span></div>
+    <div class="metric"><span>Warsh 预警</span><span class="v" id="l3-warsh"></span></div>
+    <div class="metric"><span>SOFR 利率</span><span class="v">~4.3%</span></div>
+    <div class="metric"><span>IG 信用利差</span><span class="v" style="color:var(--t3)">待更新</span></div>
+    <div class="insight">VIX偏低但10Y-2Y倒挂超过12个月——历史上倒挂后必然衰退。卢麒元的"蓄力—出拳"框架：要打出重拳，必须先收回手臂（通缩），同时扭转腰部（危机）。当前处于"蓄力"阶段的后期——Warsh冲击窗口（Q3-Q4）与明斯基时刻（9月）高度重合。平静越久，下一次爆发越剧烈。</div>
+  </div>
+</div>
+
+<!-- 三流综合判定 -->
+<div class="card" style="margin-bottom:22px;background:linear-gradient(135deg,rgba(155,124,244,.06),rgba(77,155,255,.04));border-color:rgba(155,124,244,.22)">
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px">
+    <span style="font-size:17px;font-weight:700">🧠 三流综合判定</span>
+    <span style="font-size:16px;color:var(--t2)" id="flow-verdict"></span>
+  </div>
+  <div style="margin-top:10px;font-size:14px;color:var(--t3);line-height:1.8">
+    ⚠️ <b style="color:var(--rd)">Warsh 冲击窗口（2026.Q3-Q4）与明斯基时刻（2026.09）高度重合——双重叠加。</b>
+    卢麒元框架预判：Warsh需要通过制造全球危机来完成"蓄力—出拳"—油价暴涨（蓄力）→恶性通胀→全球紧缩→新兴市场崩盘→资本涌入美元（向心坍缩完成）→美国低价收购全球资产。如果油粮同时暴涨→向心坍缩进入高潮→防御升级：现金≥70%、油气≤15%、清掉所有杠杆、SPY Straddle 3-5%组合。
+    <a href="11-资本三流框架.md" style="color:var(--pp);font-weight:600;margin-left:8px">📖 完整资本三流框架 →</a>
+  </div>
+</div>
+
+<!-- ===== ROW 4: 时间轴 + 自检 ===== -->
+<!-- ===== 国内科技板块观察 ===== -->
+<div class="sec">🔬 国内科技板块 · 多维度观察（每周更新）</div>
+<div class="grid g2">
+  <div class="card">
+    <h3>📊 核心指数与资金 <span class="badge br">极致抱团</span></h3>
+    <div class="metric"><span>科创50</span><span class="v" style="color:var(--gn)">~1,911 · 周涨+14.9%</span></div>
+    <div class="metric"><span>创业板指</span><span class="v" style="color:var(--gn)">~4,252 · 周涨+11.0%</span></div>
+    <div class="metric"><span>半导体板块</span><span class="v" style="color:var(--gn)">主力净流入52亿</span></div>
+    <div class="metric"><span>AI芯片涨停数</span><span class="v" style="color:var(--rd)">单日34股涨停</span></div>
+    <div class="metric"><span>硬科技成交占比</span><span class="v" style="color:var(--rd)">突破全市场45%</span></div>
+    <div class="metric"><span>寒武纪</span><span class="v" style="color:var(--rd)">PE 348x · 股价1,540元</span></div>
+    <div class="metric"><span>中际旭创</span><span class="v" style="color:var(--oil)">市值1.525万亿·超越茅台</span></div>
+    <div class="metric"><span>京东方A</span><span class="v" style="color:var(--gn)">净流入31.75亿(全市场#1)</span></div>
+    <div class="insight" style="font-size:13px"><b>抱团风险：</b>"指数牛"与"个股熊"撕裂——科创50创新高但3,700+只个股下跌。寒武纪PE 348x不适合价值投资者。中际旭创市值超茅台=光模块龙头已price-in未来3年增长。</div>
+  </div>
+  <div class="card">
+    <h3>🔥 本周科技热点 · 二阶三阶传导链</h3>
+    <div style="font-size:14px;color:var(--t2);line-height:1.8">
+      <p><b style="color:var(--rd)">① 工信部AI芯片三年计划（6月17日）：</b>400亿专项补贴·目标2028年国产AI芯片市占率40%。<b>一阶：</b>AI芯片股暴涨（寒武纪/海光信息）——已反应。<b>二阶：</b>AI芯片上游→半导体设备(拓荆/华海清科)+封装(长电·AI封装占比破40%)+EDA(华大九天)——仍在定价中。<b>三阶：</b>国产AI芯片产能扩张→电力需求暴增→绿电+电网设备+液冷——尚未被充分定价。</p>
+      <p style="margin-top:8px"><b style="color:var(--rd)">② 字节跳动120亿AI芯片采购（6月18日）：</b>国产占比首超50%。<b>二阶传导：</b>字节供应商→存储芯片(兆易创新)+PCB(深南电路)+光模块(中际旭创)——订单确定性高。<b>三阶：</b>字节AI算力扩张→数据中心建设→铜缆/光缆/电力→铜需求结构性增长→与GOR金转油逻辑形成共振。</p>
+      <p style="margin-top:8px"><b style="color:var(--rd)">③ 上交所AI大模型上市新规（6月17日）：</b>未盈利AI企业可上科创板。<b>二阶：</b>AI应用端→办公/教育/医疗AI标的受益于融资渠道打开。<b>三阶：</b>AI上市公司增加→科创板指数权重提升→被动资金流入→科创50ETF受益。</p>
+      <p style="margin-top:8px"><b style="color:var(--gn)">🟢 与GOR框架的共振：</b>AI算力=铜需求(每个数据中心耗铜=传统建筑5-8倍)=电力需求(绿电成本=算力成本核心)。<b>这使铜成为"AI+绿色转型+金转油"三重逻辑的交集——当铜回调至$6.00以下时，是2026-2028最确定的实物需求标的。</b></p>
+    </div>
+  </div>
+</div>
+<div class="insight" style="margin-bottom:20px;font-size:14px"><b>⚠️ 科技板块风险提示：</b>寒武纪PE 348x+科创50周涨14.9%+3700只个股下跌=极致抱团。参照产能周期框架——当前处于"供不应求"阶段后期（AI芯片缺口+国产替代）。当产能开始爬坡时（预计2027Q1-Q2），二三线厂商降价抢单将触发产能过剩预警信号#3。现在不是追高的时候——等回调20-30%后逆向布局。</div>
+
+<div class="sec">⏰ 风控时间轴 & 执行自检</div>
+<div class="grid g2">
+  <div class="card">
+    <h3>⏰ 关键时间节点 <span class="badge br">SpaceX IPO 窗口进行中</span></h3>
+    <div class="tl"><span class="tl-p tp-now">现在</span><span><b>2026.06 SpaceX IPO 窗口</b> — 现金 ≥ 50%，规避流动性虹吸。不做新的重仓建仓</span></div>
+    <div class="tl"><span class="tl-p tp-soon">60天后</span><span><b>2026.08-09 原油冲顶期</b> — 油气 ≤ 25%，WTI 触及 $150 分批止盈，不追涨</span></div>
+    <div class="tl"><span class="tl-p tp-soon">90天后</span><span><b>2026.09 明斯基时刻</b> — 现金 ≥ 60%，清掉一切杠杆，美股降至最低</span></div>
+    <div class="tl"><span class="tl-p tp-later">180天后</span><span><b>2027.H1 美元周期见顶</b> — 黄金/油气止盈，A股提至 25%，铜纳入 5-10%</span></div>
+    <div class="tl"><span class="tl-p tp-warn">叠加</span><span><b>Warsh 冲击 + 明斯基双重叠加</b> 🔴 — 如果油粮同时暴涨→向心坍缩高潮→最高警戒</span></div>
+  </div>
+  <div class="card">
+    <h3>✅ 8项执行自检 <span class="badge bg" id="check-badge"></span></h3>
+    <div id="checklist"></div>
+  </div>
+</div>
+
+<div class="footer">
+  📊 陈嘉 · 宏观经济与投资决策看板 · 数据源 Yahoo Finance · 每日 08:00 自动更新 ·
+  <a href="🛡️ 对冲作战手册.html">对冲作战手册 →</a> ·
+  <a href="📋 决策框架索引.md">决策框架索引 →</a> ·
+  <span id="update-time"></span>
+</div>
+
+</div>
+
+<!-- ═══════════ DATA BLOCK ═══════════ -->
+<!-- DATA_BLOCK_START -->
+<script>
+window.__GOR_DATA__ = {
+  "updated": "2026-07-15 12:00",
+  "gor_brent": 48.04,
+  "gor_wti": 50.92,
+  "regime": "原油极端低估",
+  "final_position": 50,
+  "allocation": {
+    "油气": 25,
+    "黄金": 20,
+    "现金": 48,
+    "A股": 7,
+    "铜": 0
+  },
+  "alerts": [
+    {
+      "level": "warning",
+      "title": "DXY=100.85 > 99 强美元压制",
+      "detail": "仓位-10%"
+    },
+    {
+      "level": "warning",
+      "title": "10Y=4.58% > 4.3% 高利率压制",
+      "detail": "仓位-10%"
+    }
+  ],
+  "data": {
+    "黄金期货": {
+      "price": 4067.1,
+      "change_pct": 0.0
+    },
+    "WTI原油": {
+      "price": 79.87,
+      "change_pct": 0.0
+    },
+    "布伦特原油": {
+      "price": 84.66,
+      "change_pct": 0.0
+    },
+    "美元指数DXY": {
+      "price": 100.85,
+      "change_pct": 0.0
+    },
+    "10Y美债收益率": {
+      "price": 4.58,
+      "change_pct": 0.0
+    },
+    "VIX恐慌指数": {
+      "price": 16.17,
+      "change_pct": 0.0
+    },
+    "COMEX铜": {
+      "price": 6.401,
+      "change_pct": 0.0
+    }
+  },
+  "capital_three_flows": {
+    "total": "收缩",
+    "direction": "向心坍缩",
+    "speed": "放缓",
+    "dxy": 100.85,
+    "vix": 16.17,
+    "tenyear": 4.58,
+    "warsh_alert": true
+  },
+  "ashare_hedge": {
+    "enabled": false,
+    "position_pct": 7,
+    "trigger": "A股<10%无需对冲"
+  }
+};
+</script>
+<!-- DATA_BLOCK_END -->
+
+<script>
+(function(){
+  var g=window.__GOR_DATA__;if(!g)return;
+  var gor=g.gor_brent.toFixed(1), gold=g.data['黄金期货'].price, wti=g.data['WTI原油'].price, brent=g.data['布伦特原油'].price, copper=g.data['COMEX铜'].price;
+  var dxy=g.capital_three_flows.dxy, vix=g.capital_three_flows.vix, tenyear=g.capital_three_flows.tenyear;
+  var pos=g.final_position, a=g.allocation, oilP=a['油气'], goldP=a['黄金'], cashP=a['现金'], stkP=a['A股'], copP=a['铜'];
+  var wtiDiff=(wti-75).toFixed(2), warsh=g.capital_three_flows.warsh_alert, ctf=g.capital_three_flows;
+  var gf=function(n){return n.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',')};
+  function E(id){return document.getElementById(id)}
+
+  E('hdr-gold').textContent='$'+gf(gold);E('hdr-wti').textContent='$'+wti.toFixed(2);E('hdr-dxy').textContent=dxy.toFixed(2);E('hdr-10y').textContent=tenyear.toFixed(2)+'%';
+  E('hero-num').textContent=gor;
+  E('hero-f').innerHTML='GOR = <b>$'+gf(gold)+'</b> ÷ <b style="color:#f06030">$'+brent.toFixed(2)+'</b> = <b style="color:#f06030">'+gor+' : 1</b>';
+  E('hero-d').innerHTML='<b style="color:#f06030">金转油逻辑：</b>每盎司黄金可购买 <b style="color:#f06030">'+gor+' 桶</b> 原油 — 历史均衡中枢仅 <b>15–25 桶</b>。1986年以来最极端偏离。央行购金锁死金价下跌空间，油价均值回归是大概率事件。<b style="color:#f06030;font-size:17px">金油双持——黄金底仓锁死+超配油气。</b>向心坍缩阶段二出拳窗口·Warsh需$150油价制造恶性通胀·分批建仓·WTI$75强制止损。';
+  E('hero-pos').textContent=pos+'%';
+
+  E('s-ch1').innerHTML='GOR <b>'+gor+'</b> — 1986年以来最极端偏离，金转油：原油以黄金计价处于历史性深度折价。布伦特 <b>$'+brent.toFixed(2)+'</b>';
+  E('s-ch2').innerHTML='DXY <b>'+dxy.toFixed(2)+'</b> 维持强美元区间（>99），10Y=<b>'+tenyear.toFixed(2)+'%</b> 继续压制全球风险资产定价';
+  E('s-ch3').innerHTML=wtiDiff<2?'<b style="color:#f04458">⚠️ WTI $'+wti.toFixed(2)+' 距 $75 硬止损线仅 $'+wtiDiff+' — 2026年以来最接近触发的一次</b>':'WTI <b>$'+wti.toFixed(2)+'</b> 距 $75 硬止损尚有 $'+wtiDiff+' 缓冲';
+
+  E('s-ad1').textContent='油气 '+oilP+'% — WTI $70-80 区间分批建仓，不加杠杆。若跌破 $75 则强制降至 5%';
+  E('s-ad2').textContent='黄金 '+goldP+'% — 底仓锁死不动。央行购金（+86% YoY）是最强支撑。等 GOR 回归 35-40 再加仓';
+  E('s-ad3').textContent='现金 '+cashP+'% — 保持流动性。向心坍缩进行中=现金是选择权=在别人被迫卖出时你有能力买入';
+  E('s-ad4').textContent=stkP>=10?'A股 '+stkP+'% — ⚠️ 仓位≥10%需配沪深300指数 Put 保护（成本 1-2%/季）':'A股 '+stkP+'% — 轻仓无需对冲。≥10% 时配沪深300指数 Put（IO·CFFEX），成本低流动性好';
+
+  E('s-wn1').innerHTML=wtiDiff<0?'<b style="color:#f04458">🔴🔴 WTI 已跌破 $75！油气仓位必须强制降至 5%！立即执行减仓！</b>':wtiDiff<2?'<b style="color:#f04458">🔴 WTI 距 $75 仅 $'+wtiDiff+'！跌破=强制降至5%。准备减仓方案</b>——不是等跌破了再慌':'🟢 WTI 距 $75 硬止损安全，正常运行 GOR 配置';
+  E('s-wn2').innerHTML=warsh?'<b style="color:#f04458">🔴 Warsh 冲击 + 明斯基时刻双重叠加</b> — 最高警戒':'🟠 Warsh 冲击窗口（Q3-Q4）活跃 — 总量收缩+方向向心=防御为主';
+  E('s-wn3').innerHTML='三流综合判定：总量 <b>'+ctf.total+'</b> + 方向 <b>'+ctf.direction+'</b> + 流速 <b>'+ctf.speed+'</b> → 维持防御姿态，等待方向明确';
+
+  E('cfg-oil').textContent=oilP+'%';E('cfg-gold').textContent=goldP+'%';E('cfg-cash').textContent=cashP+'%';E('cfg-stock').textContent=stkP+'%';E('cfg-copper').textContent=copP+'%';E('cfg-pos').textContent=pos+'%';
+
+  var alerts=g.alerts||[];E('alert-badge').textContent=alerts.length+' 项';
+  var ah='';alerts.slice(0,4).forEach(function(a){ah+='<div class="alert-i '+(a.level==='critical'?'ac':'aw')+'"><b>'+a.title+'</b><div style="margin-top:4px">'+a.detail+'</div></div>'});
+  E('alert-list').innerHTML=ah||'<div class="alert-i aw">✅ 无活跃预警</div>';
+
+  E('ca-gor').innerHTML=gor+'<span style="font-size:12px;color:var(--t3);margin-left:4px"> : 1</span>';E('ca-gold').textContent='$'+gf(gold);E('ca-brent').textContent='$'+brent.toFixed(2);E('ca-wti').textContent='$'+wti.toFixed(2)+(wtiDiff<2?' ⚠️':'');E('ca-copper').textContent='$'+copper.toFixed(2);
+  E('cb-dxy').textContent=dxy.toFixed(2);E('cb-10y').textContent=tenyear.toFixed(2)+'%';
+  E('cc-wtidiff').innerHTML='<span style="color:'+(wtiDiff<2?'var(--rd)':'var(--gn)')+'">$'+wtiDiff+'</span>';
+  E('cc-vix').innerHTML=vix.toFixed(1)+(vix<15?'<span style="font-size:12px;color:var(--t3)"> 偏低·自满</span>':vix>25?'<span style="font-size:12px;color:var(--rd)"> ⚠️ 偏高·恐慌</span>':'<span style="font-size:12px;color:var(--t3)"> 正常</span>');
+  E('cc-warsh').innerHTML=warsh?'<span style="color:#f04458;font-weight:700">🔴 活跃</span>':'<span style="color:#0ccb9c;font-weight:700">🟢 未触发</span>';
+
+  E('l2-dxy').textContent=dxy.toFixed(2);E('l2-badge').textContent=ctf.direction;E('l3-vix').textContent=vix.toFixed(1);
+  E('l3-warsh').innerHTML=warsh?'<span style="color:#f04458;font-weight:700">🔴 活跃</span>':'<span style="color:#0ccb9c;font-weight:700">🟢 未触发</span>';
+  E('l3-badge').textContent=ctf.speed;
+  E('flow-verdict').innerHTML='总量 <b>'+ctf.total+'</b> ＋ 方向 <b>'+ctf.direction+'</b> ＋ 流速 <b>'+ctf.speed+'</b> ＝ <strong style="color:var(--oil);font-size:17px">🟠 向心坍缩进行中</strong>';
+
+  var checks=[['现金 ≥ 40%（SpaceX IPO 窗口）— 当前 '+cashP+'%',cashP>=40],['DXY>99 已扣减 — 已自动 -10%',!0],['10Y>4.3% 已扣减 — 已自动 -10%',!0],['WTI ≥ $75 — 当前 $'+wti.toFixed(2)+'（$75 为强制减仓线）',wti>=75],['黄金底仓 ≥ 15% — 当前 '+goldP+'% + 央行购金加持',goldP>=15],['未加杠杆 — 终身铁律，不可违反',!0],['油气按计划分批建仓 — 当前 '+oilP+'%',!0],['不做空、不满仓单一品种 — 单资产上限 25%',!0]];
+  var cl='',p=0;checks.forEach(function(c){cl+='<div class="chk"><span class="chk-i">'+(c[1]?'✅':'⚠️')+'</span> '+c[0]+'</div>';if(c[1])p++});
+  E('checklist').innerHTML=cl;E('check-badge').textContent=p+'/8 通过';
+
+  E('update-time').textContent='数据更新于 '+g.updated+' · 每日 08:00 自动刷新';
+})();
+</script>
+
+</body>
+</html>

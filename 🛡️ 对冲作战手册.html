@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>陈嘉 · 对冲作战手册</title>
+<style>
+  :root{--bg:#060a10;--card:#0c1119;--c2:#111824;--bdr:#182232;--gold:#e8b41c;--oil:#f06030;--gn:#0ccb9c;--rd:#f04458;--bl:#4d9bff;--pp:#9b7cf4;--cy:#1cc8d8;--tx:#eaedf2;--t2:#8b98a8;--t3:#505d6e;--r:16px}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',-apple-system,'Microsoft YaHei','PingFang SC',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;line-height:1.8;font-size:17px}
+  .header{background:rgba(8,11,17,.96);border-bottom:1px solid var(--bdr);padding:22px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+  .header h1{font-size:26px;font-weight:800;letter-spacing:-.5px}.header h1 span{color:var(--pp)}
+  .header nav{display:flex;gap:14px;font-size:14px}.header nav a{color:var(--t3);text-decoration:none;padding:5px 14px;border-radius:8px;border:1px solid transparent;transition:.2s}.header nav a:hover{color:var(--tx);border-color:var(--bdr)}
+  .container{max-width:1260px;margin:0 auto;padding:28px 40px}
+  .grid{display:grid;gap:24px;margin-bottom:24px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+  .card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:26px 30px}
+  .card h3{font-size:19px;font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .badge{font-size:12px;font-weight:700;padding:5px 12px;border-radius:8px}
+  .br{background:rgba(240,68,88,.12);color:var(--rd)}.bg{background:rgba(12,203,156,.1);color:var(--gn)}.bp{background:rgba(155,124,244,.1);color:var(--pp)}.by{background:rgba(232,180,28,.1);color:var(--gold)}.bb{background:rgba(77,155,255,.1);color:var(--bl)}
+
+  /* Status bar */
+  .status{background:linear-gradient(135deg,rgba(155,124,244,.08),rgba(77,155,255,.04));border:1px solid rgba(155,124,244,.2);border-radius:var(--r);padding:20px 30px;margin-bottom:24px;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+  .status-item{display:flex;align-items:center;gap:10px;font-size:16px}
+  .status-dot{width:10px;height:10px;border-radius:50%}
+  .sd-r{background:var(--rd);box-shadow:0 0 8px var(--rd)}.sd-g{background:var(--gn);box-shadow:0 0 8px var(--gn)}.sd-y{background:var(--gold);box-shadow:0 0 8px var(--gold)}
+
+  /* Action summary */
+  .action-summary{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px}
+  .action-card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:24px 28px;border-top:3px solid}
+  .action-card.priority{background:linear-gradient(160deg,rgba(240,68,88,.04),var(--card));border-color:rgba(240,68,88,.3);border-top-color:var(--rd)}
+  .action-card.secondary{background:linear-gradient(160deg,rgba(232,180,28,.04),var(--card));border-color:rgba(232,180,28,.3);border-top-color:var(--oil)}
+  .action-card.watch{background:linear-gradient(160deg,rgba(155,124,244,.04),var(--card));border-color:rgba(155,124,244,.3);border-top-color:var(--pp)}
+  .action-card h2{font-size:20px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .action-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:16px;line-height:1.7}
+  .action-row .ar-icon{flex-shrink:0;font-size:18px;margin-top:2px}
+  .action-row b{color:var(--tx)}
+  .action-note{margin-top:12px;padding:12px 16px;background:var(--c2);border-radius:8px;font-size:15px;color:var(--t2);line-height:1.7}
+
+  /* Strategy block */
+  .strat{margin-bottom:22px;border-left:4px solid;padding-left:22px}
+  .strat-order2{border-color:var(--gn)}.strat-order3{border-color:var(--pp)}
+  .strat-label{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+  .strat-order2 .strat-label{color:var(--gn)}.strat-order3 .strat-label{color:var(--pp)}
+  .strat h4{font-size:18px;font-weight:700;margin-bottom:10px}
+  .strat-flow{font-size:16px;color:var(--t2);margin-bottom:14px;line-height:1.75}
+  .strat-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+  .strat-table td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:top}
+  .strat-table td:first-child{color:var(--t3);white-space:nowrap;font-weight:600;width:110px}
+  .strat-table td:last-child{color:var(--t2)}
+  .strat-action{margin-top:14px;padding:16px 20px;background:var(--c2);border-radius:10px;font-size:15px;color:var(--t2);line-height:1.75}
+  .strat-action b{color:var(--tx)}
+
+  .section-title{font-size:22px;font-weight:700;margin:32px 0 18px;padding-bottom:14px;border-bottom:1px solid var(--bdr)}
+  .insight{margin-top:16px;padding:16px 20px;background:var(--c2);border-radius:10px;font-size:16px;color:var(--t2);line-height:1.8}
+  .tool-card{font-size:16px;color:var(--t2);line-height:1.8}
+  .footer{text-align:center;padding:36px;font-size:15px;color:var(--t3)}.footer a{color:var(--bl);text-decoration:none;font-weight:600}
+  .check-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:14px}
+  .check-item{background:var(--c2);padding:14px 18px;border-radius:10px;font-size:15px;display:flex;align-items:flex-start;gap:10px;line-height:1.7}
+  .chart-wrap{position:relative;margin-top:8px}canvas{width:100%!important;height:100%!important}
+  @media(max-width:900px){.g2,.g3,.check-grid,.action-summary{grid-template-columns:1fr}.header{flex-direction:column;gap:10px}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<header class="header">
+  <div><h1>🛡️ <span>陈嘉</span> · 对冲作战手册</h1><span style="font-size:12px;color:var(--rd);margin-left:12px;font-weight:700">⚠️ WTI跌破$75硬止损 — 已更新至6/25</span></div>
+  <nav>
+    <a href="📊 投资决策看板.html">📊 决策看板</a>
+    <a href="05-对冲策略选择.md">🛡️ 对冲框架</a>
+    <a href="06-风控日历.md">⏰ 风控日历</a>
+    <a href="11-资本三流框架.md">🌊 资本三流</a>
+  </nav>
+</header>
+
+<div class="container">
+
+<!-- ===== STATUS BAR ===== -->
+<div class="status">
+  <div class="status-item"><span class="status-dot sd-r"></span><b id="st-gor">GOR --</b></div>
+  <div class="status-item"><span class="status-dot sd-y"></span><b id="st-pos">仓位 --%</b></div>
+  <div class="status-item"><span class="status-dot sd-r"></span><b id="st-wti">WTI $--</b></div>
+  <div class="status-item"><span class="status-dot sd-g"></span><b id="st-vix">VIX --</b></div>
+  <div style="flex:1"></div>
+  <span style="font-size:14px;color:var(--t3)" id="st-updated">--</span>
+</div>
+
+<!-- ===== 中国大陆投资者对冲行动清单 ===== -->
+<div class="section-title">📋 当前对冲行动清单 · 中国大陆投资者版</div>
+<div class="insight" style="margin-bottom:20px;background:rgba(240,68,88,.06);border:1px solid rgba(240,68,88,.2)"><b>⚠️ 境内可用工具：</b>沪深300 ETF期权(510300)、上证50 ETF期权(510050)、沪深300股指期权(IO·中金所)、商品期货期权、能源ETF(159930)、黄金ETF(518880)、有色ETF(512400)、恒生科技ETF(513180·港股通)。<b>优先推荐境内低成本期权策略——少量资金（每笔几千至几万元）即可执行。</b><br><br><b style="color:var(--rd)">🚨 当前最高优先级行动：</b>① WTI $69.87 < $75 → 立即检查WTI $75 Put赔付对账 → 油气仓位已强制降至5% ② 现金升至73% → 转入防御等待模式 ③ 等WTI回到$75上方重新评估油气建仓+第一时间配Put。</div>
+<div class="action-summary">
+  <div class="action-card priority">
+    <h2>🔴 优先一：WTI $75 Put赔付对账 & 油气减仓（当前最高优先级）</h2>
+    <div class="action-row"><span class="ar-icon">🚨</span><span><b>WTI硬止损已触发：</b>WTI $69.87 < $75 → 油气仓位已从22%强制降至5%。WTI周跌-9%·月跌-28%·伊朗和平后跌-44%。</span></div>
+    <div class="action-row"><span class="ar-icon">💰</span><span><b>立即检查WTI $75 Put赔付：</b>确认Put行权收益金额→用于弥补油气减仓的本金损失→计算净影响。</span></div>
+    <div class="action-row"><span class="ar-icon">📐</span><span><b>减仓方案：</b>能源ETF(159930)降至总投资组合≤5%·如持有油气个股同步减仓·不留侥幸。</span></div>
+    <div class="action-row"><span class="ar-icon">🧠</span><span><b>不要重蹈覆辙：</b>WTI从$75.73→$69.87用了不到一周。$75硬止损不是摆设——下次回到$75上方重新建仓时必须第一时间配Put。</span></div>
+    <div class="action-note"><b>核心教训：</b>6/19警报"距$75仅$0.73"是最后警告。纪律>信念——不管GOR多高（现在53+更极端），WTI跌破$75必须减仓。油气逻辑未被否证（低库存+OPEC+减产），但等WTI回到$75上方再重新评估。</div>
+  </div>
+  <div class="action-card secondary">
+    <h2>🟠 优先二：现金转防御模式 · SPY/IO Straddle预研</h2>
+    <div class="action-row"><span class="ar-icon">💵</span><span><b>现金升至73%：</b>油气减仓释放的现金+原有现金=73%。这是为阶段三（坍缩）准备的弹药——恐慌中抄底被错杀资产。</span></div>
+    <div class="action-row"><span class="ar-icon">📊</span><span><b>SPY Straddle预研：</b>VIX=19.32已从16.86回升→不再是最佳建仓窗口（最佳是<17）。等VIX再度回落<17时建仓，或VIX突破25时直接放弃Straddle转Put。</span></div>
+    <div class="action-row"><span class="ar-icon">⚠️</span><span><b>境内替代：</b>IO沪深300 Straddle——同样逻辑。WTI跌破$75+Warsh加息概率72%=系统性风险上升=Straddle价值上升。</span></div>
+    <div class="action-row"><span class="ar-icon">✅</span><span><b>等待策略：</b>①等WTI回到$75上方→重新建油气仓+配Put ②等VIX<17或VIX>25→建Straddle ③维持73%现金+15%黄金底仓。</span></div>
+    <div class="action-note"><b>73%现金不是保守——是主动防御。</b>向心坍缩加速+DXY 12月新高+Warsh 9月加息72%=恐慌前夜。黄金从$5,589→$3,974跌了29%——当黄金都在被抛售时，现金就是最好的对冲。</div>
+  </div>
+</div>
+<div class="action-summary">
+  <div class="action-card watch">
+    <h2>🟣 优先三：油价暴跌后的二阶传导链 · 抄底预研</h2>
+    <div class="action-row"><span class="ar-icon">🔄</span><span><b>油价暴跌二阶效应：</b>WTI $126→$70（-44%）→航司成本骤降→交运ETF受益。反向操作：做多交运ETF(159662)+做空能源ETF(159930)——油价暴跌配对交易。</span></div>
+    <div class="action-row"><span class="ar-icon">🔶</span><span><b>铜$6.10——接近抄底区间：</b>铜从$6.36跌至$6.10（-4%）。强美元+避险压制，但AI基建+绿色转型中长期看涨。$5.80以下可轻仓试探有色ETF(512400)。</span></div>
+    <div class="action-row"><span class="ar-icon">🥇</span><span><b>黄金$3,974——央行在接盘：</b>黄金从ATH$5,589跌-29%。PBoC连续19月增持+45%央行计划增持=下跌空间有限。黄金ETF(518880)维持15%底仓不动。</span></div>
+    <div class="action-row"><span class="ar-icon">📋</span><span><b>抄底预研清单：</b>若明斯基时刻（9月）触发→全球资产暴跌→用73%现金抄底：①黄金ETF ②铜/有色ETF ③A股资源龙头 ④恒生科技ETF。</span></div>
+    <div class="action-note"><b>WTI跌破$75改变了什么：</b>油气方向暂时失去GOR框架的保护——纪律强制减仓。但GOR更高（53-57）意味着原油以黄金计价更加极端低估——均值回归的方向没变，只是时间被伊朗和平协议推迟了。现金73%+黄金15%+油气5%，等WTI回到$75上方重新激活油气仓位。</div>
+  </div>
+</div>
+
+<div class="section-title">🌀 向心坍缩四阶段 · 对冲策略对齐</div>
+<div class="insight" style="margin-bottom:20px"><b>核心逻辑：</b>对冲策略必须与向心坍缩的当前阶段对齐——在错误的阶段用错误的对冲，等于裸奔。卢麒元"蓄力→出拳→坍缩→抄底"四阶段每一阶段的风险特征完全不同，对应的最优对冲策略也完全不同。</div>
+<div class="grid g2">
+  <div class="card">
+    <h3>📍 阶段一·蓄力（已完成✅）<span class="badge bg">2022-2025</span></h3>
+    <div style="font-size:15px;color:var(--t2);line-height:1.7">
+      <b>特征：</b>Fed QT收缩·油价被压制·央行囤金·利差倒挂<br>
+      <b>最优对冲：</b>黄金底仓15-20%·现金≥40%·不加杠杆<br>
+      <b>当前回顾：</b>央行购金创纪录（2022-2024年均>1000吨），PBoC连续19月增持。黄金从$1,800涨至$5,589ATH——阶段一最大的赢家是黄金持有者。<br>
+      <b>教训：</b>阶段一不需要复杂对冲——黄金+现金已经是最优防御。
+    </div>
+  </div>
+  <div class="card">
+    <h3>📍 阶段二·出拳（当前⟵）<span class="badge br">2026 Q2-Q4 ⚠️WTI破$75</span></h3>
+    <div style="font-size:15px;color:var(--t2);line-height:1.7">
+      <b>特征：</b>伊朗冲突推油价至$126→和平协议后暴跌至$70（-44%）·Warsh鹰派（9月加息72%）·黄金跌破$4,000<br>
+      <b>当前变化：</b><b style="color:var(--rd)">WTI $69.87 已跌破GOR系统$75硬止损线！</b>油气仓位强制从22%降至5%。WTI $75 Put应已触发行权赔付——检查赔付对账。<br>
+      <b>最优对冲：</b>① 现金73%+黄金15%+油气≤5%——防御等待模式 ② SPY/IO Straddle预研（VIX=19.32已回升·等<17或>25）③ 油价暴跌二阶：做多交运ETF+做空能源ETF配对<br>
+      <b>核心逻辑转变：</b>GOR更高（53-57=更极端低估）但纪律强制减仓。油气逻辑未被否证——低库存+OPEC+减产不支持油价长期<$75。等待WTI回到$75上方重新激活油气仓位+第一时间配Put。
+    </div>
+  </div>
+  <div class="card">
+    <h3>⏳ 阶段三·坍缩（预警中）<span class="badge br">可能2027</span></h3>
+    <div style="font-size:15px;color:var(--t2);line-height:1.7">
+      <b>特征：</b>资本涌向美元·EM债务违约·大宗暴跌40%+·全球养老金巨亏<br>
+      <b>最优对冲：</b>① 现金≥70%（等待抄底）② SPY Straddle止盈（波动率飙升）③ EEM Put（新兴市场崩盘）④ 清掉所有杠杆<br>
+      <b>预布局：</b>EEM Put合约预研+73%现金已到位（油气减仓释放）→等阶段三信号。<br>
+      <b>触发信号：</b>布伦特>$120+Warsh正式加息+某EM大国货币崩盘→三项中两项触发=阶段三启动。<br>
+      <b style="color:var(--oil)">当前进度：</b>Warsh 9月加息概率72%——接近触发。若布伦特回到$100+=第二项触发。阶段三可能在9月明斯基窗口到来。
+    </div>
+  </div>
+  <div class="card">
+    <h3>🔮 阶段四·抄底（未来）<span class="badge bp">2028+</span></h3>
+    <div style="font-size:15px;color:var(--t2);line-height:1.7">
+      <b>特征：</b>贝莱德抄底全球折价资产·道指推至5万·债务货币化·美元体系2.0<br>
+      <b>最优对冲：</b>① 从现金切换至股权（全球龙头+新兴市场）② 黄金止盈（美元走弱后黄金还有惯性但最大涨幅已过）③ 铜纳入配置5-10%（弱美元+绿色转型）<br>
+      <b>预布局：</b>研究全球龙头公司在阶段三中的跌幅——列一个"抄底清单"。<br>
+      <b>卢麒元提醒：</b>"千万别被震下来"——阶段三最恐怖的时候，恰恰是阶段四的布局窗口。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 对冲工具箱 ===== -->
+<div class="section-title">🛡️ 当前市场状态下的对冲工具箱</div>
+<div class="grid g3">
+  <div class="card">
+    <h3>🛢️ WTI $75 Put <span class="badge br" id="hdg-1-badge">🚨 PUT已触发</span></h3>
+    <div class="tool-card">
+      <b>状态：🔴 已触发行权！</b>WTI $69.87 < $75——Put应该已经赔付。<br>
+      <b>立即行动：</b>① 检查Put行权收益金额 ② 计算净影响=Put赔付-油气减仓损失 ③ 记录到审计日志。<br>
+      <b>境内工具：</b>能源ETF(159930)减仓至≤5%·原油期权(SC·需期货)<br><b>境外：</b>WTI原油Put(CL·已触发)<br>
+      <b>教训：</b>6/19警报"距$75仅$0.73"→不到一周跌破。下次WTI回到$75上方重新建仓→必须第一时间配Put。保险必须在上路前买好。<br>
+      <b>逻辑验证：</b>Put赔付证明了GOR硬止损规则的有效性——$75不是随意设的线，而是保护本金的最后防线。
+    </div>
+  </div>
+  <div class="card">
+    <h3>📊 SPY/IO Straddle <span class="badge by" id="hdg-2-badge">VIX=19.32等待回落</span></h3>
+    <div class="tool-card">
+      <b>目的：</b>押注波动率从当前位置进一步扩张——对冲系统性崩盘风险。<br>
+      <b>境内替代：</b>沪深300 Straddle(IO·中金所·1点=100元·每腿权利金数千元)<br><b>境外工具：</b>SPY ATM Straddle<br>
+      <b>当前状态：</b>VIX=19.32（从6/19的16.86回升·+2.46）。<b>已不再是最佳建仓窗口</b>——最佳是VIX<17时。<br>
+      <b>两种触发：</b>① VIX回落<17→建仓Straddle ② VIX突破25→直接买Put（波动率已高·Straddle太贵）<br>
+      <b>成本：</b>组合的 2-3%（VIX<17时）·VIX=19时贵约20-30%<br>
+      <b>逻辑：</b>WTI跌破$75+Warsh 9月加息72%+明斯基9月临近→三重叠加=波动率扩张概率极高。
+    </div>
+  </div>
+  <div class="card">
+    <h3>📈 沪深300 Put <span class="badge bb" id="hdg-3-badge">A股<10%暂不需要</span></h3>
+    <div class="tool-card">
+      <b>目的：</b>保护 A 股仓位免受系统性回调冲击。<br>
+      <b>工具：</b>沪深300股指期权(IO·中金所·1点=100元) 或 300ETF期权(510300·上交所·1张=10,000份)<br>
+      <b>触发条件：</b>A股仓位 ≥ 10%<br>
+      <b>执行价：</b>沪深300 < 4500 → Put@4200；>5000 → 减仓不做 Put<br>
+      <b>成本：</b>A 股仓位的 1-2%/季<br>
+      <b>逻辑：</b>用指数期权而非个股期权——流动性最好、滑点最小。A 股仓位低时不需要对冲（现金本身已是对冲），仓位 ≥ 10% 时必须保护。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 六项自检 ===== -->
+<div class="section-title">✅ 对冲执行六项自检</div>
+<div class="check-grid">
+  <div class="check-item"><span style="color:var(--rd);font-weight:700">①</span><span><b>这个对冲保护的是什么风险？</b><br><span style="color:var(--t3);font-size:13px">如果说不清楚→你不是在对冲，你是在赌方向。</span></span></div>
+  <div class="check-item"><span style="color:var(--rd);font-weight:700">②</span><span><b>最大亏损是否已知且有限？</b><br><span style="color:var(--t3);font-size:13px">期权买方 ✅ · 期货 ❌ · 裸卖空期权 ❌</span></span></div>
+  <div class="check-item"><span style="color:var(--rd);font-weight:700">③</span><span><b>这个交易拥挤吗？别人都能想到吗？</b><br><span style="color:var(--t3);font-size:13px">是→回到传导链找二阶三阶的路径。</span></span></div>
+  <div class="check-item"><span style="color:var(--rd);font-weight:700">④</span><span><b>我在赌方向，还是在买保险？</b><br><span style="color:var(--t3);font-size:13px">对冲=买保险（希望用不上）。赌方向=押注涨跌。</span></span></div>
+  <div class="check-item"><span style="color:var(--rd);font-weight:700">⑤</span><span><b>成本是否足够低？收益是否不对称？</b><br><span style="color:var(--t3);font-size:13px">成本 ≤ 组合2-3% · 潜在收益 >> 成本（5-10倍+）</span></span></div>
+  <div class="check-item"><span style="color:var(--rd);font-weight:700">⑥</span><span><b>如果最坏情况发生，我会亏多少？</b><br><span style="color:var(--t3);font-size:13px">答案必须是"期权费"——已知且有限。</span></span></div>
+</div>
+
+<div class="footer">
+  🛡️ 陈嘉 · 对冲作战手册 · WTI跌破$75=纪律检验 · 先为不可胜，以待敌之可胜 · 不赌方向，买保险 · 不用杠杆，活到天光 · 6/25更新 ·
+  <a href="📊 投资决策看板.html">决策看板 →</a> ·
+  <a href="05-对冲策略选择.md">对冲策略框架 →</a> ·
+  <span id="update-time"></span>
+</div>
+
+</div>
+
+<!-- ═══════════ DATA BLOCK ═══════════ -->
+<!-- DATA_BLOCK_START -->
+<script>
+window.__GOR_DATA__ = {
+  "updated": "2026-07-15 12:00",
+  "gor_brent": 48.04,
+  "gor_wti": 50.92,
+  "regime": "原油极端低估",
+  "final_position": 50,
+  "allocation": {
+    "油气": 25,
+    "黄金": 20,
+    "现金": 48,
+    "A股": 7,
+    "铜": 0
+  },
+  "alerts": [
+    {
+      "level": "warning",
+      "title": "DXY=100.85 > 99 强美元压制",
+      "detail": "仓位-10%"
+    },
+    {
+      "level": "warning",
+      "title": "10Y=4.58% > 4.3% 高利率压制",
+      "detail": "仓位-10%"
+    }
+  ],
+  "data": {
+    "黄金期货": {
+      "price": 4067.1,
+      "change_pct": 0.0
+    },
+    "WTI原油": {
+      "price": 79.87,
+      "change_pct": 0.0
+    },
+    "布伦特原油": {
+      "price": 84.66,
+      "change_pct": 0.0
+    },
+    "美元指数DXY": {
+      "price": 100.85,
+      "change_pct": 0.0
+    },
+    "10Y美债收益率": {
+      "price": 4.58,
+      "change_pct": 0.0
+    },
+    "VIX恐慌指数": {
+      "price": 16.17,
+      "change_pct": 0.0
+    },
+    "COMEX铜": {
+      "price": 6.401,
+      "change_pct": 0.0
+    }
+  },
+  "capital_three_flows": {
+    "total": "收缩",
+    "direction": "向心坍缩",
+    "speed": "放缓",
+    "dxy": 100.85,
+    "vix": 16.17,
+    "tenyear": 4.58,
+    "warsh_alert": true
+  },
+  "ashare_hedge": {
+    "enabled": false,
+    "position_pct": 7,
+    "trigger": "A股<10%无需对冲"
+  }
+};
+</script>
+<!-- DATA_BLOCK_END -->
+
+<script>
+(function(){
+  var g=window.__GOR_DATA__;if(!g)return;
+  var gor=g.gor_brent.toFixed(1), wti=g.data['WTI原油'].price, vix=g.capital_three_flows.vix, pos=g.final_position, a=g.allocation;
+  var wtiDiff=(wti-75).toFixed(2), stkP=a['A股']||0;
+  var wtiBelow75 = wti < 75; // Critical: hard stop triggered
+
+  document.getElementById('st-gor').textContent='GOR '+gor+' '+ (wtiBelow75 ? '🔴🔴' : '🔴');
+  document.getElementById('st-pos').textContent='仓位 '+pos+'%';
+  document.getElementById('st-wti').textContent='WTI $'+wti.toFixed(2)+(wtiBelow75?' ⚠️🔴 硬止损触发':'');
+  document.getElementById('st-vix').textContent='VIX '+vix.toFixed(1);
+  document.getElementById('st-updated').textContent='数据更新于 '+g.updated;
+
+  document.getElementById('hdg-1-badge').textContent=wtiBelow75?'🚨 PUT已触发！检查赔付':'WTI $'+wtiDiff+'缓冲中';
+  document.getElementById('hdg-1-badge').className='badge '+(wtiBelow75?'br':'by');
+  document.getElementById('hdg-2-badge').textContent=vix<17?'VIX='+vix.toFixed(1)+' ✅ 建仓窗口':'VIX='+vix.toFixed(1)+(vix<20?' 偏高等待':' 恐慌酝酿');
+  document.getElementById('hdg-2-badge').className='badge '+(vix<17?'gn':(vix<20?'by':'br'));
+  document.getElementById('hdg-3-badge').textContent=stkP>=10?'⚠️ A股≥10% 需要配置':'A股'+stkP+'% 暂不需要';
+
+  document.getElementById('update-time').textContent='数据更新于 '+g.updated+' · 每日 08:00 自动刷新';
+})();
+</script>
+
+<script>
+Chart.defaults.color='#8b98a8';Chart.defaults.borderColor='#182232';Chart.defaults.font.family='Inter,Microsoft YaHei,sans-serif';Chart.defaults.font.size=13;
+new Chart(document.getElementById('chart-ashare-hedge'),{type:'bar',data:{labels:['A股<10%','10-15%<4200','10-15%>4500','15-25%','接盘论≥7分'],datasets:[{label:'Put成本(年化%)',data:[0,0,1.5,2.0,0],backgroundColor:['rgba(12,203,156,.5)','rgba(12,203,156,.3)','rgba(240,96,48,.6)','rgba(240,68,88,.7)','rgba(240,68,88,.9)']}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{display:!1}}}});
+new Chart(document.getElementById('chart-oil-airline'),{type:'line',data:{labels:['2025Q3','Q4','2026Q1','冲突','峰值','协议','当前'],datasets:[{label:'布伦特$',data:[75,72,78,88,126,93,80],borderColor:'#f06030',tension:.3,pointRadius:4,yAxisID:'y'},{label:'JETS ETF',data:[22,24,23,20,15,17,18],borderColor:'#4d9bff',tension:.3,pointRadius:4,yAxisID:'y1'}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{position:'bottom'}},scales:{y:{position:'left'},y1:{position:'right',grid:{display:!1}}}}});
+new Chart(document.getElementById('chart-warsh-em'),{type:'line',data:{labels:['2025Q3','Q4','2026Q1','Warsh提名','FOMC','当前'],datasets:[{label:'DXY',data:[101,107,99,100,101,100.8],borderColor:'#4d9bff',tension:.3,pointRadius:4,yAxisID:'y'},{label:'EEM ETF',data:[44,42,43,41,38,39],borderColor:'#f06030',tension:.3,pointRadius:4,yAxisID:'y1'}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{position:'bottom'}},scales:{y:{position:'left'},y1:{position:'right',grid:{display:!1}}}}});
+</script>
+
+</body>
+</html>
