@@ -1,0 +1,63 @@
+{
+  "updated": "2026-07-15 12:00",
+  "week_of": "2026-07-15",
+  "bonds": {
+    "us_10y": 4.58,
+    "us_5y": 4.33,
+    "us_30y": 4.83,
+    "yield_curve": "倒挂结束·陡峭化预警",
+    "seesaw": {
+      "treasury_vs_stocks": "科技股抛售→资金涌入国债（避险）",
+      "treasury_vs_gold": "国债与黄金同跌·现金为王信号增强",
+      "credit_spread_warning": "HY利差扩大→信用市场压力上升"
+    }
+  },
+  "central_banks": {
+    "fed": {
+      "balance_sheet": "$7.3万亿",
+      "trend": "QT收缩中·Warsh鹰派",
+      "rate": "3.50-3.75%",
+      "next_meeting": "2026年7月FOMC",
+      "gold_reserves": "8,133吨"
+    },
+    "ecb": {
+      "balance_sheet": "€3.4万亿",
+      "trend": "6月已加息25bp至2.40%",
+      "rate": "2.40%",
+      "gold_reserves": "504吨"
+    },
+    "boj": {
+      "balance_sheet": "¥760万亿",
+      "trend": "6月16日加息至1.00%",
+      "rate": "1.00%",
+      "gold_reserves": "846吨"
+    },
+    "pboc": {
+      "balance_sheet": "¥44万亿",
+      "trend": "全球唯一降息·3.00→2.90%",
+      "rate": "2.90%",
+      "gold_reserves": "2,332吨"
+    }
+  },
+  "gold_flows": {
+    "central_bank_purchases": {
+      "2024_total": "1,037吨",
+      "2025_q1": "289吨",
+      "trend": "央行购金不减"
+    },
+    "etf_flows": {
+      "trend": "黄金从ATH跌-29%·央行独自接盘"
+    }
+  },
+  "oil_flows": {
+    "wti_price": 79.87,
+    "spr_level": "3.7亿桶",
+    "producer_discipline": "OPEC+减产·伊朗和平恢复出口"
+  },
+  "commodity_index": {
+    "trend": "铜受强美元+科技股抛售压制·AI基建中长期看涨"
+  },
+  "currency_flows": {
+    "dxy_signal": ">101=向心坍缩加速·DXY 12月新高"
+  }
+}
