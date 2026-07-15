@@ -1,5 +1,9 @@
 # Deep-Risk-OPP
 
+<p align="center">
+  <img src="logo.svg" alt="Deep-Risk-OPP" width="600">
+</p>
+
 > **在表层移动之前，看见危机。在人群涌入之前，发现机会。**
 >
 > *See the crisis before the surface moves. Find the opportunity before the crowd arrives.*

@@ -1,5 +1,9 @@
 # Deep-Risk-OPP
 
+<p align="center">
+  <img src="logo.svg" alt="Deep-Risk-OPP" width="600">
+</p>
+
 > **See the crisis before the surface moves. Find the opportunity before the crowd arrives.**
 
 ```
