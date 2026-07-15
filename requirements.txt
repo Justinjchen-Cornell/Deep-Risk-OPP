@@ -1,0 +1,22 @@
+# Deep-Risk-OPP Dependencies
+# Core
+yfinance>=0.2.40
+pandas>=2.2.0
+numpy>=1.26.0
+
+# Visualization
+matplotlib>=3.9.0
+
+# Data & API
+requests>=2.31.0
+lxml>=5.3.0
+
+# Optional: Claude Code MCP integration
+# anthropic>=0.39.0
+
+# Optional: advanced backtesting
+# backtrader>=1.9.78
+
+# Optional: real-time dashboard
+# streamlit>=1.35.0
+# plotly>=5.22.0
