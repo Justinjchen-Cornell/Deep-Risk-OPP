@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "deep-risk-opp"
+version = "2.0.0"
+description = "Macro systemic risk early-warning framework. GOR seismograph + capital flow fault-line scan."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Justin Chen", email = "justin.chen@example.com"}]
+keywords = [
+    "macro-risk", "gold-oil-ratio", "systemic-risk", "claude-code",
+    "early-warning", "capital-flows", "commodity-allocation",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+requires-python = ">=3.11"
+dependencies = [
+    "yfinance>=0.2.40",
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "matplotlib>=3.9.0",
+    "requests>=2.31.0",
+    "fredapi>=0.5.0",
+    "python-dotenv>=1.0.0",
+    "akshare>=1.16.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.8"]
+backtest = ["matplotlib>=3.9.0"]
+
+[project.urls]
+Homepage = "https://github.com/Justinjchen-Cornell/Deep-Risk-OPP"
+Repository = "https://github.com/Justinjchen-Cornell/Deep-Risk-OPP.git"
+Issues = "https://github.com/Justinjchen-Cornell/Deep-Risk-OPP/issues"
+
+[project.scripts]
+deep-risk = "run:main"
+
+[tool.setuptools]
+py-modules = ["run", "config"]
+
+[tool.setuptools.package-data]
+"*" = ["*.md", "*.json", "*.html", "*.svg", "*.png"]

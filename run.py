@@ -144,7 +144,7 @@ def mode_masters():
     print("See 08-六大师映射.md for detailed master mappings.")
 
 
-def mode_backtest(from_date=None, to_date=None):
+def mode_backtest(from_date=None, to_date=None, chart=False):
     """Run historical GOR regime-switching backtest."""
     from_date = from_date or "2020-01-01"
     to_date = to_date or datetime.now().strftime('%Y-%m-%d')
@@ -235,6 +235,9 @@ def mode_backtest(from_date=None, to_date=None):
 
     # Portfolio NAV simulation
     nav = 100.0
+    nav_history = [(common_idx[0], 100.0)] if chart else None
+    bh_nav = 100.0
+    bh_history = [(common_idx[0], 100.0)] if chart else None
 
     for i in range(1, len(common_idx)):
         date = common_idx[i]
@@ -278,6 +281,14 @@ def mode_backtest(from_date=None, to_date=None):
         cash_ret = 0.04 / 252
         daily = (prev_oil_alloc * oil_ret + prev_gold_alloc * gold_ret + (100 - prev_oil_alloc - prev_gold_alloc) * cash_ret) / 100
         nav = nav * (1 + daily)
+
+        # 60/40 buy-and-hold benchmark
+        bh_daily = (0.6 * oil_ret + 0.4 * gold_ret)
+        bh_nav = bh_nav * (1 + bh_daily)
+
+        if chart:
+            nav_history.append((date, nav))
+            bh_history.append((date, bh_nav))
 
         prev_regime = regime
         prev_oil_alloc = base_oil
@@ -335,6 +346,43 @@ def mode_backtest(from_date=None, to_date=None):
             print(f"    {sc['date']}  {sc['from']:>12s} → {sc['to']:<12s} {arrow}  GOR={sc['gor']}  WTI=${sc['wti']}")
 
     # ============================================================
+    # CHART (if --chart flag)
+    # ============================================================
+    if chart and nav_history:
+        import matplotlib
+        matplotlib.use('Agg')
+        import matplotlib.pyplot as plt
+        import matplotlib.dates as mdates
+
+        fig, ax = plt.subplots(figsize=(14, 6), dpi=120)
+        fig.patch.set_facecolor('#0d1117')
+        ax.set_facecolor('#0d1117')
+
+        dates_nav, vals_nav = zip(*nav_history)
+        dates_bh, vals_bh = zip(*bh_history)
+
+        ax.plot(dates_nav, vals_nav, color='#ffa500', linewidth=2.0, label=f'GOR Strategy ({ann_return:+.1%}/yr)')
+        ax.plot(dates_bh, vals_bh, color='#888888', linewidth=1.2, linestyle='--', label=f'60/40 B&H ({ann_bh:+.1%}/yr)')
+        ax.axhline(y=100, color='#ffffff', linewidth=0.5, alpha=0.2)
+
+        # Style
+        ax.set_title(f'Deep-Risk-OPP Backtest  |  {from_date} → {to_date}', color='#ffffff', fontsize=14, fontfamily='monospace', pad=12)
+        ax.legend(loc='upper left', facecolor='#1a1a2e', edgecolor='#333', labelcolor='#ccc', fontsize=10)
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.spines['left'].set_color('#333')
+        ax.spines['bottom'].set_color('#333')
+        ax.tick_params(colors='#888', labelsize=9)
+        ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f'{y:.0f}'))
+        ax.grid(True, alpha=0.08, color='#ffffff')
+        ax.set_ylabel('NAV (base=100)', color='#aaa', fontsize=10)
+
+        chart_path = f"看板日志/backtest_chart_{from_date}_to_{to_date}.png"
+        fig.savefig(chart_path, dpi=150, facecolor='#0d1117', bbox_inches='tight', pad_inches=0.4)
+        plt.close(fig)
+        print(f"  Chart saved: {chart_path}")
+
+    # ============================================================
     # SAVE JSON
     # ============================================================
     result = {
@@ -343,7 +391,6 @@ def mode_backtest(from_date=None, to_date=None):
         "strategy": {"total": round(total_return, 4), "annualized": round(ann_return, 4)},
         "benchmark_6040": {"total": round(bh_return, 4), "annualized": round(ann_bh, 4)},
         "alpha": round(total_return - bh_return, 4),
-        "pnl_breakdown": {"oil": round(pnl_oil, 4), "gold": round(pnl_gold, 4), "cash": round(pnl_cash, 4)},
         "regime_distribution": regime_counts,
         "signal_changes": signal_changes[-20:],
     }
@@ -406,6 +453,12 @@ def main():
         default=None,
         help="Backtest end date (YYYY-MM-DD)",
     )
+    parser.add_argument(
+        "--chart",
+        action="store_true",
+        default=False,
+        help="Generate NAV comparison chart (backtest mode)",
+    )
 
     args = parser.parse_args()
 
@@ -422,7 +475,7 @@ def main():
     print()
 
     if args.mode == "backtest":
-        mode_backtest(from_date=args.from_date, to_date=args.to_date)
+        mode_backtest(from_date=args.from_date, to_date=args.to_date, chart=args.chart)
     else:
         modes[args.mode]()
 

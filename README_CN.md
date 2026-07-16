@@ -4,6 +4,14 @@
   <img src="logo.svg" alt="Deep-Risk-OPP" width="600">
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/python-3.11+-blue?logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
+  <img src="https://img.shields.io/badge/data-FRED%20%7C%20akshare%20%7C%20yfinance-orange" alt="Data">
+  <img src="https://img.shields.io/badge/Claude%20Code-skill-6A46D1" alt="Claude Code">
+  <img src="https://img.shields.io/badge/回测-2020–2026-ffa500" alt="Backtest">
+</p>
+
 > **在表层移动之前，看见危机。在人群涌入之前，发现机会。**
 >
 > *See the crisis before the surface moves. Find the opportunity before the crowd arrives.*
