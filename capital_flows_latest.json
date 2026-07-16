@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-15 12:00",
-  "week_of": "2026-07-15",
+  "updated": "2026-07-16 12:00",
+  "week_of": "2026-07-16",
   "bonds": {
     "us_10y": 4.58,
     "us_5y": 4.33,
@@ -50,7 +50,7 @@
     }
   },
   "oil_flows": {
-    "wti_price": 79.87,
+    "wti_price": 79.36,
     "spr_level": "3.7亿桶",
     "producer_discipline": "OPEC+减产·伊朗和平恢复出口"
   },

@@ -1,0 +1,183 @@
+{
+  "from": "2020-01-01",
+  "to": "2026-07-16",
+  "trading_days": 1688,
+  "years": 6.5,
+  "strategy": {
+    "total": 0.5742,
+    "annualized": 0.0719
+  },
+  "benchmark_6040": {
+    "total": 0.8206,
+    "annualized": 0.096
+  },
+  "alpha": -0.2465,
+  "regime_distribution": {
+    "extreme": 481,
+    "recovery": 327,
+    "fair_value": 715,
+    "oil_bubble": 164
+  },
+  "signal_changes": [
+    {
+      "date": "2024-07-18",
+      "from": "fair_value",
+      "to": "recovery",
+      "gor": 30.3,
+      "wti": 80.8,
+      "gold": 2448.0
+    },
+    {
+      "date": "2025-03-13",
+      "from": "recovery",
+      "to": "extreme",
+      "gor": 45.1,
+      "wti": 66.5,
+      "gold": 3001.0
+    },
+    {
+      "date": "2025-03-14",
+      "from": "extreme",
+      "to": "recovery",
+      "gor": 44.7,
+      "wti": 66.9,
+      "gold": 2993.0
+    },
+    {
+      "date": "2025-03-18",
+      "from": "recovery",
+      "to": "extreme",
+      "gor": 45.7,
+      "wti": 66.5,
+      "gold": 3042.0
+    },
+    {
+      "date": "2025-03-20",
+      "from": "extreme",
+      "to": "recovery",
+      "gor": 44.7,
+      "wti": 68.4,
+      "gold": 3053.0
+    },
+    {
+      "date": "2025-03-28",
+      "from": "recovery",
+      "to": "extreme",
+      "gor": 45.2,
+      "wti": 69.0,
+      "gold": 3118.0
+    },
+    {
+      "date": "2025-03-31",
+      "from": "extreme",
+      "to": "recovery",
+      "gor": 44.2,
+      "wti": 71.4,
+      "gold": 3157.0
+    },
+    {
+      "date": "2025-04-02",
+      "from": "recovery",
+      "to": "extreme",
+      "gor": 45.1,
+      "wti": 70.7,
+      "gold": 3189.0
+    },
+    {
+      "date": "2026-03-27",
+      "from": "extreme",
+      "to": "recovery",
+      "gor": 44.7,
+      "wti": 101.2,
+      "gold": 4521.0
+    },
+    {
+      "date": "2026-03-31",
+      "from": "recovery",
+      "to": "extreme",
+      "gor": 46.3,
+      "wti": 101.5,
+      "gold": 4699.0
+    },
+    {
+      "date": "2026-04-02",
+      "from": "extreme",
+      "to": "recovery",
+      "gor": 42.0,
+      "wti": 112.0,
+      "gold": 4702.0
+    },
+    {
+      "date": "2026-04-08",
+      "from": "recovery",
+      "to": "extreme",
+      "gor": 49.2,
+      "wti": 96.5,
+      "gold": 4745.0
+    },
+    {
+      "date": "2026-04-29",
+      "from": "extreme",
+      "to": "recovery",
+      "gor": 42.0,
+      "wti": 108.5,
+      "gold": 4557.0
+    },
+    {
+      "date": "2026-05-01",
+      "from": "recovery",
+      "to": "extreme",
+      "gor": 45.1,
+      "wti": 102.5,
+      "gold": 4626.0
+    },
+    {
+      "date": "2026-05-04",
+      "from": "extreme",
+      "to": "recovery",
+      "gor": 43.1,
+      "wti": 105.1,
+      "gold": 4532.0
+    },
+    {
+      "date": "2026-05-06",
+      "from": "recovery",
+      "to": "extreme",
+      "gor": 48.9,
+      "wti": 96.2,
+      "gold": 4702.0
+    },
+    {
+      "date": "2026-05-15",
+      "from": "extreme",
+      "to": "recovery",
+      "gor": 44.9,
+      "wti": 101.2,
+      "gold": 4543.0
+    },
+    {
+      "date": "2026-05-20",
+      "from": "recovery",
+      "to": "extreme",
+      "gor": 45.9,
+      "wti": 99.0,
+      "gold": 4546.0
+    },
+    {
+      "date": "2026-06-10",
+      "from": "extreme",
+      "to": "recovery",
+      "gor": 44.6,
+      "wti": 91.8,
+      "gold": 4094.0
+    },
+    {
+      "date": "2026-06-11",
+      "from": "recovery",
+      "to": "extreme",
+      "gor": 49.0,
+      "wti": 86.4,
+      "gold": 4234.0
+    }
+  ]
+}

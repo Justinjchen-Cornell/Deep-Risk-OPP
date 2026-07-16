@@ -1,0 +1,59 @@
+{
+  "date": "2026-07-17",
+  "current": {
+    "gor_wti": 50.37,
+    "gor_brent": 47.52,
+    "wti": 79.36,
+    "gold": 3997.0,
+    "dxy": 100.66,
+    "vix": 15.67,
+    "10y": 4.58,
+    "regime": "\u539f\u6cb9\u6781\u7aef\u4f4e\u4f30"
+  },
+  "scenarios": {
+    "bull": {
+      "wti": 119.03999999999999,
+      "gold": 3797.1499999999996,
+      "gor": 31.898101478494624,
+      "prob": 0.25
+    },
+    "base": {
+      "wti": 91.264,
+      "gold": 4196.85,
+      "gor": 45.985821353436194,
+      "prob": 0.45
+    },
+    "bear": {
+      "wti": 51.584,
+      "gold": 5196.1,
+      "gor": 100.73084677419355,
+      "prob": 0.3
+    }
+  },
+  "triggers": [
+    {
+      "trigger": "USD/JPY > 160",
+      "probability": "40%"
+    },
+    {
+      "trigger": "US 30Y auction fails",
+      "probability": "20%"
+    },
+    {
+      "trigger": "WTI reclaims $80",
+      "probability": "35%"
+    },
+    {
+      "trigger": "Fed signals cut",
+      "probability": "30%"
+    },
+    {
+      "trigger": "AI bubble bursts",
+      "probability": "25%"
+    },
+    {
+      "trigger": "Hormuz closes again",
+      "probability": "15%"
+    }
+  ]
+}
