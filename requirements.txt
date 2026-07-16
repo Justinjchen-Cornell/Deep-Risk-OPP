@@ -19,6 +19,9 @@ python-dotenv>=1.0.0
 # Optional: advanced backtesting
 # backtrader>=1.9.78
 
+# Terminal
+rich>=13.0.0
+
 # Optional: real-time dashboard
 # streamlit>=1.35.0
 # plotly>=5.22.0

@@ -1,0 +1,44 @@
+name: Daily GOR Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # UTC 00:00 daily
+  workflow_dispatch:       # manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install yfinance pandas numpy matplotlib requests lxml
+          pip install fredapi python-dotenv akshare
+
+      - name: Create .env
+        env:
+          FRED_KEY: ${{ secrets.FRED_API_KEY }}
+          FIGI_KEY: ${{ secrets.OPENFIGI_API_KEY }}
+        run: |
+          echo "FRED_API_KEY=${FRED_KEY}" > .env
+          echo "OPENFIGI_API_KEY=${FIGI_KEY}" >> .env
+
+      - name: Run daily update
+        run: python scripts/gor_daily.py
+
+      - name: Commit & push changes
+        run: |
+          git config user.name "Deep-Risk Bot"
+          git config user.email "bot@deep-risk.dev"
+          git add -A
+          git diff --staged --quiet || git commit -m "Auto: daily GOR update [$(date +%Y-%m-%d)]"
+          git push
