@@ -105,9 +105,9 @@ VIX_PANIC = 25           # VIX above this = panic
 GOLD_SOURCE = "Yahoo Finance (GC=F)"
 WTI_SOURCE = "Yahoo Finance (CL=F)"
 BRENT_SOURCE = "Yahoo Finance (BZ=F)"
-DXY_SOURCE = "ICE (DX-Y.NYB)"
-YIELD_10Y_SOURCE = "CBOE (^TNX)"
-YIELD_30Y_SOURCE = "CBOE (^TYX)"
+DXY_SOURCE = "ICE (DX-Y.NYB) + FRED (DTWEXBGS)"
+YIELD_10Y_SOURCE = "CBOE (^TNX) + FRED (DGS10)"
+YIELD_30Y_SOURCE = "CBOE (^TYX) + FRED (DGS30)"
 VIX_SOURCE = "CBOE (^VIX)"
 COPPER_SOURCE = "COMEX (HG=F)"
 
@@ -120,6 +120,28 @@ API_ENDPOINTS = {
     "ten_year": "^TNX",
     "vix": "^VIX",
     "copper": "HG=F",
+}
+
+# ============================================================
+# FRED API CONFIGURATION (Federal Reserve Economic Data)
+# ============================================================
+
+# FRED API key loaded from .env file (never committed to repo)
+# See .env.example for setup instructions
+
+FRED_SERIES = {
+    "DGS10": "10-Year Treasury Constant Maturity Rate",
+    "DGS30": "30-Year Treasury Constant Maturity Rate",
+    "DFF": "Federal Funds Effective Rate",
+    "DTWEXBGS": "Trade Weighted U.S. Dollar Index (Broad)",
+    "CPIAUCSL": "Consumer Price Index (All Urban Consumers)",
+    "PCEPILFE": "Core PCE Price Index (excl. Food & Energy)",
+    "WALCL": "Federal Reserve Total Assets",
+    "M2SL": "M2 Money Supply",
+    "GFDEBTN": "Federal Debt: Total Public Debt",
+    "VIXCLS": "CBOE Volatility Index (VIX)",
+    "DCOILWTICO": "WTI Crude Oil Spot Price",
+    "GOLDAMGBD228NLBR": "Gold Fixing Price (London, USD/oz)",
 }
 
 # ============================================================

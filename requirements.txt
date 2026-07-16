@@ -10,6 +10,8 @@ matplotlib>=3.9.0
 # Data & API
 requests>=2.31.0
 lxml>=5.3.0
+fredapi>=0.5.0
+python-dotenv>=1.0.0
 
 # Optional: Claude Code MCP integration
 # anthropic>=0.39.0
