@@ -1,3 +1,4 @@
 .obsidian/
 审计记录/
 .env
+__pycache__/

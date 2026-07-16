@@ -298,8 +298,8 @@ Deep-Risk-OPP/
 ├── 11-资本三流框架.md                   # 断层扫描：资本流动分析
 │
 ├── scripts/                           # 自动化脚本
-│   ├── gor_daily.py                   # GOR数据管道
-│   └── risk_calendar.py               # 日历事件检查
+│   ├── gor_daily.py                   # 每日：FRED+akshare+yfinance→JSON
+│   └── weekly_data_pull.py            # 每周：含CPI/PCE/债务等全量FRED
 │
 ├── 看板日志/                           # 每日存档
 │   ├── 2026-06-19-每日简报.md
