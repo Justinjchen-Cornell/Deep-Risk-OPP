@@ -1,0 +1,7 @@
+yfinance>=0.2.40
+pandas>=2.2.0
+numpy>=1.26.0
+fredapi>=0.5.0
+python-dotenv>=1.0.0
+akshare>=1.16.0
+rich>=13.0.0

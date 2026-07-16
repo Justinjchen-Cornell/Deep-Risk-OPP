@@ -1,0 +1,31 @@
+{
+  "date": "2026-07-17",
+  "total": {
+    "fed_balance_trillion": 6.74,
+    "m2_trillion": 23.05,
+    "sofr": 3.64,
+    "ecb_balance_trillion_eur": 5.97,
+    "us_monthly_deficit_billion": null,
+    "trend": "CONTRACTING"
+  },
+  "direction": {
+    "dxy": null,
+    "china_gold_reserve_tonnes": null,
+    "us10y": 4.58,
+    "us30y": 5.08,
+    "fed_rate": 3.63,
+    "cpi": 332.568,
+    "core_pce": 130.082,
+    "fed_debt_trillion": 39.07,
+    "signal": "NEUTRAL"
+  },
+  "speed": {
+    "vix": 15.67,
+    "hy_spread_bp": 271.0,
+    "ig_spread_bp": 79.0,
+    "ted_spread": 0.09,
+    "em_spread_bp": 148.0,
+    "signal": "CALM"
+  },
+  "compass": "TRANSITION — Mixed signals. Tactical positioning only."
+}
