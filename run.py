@@ -1007,15 +1007,15 @@ def mode_sentiment():
 
     # ── Sentiment Heatmap ───────────────────────────────────
     print(f"\n  {'Ticker':<8s} {'Buzz':>6s} {'Trend':<10s} {'Bull':>5s} {'Bear':>5s} {'Signal':<20s} {'Heat'}")
-    print(f"  {'─'*7:<8s} {'─'*5:>6s} {'─'*9:<10s} {'─'*4:>5s} {'─'*4:>5s} {'─'*19:<20s} {'─'*8}")
+    print(f"  {'-'*7:<8s} {'-'*5:>6s} {'-'*9:<10s} {'-'*4:>5s} {'-'*4:>5s} {'-'*19:<20s} {'-'*8}")
 
     divergences = []
-    for s in sorted(stocks, key=lambda x: x.get('buzz_score', 0), reverse=True):
-        buzz = s.get('buzz_score', 0)
-        bull = s.get('bullish_pct', 0)
-        bear = s.get('bearish_pct', 0)
-        trend = s.get('trend', '?')
-        sent = s.get('sentiment_score', 0)
+    for s in sorted(stocks, key=lambda x: x.get('buzz_score') or 0, reverse=True):
+        buzz = s.get('buzz_score') or 0
+        bull = s.get('bullish_pct') or 0
+        bear = s.get('bearish_pct') or 0
+        trend = s.get('trend') or '?'
+        sent = s.get('sentiment_score') or 0
 
         # Signal interpretation
         spread = bull - bear
@@ -1027,18 +1027,18 @@ def mode_sentiment():
 
         # Divergence detection: buzz high + sentiment flat = distribution
         if buzz > 70 and abs(sent) < 0.02:
-            signal = "⚠ Distribution?"
-            divergences.append(f"{s['ticker']}: Buzz={buzz:.0f} but sentiment flat ({sent:+.3f}) — distribution likely")
+            signal = "!! Distribution?"
+            divergences.append(f"{s['ticker']}: Buzz={buzz:.0f} but sentiment flat ({sent:+.3f}) - distribution likely")
 
         # Divergence: trend falling + still bullish = late-stage
         if trend == 'falling' and bull > bear:
-            signal = "⚠ Late-stage?"
+            signal = "!! Late-stage?"
             divergences.append(f"{s['ticker']}: Trend falling but still bullish (Bulls {bull}% vs Bears {bear}%)")
 
         # Heat bar
         bar_len = int(buzz / 5)
-        bar = '█' * min(bar_len, 16)
-        color = '🟢' if sent > 0.03 else ('🟡' if sent > 0 else '🔴')
+        bar = '#' * min(bar_len, 16)
+        color = '[+]' if sent > 0.03 else ('[~]' if sent > 0 else '[!]')
 
         print(f"  {s['ticker']:<8s} {buzz:>5.0f}  {trend:<10s} {bull:>4}% {bear:>4}% {signal:<20s} {color} {bar}")
 
@@ -1055,11 +1055,11 @@ def mode_sentiment():
 
     # ── Divergence Alerts ───────────────────────────────────
     if divergences:
-        print(f"\n  🚨 DIVERGENCE SIGNALS:")
+        print(f"\n  !! DIVERGENCE SIGNALS:")
         for d in divergences:
             print(f"     {d}")
     else:
-        print(f"\n  ✅ No major divergences detected.")
+        print(f"\n  -- No major divergences detected.")
 
     # ── Integration with GOR ────────────────────────────────
     gor_path = config.GOR_LATEST
@@ -1074,13 +1074,13 @@ def mode_sentiment():
             mkt_buzz = market.get('buzz_score', 0)
             print(f"\n  ── Sentiment × GOR Cross-Check ──")
             if gor_w >= 45 and mkt_buzz < 30:
-                print(f"  ⚠ GOR={gor_w:.1f} (extreme) but market buzz is LOW ({mkt_buzz:.0f}).")
+                print(f"  !! GOR={gor_w:.1f} (extreme) but market buzz is LOW ({mkt_buzz:.0f}).")
                 print(f"     Historically, low buzz during extreme GOR = complacency before repricing.")
             elif gor_w >= 45 and mkt_buzz > 60:
-                print(f"  🔥 GOR={gor_w:.1f} (extreme) AND market buzz is HIGH ({mkt_buzz:.0f}).")
-                print(f"     This is the 'everyone sees it' phase — the move may already be priced.")
+                print(f"  ** GOR={gor_w:.1f} (extreme) AND market buzz is HIGH ({mkt_buzz:.0f}).")
+                print(f"     This is the 'everyone sees it' phase - the move may already be priced.")
             else:
-                print(f"  🟡 GOR={gor_w:.1f} in {regime}. Sentiment in normal range.")
+                print(f"  -- GOR={gor_w:.1f} in {regime}. Sentiment in normal range.")
 
     print()
 
