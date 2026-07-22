@@ -14,10 +14,10 @@
 
 > **See the crisis before the surface moves. Find the opportunity before the crowd arrives.**
 
+Acknowledgments: The theoretical foundation regarding the gold-to-oil ratio within this framework is derived from Mr. Lu Qiyuan’s macroeconomic analysis system. The "Three Capital Flows" framework draws upon liquidity analysis models developed by various analysts. The "Six Masters Mapping" represents the author's synthesis of public statements made by six investment masters. The hard stop-loss rules, risk modifiers, Python automation pipeline, and Claude Code integration were independently developed by the author. All data is sourced from public APIs (FRED, akshare, yfinance).
 ```
 GOR Seismograph → Capital Flow Fault-Line Scan → 11 Frameworks → 6 Masters → 1 Decision Card
 
-Acknowledgments: The theoretical foundation regarding the gold-to-oil ratio within this framework is derived from Mr. Lu Qiyuan’s macroeconomic analysis system. The "Three Capital Flows" framework draws upon liquidity analysis models developed by various analysts. The "Six Masters Mapping" represents the author's synthesis of public statements made by six investment masters. The hard stop-loss rules, risk modifiers, Python automation pipeline, and Claude Code integration were independently developed by the author. All data is sourced from public APIs (FRED, akshare, yfinance).
 ```
 
 ---
