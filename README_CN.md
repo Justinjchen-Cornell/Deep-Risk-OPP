@@ -283,6 +283,34 @@ GOR地震仪的历史信号回测精选：
 
 ---
 
+## API Keys 获取指引
+
+每日数据管道需要两个免费 API key，自行注册即可，各约 2 分钟：
+
+| Key | 服务 | 注册地址 | 用途 |
+|-----|------|---------|------|
+| `FRED_API_KEY` | FRED 美联储经济数据（圣路易斯联储） | https://fred.stlouisfed.org/docs/api/api_key.html | 美国宏观数据：10Y/30Y利率、联邦基金利率、美联储资产负债表、M2、VIX、CPI、PCE、国债 |
+| `OPENFIGI_API_KEY` | 彭博 Bloomberg OpenFIGI | https://www.openfigi.com/user/profile | 证券代码映射（ticker/ISIN/CUSIP → FIGI），A股/H股交叉对照 |
+| `ADANOS_API_KEY` | Adanos Reddit 情绪（可选，仅本地使用） | 见其官方站点（api.adanos.org） | Reddit 情绪扫描（`--mode sentiment`） |
+
+**本地配置** — 在项目根目录创建 `.env`（不入库）：
+
+```bash
+FRED_API_KEY=你的32位hex密钥
+OPENFIGI_API_KEY=你的UUID密钥
+ADANOS_API_KEY=sk_你的密钥    # 可选
+```
+
+**GitHub Actions 配置**（每日自动更新用）— 在仓库 *Settings → Secrets and variables → Actions → New repository secret* 添加两个 secret：
+
+- `FRED_API_KEY`
+- `OPENFIGI_API_KEY`
+
+Key 格式：FRED = 32位小写hex；OpenFIGI = UUID。两者均为免费层只读数据 key，
+作为 Actions secret 存储是安全的（加密存储、日志自动打码），可随时在各自官网重新生成。
+
+---
+
 ## 项目结构
 
 ```

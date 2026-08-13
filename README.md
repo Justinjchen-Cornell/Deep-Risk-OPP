@@ -299,6 +299,36 @@ Full configuration guide: [config.py](config.py)
 
 ---
 
+## API Keys
+
+The daily pipeline needs two free API keys. Register them yourself — each takes ~2 minutes:
+
+| Key | Service | Register at | Used for |
+|-----|---------|-------------|----------|
+| `FRED_API_KEY` | FRED (Federal Reserve Economic Data, St. Louis Fed) | https://fred.stlouisfed.org/docs/api/api_key.html | US macro series: DGS10/30, DFF, WALCL, M2SL, VIXCLS, CPI, PCE, debt |
+| `OPENFIGI_API_KEY` | Bloomberg OpenFIGI | https://www.openfigi.com/user/profile | Security identifier mapping (ticker/ISIN/CUSIP → FIGI), A/H-share cross-reference |
+| `ADANOS_API_KEY` | Adanos Reddit sentiment *(optional, local only)* | See its official site (api.adanos.org) | Reddit sentiment scan (`--mode sentiment`) |
+
+**Local setup** — create `.env` in the project root (never committed):
+
+```bash
+FRED_API_KEY=your-32-char-hex-key
+OPENFIGI_API_KEY=your-uuid-key
+ADANOS_API_KEY=sk_your-key    # optional
+```
+
+**GitHub Actions setup** (for the daily auto-update) — add two repository secrets at
+*Settings → Secrets and variables → Actions → New repository secret*:
+
+- `FRED_API_KEY`
+- `OPENFIGI_API_KEY`
+
+Key formats: FRED = 32-char lowercase hex; OpenFIGI = UUID. Both are free-tier,
+read-only data keys — safe to store as Actions secrets (encrypted at rest, masked in
+logs). You can rotate them anytime from each provider's site.
+
+---
+
 ## Data Pipeline
 
 ```
