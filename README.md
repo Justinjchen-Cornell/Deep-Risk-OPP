@@ -362,17 +362,20 @@ Deep-Risk-OPP/
 
 | Milestone | Description | Status |
 |-----------|-------------|:------:|
-| v1.0 | GOR seismograph + daily signal card | ✅ Done |
-| v1.1 | Capital flow fault-line scan integration | ✅ Done |
-| v1.2 | Six masters mapping + consensus engine | ✅ Done |
-| v1.3 | Second/third-order opportunity detection | ✅ Done |
-| v2.0 | Full priority chain with circuit breakers | ✅ Done |
-| v2.1 | Weekly automated change reports | ✅ Done |
-| v2.2 | Live web product: bilingual site + auto pipeline + unified HUD nav | ✅ Done |
+| v1.0 | GOR seismograph + daily signal card | ✅ Shipped |
+| v1.1 | Capital flow fault-line scan integration | ✅ Shipped |
+| v1.2 | Six masters mapping + consensus engine | ✅ Shipped |
+| v1.3 | Second/third-order opportunity detection | ✅ Shipped |
+| v2.0 | Full priority chain with circuit breakers | ✅ Shipped |
+| v2.1 | Weekly automated change reports + dynamic hard stop (60D SMA × 0.85) | ✅ Shipped |
+| v2.2 | Public product: bilingual live site + daily auto pipeline + unified HUD nav | ✅ Shipped (Aug 2026) |
 | v2.3 | Historical backtest suite (2000–2026) | 🔄 In progress |
-| v3.0 | Sentiment data (Adanos) merged into main JSON | 📋 Planned |
-| v3.1 | Real-time alerting (email/webhook) | 📋 Planned |
-| v4.0 | Multi-asset portfolio simulation | 📋 Planned |
+| v2.4 | Codebase health: split `run.py` into `modes/`, merge `gor_daily` + `weekly_data_pull`, pytest for core functions, refresh risk calendar | 🔄 In progress |
+| v2.5 | Sentiment (Adanos) merged into main JSON · config schema validation · unified charting entry | 📋 Next |
+| v3.0 | Real-time alerting (email/webhook push on breaker triggers) | 📋 Next |
+| v4.0 | Multi-asset portfolio simulation | 📋 Later |
+
+**🚀 Product launch (in progress)**: Xueqiu debut · LinkedIn GOR Pulse #004 · HelloGitHub · Hacker News Show HN · X hook thread — launch copy in [docs/promo-pack.md](docs/promo-pack.md).
 
 ---
 
