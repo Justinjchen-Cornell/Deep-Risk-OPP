@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" href="data:,"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Deep-Risk-OPP · Choose Language · 选择语言</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
@@ -24,6 +24,11 @@ header .sub b{color:#d97706}
 .lang-card h2{font-size:26px;color:#fff;margin-bottom:12px;font-family:'Fira Code',monospace;letter-spacing:1px}
 .lang-card p{font-size:13px;color:#7a8a9a;line-height:1.9}
 .lang-card .arrow{display:inline-block;margin-top:22px;color:#f0c040;font-size:15px;font-family:'Fira Code',monospace;font-weight:600}
+.lang-col{display:flex;flex-direction:column;gap:0}
+.quick{display:flex;justify-content:center;gap:8px;margin-top:12px;flex-wrap:wrap}
+.quick a{color:#7a8a9a;text-decoration:none;font-size:11px;font-family:'Fira Code',monospace;padding:5px 12px;border:1px solid #1f2a40;border-radius:14px;transition:all .2s}
+.quick a:hover{color:#f0c040;border-color:#f0c040;background:rgba(240,192,64,.06)}
+.quick .lbl{color:#475569;font-size:10px;font-family:'Fira Code',monospace;align-self:center;letter-spacing:1px}
 footer{text-align:center;color:#475569;font-size:10px;margin-top:56px;font-family:'Fira Code',monospace;line-height:1.9}
 footer a{color:#7a8a9a;text-decoration:none}
 footer a:hover{color:#f0c040}
@@ -36,18 +41,34 @@ footer a:hover{color:#f0c040}
   <div class="sub">One number that tells you when oil is <b>historically cheap</b> · 一个数字告诉你油什么时候便宜</div>
 </header>
 <div class="lang-grid">
-  <a href="zh/" class="lang-card">
-    <span class="flag">🇨🇳</span>
-    <h2>中文版</h2>
-    <p>金油比 · 资本三流 · 向心坍缩<br>四层决策框架 · 实盘记录</p>
-    <span class="arrow">进入 →</span>
-  </a>
-  <a href="en/" class="lang-card">
-    <span class="flag">🌐</span>
-    <h2>English</h2>
-    <p>GOR · Capital Flows · Centripetal Collapse<br>Four-layer framework · Track record</p>
-    <span class="arrow">Enter →</span>
-  </a>
+  <div class="lang-col">
+    <a href="zh/" class="lang-card" onclick="localStorage.setItem('drlang','zh')">
+      <span class="flag">🇨🇳</span>
+      <h2>中文版</h2>
+      <p>金油比 · 资本三流 · 向心坍缩<br>四层决策框架 · 实盘记录</p>
+      <span class="arrow">进入 →</span>
+    </a>
+    <div class="quick">
+      <span class="lbl">直达</span>
+      <a href="📊 投资决策看板.html">📊 投资决策看板</a>
+      <a href="🌊 资本三流观测站.html">🌊 资本三流观测站</a>
+      <a href="dashboard.html">📡 GOR LIVE</a>
+    </div>
+  </div>
+  <div class="lang-col">
+    <a href="en/" class="lang-card" onclick="localStorage.setItem('drlang','en')">
+      <span class="flag">🌐</span>
+      <h2>English</h2>
+      <p>GOR · Capital Flows · Centripetal Collapse<br>Four-layer framework · Track record</p>
+      <span class="arrow">Enter →</span>
+    </a>
+    <div class="quick">
+      <span class="lbl">Jump to</span>
+      <a href="en/decision-board.html">📊 Decision Board</a>
+      <a href="en/capital-flows.html">🌊 Capital Flows</a>
+      <a href="dashboard.html">📡 GOR LIVE</a>
+    </div>
+  </div>
 </div>
 <footer>
   Research framework · Not investment advice · <a href="https://github.com/Justinjchen-Cornell/Deep-Risk-OPP">GitHub</a><br>

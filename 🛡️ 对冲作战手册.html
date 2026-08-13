@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:,"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Justinjchen · 对冲作战手册</title>
 <style>
   :root{--bg:#060a10;--card:#0c1119;--c2:#111824;--bdr:#182232;--gold:#e8b41c;--oil:#f06030;--gn:#0ccb9c;--rd:#f04458;--bl:#4d9bff;--pp:#9b7cf4;--cy:#1cc8d8;--tx:#eaedf2;--t2:#8b98a8;--t3:#505d6e;--r:16px}
@@ -60,8 +60,41 @@
   @media(max-width:900px){.g2,.g3,.check-grid,.action-summary{grid-template-columns:1fr}.header{flex-direction:column;gap:10px}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
 </head>
 <body>
+<style id="dr-nav-css">
+.dr-nav{position:sticky;top:0;z-index:999;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 20px;background:rgba(5,7,13,.93);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #1f2a40;font-family:'Fira Code','PingFang SC','Microsoft YaHei',monospace;font-size:12px;letter-spacing:.5px}
+.dr-nav .dr-brand{color:#f0c040;font-weight:700;letter-spacing:2px;text-decoration:none;text-shadow:0 0 14px rgba(240,192,64,.45);white-space:nowrap;font-size:13px}
+.dr-nav .dr-links{display:flex;gap:2px;flex-wrap:wrap;justify-content:center}
+.dr-nav .dr-links a{color:#7a8a9a;text-decoration:none;padding:6px 11px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.dr-nav .dr-links a:hover{color:#e0e6ed;background:#101826}
+.dr-nav .dr-links a.on{color:#f0c040;background:rgba(240,192,64,.08);box-shadow:inset 0 0 0 1px rgba(240,192,64,.3)}
+.dr-nav .dr-side{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.dr-nav .dr-gor{color:#6ee7b7;background:#064e3b;border:1px solid rgba(110,231,183,.35);padding:5px 10px;border-radius:6px;font-weight:700;font-size:11px;letter-spacing:.5px;text-decoration:none;display:inline-block}
+.dr-nav .dr-gor.alert{color:#fbbf24;background:#452a03;border-color:rgba(251,191,36,.4)}
+.dr-nav .dr-lang a{color:#7a8a9a;text-decoration:none;padding:5px 9px;border-radius:6px}
+.dr-nav .dr-lang a.on{color:#05070d;background:#f0c040;font-weight:700}
+@media(max-width:820px){.dr-nav{flex-direction:column;gap:8px;padding:9px 12px}.dr-nav .dr-links{order:2}.dr-nav .dr-side{order:3}}
+</style>
+<nav class="dr-nav">
+  <a class="dr-brand" href="./index.html">⌬ DEEP-RISK-OPP</a>
+  <div class="dr-links"><a href="dashboard.html">GOR LIVE</a><a href="📊 投资决策看板.html">决策看板</a><a href="🌊 资本三流观测站.html">资本三流</a><a href="🛡️ 对冲作战手册.html" class="on">对冲手册</a><a href="docs/track-record.md">实盘记录</a></div>
+  <div class="dr-side">
+    <a class="dr-gor" id="drGor" href="dashboard.html" title="GOR Live">GOR …</a>
+    <div class="dr-lang"><a href="zh/" class="on">中文</a><a href="en/">EN</a></div>
+  </div>
+</nav>
+<script id="dr-nav-js">
+(function(){
+var e=document.getElementById("drGor");if(!e)return;
+fetch("gor_latest.json").then(function(r){return r.json()}).then(function(d){
+var g=d.gor_wti;
+e.textContent="GOR "+g.toFixed(1)+(g>=45?" ⚠":"")+" · "+d.updated.slice(5);
+e.className="dr-gor"+(g>=45?" alert":"");
+}).catch(function(){e.textContent="GOR —";});
+})();
+</script>
 
 <header class="header">
   <div><h1>🛡️ <span>Justinjchen</span> · 对冲作战手册</h1><span style="font-size:12px;color:var(--rd);margin-left:12px;font-weight:700">⚠️ WTI跌破$75硬止损 — 已更新至6/25</span></div>
@@ -297,7 +330,7 @@ window.__GOR_DATA__ = {
 <!-- DATA_BLOCK_END -->
 
 <script>
-(function(){
+function renderGor(){
   var g=window.__GOR_DATA__;if(!g)return;
   var gor=g.gor_brent.toFixed(1), wti=g.data['WTI原油'].price, vix=g.capital_three_flows.vix, pos=g.final_position, a=g.allocation;
   var wtiDiff=(wti-75).toFixed(2), stkP=a['A股']||0;
@@ -315,16 +348,26 @@ window.__GOR_DATA__ = {
   document.getElementById('hdg-2-badge').className='badge '+(vix<17?'gn':(vix<20?'by':'br'));
   document.getElementById('hdg-3-badge').textContent=stkP>=10?'⚠️ A股≥10% 需要配置':'A股'+stkP+'% 暂不需要';
 
-  document.getElementById('update-time').textContent='数据更新于 '+g.updated+' · 每日 08:00 自动刷新';
-})();
+  document.getElementById('update-time').textContent='数据更新于 '+g.updated+' · LIVE 动态刷新';
+}
+renderGor();
 </script>
 
 <script>
+function mkChart(id,cfg){var c=document.getElementById(id);if(c){new Chart(c,cfg)}}
 Chart.defaults.color='#8b98a8';Chart.defaults.borderColor='#182232';Chart.defaults.font.family='Inter,Microsoft YaHei,sans-serif';Chart.defaults.font.size=13;
-new Chart(document.getElementById('chart-ashare-hedge'),{type:'bar',data:{labels:['A股<10%','10-15%<4200','10-15%>4500','15-25%','接盘论≥7分'],datasets:[{label:'Put成本(年化%)',data:[0,0,1.5,2.0,0],backgroundColor:['rgba(12,203,156,.5)','rgba(12,203,156,.3)','rgba(240,96,48,.6)','rgba(240,68,88,.7)','rgba(240,68,88,.9)']}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{display:!1}}}});
-new Chart(document.getElementById('chart-oil-airline'),{type:'line',data:{labels:['2025Q3','Q4','2026Q1','冲突','峰值','协议','当前'],datasets:[{label:'布伦特$',data:[75,72,78,88,126,93,80],borderColor:'#f06030',tension:.3,pointRadius:4,yAxisID:'y'},{label:'JETS ETF',data:[22,24,23,20,15,17,18],borderColor:'#4d9bff',tension:.3,pointRadius:4,yAxisID:'y1'}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{position:'bottom'}},scales:{y:{position:'left'},y1:{position:'right',grid:{display:!1}}}}});
-new Chart(document.getElementById('chart-warsh-em'),{type:'line',data:{labels:['2025Q3','Q4','2026Q1','Warsh提名','FOMC','当前'],datasets:[{label:'DXY',data:[101,107,99,100,101,100.8],borderColor:'#4d9bff',tension:.3,pointRadius:4,yAxisID:'y'},{label:'EEM ETF',data:[44,42,43,41,38,39],borderColor:'#f06030',tension:.3,pointRadius:4,yAxisID:'y1'}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{position:'bottom'}},scales:{y:{position:'left'},y1:{position:'right',grid:{display:!1}}}}});
+mkChart('chart-ashare-hedge',{type:'bar',data:{labels:['A股<10%','10-15%<4200','10-15%>4500','15-25%','接盘论≥7分'],datasets:[{label:'Put成本(年化%)',data:[0,0,1.5,2.0,0],backgroundColor:['rgba(12,203,156,.5)','rgba(12,203,156,.3)','rgba(240,96,48,.6)','rgba(240,68,88,.7)','rgba(240,68,88,.9)']}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{display:!1}}}});
+mkChart('chart-oil-airline',{type:'line',data:{labels:['2025Q3','Q4','2026Q1','冲突','峰值','协议','当前'],datasets:[{label:'布伦特$',data:[75,72,78,88,126,93,80],borderColor:'#f06030',tension:.3,pointRadius:4,yAxisID:'y'},{label:'JETS ETF',data:[22,24,23,20,15,17,18],borderColor:'#4d9bff',tension:.3,pointRadius:4,yAxisID:'y1'}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{position:'bottom'}},scales:{y:{position:'left'},y1:{position:'right',grid:{display:!1}}}}});
+mkChart('chart-warsh-em',{type:'line',data:{labels:['2025Q3','Q4','2026Q1','Warsh提名','FOMC','当前'],datasets:[{label:'DXY',data:[101,107,99,100,101,100.8],borderColor:'#4d9bff',tension:.3,pointRadius:4,yAxisID:'y'},{label:'EEM ETF',data:[44,42,43,41,38,39],borderColor:'#f06030',tension:.3,pointRadius:4,yAxisID:'y1'}]},options:{responsive:!0,maintainAspectRatio:!1,plugins:{legend:{position:'bottom'}},scales:{y:{position:'left'},y1:{position:'right',grid:{display:!1}}}}});
 </script>
 
+<script id="dr-live-refresh">
+(function(){
+fetch('gor_latest.json').then(function(r){return r.json()}).then(function(f){
+  window.__GOR_DATA__=f;
+  renderGor();
+}).catch(function(){});
+})();
+</script>
 </body>
 </html>

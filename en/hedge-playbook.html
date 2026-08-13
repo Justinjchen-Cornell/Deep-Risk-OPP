@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="icon" href="data:,"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Hedge Playbook · Deep-Risk-OPP</title>
 <style>@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
@@ -30,8 +30,41 @@ td{padding:8px 10px;border-bottom:1px solid #1a2336}
 footer{text-align:center;color:#475569;font-size:10px;margin:30px 0;font-family:'Fira Code',monospace;line-height:1.8}
 footer a{color:var(--muted)}
 </style>
+
 </head>
 <body>
+<style id="dr-nav-css">
+.dr-nav{position:sticky;top:0;z-index:999;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 20px;background:rgba(5,7,13,.93);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #1f2a40;font-family:'Fira Code','PingFang SC','Microsoft YaHei',monospace;font-size:12px;letter-spacing:.5px}
+.dr-nav .dr-brand{color:#f0c040;font-weight:700;letter-spacing:2px;text-decoration:none;text-shadow:0 0 14px rgba(240,192,64,.45);white-space:nowrap;font-size:13px}
+.dr-nav .dr-links{display:flex;gap:2px;flex-wrap:wrap;justify-content:center}
+.dr-nav .dr-links a{color:#7a8a9a;text-decoration:none;padding:6px 11px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.dr-nav .dr-links a:hover{color:#e0e6ed;background:#101826}
+.dr-nav .dr-links a.on{color:#f0c040;background:rgba(240,192,64,.08);box-shadow:inset 0 0 0 1px rgba(240,192,64,.3)}
+.dr-nav .dr-side{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.dr-nav .dr-gor{color:#6ee7b7;background:#064e3b;border:1px solid rgba(110,231,183,.35);padding:5px 10px;border-radius:6px;font-weight:700;font-size:11px;letter-spacing:.5px;text-decoration:none;display:inline-block}
+.dr-nav .dr-gor.alert{color:#fbbf24;background:#452a03;border-color:rgba(251,191,36,.4)}
+.dr-nav .dr-lang a{color:#7a8a9a;text-decoration:none;padding:5px 9px;border-radius:6px}
+.dr-nav .dr-lang a.on{color:#05070d;background:#f0c040;font-weight:700}
+@media(max-width:820px){.dr-nav{flex-direction:column;gap:8px;padding:9px 12px}.dr-nav .dr-links{order:2}.dr-nav .dr-side{order:3}}
+</style>
+<nav class="dr-nav">
+  <a class="dr-brand" href="../index.html">⌬ DEEP-RISK-OPP</a>
+  <div class="dr-links"><a href="../dashboard.html">GOR LIVE</a><a href="../en/decision-board.html">Decision Board</a><a href="../en/capital-flows.html">Capital Flows</a><a href="../en/hedge-playbook.html" class="on">Hedge Playbook</a><a href="../docs/track-record.md">Track Record</a></div>
+  <div class="dr-side">
+    <a class="dr-gor" id="drGor" href="../dashboard.html" title="GOR Live">GOR …</a>
+    <div class="dr-lang"><a href="../zh/">中文</a><a href="../en/" class="on">EN</a></div>
+  </div>
+</nav>
+<script id="dr-nav-js">
+(function(){
+var e=document.getElementById("drGor");if(!e)return;
+fetch("../gor_latest.json").then(function(r){return r.json()}).then(function(d){
+var g=d.gor_wti;
+e.textContent="GOR "+g.toFixed(1)+(g>=45?" ⚠":"")+" · "+d.updated.slice(5);
+e.className="dr-gor"+(g>=45?" alert":"");
+}).catch(function(){e.textContent="GOR —";});
+})();
+</script>
 <div class="wrap">
 <nav>
   <span class="brand">DEEP-RISK-OPP</span>
