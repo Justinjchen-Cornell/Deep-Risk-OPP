@@ -16,24 +16,50 @@
 > **GOR = Gold ÷ Oil. When it crosses 45, history says oil rallies 54-167% within 12-24 months.**
 
 <p align="center">
-  <b>🌐 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/">LIVE SITE →</a></b>
+  <b>🌐 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/">Live Site</a></b>
   &nbsp;|&nbsp;
-  <b>🖥️ <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">Dashboard</a></b>
+  <b>🇨🇳 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/zh/">中文版</a></b>
   &nbsp;|&nbsp;
-  <b>📊 <a href="docs/track-record.md">Track Record</a></b>
+  <b>🌐 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/en/">English</a></b>
+  &nbsp;|&nbsp;
+  <b>📡 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">Dashboard</a></b>
+  &nbsp;|&nbsp;
+  <b>📈 <a href="docs/track-record.md">Track Record</a></b>
 </p>
 
 ---
 
 ## What Is This?
 
-**Deep-Risk-OPP** turns one ratio into a daily macro decision. It watches the Gold/Oil Ratio (GOR) as a seismograph for systemic stress, maps global capital flows as fault-line scans, and runs 11 decision frameworks + 6 legendary-investor mindsets through a priority engine — producing a single allocation card every day.
+**Deep-Risk-OPP** turns one ratio into a daily macro decision. It watches the Gold/Oil Ratio (GOR) as a seismograph for systemic stress, maps global capital flows as fault-line scans, and runs 11 decision frameworks + 6 legendary-investor mindsets through a priority engine — producing a single allocation card every day, published automatically to a public website.
 
 - **The claim**: GOR ≥ 45 has never failed to precede oil gains of 54-167% over the following 12-24 months (1998, 2008, 2016, 2020).
-- **The state**: GOR is in its 13th consecutive month above 45. The longest stretch in recorded history.
-- **The output**: daily updated dashboard + allocation card + alerts. Zero black-box AI. Every threshold is in `config.py`.
+- **The state (Aug 2026)**: GOR(WTI) = 53.8 — its 13th consecutive month above 45, the longest stretch in recorded history. Gold $4,454/oz, WTI $82.75.
+- **The output**: a live bilingual website updated daily by GitHub Actions. Zero black-box AI. Every threshold is in `config.py`.
 
 Acknowledgments: The gold-to-oil ratio theory derives from Mr. Lu Qiyuan's macro analysis system. The "Three Capital Flows" framework draws on liquidity models by various analysts. The "Six Masters Mapping" is the author's synthesis of six investors' public statements. Hard stops, risk modifiers, automation, and Claude Code integration are original work. Data: FRED, akshare, yfinance.
+
+---
+
+## The Live Site
+
+```
+index.html (language chooser)
+   ├── zh/index.html  ── 中文指挥中心 ──┐
+   └── en/index.html  ── EN Command Center ──┤
+                                            ▼
+        ┌──────────────────────────────────────────────┐
+        │  📡 GOR Live Dashboard   — 全市场实时读数+仓位   │
+        │  📊 Decision Board       — GOR区间+硬规则+框架   │
+        │  🌊 Capital Flows        — 三流断层扫描         │
+        │  🛡️ Hedge Playbook       — 五策略对冲工具箱      │
+        │  📈 Track Record         — 实盘记录（含认错）    │
+        └──────────────────────────────────────────────┘
+```
+
+- **Every page** carries a unified HUD navigation bar with a live GOR badge — jump between pages from anywhere.
+- **Every page fetches `gor_latest.json` on load** — the data you see is always the latest daily run.
+- **Data pipeline**: GitHub Actions cron (00:00 UTC) → fetch FRED/akshare/yfinance → compute GOR + allocation → commit JSON → auto-deploy to GitHub Pages. Zero manual steps.
 
 ---
 
@@ -66,168 +92,6 @@ Acknowledgments: The gold-to-oil ratio theory derives from Mr. Lu Qiyuan's macro
 
 ---
 
-## Quick Start
-
-```bash
-# Clone the repository
-git clone https://github.com/Justinjchen-Cornell/Deep-Risk-OPP.git
-cd Deep-Risk-OPP
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the daily signal engine
-python run.py --mode daily
-
-# Or ask Claude Code directly
-# "Run Deep-Risk. What's today's signal?"
-```
-
-**Prerequisites**: Claude Code with MCP server access. Python >= 3.11.
-
----
-
-## Architecture
-
-```
-User: "What's the macro risk today?"
-          │
-          ▼
-┌─────────────────────────────────────────────────────┐
-│             DEEP-RISK-OPP PIPELINE                   │
-├─────────────────────────────────────────────────────┤
-│                                                      │
-│  [1] SEISMOGRAPH                                     │
-│      GOR = Gold($/oz) / WTI($/bbl)                  │
-│      Reads: extreme opportunity / recovery / bubble  │
-│                                                      │
-│  [2] FAULT-LINE SCAN                                 │
-│      Capital Three-Flows: Total × Direction × Speed  │
-│      Reads: centripetal collapse / centrifugal       │
-│                                                      │
-│  [3] FRAMEWORK ORCHESTRATION                         │
-│      11 frameworks loaded. Priority chain resolves   │
-│      conflicts. Signal consensus computed.           │
-│                                                      │
-│  [4] MASTER CONSULTATION                             │
-│      6 legendary investor mindsets mapped to data.   │
-│      Buffett says hold cash? Burry says hedge?       │
-│      Li Ka-shing says wait for forced sellers?       │
-│                                                      │
-│  [5] SIGNAL OUTPUT                                    │
-│      1 decision card. 6 lines. Zero ambiguity.       │
-│                                                      │
-└─────────────────────────────────────────────────────┘
-          │
-          ▼
-┌──────────────────────┐
-│   EARLY-WARNING CARD │
-│   Date: 2026-07-15   │
-│   GOR:   50.85       │
-│   Risk:  ELEVATED    │
-│   Oil:   ACCUMULATE  │
-│   Gold:  HOLD 15%    │
-│   Cash:  50%+        │
-│   Alert: Warsh hawk  │
-└──────────────────────┘
-```
-
----
-
-## The 11 Frameworks
-
-Every framework answers one question. Together they form a 360-degree risk assessment.
-
-| # | Framework | Core Question | Trigger | File |
-|:-:|-----------|--------------|:------:|------|
-| 01 | **GOR Direction** | What to allocate today? | Daily | [01-GOR方向框架.md](frameworks/01-GOR方向框架.md) |
-| 02 | **Deep Diligence** | Which specific asset? | On-demand | [02-个股四维研判.md](02-个股四维研判.md) |
-| 03 | **Bagholder Theory** | What market phase are we in? | Event | [03-接盘论框架.md](03-接盘论框架.md) |
-| 04 | **Token Dollar** | Where is USD hegemony? | Monthly | [04-Token美元进度.md](04-Token美元进度.md) |
-| 05 | **Hedging Strategy** | How to protect positions? | Per position | [05-对冲策略选择.md](05-对冲策略选择.md) |
-| 06 | **Risk Calendar** | What time nodes lie ahead? | Weekly | [06-风控日历.md](06-风控日历.md) |
-| 07 | **Decision Audit** | Was that luck or skill? | Monthly | [07-决策审计框架.md](07-决策审计框架.md) |
-| 08 | **Six Masters** | What would the legends say? | Events | [08-六大师映射.md](08-六大师映射.md) |
-| 09 | **Capacity Cycle** | Where in the industrial cycle? | On-demand | [09-产能周期框架.md](09-产能周期框架.md) |
-| 10 | **Catalyst Calendar** | What events will move markets? | On-demand | [10-催化剂日历框架.md](10-催化剂日历框架.md) |
-| 11 | **Capital Three Flows** | Where is money flowing? | Daily+Weekly | [11-资本三流框架.md](11-资本三流框架.md) |
-
-### Priority Chain (When Frameworks Conflict)
-
-```
-Level 1: Circuit Breaker      — WTI < $75 → oil forced ≤ 5%
-Level 2: Risk Calendar Node   — FOMC / OPEC+ / election overrides
-Level 3: Bagholder >= 7       — All positions × 0.7
-Level 4: Capital Flow Signal  — Centripetal → raise cash ≥ 40%
-Level 5: GOR Direction        — Default allocation baseline
-Level 6: Master Consensus     — Advisory only, does not override
-```
-
-Lower number = higher priority. Circuit breakers always win.
-
----
-
-## The 6 Masters
-
-Not predictions. **Risk philosophies.** Each master's framework is mapped onto current data to produce a risk posture.
-
-| Master | Risk Philosophy | Current Posture (Jul 2026) | Signal |
-|--------|----------------|---------------------------|:------:|
-| **Buffett** | "Be fearful when others are greedy." $397B in cash. | Cash is the position. Energy is the watchlist. | DEFENSIVE |
-| **Burry** | "The bond market is screaming." 30Y at 5.15%. | Systemic credit event brewing. | DEFENSIVE |
-| **Druckenmiller** | "Liquidity drives everything." Three CBs tightening. | Tactical oil long. Strategic cash. | SELECTIVE |
-| **Damodaran** | "Price is what you pay. Value is what you get." | Energy majors 40% undervalued. Gold 32% overvalued. | BULLISH ENERGY |
-| **Taleb** | "The tails are fat." Hallmuz + BOJ + US auction risks. | Barbell: 90% ultra-safe + 10% convex bets. | HEDGED |
-| **Li Ka-shing** | "未买先想卖." 90% of brain on what can go wrong. | Direction is right. Sweetest fruit already picked at GOR=78. Wait for forced sellers. | PATIENT |
-
-For detailed master mappings, see [08-六大师映射.md](08-六大师映射.md).
-
----
-
-## Usage Examples
-
-```bash
-# Daily macro risk scan
-python run.py --mode daily
-# Output: early-warning card with GOR, flows, allocation, alerts
-
-# Run with specific frameworks
-python run.py --mode daily --frameworks 01,05,11
-
-# What would the masters say about current data?
-python run.py --mode masters --masters buffett,burry,taleb
-
-# Generate a weekly change report
-python run.py --mode weekly --compare last-week
-
-# Run a historical backtest
-python run.py --mode backtest --from 2020-01 --to 2026-07
-
-# Export the decision card as JSON
-python run.py --mode daily --output signal.json
-```
-
-### Natural Language (via Claude Code)
-
-```
-User: "Deep-Risk: what's the macro risk posture today?"
-→ Loads GOR + Capital Flows + Risk Calendar. Outputs card.
-
-User: "Hedge my oil position."
-→ Loads Hedging + Risk Calendar. Recommends WTI $75 Put.
-
-User: "Is this a market top?"
-→ Loads Bagholder. Scores 10-point checklist.
-
-User: "Should I rotate from gold to oil?"
-→ Loads GOR + Six Masters + Capital Flows. Cross-validates.
-
-User: "What did we get right and wrong last month?"
-→ Loads Decision Audit. Scores framework accuracy.
-```
-
----
-
 ## The Seismograph: GOR Zones
 
 | Zone | GOR Range | Risk Signal | Action |
@@ -251,13 +115,128 @@ User: "What did we get right and wrong last month?"
 
 ## The Fault-Line Scan: Capital Three-Flows
 
-| Dimension | What It Measures | Current (Jul 2026) |
+| Dimension | What It Measures | Current (Aug 2026) |
 |-----------|-----------------|--------------------|
-| **Total** | Global liquidity: expanding or contracting? | 🔴 Contracting (Fed QT $7.3T) |
-| **Direction** | Capital flowing to USD or away? | 🔴 Centripetal (DXY 100.96) |
-| **Speed** | Panic or calm? | 🟡 Slowing (VIX 15.03) |
+| **Total** | Global liquidity: expanding or contracting? | 🔴 Contracting (Fed QT, BS $6.75T) |
+| **Direction** | Capital flowing to USD or away? | 🔴 Centripetal (DXY 100.0) |
+| **Speed** | Panic or calm? | 🟡 Calm (VIX 15.3) |
 
-**Centripetal Collapse Alert**: When Total contracts + Direction pulls inward + Speed accelerates → systemic liquidity event is imminent.
+**Centripetal Collapse Alert**: When Total contracts + Direction pulls inward + Speed accelerates → systemic liquidity event is imminent. Current speed is calm — the collapse is building in slow motion.
+
+
+---
+
+## The 11 Frameworks
+
+Every framework answers one question. Together they form a 360-degree risk assessment.
+
+| # | Framework | Core Question | Trigger | File |
+|:-:|-----------|--------------|:------:|------|
+| 01 | **GOR Direction** | What to allocate today? | Daily | [frameworks/01-GOR方向框架.md](frameworks/01-GOR方向框架.md) |
+| 02 | **Deep Diligence** | Which specific asset? | On-demand | [frameworks/02-个股四维研判.md](frameworks/02-个股四维研判.md) |
+| 03 | **Bagholder Theory** | What market phase are we in? | Event | [frameworks/03-接盘论框架.md](frameworks/03-接盘论框架.md) |
+| 04 | **Token Dollar** | Where is USD hegemony? | Monthly | [frameworks/04-Token美元进度.md](frameworks/04-Token美元进度.md) |
+| 05 | **Hedging Strategy** | How to protect positions? | Per position | [frameworks/05-对冲策略选择.md](frameworks/05-对冲策略选择.md) |
+| 06 | **Risk Calendar** | What time nodes lie ahead? | Weekly | [frameworks/06-风控日历.md](frameworks/06-风控日历.md) |
+| 07 | **Decision Audit** | Was that luck or skill? | Monthly | [frameworks/07-决策审计框架.md](frameworks/07-决策审计框架.md) |
+| 08 | **Six Masters** | What would the legends say? | Events | [frameworks/08-六大师映射.md](frameworks/08-六大师映射.md) |
+| 09 | **Capacity Cycle** | Where in the industrial cycle? | On-demand | [frameworks/09-产能周期框架.md](frameworks/09-产能周期框架.md) |
+| 10 | **Catalyst Calendar** | What events will move markets? | On-demand | [frameworks/10-催化剂日历框架.md](frameworks/10-催化剂日历框架.md) |
+| 11 | **Capital Three Flows** | Where is money flowing? | Daily+Weekly | [frameworks/11-资本三流框架.md](frameworks/11-资本三流框架.md) |
+
+### Priority Chain (When Frameworks Conflict)
+
+```
+Level 1: Circuit Breaker      — WTI < $75 → oil forced ≤ 5%
+Level 2: Risk Calendar Node   — FOMC / OPEC+ / election overrides
+Level 3: Bagholder >= 7       — All positions × 0.7
+Level 4: Capital Flow Signal  — Centripetal → raise cash ≥ 40%
+Level 5: GOR Direction        — Default allocation baseline
+Level 6: Master Consensus     — Advisory only, does not override
+```
+
+Lower number = higher priority. Circuit breakers always win.
+
+---
+
+## The 6 Masters
+
+Not predictions. **Risk philosophies.** Each master's framework is mapped onto current data to produce a risk posture (refreshed in the monthly audit).
+
+| Master | Risk Philosophy | Posture (latest scan) | Signal |
+|--------|----------------|----------------------|:------:|
+| **Buffett** | "Be fearful when others are greedy." $397B in cash. | Cash is the position. Energy is the watchlist. | DEFENSIVE |
+| **Burry** | "The bond market is screaming." 30Y at 5.24%. | Systemic credit event brewing. | DEFENSIVE |
+| **Druckenmiller** | "Liquidity drives everything." Three CBs tightening. | Tactical oil long. Strategic cash. | SELECTIVE |
+| **Damodaran** | "Price is what you pay. Value is what you get." | Energy majors 40% undervalued. Gold 32% overvalued. | BULLISH ENERGY |
+| **Taleb** | "The tails are fat." Hallmuz + BOJ + US auction risks. | Barbell: 90% ultra-safe + 10% convex bets. | HEDGED |
+| **Li Ka-shing** | "未买先想卖." 90% of brain on what can go wrong. | Direction is right. Sweetest fruit already picked at GOR=78. Wait for forced sellers. | PATIENT |
+
+For detailed master mappings, see [frameworks/08-六大师映射.md](frameworks/08-六大师映射.md).
+
+---
+
+## System Architecture
+
+```
+   DATA SOURCES                      PIPELINE                      OUTPUT
+┌──────────────┐   ┌────────────────────┐   ┌──────────────────────────────┐
+│ FRED (Fed)   │   │  gor_daily.py      │   │  gor_latest.json             │
+│ akshare      │──▶│  (GitHub Actions    │──▶│  capital_flows_latest.json   │
+│ yfinance     │   │   cron, 00:00 UTC)  │   │  wti_history.json            │
+└──────────────┘   │  Pull → Compute GOR │   │  ALERT_YYYY-MM-DD.md         │
+                   │  → Classify → Save  │   └──────────────┬───────────────┘
+                   └────────────────────┘                  │ auto-deploy
+                                                           ▼
+   ┌─────────────────────────────────────────────────────────────────────┐
+   │  run.py decision engine (8 modes)          Pages site (all pages    │
+   │  frameworks → priority chain → card        fetch JSON on load)      │
+   └─────────────────────────────────────────────────────────────────────┘
+```
+
+1. **Data layer** — FRED (12 macro series), akshare (commodities), yfinance (DXY), each with fallbacks.
+2. **Daily pipeline** — `scripts/gor_daily.py` runs on GitHub Actions at 00:00 UTC, writes fresh JSONs, commits them, and Pages auto-deploys.
+3. **Decision engine** — `run.py` loads the 11 frameworks, applies the priority chain, and outputs the daily decision card.
+4. **Presentation** — every web page fetches `gor_latest.json` on load; embedded data blocks serve as offline fallback.
+
+---
+
+## Getting Started
+
+**Level 0 — just look.** No installation. Open the [live site](https://justinjchen-cornell.github.io/Deep-Risk-OPP/) — it updates itself daily.
+
+**Level 1 — run the data pipeline locally.**
+
+```bash
+git clone https://github.com/Justinjchen-Cornell/Deep-Risk-OPP.git
+cd Deep-Risk-OPP
+pip install -r requirements.txt
+
+# create .env with your API keys (see "API Keys" below)
+python scripts/gor_daily.py        # one full daily update
+```
+
+**Level 2 — run the decision engine.**
+
+```bash
+python run.py --mode daily                         # today's signal card
+python run.py --mode masters --masters buffett,burry,taleb
+python run.py --mode weekly --compare last-week    # weekly change report
+python run.py --mode backtest --from 2020-01 --to 2026-08
+```
+
+**Level 3 — natural language (via Claude Code).**
+
+```
+"What's the macro risk posture today?"      → GOR + flows + calendar card
+"Hedge my oil position."                    → WTI $75 Put recommendation
+"Is this a market top?"                     → Bagholder 10-point checklist
+"Should I rotate from gold to oil?"         → GOR + masters + flows cross-check
+"What did we get right and wrong last month?" → decision audit scores
+```
+
+Prerequisites: Python ≥ 3.11; Claude Code only for Level 3.
+
 
 ---
 
@@ -329,52 +308,9 @@ logs). You can rotate them anytime from each provider's site.
 
 ---
 
-## Data Pipeline
-
-```
-┌──────────────┐    ┌──────────────────┐    ┌──────────────┐
-│  FRED (Fed)  │    │   Yahoo Finance  │    │    akshare    │
-│  DGS10/30    │    │   DX-Y.NYB (DXY) │    │  Gold, WTI,   │
-│  VIXCLS, DFF │    │                  │    │  Brent, Copper│
-│  WALCL, M2SL │    │                  │    │               │
-│  CPIAUCSL     │    │                  │    │               │
-│  PCEPILFE     │    │                  │    │               │
-│  GFDEBTN      │    │                  │    │               │
-└──────┬───────┘    └────────┬─────────┘    └───────┬───────┘
-       │                     │                      │
-       └─────────────────────┼──────────────────────┘
-                             │
-                             ▼
-                   ┌─────────────────┐
-                   │  gor_daily.py   │
-                   │  weekly_data_   │
-                   │  pull.py        │
-                   │  Pull→Compute   │
-                   │  →Classify→     │
-                   │  Output JSON     │
-                   └────────┬────────┘
-                            │
-                            ▼
-            ┌───────────────────────────────┐
-            │  Decision Engine (run.py)      │
-            │  Load frameworks → Check      │
-            │  priority → Output card       │
-            └───────────────┬───────────────┘
-                            │
-                            ▼
-                 ┌──────────────────┐
-                 │  Signal Output    │
-                 │  ├─ JSON          │
-                 │  ├─ Markdown Card │
-                 │  └─ Log Archive   │
-                 └──────────────────┘
-```
-
----
-
 ## Track Record
 
-Selected historical signals from the GOR seismograph (backtested):
+Signals and outcomes are public — including the mistakes. See the full record: [docs/track-record.md](docs/track-record.md)
 
 | Date | GOR | Signal | Subsequent Market Move | ✓ |
 |------|----:|--------|------------------------|:-:|
@@ -384,26 +320,43 @@ Selected historical signals from the GOR seismograph (backtested):
 | **2026.06.25** | 53.33 | **Circuit breaker: WTI < $75 → oil 5%** | WTI fell to $68.76. Capital preserved. | ✅ |
 | **2026.07.15** | 50.85 | **Hard stop released. Accumulate oil 27%.** | In progress — WTI reclaimed $79.49 in 72h. | ⏳ |
 
-*Past signals are backtested on historical data. Real-time signals are tracked live.*
-
----
-
-## Dashboard Logs
-
-Daily snapshots, weekly change reports, and special deep-dive analyses are archived in [看板日志/](看板日志/).
-
-| Date | Type | GOR | Event |
-|------|------|----:|-------|
-| 2026-07-12 | Weekly Change | 57.74 | WTI recovering from hard stop low |
-| 2026-07-05 | Weekly Change | 60.89 | GOR spiking to near-record |
-| 2026-06-25 | **Critical Event** | 56.88 | WTI broke $75. Circuit breaker triggered. |
-| 2026-06-19 | Daily Brief | 52.69 | WTI $0.73 from hard stop |
+*Past signals are backtested on historical data. Real-time signals are tracked live.* Daily snapshots and alerts are archived in [看板日志/](看板日志/).
 
 ---
 
 ## File Structure
 
+```
+Deep-Risk-OPP/
+├── index.html                  # Language chooser landing
+├── dashboard.html              # 📡 Live GOR dashboard (fetch JSON)
+├── 📊 投资决策看板.html          # 中文决策看板（动态渲染）
+├── 🌊 资本三流观测站.html        # 中文资本三流（含LIVE数据条）
+├── 🛡️ 对冲作战手册.html         # 中文对冲手册（动态渲染）
+├── zh/index.html               # 中文Hub（指挥中心）
+├── en/                         # English hub + 3 pages
+├── gor_latest.json             # Latest signal (auto-updated daily)
+├── capital_flows_latest.json   # Latest capital flows (auto-updated)
+├── wti_history.json            # Rolling WTI history → dynamic hard stop
+├── config.py                   # All thresholds & parameters
+├── run.py                      # CLI decision engine (8 modes)
+├── scripts/
+│   ├── gor_daily.py            # Daily pipeline (Actions cron 00:00 UTC)
+│   ├── weekly_data_pull.py     # Weekly change report generator
+│   └── figi_mapper.py          # OpenFIGI identifier mapping
+├── frameworks/                 # 11 decision frameworks (zh)
+├── docs/
+│   ├── track-record.md         # Live track record (incl. mistakes)
+│   ├── promo-pack.md           # Launch copy for social platforms
+│   └── code_review_2026-08.md  # First systematic code review
+├── 看板日志/                    # Daily snapshots, alerts, GOR Pulse archive
+└── .github/workflows/
+    ├── daily.yml               # Daily data update
+    └── static.yml              # GitHub Pages deploy
+```
 
+
+---
 
 ## Roadmap
 
@@ -415,9 +368,10 @@ Daily snapshots, weekly change reports, and special deep-dive analyses are archi
 | v1.3 | Second/third-order opportunity detection | ✅ Done |
 | v2.0 | Full priority chain with circuit breakers | ✅ Done |
 | v2.1 | Weekly automated change reports | ✅ Done |
-| v2.2 | Historical backtest suite (2000–2026) | 🔄 In progress |
-| v3.0 | Real-time alerting (email/webhook) | 📋 Planned |
-| v3.1 | Interactive dashboard (HTML/JS) | 📋 Planned |
+| v2.2 | Live web product: bilingual site + auto pipeline + unified HUD nav | ✅ Done |
+| v2.3 | Historical backtest suite (2000–2026) | 🔄 In progress |
+| v3.0 | Sentiment data (Adanos) merged into main JSON | 📋 Planned |
+| v3.1 | Real-time alerting (email/webhook) | 📋 Planned |
 | v4.0 | Multi-asset portfolio simulation | 📋 Planned |
 
 ---
