@@ -377,8 +377,6 @@ Deep-Risk-OPP/
 | v3.0 | 实时告警（熔断触发时邮件/webhook推送） | 📋 下一步 |
 | v4.0 | 多资产组合模拟 | 📋 远期 |
 
-**🚀 产品推广（进行中）**：雪球首发 · LinkedIn GOR Pulse #004 · HelloGitHub · Hacker News Show HN · X推文——文案见 [docs/promo-pack.md](docs/promo-pack.md)。
-
 ---
 
 ## 参与贡献
