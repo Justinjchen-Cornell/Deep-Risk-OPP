@@ -1,55 +1,55 @@
 {
-  "updated": "2026-08-09 12:00",
-  "gor_brent": 53.87,
-  "gor_wti": 57.09,
-  "regime": "原油极端低估",
-  "final_position": 50,
+  "updated": "2026-08-02 12:00",
+  "gor_brent": 44.55,
+  "gor_wti": 47.23,
+  "regime": "修复周期",
+  "final_position": 30,
   "allocation": {
-    "油气": 25,
-    "黄金": 20,
-    "现金": 48,
+    "油气": 20,
+    "黄金": 15,
+    "现金": 58,
     "A股": 7,
     "铜": 0
   },
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=99.6 > 99 强美元压制",
+      "title": "DXY=99.78 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
       "level": "warning",
-      "title": "10Y=4.69% > 4.3% 高利率压制",
+      "title": "10Y=4.68% > 4.3% 高利率压制",
       "detail": "仓位-10%"
     }
   ],
   "data": {
     "黄金期货": {
-      "price": 4400.8,
+      "price": 4097.6,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 77.08,
+      "price": 86.76,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 81.7,
+      "price": 91.97,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 99.6,
+      "price": 99.78,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
-      "price": 4.69,
+      "price": 4.68,
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 15.15,
+      "price": 17.09,
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.583,
+      "price": 6.507,
       "change_pct": 0.0
     }
   },
@@ -57,11 +57,11 @@
     "total": "收缩",
     "direction": "向心坍缩",
     "speed": "放缓",
-    "dxy": 99.6,
-    "vix": 15.15,
-    "tenyear": 4.69,
-    "thirtyyear": 5.22,
-    "fed_balance": 6.75,
+    "dxy": 99.78,
+    "vix": 17.09,
+    "tenyear": 4.68,
+    "thirtyyear": 5.21,
+    "fed_balance": 6.74,
     "m2": 23.16,
     "fed_rate": 3.63,
     "warsh_alert": true

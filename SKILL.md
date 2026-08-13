@@ -32,10 +32,10 @@ Read `gor_latest.json` and `capital_flows_latest.json`. Output a 6-line decision
 
 ### 2. Framework Cross-Reference
 When user asks a specific question, load the relevant framework(s):
-- "should I hedge?" → `05-对冲策略选择.md`
-- "is this a top?" → `03-接盘论框架.md`
-- "what would Buffett say?" → `08-六大师映射.md`
-- "where is USD going?" → `04-Token美元进度.md` + `11-资本三流框架.md`
+- "should I hedge?" → `frameworks/05-对冲策略选择.md`
+- "is this a top?" → `frameworks/03-接盘论框架.md`
+- "what would Buffett say?" → `frameworks/08-六大师映射.md`
+- "where is USD going?" → `frameworks/04-Token美元进度.md` + `frameworks/11-资本三流框架.md`
 
 ### 3. Data Refresh
 `python run.py --mode daily` to pull fresh data and regenerate the decision card.

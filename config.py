@@ -25,7 +25,29 @@ GOR_ZONES = {
 # CIRCUIT BREAKERS (Non-Negotiable)
 # ============================================================
 
-WTI_HARD_STOP = 75        # Oil forced <= 5% below this
+# --- Dynamic Hard Stop (v2.1: replaces static $75 rule) ---
+# Rationale: A static $75 hard stop was too conservative during
+# supply-driven oil declines (e.g., Iran peace deal, June 2026).
+# The new dynamic rule only triggers during demand-shock crashes.
+#
+# Rule: Hard stop triggers ONLY when ALL of:
+#   1. WTI < 60-day SMA × HARD_STOP_MA_MULTIPLIER  (price collapse)
+#   2. GOR did NOT increase significantly (ruling out supply shock)
+#      → Supply shock: oil drops, gold holds → GOR↑ → framework signal strengthens
+#      → Demand shock: everything drops → GOR flat/↓ → hard stop triggers
+#
+# Legacy static threshold retained as absolute floor:
+#   WTI < WTI_ABSOLUTE_FLOOR → hard stop ALWAYS triggers (no exceptions)
+
+HARD_STOP_MA_PERIOD = 60           # 60-day simple moving average
+HARD_STOP_MA_MULTIPLIER = 0.85     # Trigger if WTI < 85% of 60-day MA
+GOR_SUPPLY_SHOCK_RISE = 0.05       # GOR ↑ > 5% in 5 days = supply shock (override)
+VIX_DEMAND_CONFIRM = 20            # VIX > 20 = fear confirms demand shock
+WTI_ABSOLUTE_FLOOR = 60            # Below this: hard stop always triggers (absolute floor)
+
+# Legacy static threshold (deprecated in favor of dynamic rule, kept as reference)
+WTI_HARD_STOP = 75                 # [DEPRECATED v2.1] Replaced by dynamic rule above
+
 DXY_THRESHOLD = 99        # Strong USD: total position -10%
 YIELD_THRESHOLD = 4.3     # High rates (10Y): total position -10%
 VIX_PANIC = 25            # Vol explosion: all risk positions -50%
@@ -87,7 +109,7 @@ MASTER_CONSENSUS_PRIORITY = 6    # Advisory only, does not override
 
 OIL_ACCUMULATION_ZONE = (75, 85)    # WTI range for low-absorb
 OIL_TARGET_ZONE = (95, 105)         # WTI take-profit range
-OIL_HARD_STOP = 75                  # WTI: forced reduce to 5%
+OIL_HARD_STOP = 75                  # [DEPRECATED v2.1] Replaced by dynamic rule
 
 # ============================================================
 # CAPITAL THREE-FLOWS THRESHOLDS
@@ -152,6 +174,7 @@ OUTPUT_DIR = "./看板日志"
 GOR_LATEST = "./gor_latest.json"
 CAPITAL_FLOWS_LATEST = "./capital_flows_latest.json"
 DECISION_CARD_TEMPLATE = "./每日资讯/📊 GOR 今日决策卡.md"
+WTI_HISTORY = "./wti_history.json"      # Rolling 60-day WTI/GOR/VIX for dynamic hard stop
 
 # ============================================================
 # MCP / CLAUDE CODE INTEGRATION

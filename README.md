@@ -20,7 +20,7 @@
   &nbsp;|&nbsp;
   <b>🖥️ <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">Dashboard</a></b>
   &nbsp;|&nbsp;
-  <b>📊 <a href="track-record.md">Track Record</a></b>
+  <b>📊 <a href="docs/track-record.md">Track Record</a></b>
 </p>
 
 ---
@@ -140,7 +140,7 @@ Every framework answers one question. Together they form a 360-degree risk asses
 
 | # | Framework | Core Question | Trigger | File |
 |:-:|-----------|--------------|:------:|------|
-| 01 | **GOR Direction** | What to allocate today? | Daily | [01-GOR方向框架.md](01-GOR方向框架.md) |
+| 01 | **GOR Direction** | What to allocate today? | Daily | [01-GOR方向框架.md](frameworks/01-GOR方向框架.md) |
 | 02 | **Deep Diligence** | Which specific asset? | On-demand | [02-个股四维研判.md](02-个股四维研判.md) |
 | 03 | **Bagholder Theory** | What market phase are we in? | Event | [03-接盘论框架.md](03-接盘论框架.md) |
 | 04 | **Token Dollar** | Where is USD hegemony? | Monthly | [04-Token美元进度.md](04-Token美元进度.md) |
@@ -373,45 +373,7 @@ Daily snapshots, weekly change reports, and special deep-dive analyses are archi
 
 ## File Structure
 
-```
-Deep-Risk-OPP/
-│
-├── README.md                          # This file
-├── config.py                          # Shared parameters
-├── run.py                             # CLI entry point
-├── requirements.txt                   # Dependencies
-│
-├── 01-GOR方向框架.md                   # Seismograph: GOR-based allocation
-├── 02-个股四维研判.md                   # Deep diligence: 4D stock screening
-├── 03-接盘论框架.md                     # Bagholder theory: market phase
-├── 04-Token美元进度.md                  # Token dollar: USD hegemony tracker
-├── 05-对冲策略选择.md                   # Hedging: position protection
-├── 06-风控日历.md                       # Risk calendar: time nodes
-├── 07-决策审计框架.md                   # Decision audit: luck vs skill
-├── 08-六大师映射.md                     # Six masters: legendary mindsets
-├── 09-产能周期框架.md                   # Capacity cycle: industrial timing
-├── 10-催化剂日历框架.md                  # Catalyst calendar: event-driven
-├── 11-资本三流框架.md                   # Fault-line: capital flow scan
-│
-├── scripts/                           # Automation scripts
-│   ├── gor_daily.py                   # GOR data pipeline
-│   └── risk_calendar.py               # Calendar event checker
-│
-├── 看板日志/                           # Dashboard archive
-│   ├── 2026-06-19-每日简报.md
-│   ├── 2026-06-25-变化比对报告.md
-│   ├── 2026-07-05-变化比对报告.md
-│   ├── 2026-07-12-变化比对报告.md
-│   ├── *.json                          # Machine-readable signal data
-│   └── 📋 看板日志索引.md
-│
-├── gor_latest.json                    # Latest GOR + allocation data
-├── capital_flows_latest.json          # Latest capital flow readings
-│
-└── 审计记录/                           # Decision audit history
-```
 
----
 
 ## Roadmap
 
@@ -485,8 +447,3 @@ Built with Python, Claude MCP, Yahoo Finance API, CBOE, FRED, and ICE data.
 ---
 
 > *"The GOR ratio is the seismograph. Capital flows are the fault-line scan. The frameworks are the analysts. Deep-Risk-OPP is the early-warning system. What you do with the signal — that's yours."*
-
-## 会话沉淀
-
-- [[00.会话沉淀/深度/2026-06-25-投资决策框架更新|框架更新(06-25)]] — 6/24-25 与 7/5 数据全量更新、对冲作战手册 WTI<$75 硬止损处理、每周六定时任务建立
-- [[00.会话沉淀/深度/2026-07-12-金油比投资决策框架|金油比分析(07-12)]] — 框架内容输出与发布流水线(GOR Pulse 周报)

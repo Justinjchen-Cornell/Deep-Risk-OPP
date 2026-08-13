@@ -258,9 +258,34 @@ def compute_gor(data):
     oil_alloc = base_oil
     alerts = []
 
-    if w and w < 75:
-        oil_alloc = 5
-        alerts.append({"level": "critical", "title": f"WTI ${w} < $75 硬止损触发!", "detail": "油气仓位强制降至5%"})
+    # Dynamic hard stop (v2.1)
+    # Load history for context
+    hist_path = BASE_DIR / "wti_history.json"
+    wti_history = None
+    if hist_path.exists():
+        try:
+            with open(hist_path, 'r', encoding='utf-8') as f:
+                wti_history = json.load(f)
+        except Exception:
+            pass
+
+    # Use the dynamic hard stop from run.py if available
+    try:
+        sys.path.insert(0, str(BASE_DIR))
+        from run import check_dynamic_hard_stop
+        is_hs, hs_reason, shock_type = check_dynamic_hard_stop(
+            w, gor_w, vix=v, wti_history=wti_history
+        )
+        if is_hs:
+            oil_alloc = 5
+            alerts.append({"level": "critical", "title": f"动态硬止损触发 ({shock_type})", "detail": hs_reason})
+        elif shock_type == "supply_shock":
+            alerts.append({"level": "info", "title": f"供给冲击 — 硬止损被覆盖", "detail": hs_reason})
+    except Exception:
+        # Fallback to legacy static rule
+        if w and w < 75:
+            oil_alloc = 5
+            alerts.append({"level": "critical", "title": f"WTI ${w} < $75 硬止损触发!", "detail": "油气仓位强制降至5%"})
 
     if d and d > 99:
         alerts.append({"level": "warning", "title": f"DXY={d} > 99 强美元压制", "detail": "仓位-10%"})
@@ -647,28 +672,77 @@ def redraw_gor_chart():
         log(f"  CHART error: {e}")
 
 
+def update_wti_history(gor_output):
+    """Append today's data to rolling 60-day WTI history for dynamic hard stop."""
+    today = datetime.date.today().strftime('%Y-%m-%d')
+    hist_path = BASE_DIR / "wti_history.json"
+
+    # Load existing history
+    history = []
+    if hist_path.exists():
+        try:
+            with open(hist_path, 'r', encoding='utf-8') as f:
+                history = json.load(f)
+        except Exception:
+            history = []
+
+    # Check if today already exists (avoid duplicates)
+    for entry in history:
+        if entry.get("date") == today:
+            log(f"  WTI history: today already recorded, skipping")
+            return history
+
+    # Append today's data
+    wti = gor_output['data']['WTI原油']['price']
+    gold = gor_output['data']['黄金期货']['price']
+    vix = gor_output['data']['VIX恐慌指数']['price']
+    gor_w = gor_output['gor_wti']
+    gor_b = gor_output['gor_brent']
+
+    history.append({
+        "date": today,
+        "wti": wti,
+        "gold": gold,
+        "vix": vix,
+        "gor_wti": gor_w,
+        "gor_brent": gor_b,
+    })
+
+    # Keep only last 90 days (60 for SMA buffer)
+    if len(history) > 90:
+        history = history[-90:]
+
+    with open(hist_path, 'w', encoding='utf-8') as f:
+        json.dump(history, f, ensure_ascii=False, indent=2)
+    log(f"  WTI history: {len(history)} days recorded ({history[0]['date']} → {today})")
+    return history
+
+
 if __name__ == '__main__':
     log("=" * 50)
     log(f"  📡 陈嘉投资决策框架 · 自动化数据更新启动")
     log(f"  📅 {datetime.date.today().strftime('%Y-%m-%d')}")
     log("=" * 50)
 
-    log("⏳ Step 1/5: 拉取市场数据...")
+    log("⏳ Step 1/6: 拉取市场数据...")
     data = fetch_all()
 
-    log("⏳ Step 2/5: 计算 GOR + 仓位分配...")
+    log("⏳ Step 2/6: 计算 GOR + 仓位分配...")
     gor = compute_gor(data)
     log(f"  GOR(Brent)={gor['gor_brent']} GOR(WTI)={gor['gor_wti']} 仓位={gor['final_position']}%")
     log(f"  油气={gor['allocation']['油气']}% 黄金={gor['allocation']['黄金']}% 现金={gor['allocation']['现金']}%")
 
-    log("⏳ Step 3/5: 保存 JSON 数据文件...")
+    log("⏳ Step 3/6: 保存 JSON 数据文件...")
     gor_output = save_gor_json(data, gor)
     cf_output = save_capital_flows_json(data)
 
-    log("⏳ Step 4/5: 熔断器检查...")
+    log("⏳ Step 4/6: 更新 WTI 历史 (动态硬止损)...")
+    update_wti_history(gor_output)
+
+    log("⏳ Step 5/6: 熔断器检查...")
     alerts = generate_alerts(gor_output)
 
-    log("⏳ Step 5/5: 更新 HTML 数据+文本 + 重绘图表...")
+    log("⏳ Step 6/6: 更新 HTML 数据+文本 + 重绘图表...")
     update_html_data_blocks(gor_output, cf_output)
     update_html_text_content(gor_output)
     redraw_gor_chart()
