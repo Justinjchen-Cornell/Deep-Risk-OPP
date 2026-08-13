@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05070d;--card:#0d1117;--line:#1f2a40;--gold:#f0c040;--red:#dc2626;--green:#16a34a;--blue:#3b82f6;--amber:#d97706;--text:#e0e6ed;--muted:#7a8a9a}
+body{background:var(--bg);color:var(--text);font-family:'Fira Sans',sans-serif;min-height:100vh;padding:20px}
+.wrap{max-width:1100px;margin:0 auto}
+nav{padding:14px 0;margin-bottom:24px;border-bottom:1px solid var(--line);display:flex;gap:18px;align-items:center;font-family:'Fira Code',monospace;font-size:13px}
+nav a{color:var(--muted);text-decoration:none;transition:color .2s}
+nav a:hover{color:var(--gold)}
+nav .brand{color:var(--gold);font-weight:700;letter-spacing:1px}
+header{text-align:center;padding:16px 0 28px}
+header h1{font-size:28px;color:var(--gold);letter-spacing:2px;font-family:'Fira Code',monospace;text-shadow:0 0 20px rgba(240,192,64,.3)}
+header .sub{color:var(--muted);font-size:12px;margin-top:8px;font-family:'Fira Code',monospace}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:16px}
+.card h2{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px;font-family:'Fira Code',monospace}
+.kv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1a2336;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:var(--muted)}
+.kv .v{font-weight:600;font-family:'Fira Code',monospace}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+th{background:#1a2336;color:var(--muted);padding:8px 10px;text-align:left;border-bottom:1px solid #2a3a50;font-family:'Fira Code',monospace;font-size:11px}
+td{padding:8px 10px;border-bottom:1px solid #1a2336}
+.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;font-family:'Fira Code',monospace}
+.badge.red{background:#4c0519;color:#fda4af}.badge.green{background:#064e3b;color:#6ee7b7}.badge.amber{background:#78350f;color:#fcd34d}.badge.blue{background:#1e3a5f;color:#93c5fd}
+footer{text-align:center;color:#475569;font-size:10px;margin:30px 0;font-family:'Fira Code',monospace;line-height:1.8}
+footer a{color:var(--muted)}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Capital Flows · Deep-Risk-OPP</title>
+<style>@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05070d;--card:#0d1117;--line:#1f2a40;--gold:#f0c040;--red:#dc2626;--green:#16a34a;--blue:#3b82f6;--amber:#d97706;--text:#e0e6ed;--muted:#7a8a9a}
+body{background:var(--bg);color:var(--text);font-family:'Fira Sans',sans-serif;min-height:100vh;padding:20px}
+.wrap{max-width:1100px;margin:0 auto}
+nav{padding:14px 0;margin-bottom:24px;border-bottom:1px solid var(--line);display:flex;gap:18px;align-items:center;font-family:'Fira Code',monospace;font-size:13px}
+nav a{color:var(--muted);text-decoration:none;transition:color .2s}
+nav a:hover{color:var(--gold)}
+nav .brand{color:var(--gold);font-weight:700;letter-spacing:1px}
+header{text-align:center;padding:16px 0 28px}
+header h1{font-size:28px;color:var(--gold);letter-spacing:2px;font-family:'Fira Code',monospace;text-shadow:0 0 20px rgba(240,192,64,.3)}
+header .sub{color:var(--muted);font-size:12px;margin-top:8px;font-family:'Fira Code',monospace}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:16px}
+.card h2{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px;font-family:'Fira Code',monospace}
+.kv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1a2336;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:var(--muted)}
+.kv .v{font-weight:600;font-family:'Fira Code',monospace}
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+th{background:#1a2336;color:var(--muted);padding:8px 10px;text-align:left;border-bottom:1px solid #2a3a50;font-family:'Fira Code',monospace;font-size:11px}
+td{padding:8px 10px;border-bottom:1px solid #1a2336}
+.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;font-family:'Fira Code',monospace}
+.badge.red{background:#4c0519;color:#fda4af}.badge.green{background:#064e3b;color:#6ee7b7}.badge.amber{background:#78350f;color:#fcd34d}.badge.blue{background:#1e3a5f;color:#93c5fd}
+footer{text-align:center;color:#475569;font-size:10px;margin:30px 0;font-family:'Fira Code',monospace;line-height:1.8}
+footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <span class="brand">DEEP-RISK-OPP</span>
+  <a href="../index.html">Home</a>
+  <a href="../dashboard.html">Live Dashboard</a>
+  <a href="decision-board.html">Decision Board</a>
+  <a href="capital-flows.html">Capital Flows</a>
+  <a href="hedge-playbook.html">Hedge Playbook</a>
+  <a href="../🌊 资本三流观测站.html">中文版</a>
+</nav>
+<header>
+  <h1>CAPITAL FLOWS OBSERVATORY</h1>
+  <div class="sub">Total · Direction · Speed — the global liquidity fault-line scan</div>
+</header>
+
+<div class="card">
+  <h2>Live Readings</h2>
+  <div id="flows-data" style="font-size:12px;color:var(--muted)">Loading live data…</div>
+</div>
+
+<div class="card">
+  <h2>The Three Flows</h2>
+  <table>
+    <tr><th>Dimension</th><th>What It Measures</th><th>Key Indicator</th></tr>
+    <tr>
+      <td style="font-weight:700">TOTAL</td>
+      <td>Is global liquidity expanding or contracting?</td>
+      <td>Fed balance sheet, M2, SOFR, fiscal deficit</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700">DIRECTION</td>
+      <td>Is capital flowing INTO or OUT of the USD?</td>
+      <td>DXY, TIC flows, gold flows, EM outflows</td>
+    </tr>
+    <tr>
+      <td style="font-weight:700">SPEED</td>
+      <td>Panic or calm?</td>
+      <td>VIX, HY/IG spreads, TED, swap basis</td>
+    </tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Centripetal Collapse — The Composite State</h2>
+  <table>
+    <tr><th>State</th><th>Total</th><th>Direction</th><th>Speed</th><th>Portfolio Response</th></tr>
+    <tr>
+      <td><span class="badge red">COLLAPSE</span></td>
+      <td>Contracting</td><td>Centripetal</td><td>Accelerating</td>
+      <td>Cash is king. All risk assets under pressure.</td>
+    </tr>
+    <tr>
+      <td><span class="badge amber">DRAIN PHASE</span></td>
+      <td>Contracting</td><td>Centripetal</td><td>Normal</td>
+      <td>USD accumulating. Wait for the release valve.</td>
+    </tr>
+    <tr>
+      <td><span class="badge green">DIFFUSION</span></td>
+      <td>Expanding</td><td>Centrifugal</td><td>Normal</td>
+      <td>Risk-on. Capital flows to EM and commodities.</td>
+    </tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Why This Matters</h2>
+  <p style="font-size:13px;color:var(--muted);line-height:1.8">
+    The 2026 thesis: the US needs to refinance $40T of debt. To do that, it must attract global capital
+    into Treasuries. The mechanism: open the Middle East inflation valve &rarr; global capital flees weak
+    currencies &rarr; floods into USD &rarr; Treasury issuance succeeds &rarr; offshore dollar freeze
+    (centripetal collapse) &rarr; distressed assets get absorbed &rarr; dollar re-deployed.
+    <br><br>
+    The three flows are the seismograph for every stage of this cycle.
+  </p>
+</div>
+
+<footer>
+  Research framework · Not investment advice · <a href="https://github.com/Justinjchen-Cornell/Deep-Risk-OPP">GitHub</a><br>
+  Data: FRED · akshare · yfinance
+</footer>
+</div>
+<script>
+async function load(){
+  try{
+    const r = await fetch('../gor_latest.json').then(x=>x.json());
+    const ctf = r.capital_three_flows || {};
+    const d = r.data || {};
+    const rows = [
+      ['GOR (WTI)', r.gor_wti ? r.gor_wti.toFixed(1) : '—'],
+      ['GOR (Brent)', r.gor_brent ? r.gor_brent.toFixed(1) : '—'],
+      ['Total Liquidity', ctf.total || '—'],
+      ['Direction', ctf.direction || '—'],
+      ['Speed', ctf.speed || '—'],
+      ['DXY', ctf.dxy ? ctf.dxy.toFixed(2) : '—'],
+      ['Fed Balance Sheet', ctf.fed_balance ? '$'+ctf.fed_balance.toFixed(1)+'T' : '—'],
+      ['M2', ctf.m2 ? '$'+ctf.m2.toFixed(1)+'T' : '—'],
+      ['US 30Y', ctf.thirtyyear ? ctf.thirtyyear.toFixed(2)+'%' : '—'],
+      ['Fed Rate', ctf.fed_rate ? ctf.fed_rate.toFixed(2)+'%' : '—'],
+      ['Warsh Alert', ctf.warsh_alert ? 'ACTIVE ⚠' : 'calm'],
+      ['Updated', r.updated || '—'],
+    ];
+    document.getElementById('flows-data').innerHTML = rows.map(x=>
+      '<div class="kv"><span class="k">'+x[0]+'</span><span class="v">'+x[1]+'</span></div>'
+    ).join('');
+  }catch(e){
+    document.getElementById('flows-data').textContent = 'Data unavailable.';
+  }
+}
+load();
+</script>
+</body>
+</html>
