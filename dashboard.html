@@ -67,7 +67,11 @@ footer a{color:var(--muted)}
 .bd-sub input[type=email]:focus{outline:none;border-color:#f0c040}
 .bd-sub input[type=submit]{background:#f0c040;color:#05070d;border:none;border-radius:8px;padding:9px 18px;font-family:'Fira Code',monospace;font-size:12px;font-weight:700;cursor:pointer}
 .bd-sub input[type=submit]:hover{box-shadow:0 0 18px rgba(240,192,64,.4)}
-</style></head>
+</style><style id="fi-alt-css">
+.bd-sub .fi-alt{display:inline-block;margin-top:10px;color:#7a8a9a;text-decoration:none;font-family:'Fira Code',monospace;font-size:11px;border:1px solid #1f2a40;border-radius:8px;padding:7px 14px;transition:all .2s}
+.bd-sub .fi-alt:hover{color:#4da3ff;border-color:#4da3ff}
+</style>
+</head>
 <body>
 <style id="dr-nav-css">
 .dr-nav{position:sticky;top:0;z-index:999;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 20px;background:rgba(5,7,13,.93);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #1f2a40;font-family:'Fira Code','PingFang SC','Microsoft YaHei',monospace;font-size:12px;letter-spacing:.5px}
@@ -113,6 +117,7 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠DQ";e.title="degraded
     <input type="email" name="email" placeholder="you@example.com" required>
     <input type="submit" value="Subscribe">
   </form>
+  <a class="fi-alt" href="https://follow.it/deep-risk-opp?leanpub" target="_blank">🔔 or subscribe via follow.it (RSS to email)</a>
 </div>
 <footer>
   Research framework · Not investment advice · <a href="https://github.com/Justinjchen-Cornell/Deep-Risk-OPP">GitHub</a><br>
