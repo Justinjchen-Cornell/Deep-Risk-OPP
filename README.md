@@ -145,6 +145,7 @@ Every framework answers one question. Together they form a 360-degree risk asses
 | 09 | **Capacity Cycle** | Where in the industrial cycle? | On-demand | [frameworks/09-产能周期框架.md](frameworks/09-产能周期框架.md) |
 | 10 | **Catalyst Calendar** | What events will move markets? | On-demand | [frameworks/10-催化剂日历框架.md](frameworks/10-催化剂日历框架.md) |
 | 11 | **Capital Three Flows** | Where is money flowing? | Daily+Weekly | [frameworks/11-资本三流框架.md](frameworks/11-资本三流框架.md) |
+| 12 | **Miners Lead** *(validation layer)* | Are miners confirming the commodity supercycle? | Weekly | [frameworks/12-矿业股领先指标.md](frameworks/12-矿业股领先指标.md) |
 
 ### Priority Chain (When Frameworks Conflict)
 
@@ -374,6 +375,7 @@ Deep-Risk-OPP/
 | v2.3 | Historical backtest suite (2000–2026) | 🔄 In progress |
 | v2.4 | Codebase health: split `run.py` into `modes/`, merge `gor_daily` + `weekly_data_pull`, pytest for core functions, refresh risk calendar | 🔄 In progress |
 | v2.5 | Sentiment (Adanos) merged into main JSON · config schema validation · unified charting entry | 📋 Next |
+| v2.6 | Mining-stock leading indicators (GDX / COPX / XAU-Gold ratio / silver) tracked in daily pipeline | 📋 Next |
 | v3.0 | Real-time alerting (email/webhook push on breaker triggers) | 📋 Next |
 | v4.0 | Multi-asset portfolio simulation | 📋 Later |
 
