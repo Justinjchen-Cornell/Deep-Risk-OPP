@@ -16,7 +16,11 @@
 > **GOR = Gold ÷ Oil. When it crosses 45, history says oil rallies 54-167% within 12-24 months.**
 
 <p align="center">
-  <b>🖥️ <a href="https://Justinjchen-Cornell.github.io/Deep-Risk-OPP/dashboard.html">LIVE DASHBOARD →</a></b> &nbsp;|&nbsp; <b>📊 <a href="track-record.md">Track Record →</a></b>
+  <b>🌐 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/">LIVE SITE →</a></b>
+  &nbsp;|&nbsp;
+  <b>🖥️ <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">Dashboard</a></b>
+  &nbsp;|&nbsp;
+  <b>📊 <a href="track-record.md">Track Record</a></b>
 </p>
 
 ---
