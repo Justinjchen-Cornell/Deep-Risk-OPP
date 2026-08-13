@@ -1,91 +1,52 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Deep-Risk-OPP · 宏观作战指挥中心</title>
+<title>Deep-Risk-OPP · Choose Language · 选择语言</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#05070d;--card:#0d1117;--line:#1f2a40;--gold:#f0c040;--text:#e0e6ed;--muted:#7a8a9a;--blue:#3b82f6}
-body{background:var(--bg);color:var(--text);font-family:'Fira Sans',sans-serif;min-height:100vh;padding:30px 20px}
-.wrap{max-width:1100px;margin:0 auto}
-.lang-switch{text-align:right;margin-bottom:20px}
-.lang-btn{background:var(--card);border:1px solid var(--line);color:var(--muted);padding:8px 18px;border-radius:20px;cursor:pointer;font-family:'Fira Code',monospace;font-size:13px;margin-left:8px;transition:all .2s}
-.lang-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
-header{text-align:center;padding:30px 0 40px}
-header h1{font-size:36px;color:var(--gold);letter-spacing:3px;font-family:'Fira Code',monospace;text-shadow:0 0 24px rgba(240,192,64,.35)}
-header .sub{color:var(--muted);font-size:14px;margin-top:10px;font-family:'Fira Code',monospace}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;text-decoration:none;display:block}
-.card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 30px rgba(240,192,64,.08)}
-.card .icon{font-size:34px;margin-bottom:14px}
-.card h2{font-size:18px;color:#fff;margin-bottom:8px;font-family:'Fira Code',monospace}
-.card p{font-size:13px;color:var(--muted);line-height:1.7}
-.card .tag{display:inline-block;margin-top:14px;padding:3px 10px;border-radius:12px;font-size:11px;font-family:'Fira Code',monospace;background:#1e293b;color:var(--muted)}
-.card .tag.live{background:#064e3b;color:#6ee7b7}
-footer{text-align:center;color:#475569;font-size:11px;margin:40px 0 20px;font-family:'Fira Code',monospace;line-height:1.8}
-footer a{color:var(--muted)}
+body{background:#05070d;color:#e0e6ed;font-family:'Fira Sans',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;
+  background-image:radial-gradient(ellipse at 50% -20%,rgba(59,130,246,.12),transparent 60%),radial-gradient(ellipse at 50% 120%,rgba(217,119,6,.08),transparent 60%)}
+.wrap{width:100%;max-width:880px}
+header{text-align:center;margin-bottom:56px}
+header h1{font-size:36px;color:#f0c040;letter-spacing:4px;font-family:'Fira Code',monospace;text-shadow:0 0 30px rgba(240,192,64,.35)}
+header .sub{color:#7a8a9a;font-size:13px;margin-top:12px;font-family:'Fira Code',monospace;letter-spacing:.5px}
+header .sub b{color:#d97706}
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+@media(max-width:640px){.lang-grid{grid-template-columns:1fr}}
+.lang-card{background:linear-gradient(180deg,#0d1117 0%,#0a0e16 100%);border:1px solid #1f2a40;border-radius:18px;padding:48px 30px;text-align:center;cursor:pointer;text-decoration:none;transition:border-color .25s,transform .25s,box-shadow .25s;display:block;position:relative;overflow:hidden}
+.lang-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#f0c040,transparent);opacity:0;transition:opacity .3s}
+.lang-card:hover{border-color:#f0c040;transform:translateY(-4px);box-shadow:0 16px 50px rgba(240,192,64,.12)}
+.lang-card:hover::after{opacity:1}
+.lang-card .flag{font-size:54px;margin-bottom:18px;display:block;line-height:1}
+.lang-card h2{font-size:26px;color:#fff;margin-bottom:12px;font-family:'Fira Code',monospace;letter-spacing:1px}
+.lang-card p{font-size:13px;color:#7a8a9a;line-height:1.9}
+.lang-card .arrow{display:inline-block;margin-top:22px;color:#f0c040;font-size:15px;font-family:'Fira Code',monospace;font-weight:600}
+footer{text-align:center;color:#475569;font-size:10px;margin-top:56px;font-family:'Fira Code',monospace;line-height:1.9}
+footer a{color:#7a8a9a;text-decoration:none}
+footer a:hover{color:#f0c040}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="lang-switch">
-  <button class="lang-btn active" onclick="setLang('zh')">中文</button>
-  <button class="lang-btn" onclick="setLang('en')">EN</button>
-</div>
 <header>
-  <h1 data-i18n="title">DEEP-RISK-OPP</h1>
-  <div class="sub" data-i18n="subtitle">宏观作战指挥中心 · Macro Command Center</div>
+  <h1>DEEP-RISK-OPP</h1>
+  <div class="sub">One number that tells you when oil is <b>historically cheap</b> · 一个数字告诉你油什么时候便宜</div>
 </header>
-<div class="grid">
-  <a href="dashboard.html" class="card">
-    <div class="icon">📊</div>
-    <h2 data-i18n="d1">GOR 决策卡</h2>
-    <p data-i18n="d1p">实时金油比读数 · 仓位分配 · 资本三流 · 预警</p>
-    <span class="tag live" data-i18n="live">● LIVE</span>
+<div class="lang-grid">
+  <a href="zh/" class="lang-card">
+    <span class="flag">🇨🇳</span>
+    <h2>中文版</h2>
+    <p>金油比 · 资本三流 · 向心坍缩<br>四层决策框架 · 实盘记录</p>
+    <span class="arrow">进入 →</span>
   </a>
-  <a href="📊 投资决策看板.html" class="card">
-    <div class="icon">🖥️</div>
-    <h2 data-i18n="d2">投资决策看板</h2>
-    <p data-i18n="d2p">四层决策框架 · GOR区间 · 修正器 · 硬规则 · 历史参考</p>
-    <span class="tag" data-i18n="zh_tag">中文版</span>
-  </a>
-  <a href="en/decision-board.html" class="card">
-    <div class="icon">🖥️</div>
-    <h2 data-i18n="d3">Decision Board</h2>
-    <p data-i18n="d3p">Four-layer framework · GOR zones · Risk modifiers · Hard rules</p>
-    <span class="tag" data-i18n="en_tag">EN</span>
-  </a>
-  <a href="🌊 资本三流观测站.html" class="card">
-    <div class="icon">🌊</div>
-    <h2 data-i18n="d4">资本三流观测站</h2>
-    <p data-i18n="d4p">总量 · 方向 · 流速 — 全球流动性断层扫描</p>
-    <span class="tag" data-i18n="zh_tag">中文版</span>
-  </a>
-  <a href="en/capital-flows.html" class="card">
-    <div class="icon">🌊</div>
-    <h2 data-i18n="d5">Capital Flows</h2>
-    <p data-i18n="d5p">Total · Direction · Speed — liquidity fault-line scan</p>
-    <span class="tag" data-i18n="en_tag">EN</span>
-  </a>
-  <a href="🛡️ 对冲作战手册.html" class="card">
-    <div class="icon">🛡️</div>
-    <h2 data-i18n="d6">对冲作战手册</h2>
-    <p data-i18n="d6p">五策略对冲工具箱 · WTI Put · Straddle · 杠铃</p>
-    <span class="tag" data-i18n="zh_tag">中文版</span>
-  </a>
-  <a href="en/hedge-playbook.html" class="card">
-    <div class="icon">🛡️</div>
-    <h2 data-i18n="d7">Hedge Playbook</h2>
-    <p data-i18n="d7p">Five hedging strategies · WTI Put · Straddle · Barbell</p>
-    <span class="tag" data-i18n="en_tag">EN</span>
-  </a>
-  <a href="track-record.html" class="card">
-    <div class="icon">📈</div>
-    <h2 data-i18n="d8">Track Record</h2>
-    <p data-i18n="d8p">实盘信号记录 — 含错误的透明档案</p>
-    <span class="tag" data-i18n="zh_tag">双语</span>
+  <a href="en/" class="lang-card">
+    <span class="flag">🌐</span>
+    <h2>English</h2>
+    <p>GOR · Capital Flows · Centripetal Collapse<br>Four-layer framework · Track record</p>
+    <span class="arrow">Enter →</span>
   </a>
 </div>
 <footer>
@@ -93,37 +54,5 @@ footer a{color:var(--muted)}
   Data: FRED · akshare · yfinance · Auto-updated daily
 </footer>
 </div>
-<script>
-const i18n = {
-  zh: {title:'DEEP-RISK-OPP',subtitle:'宏观作战指挥中心 · Macro Command Center',
-    d1:'GOR 决策卡',d1p:'实时金油比读数 · 仓位分配 · 资本三流 · 预警',
-    d2:'投资决策看板',d2p:'四层决策框架 · GOR区间 · 修正器 · 硬规则 · 历史参考',
-    d3:'Decision Board',d3p:'Four-layer framework · GOR zones · Risk modifiers · Hard rules',
-    d4:'资本三流观测站',d4p:'总量 · 方向 · 流速 — 全球流动性断层扫描',
-    d5:'Capital Flows',d5p:'Total · Direction · Speed — liquidity fault-line scan',
-    d6:'对冲作战手册',d6p:'五策略对冲工具箱 · WTI Put · Straddle · 杠铃',
-    d7:'Hedge Playbook',d7p:'Five hedging strategies · WTI Put · Straddle · Barbell',
-    d8:'Track Record',d8p:'实盘信号记录 — 含错误的透明档案',
-    live:'● LIVE',zh_tag:'中文版',en_tag:'EN'},
-  en: {title:'DEEP-RISK-OPP',subtitle:'Macro Command Center · 宏观作战指挥中心',
-    d1:'GOR Decision Card',d1p:'Live ratio · Allocation · Flows · Alerts',
-    d2:'Investment Decision Board',d2p:'Four-layer framework · GOR zones · Modifiers · Hard rules',
-    d3:'Decision Board',d3p:'Four-layer framework · GOR zones · Risk modifiers · Hard rules',
-    d4:'Capital Flows Observatory',d4p:'Total · Direction · Speed — liquidity scan',
-    d5:'Capital Flows',d5p:'Total · Direction · Speed — liquidity fault-line scan',
-    d6:'Hedge Combat Manual',d6p:'Five hedging strategies · WTI Put · Straddle · Barbell',
-    d7:'Hedge Playbook',d7p:'Five hedging strategies · WTI Put · Straddle · Barbell',
-    d8:'Track Record',d8p:'Live signals with mistakes — full transparency',
-    live:'● LIVE',zh_tag:'中文版',en_tag:'EN'}
-};
-function setLang(lang){
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.lang-btn').forEach(b=>{if(b.textContent.trim()===('中文'===lang?'中文':'EN'))b.classList.add('active')});
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const key = el.getAttribute('data-i18n');
-    if(i18n[lang][key]) el.textContent = i18n[lang][key];
-  });
-}
-</script>
 </body>
 </html>

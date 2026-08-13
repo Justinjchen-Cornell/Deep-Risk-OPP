@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Deep-Risk-OPP · Macro Command Center</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05070d;--card:#0d1117;--line:#1f2a40;--gold:#f0c040;--text:#e0e6ed;--muted:#7a8a9a}
+body{background:var(--bg);color:var(--text);font-family:'Fira Sans',sans-serif;min-height:100vh;padding:26px 20px}
+.wrap{max-width:1080px;margin:0 auto}
+nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0;margin-bottom:22px;border-bottom:1px solid var(--line)}
+nav .brand{color:var(--gold);font-weight:700;letter-spacing:2px;font-family:'Fira Code',monospace;font-size:15px}
+nav .lang a{color:var(--muted);text-decoration:none;font-family:'Fira Code',monospace;font-size:13px;margin-left:14px}
+nav .lang a:hover{color:var(--gold)}
+nav .lang a.cur{color:var(--gold)}
+header{text-align:center;padding:20px 0 34px}
+header h1{font-size:30px;color:var(--gold);letter-spacing:3px;font-family:'Fira Code',monospace;text-shadow:0 0 24px rgba(240,192,64,.3)}
+header .sub{color:var(--muted);font-size:13px;margin-top:10px;font-family:'Fira Code',monospace}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px}
+.card{background:linear-gradient(180deg,var(--card) 0%,#0a0e16 100%);border:1px solid var(--line);border-radius:14px;padding:26px;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;text-decoration:none;display:block}
+.card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 34px rgba(240,192,64,.08)}
+.card .icon{font-size:32px;margin-bottom:14px;line-height:1}
+.card h2{font-size:18px;color:#fff;margin-bottom:8px;font-family:'Fira Code',monospace}
+.card p{font-size:13px;color:var(--muted);line-height:1.75}
+.card .tag{display:inline-block;margin-top:14px;padding:3px 11px;border-radius:12px;font-size:11px;font-family:'Fira Code',monospace;background:#1e293b;color:var(--muted)}
+.card .tag.live{background:#064e3b;color:#6ee7b7}
+footer{text-align:center;color:#475569;font-size:10px;margin:44px 0 20px;font-family:'Fira Code',monospace;line-height:1.9}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <span class="brand">DEEP-RISK-OPP</span>
+  <div class="lang"><a href="../zh/">中文</a><a class="cur" href="index.html">EN</a></div>
+</nav>
+<header>
+  <h1>Macro Command Center</h1>
+  <div class="sub">One number that tells you when oil is historically cheap · GOR = Gold ÷ Oil</div>
+</header>
+<div class="grid">
+  <a href="../dashboard.html" class="card">
+    <div class="icon">📊</div>
+    <h2>GOR Live Dashboard</h2>
+    <p>Live ratio · Allocation · Capital flows · Alerts</p>
+    <span class="tag live">● LIVE · updates daily</span>
+  </a>
+  <a href="decision-board.html" class="card">
+    <div class="icon">🖥️</div>
+    <h2>Decision Board</h2>
+    <p>GOR zones · Risk modifiers · Hard rules · Historical reference</p>
+    <span class="tag">EN</span>
+  </a>
+  <a href="capital-flows.html" class="card">
+    <div class="icon">🌊</div>
+    <h2>Capital Flows</h2>
+    <p>Total · Direction · Speed — liquidity fault-line scan</p>
+    <span class="tag">EN</span>
+  </a>
+  <a href="hedge-playbook.html" class="card">
+    <div class="icon">🛡️</div>
+    <h2>Hedge Playbook</h2>
+    <p>Five hedging strategies · WTI Put · Straddle · Barbell</p>
+    <span class="tag">EN</span>
+  </a>
+  <a href="../docs/track-record.md" class="card">
+    <div class="icon">📈</div>
+    <h2>Track Record</h2>
+    <p>Every call published before the outcome — including our mistakes</p>
+    <span class="tag">Full transparency</span>
+  </a>
+  <a href="https://github.com/Justinjchen-Cornell/Deep-Risk-OPP" class="card">
+    <div class="icon">🔧</div>
+    <h2>GitHub Project</h2>
+    <p>Source · 11 frameworks · Data pipeline · Backtest engine</p>
+    <span class="tag">Open source MIT</span>
+  </a>
+</div>
+<footer>
+  Research framework · Not investment advice · <a href="https://github.com/Justinjchen-Cornell/Deep-Risk-OPP">GitHub</a><br>
+  Data: FRED · akshare · yfinance · Auto-updated daily
+</footer>
+</div>
+</body>
+</html>

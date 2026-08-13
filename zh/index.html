@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Deep-Risk-OPP · 宏观作战指挥中心</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#05070d;--card:#0d1117;--line:#1f2a40;--gold:#f0c040;--text:#e0e6ed;--muted:#7a8a9a}
+body{background:var(--bg);color:var(--text);font-family:'Fira Sans','PingFang SC','Microsoft YaHei',sans-serif;min-height:100vh;padding:26px 20px}
+.wrap{max-width:1080px;margin:0 auto}
+nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0;margin-bottom:22px;border-bottom:1px solid var(--line)}
+nav .brand{color:var(--gold);font-weight:700;letter-spacing:2px;font-family:'Fira Code',monospace;font-size:15px}
+nav .lang a{color:var(--muted);text-decoration:none;font-family:'Fira Code',monospace;font-size:13px;margin-left:14px}
+nav .lang a:hover{color:var(--gold)}
+nav .lang a.cur{color:var(--gold)}
+header{text-align:center;padding:20px 0 34px}
+header h1{font-size:30px;color:var(--gold);letter-spacing:3px;font-family:'Fira Code',monospace;text-shadow:0 0 24px rgba(240,192,64,.3)}
+header .sub{color:var(--muted);font-size:13px;margin-top:10px;font-family:'Fira Code',monospace}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px}
+.card{background:linear-gradient(180deg,var(--card) 0%,#0a0e16 100%);border:1px solid var(--line);border-radius:14px;padding:26px;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;text-decoration:none;display:block}
+.card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 34px rgba(240,192,64,.08)}
+.card .icon{font-size:32px;margin-bottom:14px;line-height:1}
+.card h2{font-size:18px;color:#fff;margin-bottom:8px;font-family:'Fira Code',monospace}
+.card p{font-size:13px;color:var(--muted);line-height:1.75}
+.card .tag{display:inline-block;margin-top:14px;padding:3px 11px;border-radius:12px;font-size:11px;font-family:'Fira Code',monospace;background:#1e293b;color:var(--muted)}
+.card .tag.live{background:#064e3b;color:#6ee7b7}
+footer{text-align:center;color:#475569;font-size:10px;margin:44px 0 20px;font-family:'Fira Code',monospace;line-height:1.9}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <span class="brand">DEEP-RISK-OPP</span>
+  <div class="lang"><a class="cur" href="index.html">中文</a><a href="../en/">EN</a></div>
+</nav>
+<header>
+  <h1>宏观作战指挥中心</h1>
+  <div class="sub">一个数字告诉你油什么时候便宜 · 金油比 = 黄金 ÷ 原油</div>
+</header>
+<div class="grid">
+  <a href="../dashboard.html" class="card">
+    <div class="icon">📊</div>
+    <h2>GOR 实时决策卡</h2>
+    <p>实时金油比读数 · 仓位分配 · 资本三流 · 预警信号</p>
+    <span class="tag live">● LIVE · 每日自动更新</span>
+  </a>
+  <a href="../📊 投资决策看板.html" class="card">
+    <div class="icon">🖥️</div>
+    <h2>投资决策看板</h2>
+    <p>GOR区间 · 风险修正器 · 硬规则 · 历史参考 · 四层决策框架</p>
+    <span class="tag">中文版</span>
+  </a>
+  <a href="../🌊 资本三流观测站.html" class="card">
+    <div class="icon">🌊</div>
+    <h2>资本三流观测站</h2>
+    <p>总量 · 方向 · 流速 — 全球流动性断层扫描</p>
+    <span class="tag">中文版</span>
+  </a>
+  <a href="../🛡️ 对冲作战手册.html" class="card">
+    <div class="icon">🛡️</div>
+    <h2>对冲作战手册</h2>
+    <p>五策略对冲工具箱 · WTI Put · Straddle · 杠铃策略</p>
+    <span class="tag">中文版</span>
+  </a>
+  <a href="../docs/track-record.md" class="card">
+    <div class="icon">📈</div>
+    <h2>实盘记录</h2>
+    <p>信号与结果全公开 — 包括我们的错误判断</p>
+    <span class="tag">透明档案</span>
+  </a>
+  <a href="https://github.com/Justinjchen-Cornell/Deep-Risk-OPP" class="card">
+    <div class="icon">🔧</div>
+    <h2>GitHub 项目</h2>
+    <p>源码 · 11个决策框架 · 数据管道 · 回测引擎</p>
+    <span class="tag">开源 MIT</span>
+  </a>
+</div>
+<footer>
+  研究框架 · 不构成投资建议 · <a href="https://github.com/Justinjchen-Cornell/Deep-Risk-OPP">GitHub</a><br>
+  数据: FRED · akshare · yfinance · 每日自动更新
+</footer>
+</div>
+</body>
+</html>
