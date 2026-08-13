@@ -10,11 +10,18 @@ Deep-Risk-OPP — 每日推送 (交付层 L1)
 import json
 import os
 import sys
+import urllib.parse
 import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from data_pipeline.common import log
+from data_pipeline.common import BASE_DIR, log
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv(BASE_DIR / '.env')
+except Exception:
+    pass
 
 SITE = "https://justinjchen-cornell.github.io"
 
@@ -94,7 +101,6 @@ def send_daily_push(gor_output):
     key = os.environ.get('SERVERCHAN_SENDKEY')
     if key:
         try:
-            import urllib.parse
             url2 = f"https://sctapi.ftqq.com/{key}.send?title={urllib.parse.quote(msg.splitlines()[0])}&desp={urllib.parse.quote(msg)}"
             if dry:
                 print(f"  [dry] ServerChan: {msg[:60]}...")
@@ -118,6 +124,26 @@ def send_daily_push(gor_output):
             sent.append('telegram')
         except Exception as e:
             log(f"  Telegram push failed: {e}")
+
+    # Buttondown 邮件
+    bd_key = os.environ.get('BUTTONDOWN_API_KEY')
+    if bd_key:
+        try:
+            subject = ("GOR " + str(gor_output.get("gor_wti")) + " · " + str(gor_output.get("regime", ""))
+                       + " · 仓位 " + str(gor_output.get("final_position")) + "% · " + str(gor_output.get("updated", ""))[:10])
+            bd_body = msg.replace(chr(10), chr(10) + chr(10))
+            req = urllib.request.Request(
+                'https://api.buttondown.com/v1/emails',
+                data=json.dumps({'subject': subject, 'body': bd_body}).encode('utf-8'),
+                headers={'Content-Type': 'application/json', 'Authorization': f'Token {bd_key}'})
+            if dry:
+                print(f"  [dry] Buttondown: {subject}")
+            else:
+                with urllib.request.urlopen(req, timeout=20) as r:
+                    if r.status in (200, 201):
+                        sent.append('buttondown')
+        except Exception as e:
+            log(f"  Buttondown push failed: {e}")
 
     if sent:
         log(f"  Push sent via: {', '.join(sent)}")
