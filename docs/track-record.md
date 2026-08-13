@@ -1,6 +1,6 @@
 # 📊 Track Record — Live Calls & Outcomes
 
-> Every signal below was published in this repository or on LinkedIn BEFORE the outcome. Nothing retroactive. Auditable in `看板日志/` and commit history.
+> Every signal below was published in this repository or on LinkedIn BEFORE the outcome. Nothing retroactive. Auditable in commit history (daily logs are kept locally and were historically tracked in `看板日志/`).
 
 ---
 

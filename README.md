@@ -323,7 +323,7 @@ Signals and outcomes are public — including the mistakes. See the full record:
 | **2026.06.25** | 53.33 | **Circuit breaker: WTI < $75 → oil 5%** | WTI fell to $68.76. Capital preserved. | ✅ |
 | **2026.07.15** | 50.85 | **Hard stop released. Accumulate oil 27%.** | In progress — WTI reclaimed $79.49 in 72h. | ⏳ |
 
-*Past signals are backtested on historical data. Real-time signals are tracked live.* Daily snapshots and alerts are archived in [看板日志/](看板日志/).
+*Past signals are backtested on historical data. Real-time signals are tracked live.* Daily snapshots and alerts are archived locally and auditable in commit history.
 
 ---
 
@@ -352,7 +352,7 @@ Deep-Risk-OPP/
 │   ├── track-record.md         # Live track record (incl. mistakes)
 │   ├── promo-pack.md           # Launch copy for social platforms
 │   └── code_review_2026-08.md  # First systematic code review
-├── 看板日志/                    # Daily snapshots, alerts, GOR Pulse archive
+├── 看板日志/ (local only)       # Daily snapshots & alerts — gitignored
 └── .github/workflows/
     ├── daily.yml               # Daily data update
     └── static.yml              # GitHub Pages deploy
