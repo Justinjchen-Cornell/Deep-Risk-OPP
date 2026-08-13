@@ -46,7 +46,7 @@
 ▍这不是喊单
 这是研究框架 + 公开实验。我不推荐任何个股，不构成投资建议。你只需要知道：有一个系统，把它的预言、进度、对错都摊在阳光下。
 
-链接：https://justinjchen-cornell.github.io/Deep-Risk-OPP/
+链接：https://justinjchen-cornell.github.io/
 证伪条款：项目文档 docs/track-record.md
 ```
 
@@ -84,7 +84,7 @@ Why you might listen for 2 minutes:
 - Fully open-source, auto-updating daily. Every number auditable.
 
 Research framework. Not investment advice.
-https://justinjchen-cornell.github.io/Deep-Risk-OPP/
+https://justinjchen-cornell.github.io/
 ```
 
 ---
@@ -128,7 +128,7 @@ https://justinjchen-cornell.github.io/Deep-Risk-OPP/
 2. 头像用项目 logo.png（仓库根目录）
 3. 点右上角"写文章"（不是发帖——文章权重高、可被搜索）
 4. 标题粘贴主长文标题
-5. 正文粘贴主长文全文（§1），链接用短链 https://justinjchen-cornell.github.io/Deep-Risk-OPP/
+5. 正文粘贴主长文全文（§1），链接用短链 https://justinjchen-cornell.github.io/
 6. 标签：金油比、原油、黄金、宏观研究（4个足够）
 7. 发布时间：周四 20:00（复盘人群活跃）
 8. 发布后 2 小时内：回复所有评论；有人质疑"样本只有4次"→ 直接引用证伪条款+锚漂移分析（这恰恰是我们的强项）
