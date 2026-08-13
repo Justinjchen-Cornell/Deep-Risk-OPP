@@ -745,3 +745,9 @@
 [2026-08-13 19:41:40]   CHART: GOR snapshot saved to 看板日志/GOR_Daily_Snapshot.png
 [2026-08-13 19:41:40] ✅ 全部更新完成！
 [2026-08-13 19:41:40] ==================================================
+[2026-08-13 19:44:34]   FRED: connected
+[2026-08-13 19:44:48]   FRED: connected
+[2026-08-13 19:45:04]   FRED: connected
+[2026-08-13 19:45:49]   FRED: connected
+[2026-08-13 19:47:25]   FRED: connected
+[2026-08-13 19:50:57]   FRED: connected

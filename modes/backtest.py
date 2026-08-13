@@ -26,61 +26,106 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
     gold_px = None
     wti_px = None
 
-    # Try FRED WTI (since 1986) + yfinance GC=F gold (since 2000) -- full-period combo
+    # Load cached history if present (avoids API rate limits on re-runs)
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    CACHE = os.path.join(BASE_DIR, "看板日志", "backtest_cache", "gold_wti_history.csv")
     try:
-        from data_pipeline.common import _init_fred
         import pandas as pd
-        fred = _init_fred()
-        wti_s = fred.get_series('DCOILWTICO') if fred else None   # WTI Spot Cushing, daily
-        gold_s = None
-        try:
-            import yfinance as yf
-            g = yf.Ticker("GC=F").history(period="max", auto_adjust=False)
-            gold_s = g['Close'].astype(float).dropna()
-        except Exception as ye:
-            print(f"  yfinance GC=F failed: {ye}")
-        if wti_s is not None and gold_s is not None and len(gold_s) > 100:
-            wti_s = wti_s.astype(float).dropna()
-            mask_g = (gold_s.index >= from_date) & (gold_s.index <= to_date)
-            mask_w = (wti_s.index >= from_date) & (wti_s.index <= to_date)
-            gold_px = gold_s[mask_g]
-            wti_px = wti_s[mask_w]
-            print("  Source: FRED DCOILWTICO (WTI) + yfinance GC=F (Gold)")
-            print(f"  Gold: {len(gold_px)} rows, ${gold_px.min():.0f} - ${gold_px.max():.0f}")
-            print(f"  WTI:  {len(wti_px)} rows, ${wti_px.min():.0f} - ${wti_px.max():.0f}")
+        if os.path.exists(CACHE):
+            c = pd.read_csv(CACHE, parse_dates=['date']).set_index('date')
+            g_mask = (c.index >= from_date) & (c.index <= to_date)
+            gold_px = c['gold'][g_mask]
+            wti_px = c['wti'][g_mask]
+            cache_ok = str(c.index[0].date()) <= from_date   # 缓存起点必须早于请求起点
+            if len(gold_px) > 100 and cache_ok:
+                print(f"  Source: local cache ({os.path.basename(CACHE)}, {c.index[0].date()} -> {c.index[-1].date()})")
+                print(f"  Gold: {len(gold_px)} rows | WTI: {len(wti_px)} rows")
     except Exception as e:
-        print(f"  FRED+yfinance combo failed: {e}, trying akshare...")
+        print(f"  Cache load failed: {e}")
+
+    # Try Sina GlobalFutures first -- XAU spot since 2006, CL since 1996
+    try:
+        import json as _json
+        import urllib.request as _ur
+        import pandas as pd
+        import re as _re
+        def _sina(sym):
+            url = ("https://stock2.finance.sina.com.cn/futures/api/jsonp.php/"
+                   "var%20x=/GlobalFuturesService.getGlobalFuturesDailyKLine?symbol=" + sym)
+            req = _ur.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            raw = _ur.urlopen(req, timeout=25).read().decode('utf-8', errors='ignore')
+            m = _re.search(r'\((\[.*\])\)', raw)
+            rows = _json.loads(m.group(1))
+            df = pd.DataFrame(rows)
+            df['date'] = pd.to_datetime(df['date'])
+            return df.set_index('date')['close'].astype(float).sort_index()
+        _g = _sina('XAU')
+        _w = _sina('CL')
+        if len(_g) > 100:
+            mask_g = (_g.index >= from_date) & (_g.index <= to_date)
+            mask_w = (_w.index >= from_date) & (_w.index <= to_date)
+            gold_px = _g[mask_g]
+            wti_px = _w[mask_w]
+            print(f"  Source: Sina GlobalFutures (XAU spot + CL)")
+            print(f"  Gold: {len(gold_px)} rows, ${gold_px.min():.0f} - ${gold_px.max():.0f} | from {gold_px.index[0].date()}")
+            print(f"  WTI:  {len(wti_px)} rows, ${wti_px.min():.0f} - ${wti_px.max():.0f} | from {wti_px.index[0].date()}")
+    except Exception as e:
+        print(f"  Sina failed: {e}, trying FRED+yfinance...")
+
+    # Try FRED WTI (since 1986) + yfinance GC=F gold (since 2000) -- fallback combo
+    if gold_px is None or wti_px is None or len(gold_px) < 100:
+        try:
+            from data_pipeline.common import _init_fred
+            import pandas as pd
+            fred = _init_fred()
+            wti_s = fred.get_series('DCOILWTICO') if fred else None   # WTI Spot Cushing, daily
+            gold_s = None
+            try:
+                import yfinance as yf
+                g = yf.Ticker("GC=F").history(period="max", auto_adjust=False)
+                gold_s = g['Close'].astype(float).dropna()
+            except Exception as ye:
+                print(f"  yfinance GC=F failed: {ye}")
+            if wti_s is not None and gold_s is not None and len(gold_s) > 100:
+                wti_s = wti_s.astype(float).dropna()
+                mask_g = (gold_s.index >= from_date) & (gold_s.index <= to_date)
+                mask_w = (wti_s.index >= from_date) & (wti_s.index <= to_date)
+                gold_px = gold_s[mask_g]
+                wti_px = wti_s[mask_w]
+                print("  Source: FRED DCOILWTICO (WTI) + yfinance GC=F (Gold)")
+                print(f"  Gold: {len(gold_px)} rows, ${gold_px.min():.0f} - ${gold_px.max():.0f}")
+                print(f"  WTI:  {len(wti_px)} rows, ${wti_px.min():.0f} - ${wti_px.max():.0f}")
+        except Exception as e:
+            print(f"  FRED+yfinance combo failed: {e}, trying akshare...")
 
     # Try akshare if FRED did not fill
     if gold_px is None or wti_px is None or len(gold_px) < 10:
-      try:
-        import akshare as ak
-        import pandas as pd
+        try:
+            import akshare as ak
+            import pandas as pd
 
-        print("  Source: akshare")
-        gold_df_raw = ak.futures_foreign_hist(symbol='GC')
-        wti_df_raw = ak.futures_foreign_hist(symbol='CL')
+            print("  Source: akshare")
+            gold_df_raw = ak.futures_foreign_hist(symbol='GC')
+            wti_df_raw = ak.futures_foreign_hist(symbol='CL')
 
-        # akshare returns RangeIndex with 'date' and 'close' columns
-        gold_df_raw['date'] = pd.to_datetime(gold_df_raw['date'])
-        gold_df_raw = gold_df_raw.set_index('date').sort_index()
-        wti_df_raw['date'] = pd.to_datetime(wti_df_raw['date'])
-        wti_df_raw = wti_df_raw.set_index('date').sort_index()
+            gold_df_raw['date'] = pd.to_datetime(gold_df_raw['date'])
+            gold_df_raw = gold_df_raw.set_index('date').sort_index()
+            wti_df_raw['date'] = pd.to_datetime(wti_df_raw['date'])
+            wti_df_raw = wti_df_raw.set_index('date').sort_index()
 
-        gold_px = gold_df_raw['close'].astype(float)
-        wti_px = wti_df_raw['close'].astype(float)
+            gold_px = gold_df_raw['close'].astype(float)
+            wti_px = wti_df_raw['close'].astype(float)
 
-        # Filter to date range
-        mask_g = (gold_px.index >= from_date) & (gold_px.index <= to_date)
-        mask_w = (wti_px.index >= from_date) & (wti_px.index <= to_date)
-        gold_px = gold_px[mask_g]
-        wti_px = wti_px[mask_w]
+            mask_g = (gold_px.index >= from_date) & (gold_px.index <= to_date)
+            mask_w = (wti_px.index >= from_date) & (wti_px.index <= to_date)
+            gold_px = gold_px[mask_g]
+            wti_px = wti_px[mask_w]
 
-        print(f"  Gold: {len(gold_px)} rows, ${gold_px.min():.0f} – ${gold_px.max():.0f}")
-        print(f"  WTI:  {len(wti_px)} rows, ${wti_px.min():.0f} – ${wti_px.max():.0f}")
-      except Exception as e:
-        print(f"  akshare failed: {e}, trying yfinance...")
-        gold_px = None
+            print(f"  Gold: {len(gold_px)} rows, ${gold_px.min():.0f} - ${gold_px.max():.0f}")
+            print(f"  WTI:  {len(wti_px)} rows, ${wti_px.min():.0f} - ${wti_px.max():.0f}")
+        except Exception as e:
+            print(f"  akshare failed: {e}, trying yfinance...")
+            gold_px = None
 
     # Fallback to yfinance
     if gold_px is None or wti_px is None or len(gold_px) < 10:
@@ -101,6 +146,17 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
     if gold_px is None or wti_px is None or len(gold_px) < 10:
         print("  ERROR: Could not pull sufficient historical data.")
         return
+
+    # Persist cache for future runs (only when fetched fresh, i.e. not from cache)
+    try:
+        if len(gold_px) > 100:
+            import pandas as pd
+            os.makedirs(os.path.dirname(CACHE), exist_ok=True)
+            cdf = pd.DataFrame({'gold': gold_px, 'wti': wti_px}).dropna()
+            cdf.to_csv(CACHE)
+            print(f"  Cache saved: {os.path.basename(CACHE)} ({len(cdf)} rows)")
+    except Exception as e:
+        print(f"  Cache save failed: {e}")
 
     # Align data
     common_idx = gold_px.index.intersection(wti_px.index)
