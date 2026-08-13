@@ -58,7 +58,7 @@
     }
   },
   "oil_flows": {
-    "wti_price": 81.4,
+    "wti_price": 81.66,
     "spr_level": "3.7亿桶",
     "producer_discipline": "OPEC+减产·伊朗和平恢复出口"
   },
@@ -67,6 +67,6 @@
   },
   "currency_flows": {
     "dxy_signal": "DXY=99.9>99=向心坍缩区间",
-    "dxy": 99.9
+    "dxy": 99.89
   }
 }
