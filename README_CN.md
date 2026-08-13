@@ -10,6 +10,8 @@
   <img src="https://img.shields.io/badge/data-FRED%20%7C%20akshare%20%7C%20yfinance-orange" alt="Data">
   <img src="https://img.shields.io/badge/Claude%20Code-skill-6A46D1" alt="Claude Code">
   <img src="https://img.shields.io/badge/回测-2020–2026-ffa500" alt="Backtest">
+  <img src="https://img.shields.io/github/actions/workflow/status/Justinjchen-Cornell/Deep-Risk-OPP/daily.yml?label=data%20pipeline&logo=githubactions" alt="Data Pipeline">
+  <img src="https://img.shields.io/github/actions/workflow/status/Justinjchen-Cornell/Deep-Risk-OPP/watchdog.yml?label=watchdog&logo=githubactions" alt="Watchdog">
 </p>
 
 > **在表层移动之前，看见危机。在人群涌入之前，发现机会。**
