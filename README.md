@@ -223,7 +223,7 @@ python scripts/gor_daily.py        # one full daily update
 
 ```bash
 python run.py --mode daily                         # today's signal card
-python run.py --mode masters --masters buffett,burry,taleb
+python run.py --mode masters        # all six master postures on current data
 python run.py --mode weekly --compare last-week    # weekly change report
 python run.py --mode backtest --from 2020-01 --to 2026-08
 ```

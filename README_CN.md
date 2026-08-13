@@ -191,7 +191,7 @@ python run.py --mode daily
 python run.py --mode daily --frameworks 01,05,11
 
 # 大师们对当前数据怎么说？
-python run.py --mode masters --masters buffett,burry,taleb
+python run.py --mode masters        # 六位大师对当前数据的全景姿态
 
 # 生成周度变化比对报告
 python run.py --mode weekly --compare last-week
