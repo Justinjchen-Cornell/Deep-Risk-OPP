@@ -67,6 +67,7 @@
   @media(max-width:960px){.g2,.g3,.g4,.spot{grid-template-columns:1fr}.hero-num{font-size:80px;min-width:0}.hero-row{flex-direction:column}.header{flex-direction:column;gap:10px}}
 </style>
 
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
 <style id="dr-nav-css">
@@ -333,8 +334,8 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
 <script>
 window.__GOR_DATA__ = {
   "updated": "2026-08-13 12:00",
-  "gor_brent": 51.34,
-  "gor_wti": 54.42,
+  "gor_brent": 52.12,
+  "gor_wti": 55.25,
   "regime": "原油极端低估",
   "final_position": 50,
   "allocation": {
@@ -347,7 +348,7 @@ window.__GOR_DATA__ = {
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=99.91 > 99 强美元压制",
+      "title": "DXY=99.8 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
@@ -358,19 +359,19 @@ window.__GOR_DATA__ = {
   ],
   "data": {
     "黄金期货": {
-      "price": 4441.3,
+      "price": 4425.8,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 81.61,
+      "price": 80.11,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 86.51,
+      "price": 84.92,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 99.91,
+      "price": 99.8,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
@@ -378,11 +379,11 @@ window.__GOR_DATA__ = {
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 15.28,
+      "price": 14.55,
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.5885,
+      "price": 6.6095,
       "change_pct": 0.0
     }
   },
@@ -390,8 +391,8 @@ window.__GOR_DATA__ = {
     "total": "收缩",
     "direction": "向心坍缩",
     "speed": "放缓",
-    "dxy": 99.91,
-    "vix": 15.28,
+    "dxy": 99.8,
+    "vix": 14.55,
     "tenyear": 4.7,
     "thirtyyear": 5.24,
     "fed_balance": 6.75,
@@ -486,5 +487,10 @@ fetch('gor_latest.json').then(function(r){return r.json()}).then(function(f){
 </script>
 <script data-goatcounter="https://justinjchen.goatcounter.com/count"
         async src="/Deep-Risk-OPP/assets/count.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function() {});
+}
+</script>
 </body>
 </html>

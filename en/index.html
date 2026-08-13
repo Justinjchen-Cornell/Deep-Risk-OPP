@@ -67,6 +67,7 @@ footer{text-align:center;color:#475569;font-size:10px;margin-top:40px;font-famil
 footer a{color:var(--muted);text-decoration:none}
 footer a:hover{color:var(--gold)}
 </style>
+<link rel="manifest" href="../manifest.json">
 </head>
 <body>
 <nav class="dr-nav">
@@ -194,5 +195,10 @@ fetch("../gor_latest.json").then(function(r){return r.json()}).then(function(d){
 </script>
 <script data-goatcounter="https://justinjchen.goatcounter.com/count"
         async src="/Deep-Risk-OPP/assets/count.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('../sw.js').catch(function() {});
+}
+</script>
 </body>
 </html>

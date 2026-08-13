@@ -61,6 +61,7 @@
   @media(max-width:960px){.g2,.g3,.g4,.warn-panel{grid-template-columns:1fr}.heatmap{grid-template-columns:repeat(2,1fr)}.big-num{font-size:32px}}
 </style>
 
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
 <style id="dr-nav-css">
@@ -645,7 +646,7 @@ window.__CAPITAL_FLOWS__ = {
     }
   },
   "oil_flows": {
-    "wti_price": 81.61,
+    "wti_price": 80.11,
     "spr_level": "3.7亿桶",
     "producer_discipline": "OPEC+减产·伊朗和平恢复出口"
   },
@@ -653,8 +654,8 @@ window.__CAPITAL_FLOWS__ = {
     "trend": "铜受强美元+科技股抛售压制·AI基建中长期看涨"
   },
   "currency_flows": {
-    "dxy_signal": "DXY=99.9>99=向心坍缩区间",
-    "dxy": 99.91
+    "dxy_signal": "DXY=99.8>99=向心坍缩区间",
+    "dxy": 99.8
   }
 };
 </script>
@@ -744,5 +745,10 @@ new Chart(document.getElementById('chart-credit'),{type:'line',data:{labels:['20
 
 <script data-goatcounter="https://justinjchen.goatcounter.com/count"
         async src="/Deep-Risk-OPP/assets/count.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function() {});
+}
+</script>
 </body>
 </html>

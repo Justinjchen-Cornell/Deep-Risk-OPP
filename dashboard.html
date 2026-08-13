@@ -58,6 +58,7 @@ footer a{color:var(--muted)}
 </style>
 
 <style>.dq-banner{margin:0 0 16px;padding:10px 16px;background:#452a03;border:1px solid rgba(251,191,36,.4);border-radius:10px;color:#fbbf24;font-family:'Fira Code',monospace;font-size:13px}</style>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
 <style id="dr-nav-css">
@@ -231,5 +232,10 @@ load();
 </script>
 <script data-goatcounter="https://justinjchen.goatcounter.com/count"
         async src="/Deep-Risk-OPP/assets/count.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function() {});
+}
+</script>
 </body>
 </html>

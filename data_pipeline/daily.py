@@ -66,6 +66,21 @@ def run_daily():
     except Exception as e:
         log(f"  Signal log append failed: {e}")
 
+    # L1 交付层: 多渠道推送
+    try:
+        from data_pipeline.notify import send_daily_push
+        send_daily_push(gor_output)
+    except Exception as e:
+        log(f"  Push failed: {e}")
+
+    # L0 交付层: RSS feed 生成
+    try:
+        from data_pipeline.feed import generate_feed
+        fp = generate_feed(gor_output)
+        log(f"  RSS feed generated: {fp}")
+    except Exception as e:
+        log(f"  RSS feed failed: {e}")
+
     log("✅ 全部更新完成！")
     log("=" * 50)
 
