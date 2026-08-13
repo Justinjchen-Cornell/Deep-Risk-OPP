@@ -1,0 +1,61 @@
+name: Pipeline Watchdog
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # 03:00 UTC — 3h after the daily data pipeline (00:00 UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check data freshness
+        id: check
+        continue-on-error: true
+        run: python scripts/watchdog_check.py | tee /tmp/watchdog.txt
+
+      - name: Open alert issue (data stale)
+        if: steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          EXISTS=$(gh issue list --state open --search '"DATA STALE" in:title' --json number --jq 'length')
+          if [ "$EXISTS" != "0" ]; then
+            echo "Alert issue already open — skipping duplicate."
+            exit 0
+          fi
+          BODY=$(cat /tmp/watchdog.txt)
+          gh issue create \
+            --title "🔴 DATA STALE: pipeline missed its daily run" \
+            --body "Watchdog detected stale site data.
+
+\`\`\`
+${BODY}
+\`\`\`
+
+**Impact**: justinjchen-cornell.github.io/Deep-Risk-OPP is serving old numbers.
+**Fix**: check the Daily GOR Update workflow:
+https://github.com/Justinjchen-Cornell/Deep-Risk-OPP/actions/workflows/daily.yml
+
+(This issue was opened automatically by the Pipeline Watchdog and will be closed automatically once data recovers.)"
+
+      - name: Close alert issue (data recovered)
+        if: steps.check.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for N in $(gh issue list --state open --search '"DATA STALE" in:title' --json number --jq '.[].number'); do
+            gh issue close "$N" --comment "✅ Data refreshed — watchdog recovered."
+            echo "Closed alert issue #$N"
+          done
+          echo "No open alert issues — all clean."

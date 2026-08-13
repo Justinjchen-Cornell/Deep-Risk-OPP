@@ -10,6 +10,8 @@
   <img src="https://img.shields.io/badge/data-FRED%20%7C%20akshare%20%7C%20yfinance-orange" alt="Data">
   <img src="https://img.shields.io/badge/Claude%20Code-skill-6A46D1" alt="Claude Code">
   <img src="https://img.shields.io/badge/live-dashboard-brightgreen" alt="Live Dashboard">
+  <img src="https://img.shields.io/github/actions/workflow/status/Justinjchen-Cornell/Deep-Risk-OPP/daily.yml?label=data%20pipeline&logo=githubactions" alt="Data Pipeline">
+  <img src="https://img.shields.io/github/actions/workflow/status/Justinjchen-Cornell/Deep-Risk-OPP/watchdog.yml?label=watchdog&logo=githubactions" alt="Watchdog">
 </p>
 
 > **One number that tells you when oil is historically cheap.**
