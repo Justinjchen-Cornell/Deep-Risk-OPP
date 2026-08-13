@@ -26,8 +26,34 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
     gold_px = None
     wti_px = None
 
-    # Try akshare first
+    # Try FRED WTI (since 1986) + yfinance GC=F gold (since 2000) -- full-period combo
     try:
+        from data_pipeline.common import _init_fred
+        import pandas as pd
+        fred = _init_fred()
+        wti_s = fred.get_series('DCOILWTICO') if fred else None   # WTI Spot Cushing, daily
+        gold_s = None
+        try:
+            import yfinance as yf
+            g = yf.Ticker("GC=F").history(period="max", auto_adjust=False)
+            gold_s = g['Close'].astype(float).dropna()
+        except Exception as ye:
+            print(f"  yfinance GC=F failed: {ye}")
+        if wti_s is not None and gold_s is not None and len(gold_s) > 100:
+            wti_s = wti_s.astype(float).dropna()
+            mask_g = (gold_s.index >= from_date) & (gold_s.index <= to_date)
+            mask_w = (wti_s.index >= from_date) & (wti_s.index <= to_date)
+            gold_px = gold_s[mask_g]
+            wti_px = wti_s[mask_w]
+            print("  Source: FRED DCOILWTICO (WTI) + yfinance GC=F (Gold)")
+            print(f"  Gold: {len(gold_px)} rows, ${gold_px.min():.0f} - ${gold_px.max():.0f}")
+            print(f"  WTI:  {len(wti_px)} rows, ${wti_px.min():.0f} - ${wti_px.max():.0f}")
+    except Exception as e:
+        print(f"  FRED+yfinance combo failed: {e}, trying akshare...")
+
+    # Try akshare if FRED did not fill
+    if gold_px is None or wti_px is None or len(gold_px) < 10:
+      try:
         import akshare as ak
         import pandas as pd
 
@@ -52,7 +78,7 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
 
         print(f"  Gold: {len(gold_px)} rows, ${gold_px.min():.0f} – ${gold_px.max():.0f}")
         print(f"  WTI:  {len(wti_px)} rows, ${wti_px.min():.0f} – ${wti_px.max():.0f}")
-    except Exception as e:
+      except Exception as e:
         print(f"  akshare failed: {e}, trying yfinance...")
         gold_px = None
 
