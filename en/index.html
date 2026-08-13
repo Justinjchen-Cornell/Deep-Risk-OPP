@@ -93,6 +93,7 @@ footer a:hover{color:var(--gold)}
     <span class="t">⌁ GOR Live Reading</span>
     <span class="live-dot">● LIVE · Auto-updated daily</span>
   </div>
+  <div class="dq" id="dqWarn" style="display:none;margin:0 0 14px;padding:8px 14px;background:#452a03;border:1px solid rgba(251,191,36,.4);border-radius:8px;color:#fbbf24;font-size:12px;font-family:'Fira Code',monospace">⚠️ Degraded data sources</div>
   <div class="lv-body">
     <div class="gor-num" id="gorNum">—</div>
     <div class="stats" id="stats"></div>
@@ -155,9 +156,12 @@ var e=document.getElementById("drGor");
 fetch("../gor_latest.json").then(function(r){return r.json()}).then(function(d){
 var g=d.gor_wti;
 e.textContent="GOR "+g.toFixed(1)+(g>=45?" ⚠":"")+" · "+d.updated.slice(5);
-e.className="dr-gor"+(g>=45?" alert":"");
+if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠DQ";e.title="degraded: "+d.data_quality.degraded_fields.join(", ");e.className="dr-gor alert";}else{e.className="dr-gor"+(g>=45?" alert":"");}
 }).catch(function(){e.textContent="GOR —";});
 fetch("../gor_latest.json").then(function(r){return r.json()}).then(function(d){
+  var dq=d.data_quality,w=document.getElementById("dqWarn");
+  if(dq&&!dq.ok&&w){w.style.display="block";w.textContent="⚠️ Degraded: "+dq.degraded_fields.join(", ")+" — signals may be unreliable";}
+  try{
   var g=d.gor_wti, a=d.allocation, cf=d.capital_three_flows;
   document.getElementById("gorNum").innerHTML=g.toFixed(1)+'<small>GOR(WTI) · '+d.updated.slice(5)+'</small>';
   var S=[
@@ -184,6 +188,7 @@ fetch("../gor_latest.json").then(function(r){return r.json()}).then(function(d){
   document.getElementById("pvPos").textContent=d.final_position+'%';
   document.getElementById("pvDir").textContent=cf.direction;
   document.getElementById("pvSpeed").textContent=cf.speed;
+  }catch(err){}
 }).catch(function(){});
 })();
 </script>

@@ -97,7 +97,7 @@ var e=document.getElementById("drGor");if(!e)return;
 fetch("gor_latest.json").then(function(r){return r.json()}).then(function(d){
 var g=d.gor_wti;
 e.textContent="GOR "+g.toFixed(1)+(g>=45?" ⚠":"")+" · "+d.updated.slice(5);
-e.className="dr-gor"+(g>=45?" alert":"");
+if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据缺失: "+d.data_quality.degraded_fields.join("、");e.className="dr-gor alert";}else{e.className="dr-gor"+(g>=45?" alert":"");}
 }).catch(function(){e.textContent="GOR —";});
 })();
 </script>
@@ -333,8 +333,8 @@ e.className="dr-gor"+(g>=45?" alert":"");
 <script>
 window.__GOR_DATA__ = {
   "updated": "2026-08-13 12:00",
-  "gor_brent": 50.69,
-  "gor_wti": 53.73,
+  "gor_brent": 51.57,
+  "gor_wti": 54.66,
   "regime": "原油极端低估",
   "final_position": 50,
   "allocation": {
@@ -347,7 +347,7 @@ window.__GOR_DATA__ = {
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=100.01 > 99 强美元压制",
+      "title": "DXY=99.9 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
@@ -358,19 +358,19 @@ window.__GOR_DATA__ = {
   ],
   "data": {
     "黄金期货": {
-      "price": 4455.3,
+      "price": 4449.4,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 82.92,
+      "price": 81.4,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 87.9,
+      "price": 86.28,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 100.01,
+      "price": 99.9,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
@@ -382,7 +382,7 @@ window.__GOR_DATA__ = {
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.5515,
+      "price": 6.5805,
       "change_pct": 0.0
     }
   },
@@ -390,7 +390,7 @@ window.__GOR_DATA__ = {
     "total": "收缩",
     "direction": "向心坍缩",
     "speed": "放缓",
-    "dxy": 100.01,
+    "dxy": 99.9,
     "vix": 15.28,
     "tenyear": 4.7,
     "thirtyyear": 5.24,
@@ -403,6 +403,15 @@ window.__GOR_DATA__ = {
     "enabled": false,
     "position_pct": 7,
     "trigger": "A股<10%无需对冲"
+  },
+  "data_quality": {
+    "ok": true,
+    "degraded_fields": [],
+    "fallbacks": {
+      "布伦特(估算WTI×1.06)": "estimated",
+      "DXY(网页)": "web"
+    },
+    "note": "全部数据源正常"
   }
 };
 </script>
@@ -447,10 +456,10 @@ function renderGor(){
   E('cb-dxy').textContent=dxy.toFixed(2);E('cb-10y').textContent=tenyear.toFixed(2)+'%';
   E('cc-wtidiff').innerHTML='<span style="color:'+(wtiDiff<2?'var(--rd)':'var(--gn)')+'">$'+wtiDiff+'</span>';
   E('cc-vix').innerHTML=vix.toFixed(1)+(vix<15?'<span style="font-size:12px;color:var(--t3)"> 偏低·自满</span>':vix>25?'<span style="font-size:12px;color:var(--rd)"> ⚠️ 偏高·恐慌</span>':'<span style="font-size:12px;color:var(--t3)"> 正常</span>');
-  E('cc-warsh').innerHTML=warsh?'<span style="color:#f04458;font-weight:700">🔴 活跃</span>':'<span style="color:#0ccb9c;font-weight:700">🟢 未触发</span>';
+  E('cc-warsh').innerHTML=warsh===null?'<span style="color:#fbbf24;font-weight:700">⚠️ 未知</span>':(warsh?'<span style="color:#f04458;font-weight:700">🔴 活跃</span>':'<span style="color:#0ccb9c;font-weight:700">🟢 未触发</span>');
 
   E('l2-dxy').textContent=dxy.toFixed(2);E('l2-badge').textContent=ctf.direction;E('l3-vix').textContent=vix.toFixed(1);
-  E('l3-warsh').innerHTML=warsh?'<span style="color:#f04458;font-weight:700">🔴 活跃</span>':'<span style="color:#0ccb9c;font-weight:700">🟢 未触发</span>';
+  E('l3-warsh').innerHTML=warsh===null?'<span style="color:#fbbf24;font-weight:700">⚠️ 未知</span>':(warsh?'<span style="color:#f04458;font-weight:700">🔴 活跃</span>':'<span style="color:#0ccb9c;font-weight:700">🟢 未触发</span>');
   E('l3-badge').textContent=ctf.speed;
   E('flow-verdict').innerHTML='总量 <b>'+ctf.total+'</b> ＋ 方向 <b>'+ctf.direction+'</b> ＋ 流速 <b>'+ctf.speed+'</b> ＝ <strong style="color:var(--oil);font-size:17px">🟠 向心坍缩进行中</strong>';
 
@@ -466,8 +475,12 @@ renderGor();
 <script id="dr-live-refresh">
 (function(){
 fetch('gor_latest.json').then(function(r){return r.json()}).then(function(f){
+  var ut=document.getElementById('update-time');
+  if(ut&&f.data_quality&&!f.data_quality.ok){
+    ut.textContent='数据更新于 '+f.updated+' · ⚠️ 数据源降级: '+f.data_quality.degraded_fields.join('、');
+  }
   window.__GOR_DATA__=f;
-  renderGor();
+  try{renderGor();}catch(err){console.error('render skipped (degraded data):',err);}
 }).catch(function(){});
 })();
 </script>

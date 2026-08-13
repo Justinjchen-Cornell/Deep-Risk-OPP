@@ -108,16 +108,22 @@
 fetch('gor_latest.json').then(function(r){return r.json()}).then(function(d){
   var cf=d.capital_three_flows;
   function S(id,v){var e=document.getElementById(id);if(e)e.textContent=v}
-  S('stDxy',cf.dxy.toFixed(2));
-  S('stVix',cf.vix.toFixed(1));
-  S('st10y',cf.tenyear.toFixed(2)+'%');
-  S('st30y',cf.thirtyyear.toFixed(2)+'%');
-  S('stFed','$'+cf.fed_balance+'T');
-  S('stM2','$'+cf.m2+'T');
-  S('stWarsh',cf.warsh_alert?'🔴 活跃':'🟢 未触发');
-  S('stTime',d.updated.slice(5));
-  var el=document.getElementById('cf-update-time');
-  if(el)el.textContent='数据更新于 '+d.updated+' · LIVE 动态刷新';
+  function N(v,f){return (v==null)?'—':f(v)}
+  S('stDxy',N(cf.dxy,function(v){return v.toFixed(2)}));
+  S('stVix',N(cf.vix,function(v){return v.toFixed(1)}));
+  S('st10y',N(cf.tenyear,function(v){return v.toFixed(2)+'%'}));
+  S('st30y',N(cf.thirtyyear,function(v){return v.toFixed(2)+'%'}));
+  S('stFed',N(cf.fed_balance,function(v){return '$'+v+'T'}));
+  S('stM2',N(cf.m2,function(v){return '$'+v+'T'}));
+  S('stWarsh',cf.warsh_alert===null?'⚠ 未知':(cf.warsh_alert?'🔴 活跃':'🟢 未触发'));
+  var dq=d.data_quality, el=document.getElementById('cf-update-time');
+  if(dq&&!dq.ok){
+    S('stTime',d.updated.slice(5)+' ⚠缺');
+    if(el)el.textContent='数据更新于 '+d.updated+' · ⚠️ 数据源降级: '+dq.degraded_fields.join('、');
+  } else {
+    S('stTime',d.updated.slice(5));
+    if(el)el.textContent='数据更新于 '+d.updated+' · LIVE 动态刷新';
+  }
 }).catch(function(){});
 })();
 </script>
@@ -128,7 +134,7 @@ var e=document.getElementById("drGor");if(!e)return;
 fetch("gor_latest.json").then(function(r){return r.json()}).then(function(d){
 var g=d.gor_wti;
 e.textContent="GOR "+g.toFixed(1)+(g>=45?" ⚠":"")+" · "+d.updated.slice(5);
-e.className="dr-gor"+(g>=45?" alert":"");
+if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据缺失: "+d.data_quality.degraded_fields.join("、");e.className="dr-gor alert";}else{e.className="dr-gor"+(g>=45?" alert":"");}
 }).catch(function(){e.textContent="GOR —";});
 })();
 </script>
@@ -639,7 +645,7 @@ window.__CAPITAL_FLOWS__ = {
     }
   },
   "oil_flows": {
-    "wti_price": 82.92,
+    "wti_price": 81.4,
     "spr_level": "3.7亿桶",
     "producer_discipline": "OPEC+减产·伊朗和平恢复出口"
   },
@@ -647,8 +653,8 @@ window.__CAPITAL_FLOWS__ = {
     "trend": "铜受强美元+科技股抛售压制·AI基建中长期看涨"
   },
   "currency_flows": {
-    "dxy_signal": "DXY=100.0>99=向心坍缩区间",
-    "dxy": 100.01
+    "dxy_signal": "DXY=99.9>99=向心坍缩区间",
+    "dxy": 99.9
   }
 };
 </script>

@@ -61,7 +61,7 @@ var e=document.getElementById("drGor");if(!e)return;
 fetch("../gor_latest.json").then(function(r){return r.json()}).then(function(d){
 var g=d.gor_wti;
 e.textContent="GOR "+g.toFixed(1)+(g>=45?" ⚠":"")+" · "+d.updated.slice(5);
-e.className="dr-gor"+(g>=45?" alert":"");
+if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠DQ";e.title="degraded: "+d.data_quality.degraded_fields.join(", ");e.className="dr-gor alert";}else{e.className="dr-gor"+(g>=45?" alert":"");}
 }).catch(function(){e.textContent="GOR —";});
 })();
 </script>

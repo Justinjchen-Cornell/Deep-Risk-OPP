@@ -107,6 +107,7 @@ def fetch_all():
     except Exception as e:
         if data.get('wti'):
             data['brent'] = round(data['wti'] * 1.06, 2)
+            data['_q_brent'] = 'estimated'
             log(f"  Brent: ${data['brent']}/bbl (WTI*1.06)")
         else:
             log(f"  Brent ERROR: {e}"); data['brent'] = None
@@ -139,6 +140,7 @@ def fetch_all():
             if len(valid) > 0:
                 last = valid.tail(1).iloc[0]
                 data['us10y'] = round(float(last[col_name]), 2)
+                data['_q_us10y'] = 'akshare'
                 log(f"  10Y: {data['us10y']}% (akshare fallback)")
             else:
                 raise ValueError("No valid data")
@@ -163,6 +165,8 @@ def fetch_all():
             html = resp.read().decode('utf-8', errors='ignore')
             m = re.search(r'DXY.*?exchange rate.*?(\d{2,3}\.\d{2})', html)
             data['dxy'] = float(m.group(1)) if m else None
+            if data['dxy'] is not None:
+                data['_q_dxy'] = 'web'
             log(f"  DXY: {data['dxy']} (web fallback)")
         except Exception as e:
             log(f"  DXY ERROR: {e}"); data['dxy'] = None
@@ -181,6 +185,7 @@ def fetch_all():
             tv_data = json.loads(resp.read())
             if tv_data.get('data') and len(tv_data['data'])>0:
                 data['vix'] = round(float(tv_data['data'][0]['d'][0]),2)
+                data['_q_vix'] = 'tradingview'
                 log(f"  VIX: {data['vix']} (TradingView)")
             else:
                 raise ValueError("Empty")
@@ -193,6 +198,8 @@ def fetch_all():
                 for pat in [r'VIX Spot Price.*?(\d{1,2}\.\d{2})', r'"price":\s*(\d{1,2}\.\d{2})']:
                     m = re.search(pat, html, re.DOTALL)
                     if m: data['vix'] = float(m.group(1)); break
+                if data.get('vix') is not None:
+                    data['_q_vix'] = 'cboe'
                 log(f"  VIX: {data.get('vix')} (CBOE)")
             except Exception as e2:
                 log(f"  VIX ERROR: {e2}"); data['vix'] = None
@@ -302,9 +309,42 @@ def compute_gor(data):
     }
 
 
+def build_data_quality(data):
+    """生成数据质量报告：哪些字段缺失、哪些走了兜底源。"""
+    labels = {
+        'gold': '黄金期货', 'wti': 'WTI原油', 'brent': '布伦特原油', 'copper': 'COMEX铜',
+        'us10y': '10Y美债收益率', 'dxy': '美元指数DXY', 'vix': 'VIX恐慌指数',
+        'us30y': '30Y美债收益率', 'fed_rate': '联邦基金利率',
+        'fed_balance': '美联储资产负债表', 'm2': 'M2货币供应',
+    }
+    degraded = [lab for key, lab in labels.items() if data.get(key) is None]
+    fallbacks = {}
+    for key, lab in [('_q_brent', '布伦特(估算WTI×1.06)'), ('_q_us10y', '10Y(akshare)'),
+                     ('_q_dxy', 'DXY(网页)'), ('_q_vix', 'VIX(第三方)')]:
+        if data.get(key):
+            fallbacks[lab] = data[key]
+    return {
+        "ok": len(degraded) == 0,
+        "degraded_fields": degraded,
+        "fallbacks": fallbacks,
+        "note": "全部数据源正常" if not degraded else "部分数据源缺失或降级，相关判断可能不可靠"
+    }
+
+
 def save_gor_json(data, gor):
     """保存gor_latest.json"""
     today = datetime.date.today().strftime('%Y-%m-%d')
+
+    # 三流判定加 None 保护——数据缺失时不得输出误导性信号
+    fb = data.get('fed_balance')
+    dx = data.get('dxy')
+    vx = data.get('vix')
+    fr = data.get('fed_rate')
+    total_s = ("收缩" if fb < 7.5 else "扩张") if fb is not None else "数据缺失"
+    direction_s = ("向心坍缩" if dx > 99 else ("离心扩散" if dx < 98 else "中性")) if dx is not None else "数据缺失"
+    speed_s = ("加速中" if vx > 20 else "放缓") if vx is not None else "数据缺失"
+    warsh_s = (fr > 3.5) if fr is not None else None
+
     output = {
         "updated": f"{today} 12:00",
         "gor_brent": gor['gor_brent'], "gor_wti": gor['gor_wti'],
@@ -320,16 +360,17 @@ def save_gor_json(data, gor):
             "COMEX铜": {"price": data.get('copper'), "change_pct": 0.0}
         },
         "capital_three_flows": {
-            "total": "收缩" if (data.get('fed_balance') and data['fed_balance'] < 7.5) else "扩张",
-            "direction": "向心坍缩" if (data.get('dxy') and data['dxy'] > 99) else ("离心扩散" if (data.get('dxy') and data['dxy'] < 98) else "中性"),
-            "speed": "加速中" if (data.get('vix') and data['vix'] > 20) else "放缓",
-            "dxy": data.get('dxy'), "vix": data.get('vix'),
+            "total": total_s,
+            "direction": direction_s,
+            "speed": speed_s,
+            "dxy": dx, "vix": vx,
             "tenyear": data.get('us10y'), "thirtyyear": data.get('us30y'),
-            "fed_balance": data.get('fed_balance'), "m2": data.get('m2'),
-            "fed_rate": data.get('fed_rate'),
-            "warsh_alert": True if (data.get('fed_rate') and data['fed_rate'] > 3.5) else False
+            "fed_balance": fb, "m2": data.get('m2'),
+            "fed_rate": fr,
+            "warsh_alert": warsh_s
         },
-        "ashare_hedge": {"enabled": False, "position_pct": 7, "trigger": "A股<10%无需对冲"}
+        "ashare_hedge": {"enabled": False, "position_pct": 7, "trigger": "A股<10%无需对冲"},
+        "data_quality": build_data_quality(data)
     }
 
     gor_path = BASE_DIR / "gor_latest.json"

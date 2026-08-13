@@ -57,6 +57,7 @@ footer a{color:var(--muted)}
 .flow-arrow{color:#475569;font-size:16px}
 </style>
 
+<style>.dq-banner{margin:0 0 16px;padding:10px 16px;background:#452a03;border:1px solid rgba(251,191,36,.4);border-radius:10px;color:#fbbf24;font-family:'Fira Code',monospace;font-size:13px}</style>
 </head>
 <body>
 <style id="dr-nav-css">
@@ -87,7 +88,7 @@ var e=document.getElementById("drGor");if(!e)return;
 fetch("gor_latest.json").then(function(r){return r.json()}).then(function(d){
 var g=d.gor_wti;
 e.textContent="GOR "+g.toFixed(1)+(g>=45?" ⚠":"")+" · "+d.updated.slice(5);
-e.className="dr-gor"+(g>=45?" alert":"");
+if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠DQ";e.title="degraded: "+d.data_quality.degraded_fields.join(", ");e.className="dr-gor alert";}else{e.className="dr-gor"+(g>=45?" alert":"");}
 }).catch(function(){e.textContent="GOR —";});
 })();
 </script>
@@ -119,13 +120,19 @@ function render(g, cf){
   const d = g.data || {};
   const alloc = g.allocation || {};
   const gw = g.gor_wti || 0, gb = g.gor_brent || 0;
-  const gold = d['黄金期货'] ? d['黄金期货'].price : 0;
-  const wti = d['WTI原油'] ? d['WTI原油'].price : 0;
-  const dxy = d['美元指数DXY'] ? d['美元指数DXY'].price : 0;
-  const y10 = d['10Y美债收益率'] ? d['10Y美债收益率'].price : 0;
-  const vix = d['VIX恐慌指数'] ? d['VIX恐慌指数'].price : 0;
-  const copper = d['COMEX铜'] ? d['COMEX铜'].price : 0;
+  const gold = (d['黄金期货']||{}).price ?? 0;
+  const wti = (d['WTI原油']||{}).price ?? 0;
+  const dxy = (d['美元指数DXY']||{}).price ?? 0;
+  const y10 = (d['10Y美债收益率']||{}).price ?? 0;
+  const vix = (d['VIX恐慌指数']||{}).price ?? 0;
+  const copper = (d['COMEX铜']||{}).price ?? 0;
   const regime = g.regime || 'unknown';
+  const fmt = v => (v == null) ? '—' : v;
+  const dxyS = (dxy != null) ? dxy.toFixed(2) : '—';
+  const y10S = (y10 != null) ? y10.toFixed(2)+'%' : '—';
+  const vixS = (vix != null) ? vix.toFixed(2) : '—';
+  const wtiS = (wti != null) ? '$'+wti.toFixed(2) : '—';
+
   const zone = gw >= 45 ? 'EXTREME OPPORTUNITY' : (gw >= 30 ? 'RECOVERY CYCLE' : (gw >= 20 ? 'FAIR VALUE' : 'OIL BUBBLE'));
   const zoneColor = gw >= 45 ? '#ef4444' : (gw >= 30 ? '#f59e0b' : (gw >= 20 ? '#22c55e' : '#3b82f6'));
   const alerts = g.alerts || [];
@@ -152,7 +159,11 @@ function render(g, cf){
   const us30y = ctf.thirtyyear, fedRate = ctf.fed_rate;
   const fed_bs = ctf.fed_balance, m2 = ctf.m2;
 
+  const dq = g.data_quality || null;
+  const dqBanner = (dq && !dq.ok) ? `<div class="dq-banner">⚠️ DATA DEGRADED: ${dq.degraded_fields.join(', ')} — signals may be unreliable</div>` : '';
+
   document.getElementById('app').innerHTML = `
+  ${dqBanner}
   <div class="grid row2">
     <div class="card">
       <h2>📊 GOR Seismograph</h2>
@@ -166,10 +177,10 @@ function render(g, cf){
     <div class="card">
       <h2>🛢️ Market Snapshot</h2>
       <div class="kv"><span class="k">Gold</span><span class="v" style="color:#f0c040">$${gold.toLocaleString()}</span></div>
-      <div class="kv"><span class="k">WTI Crude</span><span class="v">$${wti.toFixed(2)}</span></div>
-      <div class="kv"><span class="k">DXY</span><span class="v">${dxy.toFixed(2)}</span></div>
-      <div class="kv"><span class="k">US 10Y</span><span class="v">${y10.toFixed(2)}%</span></div>
-      <div class="kv"><span class="k">VIX</span><span class="v">${vix.toFixed(2)}</span></div>
+      <div class="kv"><span class="k">WTI Crude</span><span class="v">${wtiS}</span></div>
+      <div class="kv"><span class="k">DXY</span><span class="v">${dxyS}</span></div>
+      <div class="kv"><span class="k">US 10Y</span><span class="v">${y10S}</span></div>
+      <div class="kv"><span class="k">VIX</span><span class="v">${vixS}</span></div>
       <div class="kv"><span class="k">Copper</span><span class="v">$${copper.toFixed(2)}/lb</span></div>
     </div>
   </div>
