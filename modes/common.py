@@ -127,8 +127,14 @@ def get_allocation(zone, dxy=None, yield_10y=None, wti=None, gor=None, vix=None,
             other_zone = "recovery" if zone == "extreme" else "extreme"
             other_alloc = config.BASE_ALLOCATION[other_zone]
             for k in alloc:
-                alloc[k] = round(alloc[k] * blend + other_alloc[k] * (1 - blend), 1)
-            adjustments.append(f"GOR {gor:.1f} in transition band: {zone}({blend:.0%}) + {other_zone}({1-blend:.0%})")
+                if zone == "extreme":
+                    # blend=1 → 全 extreme；blend=0 → 全 recovery
+                    alloc[k] = round(alloc[k] * blend + other_alloc[k] * (1 - blend), 1)
+                else:
+                    # recovery 侧：blend 表示向 extreme 的权重，当前 zone 权重为 (1-blend)
+                    # FIX-4: 原公式 recovery*blend + extreme*(1-blend) 反转了两侧权重
+                    alloc[k] = round(alloc[k] * (1 - blend) + other_alloc[k] * blend, 1)
+            adjustments.append(f"GOR {gor:.1f} in transition band: {zone}({1-blend:.0%}) + {other_zone}({blend:.0%})")
     # Snapshot blended risk BEFORE corrections (for FIX-2 scaling)
     risk_keys = ["oil", "gold", "a_shares", "copper"]
     blended_risk = sum(alloc.get(k, 0) for k in risk_keys)
@@ -167,5 +173,10 @@ def get_allocation(zone, dxy=None, yield_10y=None, wti=None, gor=None, vix=None,
         for k in risk_keys:
             alloc[k] = round(alloc.get(k, 0) * scale, 1)
     alloc["cash"] = max(0, 100 - sum(alloc.get(k, 0) for k in risk_keys))
+
+    # FIX-5: 比例缩放可能把 oil 放大回 5% 以上 —— 硬止损上限必须最后再施加一次
+    if hard_stop_active and alloc.get("oil", 0) > 5:
+        alloc["cash"] += alloc["oil"] - 5
+        alloc["oil"] = 5
 
     return alloc, adjustments, hard_stop_active, shock_type
