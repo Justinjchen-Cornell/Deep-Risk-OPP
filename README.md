@@ -9,28 +9,27 @@
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/data-FRED%20%7C%20akshare%20%7C%20yfinance-orange" alt="Data">
   <img src="https://img.shields.io/badge/Claude%20Code-skill-6A46D1" alt="Claude Code">
-  <img src="https://img.shields.io/badge/backtest-2020%E2%80%932026-ffa500" alt="Backtest">
+  <img src="https://img.shields.io/badge/live-dashboard-brightgreen" alt="Live Dashboard">
 </p>
 
-> **See the crisis before the surface moves. Find the opportunity before the crowd arrives.**
+> **One number that tells you when oil is historically cheap.**
+> **GOR = Gold ÷ Oil. When it crosses 45, history says oil rallies 54-167% within 12-24 months.**
 
-Acknowledgments: The theoretical foundation regarding the gold-to-oil ratio within this framework is derived from Mr. Lu Qiyuan’s macroeconomic analysis system. The "Three Capital Flows" framework draws upon liquidity analysis models developed by various analysts. The "Six Masters Mapping" represents the author's synthesis of public statements made by six investment masters. The hard stop-loss rules, risk modifiers, Python automation pipeline, and Claude Code integration were independently developed by the author. All data is sourced from public APIs (FRED, akshare, yfinance).
-```
-GOR Seismograph → Capital Flow Fault-Line Scan → 11 Frameworks → 6 Masters → 1 Decision Card
-
-```
+<p align="center">
+  <b>🖥️ <a href="https://Justinjchen-Cornell.github.io/Deep-Risk-OPP/dashboard.html">LIVE DASHBOARD →</a></b> &nbsp;|&nbsp; <b>📊 <a href="track-record.md">Track Record →</a></b>
+</p>
 
 ---
 
-## What Is Deep-Risk-OPP?
+## What Is This?
 
-**Deep-Risk-OPP** is an open-source macro early-warning system built for Claude Code. It answers one question:
+**Deep-Risk-OPP** turns one ratio into a daily macro decision. It watches the Gold/Oil Ratio (GOR) as a seismograph for systemic stress, maps global capital flows as fault-line scans, and runs 11 decision frameworks + 6 legendary-investor mindsets through a priority engine — producing a single allocation card every day.
 
-> *"What structural risk is building beneath the surface — and where is the opportunity hiding inside it?"*
+- **The claim**: GOR ≥ 45 has never failed to precede oil gains of 54-167% over the following 12-24 months (1998, 2008, 2016, 2020).
+- **The state**: GOR is in its 13th consecutive month above 45. The longest stretch in recorded history.
+- **The output**: daily updated dashboard + allocation card + alerts. Zero black-box AI. Every threshold is in `config.py`.
 
-Most investors watch prices. Deep-Risk-OPP watches the **fractures beneath prices**. It treats the Gold/Oil Ratio (GOR) as a **seismograph** for systemic stress, maps global capital flows as **fault-line scans**, and orchestrates 11 decision frameworks through a priority engine to produce a single, actionable signal card.
-
-**OPP** stands for **Opportunity** — because deep risk, correctly read, is where the deepest opportunities are buried.
+Acknowledgments: The gold-to-oil ratio theory derives from Mr. Lu Qiyuan's macro analysis system. The "Three Capital Flows" framework draws on liquidity models by various analysts. The "Six Masters Mapping" is the author's synthesis of six investors' public statements. Hard stops, risk modifiers, automation, and Claude Code integration are original work. Data: FRED, akshare, yfinance.
 
 ---
 
@@ -482,3 +481,8 @@ Built with Python, Claude MCP, Yahoo Finance API, CBOE, FRED, and ICE data.
 ---
 
 > *"The GOR ratio is the seismograph. Capital flows are the fault-line scan. The frameworks are the analysts. Deep-Risk-OPP is the early-warning system. What you do with the signal — that's yours."*
+
+## 会话沉淀
+
+- [[00.会话沉淀/深度/2026-06-25-投资决策框架更新|框架更新(06-25)]] — 6/24-25 与 7/5 数据全量更新、对冲作战手册 WTI<$75 硬止损处理、每周六定时任务建立
+- [[00.会话沉淀/深度/2026-07-12-金油比投资决策框架|金油比分析(07-12)]] — 框架内容输出与发布流水线(GOR Pulse 周报)
