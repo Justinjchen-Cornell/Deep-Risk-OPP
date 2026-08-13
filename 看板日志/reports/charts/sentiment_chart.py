@@ -137,6 +137,6 @@ fig.text(0.5, 0.02, 'Data: Adanos Reddit Sentiment API  |  Deep-Risk-OPP  |  Res
 fig.text(0.5, 0.96, 'DEEP-RISK-OPP  ·  MARKET SENTIMENT SCAN  ·  JULY 19, 2026', fontsize=11,
          color='#8b949e', fontfamily='monospace', fontweight='bold', ha='center')
 
-out = r'c:\Users\Admin\Documents\陈嘉-资料备份\08.投资决策框架\看板日志\sentiment_scan_2026-07-19.png'
+out = r'c:\Users\Admin\Documents\Justinjchen-资料备份\08.投资决策框架\看板日志\sentiment_scan_2026-07-19.png'
 fig.savefig(out, dpi=120, facecolor='#0a0e14', bbox_inches='tight', pad_inches=0.3)
 print(f'Saved: {out}')

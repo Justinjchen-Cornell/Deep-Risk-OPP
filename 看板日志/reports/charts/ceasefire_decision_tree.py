@@ -137,6 +137,6 @@ ax2.text(-12, 61, 'EM + Long Bonds', fontsize=6.5, color='#888', fontfamily='mon
 fig.text(0.5, 0.01, 'Source: Kimi3 Quantitative Model + Six Masters Consensus  |  Research Framework  |  Not Investment Advice',
     fontsize=6.5, color='#bbb', fontfamily='monospace', ha='center')
 
-out = r'c:\Users\Admin\Documents\陈嘉-资料备份\08.投资决策框架\看板日志\reports\charts\ceasefire_decision_tree.png'
+out = r'c:\Users\Admin\Documents\Justinjchen-资料备份\08.投资决策框架\看板日志\reports\charts\ceasefire_decision_tree.png'
 fig.savefig(out, dpi=150, facecolor='#fff', bbox_inches='tight', pad_inches=0.3)
 print('SAVED')

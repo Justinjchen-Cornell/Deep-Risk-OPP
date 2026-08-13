@@ -215,6 +215,6 @@ for i, r in enumerate(reminders):
 for c, w in enumerate([18,12,12,12,12,12,12,12], 1):
     ws2.column_dimensions[get_column_letter(c)].width = w
 
-out = r'c:\Users\Admin\Documents\陈嘉-资料备份\08.投资决策框架\看板日志\reports\special\向心坍缩推演\domestic_battle_map.xlsx'
+out = r'c:\Users\Admin\Documents\Justinjchen-资料备份\08.投资决策框架\看板日志\reports\special\向心坍缩推演\domestic_battle_map.xlsx'
 wb.save(out)
 print(f'SAVED: {out}')

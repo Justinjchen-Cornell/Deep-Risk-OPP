@@ -108,7 +108,7 @@ for lx, color, label in items:
 
 fig.text(0.5, 0.008, 'Deep-Risk-OPP  ·  Research Framework  ·  Not Investment Advice', fontsize=7.5, color='#aaa', ha='center')
 
-out = r'c:\Users\Admin\Documents\陈嘉-资料备份\08.投资决策框架\看板日志\reports\charts\inflation_tiers_map.png'
+out = r'c:\Users\Admin\Documents\Justinjchen-资料备份\08.投资决策框架\看板日志\reports\charts\inflation_tiers_map.png'
 fig.savefig(out, dpi=150, facecolor='#0a0e1a', bbox_inches='tight', pad_inches=0.3)
 print('SAVED')
 

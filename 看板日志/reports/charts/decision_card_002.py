@@ -94,6 +94,6 @@ txt(0.6, 0.35, 'VIX>20 => speed ELEVATED  |  WTI>$85 => GOR nearing recovery  | 
 # ─── DISCLAIMER ──────────────────────────────────────────
 txt(4.0, 0.05, 'RESEARCH FRAMEWORK ONLY — NOT INVESTMENT ADVICE', 5, '#333', False, 'center')
 
-out = r'c:\Users\Admin\Documents\陈嘉-资料备份\08.投资决策框架\看板日志\decision_card_002.png'
+out = r'c:\Users\Admin\Documents\Justinjchen-资料备份\08.投资决策框架\看板日志\decision_card_002.png'
 fig.savefig(out, dpi=150, facecolor='#0a0e14', bbox_inches='tight', pad_inches=0.15)
 print(f'Saved: {out}')

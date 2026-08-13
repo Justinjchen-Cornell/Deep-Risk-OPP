@@ -85,6 +85,6 @@ fig.text(0.5, 0.94, 'Mining stocks break 20-year trendlines  →  3-phase strate
 fig.text(0.5, 0.015, 'Deep-Risk-OPP  ·  Research Framework  ·  Not Investment Advice', fontsize=8,
     color='#94a3b8', ha='center')
 
-out = r'c:\Users\Admin\Documents\陈嘉-资料备份\08.投资决策框架\看板日志\reports\charts\supercycle_three_phase.png'
+out = r'c:\Users\Admin\Documents\Justinjchen-资料备份\08.投资决策框架\看板日志\reports\charts\supercycle_three_phase.png'
 fig.savefig(out, dpi=150, facecolor='#ffffff', bbox_inches='tight', pad_inches=0.3)
 print('SAVED')

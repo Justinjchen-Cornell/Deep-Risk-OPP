@@ -109,7 +109,7 @@ for i, line in enumerate(lines):
     ax.text(0.04, y, line, fontsize=fontsize, color=c, fontfamily='monospace',
             fontweight=w, ha='left', va='center')
 
-out = r'c:\Users\Admin\Documents\陈嘉-资料备份\08.投资决策框架\看板日志\decision_card_ascii.png'
+out = r'c:\Users\Admin\Documents\Justinjchen-资料备份\08.投资决策框架\看板日志\decision_card_ascii.png'
 fig.savefig(out, dpi=150, facecolor='#ffffff', bbox_inches='tight', pad_inches=0.15)
 print(f'Saved: {out}')
 

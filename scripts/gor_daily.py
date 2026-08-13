@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-每日GOR决策卡引擎 · 陈嘉投资决策框架
+每日GOR决策卡引擎 · Justinjchen投资决策框架
 ===========================================
 数据源: FRED (利率/DXY/VIX/宏观) + akshare (商品期货) + Web备用
 输出: gor_latest.json + capital_flows_latest.json + 看板日志 + HTML数据块更新
@@ -720,7 +720,7 @@ def update_wti_history(gor_output):
 
 if __name__ == '__main__':
     log("=" * 50)
-    log(f"  📡 陈嘉投资决策框架 · 自动化数据更新启动")
+    log(f"  📡 Justinjchen投资决策框架 · 自动化数据更新启动")
     log(f"  📅 {datetime.date.today().strftime('%Y-%m-%d')}")
     log("=" * 50)
 

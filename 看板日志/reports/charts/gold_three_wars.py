@@ -150,6 +150,6 @@ for x1, x2, y in [(3.9, 4.1, 1.5), (7.8, 8.0, 1.5)]:
 fig.text(0.5, 0.01, 'Deep-Risk-OPP  |  Research Framework  |  Not Investment Advice  |  Source: "Three Wars of Gold" thesis (Jul 17, 2026)',
          fontsize=6.5, color='#bbb', fontfamily='sans-serif', ha='center')
 
-out = r'c:\Users\Admin\Documents\陈嘉-资料备份\08.投资决策框架\看板日志\gold_three_wars_chart.png'
+out = r'c:\Users\Admin\Documents\Justinjchen-资料备份\08.投资决策框架\看板日志\gold_three_wars_chart.png'
 fig.savefig(out, dpi=150, facecolor='#ffffff', bbox_inches='tight', pad_inches=0.3)
 print(f'Saved: {out}')

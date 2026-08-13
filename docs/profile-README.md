@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Justinjchen-Cornell/Deep-Risk-OPP/main/logo.svg" alt="Deep-Risk-OPP" width="500">
+  <img src="https://raw.githubusercontent.com/Justinjchen-Cornell/Deep-Risk-OPP/main/logo.png" alt="Deep-Risk-OPP" width="500">
 </p>
 
 ### Hi, I'm Justin Chen 👋

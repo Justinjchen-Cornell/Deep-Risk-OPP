@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-每周市场数据拉取脚本 · 陈嘉投资决策框架
+每周市场数据拉取脚本 · Justinjchen投资决策框架
 ===========================================
 数据源: FRED (利率/DXY/VIX/宏观) + akshare (商品期货) + Web备用
 输出: gor_latest.json + capital_flows_latest.json + 看板日志 + HTML数据块更新 + 变化比对报告

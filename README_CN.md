@@ -1,7 +1,7 @@
 # Deep-Risk-OPP
 
 <p align="center">
-  <img src="logo.svg" alt="Deep-Risk-OPP" width="600">
+  <img src="logo.png" alt="Deep-Risk-OPP" width="600">
 </p>
 
 <p align="center">

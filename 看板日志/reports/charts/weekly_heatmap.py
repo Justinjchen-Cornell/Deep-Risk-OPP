@@ -122,6 +122,6 @@ fig.text(0.5, 0.96, 'DEEP-RISK-OPP  ·  GOR PULSE WEEKLY #002  ·  JULY 19, 2026
 fig.text(0.5, 0.04, 'Data: Yahoo Finance, FRED, Adanos Reddit Sentiment  |  Research Only  |  Not Investment Advice',
          fontsize=6.5, color='#bbb', fontfamily='monospace', ha='center')
 
-out = r'c:\Users\Admin\Documents\陈嘉-资料备份\08.投资决策框架\看板日志\weekly_market_heatmap.png'
+out = r'c:\Users\Admin\Documents\Justinjchen-资料备份\08.投资决策框架\看板日志\weekly_market_heatmap.png'
 fig.savefig(out, dpi=120, facecolor='#ffffff', bbox_inches='tight', pad_inches=0.3)
 print(f'Saved: {out}')
