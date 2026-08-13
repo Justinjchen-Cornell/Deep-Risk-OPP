@@ -69,13 +69,16 @@
 ## 4. 未决问题与风险
 
 ### 风险
-1. **动态止损尚未生效** — wti_history仅11天，需积累到30+天（约8月底）。此前系统走$75静态fallback。
-2. **run.py单文件1272行** — 待拆分为modes/包（P1）
-3. **gor_daily与weekly_data_pull重复70%** — 待合并（P1）
-4. **风控日历节点过期** — SpaceX IPO窗口(2026.06)等节点未更新
-5. **无单元测试** — 任何改动可能悄悄破坏逻辑
-6. **yfinance限速** — DXY偶发缺失（有fallback）
-7. **中文HTML页面** — 含大量硬编码中文，维护成本高
+0. **Daily Pipeline致命BUG已修复(08-13下午会话)** — 死调用update_html_text_content导致NameError、连续18天数据停更。已删死代码+死调用，本地验证通过，数据已刷新至08-13并推送上线。修复后首个cron(08-14 00:00 UTC)需确认转绿。
+1. **GitHub repo缺FRED/FIGI secrets(08-13发现)** — 10Y走akshare兜底、30Y/Fed Rate为N/A。需用户在Settings→Secrets手动添加（值在本地.env）。
+2. **动态止损尚未生效** — wti_history已12/30天，需积累到30+天（约8月底）。此前系统走$75静态fallback。
+3. **run.py单文件1272行** — 待拆分为modes/包（P1）
+4. **gor_daily与weekly_data_pull重复70%** — 待合并（P1）
+5. **风控日历节点过期** — SpaceX IPO窗口(2026.06)等节点未更新
+6. **无单元测试** — 任何改动可能悄悄破坏逻辑
+7. **yfinance限速** — DXY偶发缺失（有fallback）
+8. **中文HTML页面** — 含大量硬编码中文，维护成本高
+9. **冗余pages.yml已删除** — static.yml为唯一Pages部署管道 ✅
 
 ### 安全
 - 旧PAT（github_pat_11BK...）在聊天中出现过 → **建议立即在GitHub撤销**
@@ -86,10 +89,11 @@
 ## 5. 下一步任务
 
 ### 本周（推广启动）
-1. 🔴 **撤销旧PAT** → 生成最小权限新PAT
-2. 🔴 **雪球首发** — 文案在docs/promo-pack.md，标题《金油比57.1：一个数字告诉你油什么时候便宜》
-3. 🟠 **LinkedIn发布GOR Pulse #004** — linkedin/GOR_Pulse_Weekly_004_short.md（2,728字符）
-4. 🟠 **HelloGitHub提交自荐** — hellogithub.com免费
+1. 🔴 **添加GitHub Secrets**（FRED_API_KEY / OPENFIGI_API_KEY，值在本地.env）→ Settings → Secrets and variables → Actions
+2. 🔴 **撤销泄露PAT** → 重新生成最小权限新PAT
+3. 🔴 **雪球首发** — 文案在docs/promo-pack.md，标题《金油比57.1：一个数字告诉你油什么时候便宜》（数据已更新为53.8，发文前改数字）
+4. 🟠 **LinkedIn发布GOR Pulse #004** — linkedin/GOR_Pulse_Weekly_004_short.md（2,728字符）
+5. 🟠 **HelloGitHub提交自荐** — hellogithub.com免费
 
 ### 后续（技术进化）
 5. run.py拆分为modes/包（deepseek-v4-pro可接手，审查简报已备好）
