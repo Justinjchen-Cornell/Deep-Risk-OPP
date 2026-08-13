@@ -4,15 +4,15 @@
   "trading_days": 5179,
   "years": 20.0,
   "strategy": {
-    "total": 2.092,
+    "total": 2.0914,
     "annualized": 0.0581
   },
   "benchmark_6040": {
-    "total": 2.4671,
+    "total": 2.4644,
     "annualized": 0.0641
   },
   "max_drawdown": -0.1048,
-  "alpha": -0.3751,
+  "alpha": -0.373,
   "regime_distribution": {
     "extreme": 493,
     "recovery": 435,

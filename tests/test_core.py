@@ -139,3 +139,32 @@ class TestAllocation:
     def test_cash_never_negative(self):
         a = self._alloc("extreme", dxy=101, yield_10y=4.8, wti=70, gor=55)
         assert a["cash"] >= 0
+
+
+# ============ config schema 校验 ============
+class TestConfigSchema:
+    def test_valid_config_passes(self):
+        from data_pipeline.config_schema import validate_config
+        assert validate_config() == []
+
+    def test_detects_broken_zone_boundary(self):
+        import config
+        old = config.GOR_ZONES['extreme']['min']
+        try:
+            config.GOR_ZONES['extreme']['min'] = 30
+            from data_pipeline.config_schema import validate_config
+            problems = validate_config()
+            assert any('extreme.min' in p for p in problems)
+        finally:
+            config.GOR_ZONES['extreme']['min'] = old
+
+    def test_detects_bad_multiplier(self):
+        import config
+        old = config.HARD_STOP_MA_MULTIPLIER
+        try:
+            config.HARD_STOP_MA_MULTIPLIER = 1.5
+            from data_pipeline.config_schema import validate_config
+            problems = validate_config()
+            assert any('HARD_STOP_MA_MULTIPLIER' in p for p in problems)
+        finally:
+            config.HARD_STOP_MA_MULTIPLIER = old

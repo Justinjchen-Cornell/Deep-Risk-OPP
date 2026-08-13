@@ -595,67 +595,12 @@ def generate_alerts(gor_output):
 
 
 def redraw_gor_chart():
-    """Re-render GOR historical chart after data pull."""
+    """Re-render GOR snapshot chart after data pull. (P2: 委托统一图表入口)"""
     try:
-        import matplotlib
-        matplotlib.use('Agg')
-        import matplotlib.pyplot as plt
-        import matplotlib.ticker as mticker
-        import numpy as np
-        from datetime import datetime
-        from matplotlib.dates import YearLocator, DateFormatter
-
-        # Load latest JSON
-        gor_path = BASE_DIR / "gor_latest.json"
-        if not gor_path.exists():
-            log("  CHART: No gor_latest.json, skipping")
-            return
-
-        with open(gor_path, 'r', encoding='utf-8') as f:
-            latest = json.load(f)
-
-        # Simple version: just show latest GOR zone
-        gor_w = latest.get('gor_wti', 0)
-        gor_b = latest.get('gor_brent', 0)
-        wti = latest['data'].get('WTI原油', {}).get('price', 0)
-        gold = latest['data'].get('黄金期货', {}).get('price', 0)
-        regime = latest.get('regime', 'unknown')
-
-        fig, ax = plt.subplots(figsize=(10, 3), dpi=120)
-        fig.patch.set_facecolor('#0d1117')
-        ax.set_facecolor('#0d1117')
-
-        zones = [(45,100,'#ff4444','EXTREME OPP'),(30,45,'#ffaa00','RECOVERY'),(20,30,'#00cc66','FAIR VALUE'),(0,20,'#4488ff','BUBBLE')]
-        for lo, hi, col, lbl in zones:
-            ax.axhspan(lo, hi, facecolor=col, alpha=0.08)
-            ax.text(0.98, (lo+hi)/2, lbl, color=col, fontsize=7, ha='right', va='center', family='monospace', alpha=0.6, transform=ax.get_yaxis_transform())
-
-        # Current GOR bar
-        gor_val = gor_w or gor_b
-        bar_color = '#ff4444' if gor_val >= 45 else ('#ffaa00' if gor_val >= 30 else ('#00cc66' if gor_val >= 20 else '#4488ff'))
-        ax.barh(1, gor_val, height=0.6, color=bar_color, alpha=0.8)
-        ax.text(gor_val + 1, 1, f'GOR={gor_val:.1f}', color='#ffffff', fontsize=20, fontweight='bold', family='monospace', va='center')
-        ax.text(gor_val + 1, 0.6, f'Gold=${gold:.0f}  WTI=${wti:.2f}  {regime}', color='#aaa', fontsize=9, family='monospace', va='center')
-
-        ax.set_xlim(0, max(gor_val + 15, 85))
-        ax.set_ylim(0, 2)
-        ax.set_yticks([])
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        ax.spines['left'].set_visible(False)
-        ax.spines['bottom'].set_color('#333')
-        ax.tick_params(colors='#888', labelsize=8)
-        ax.set_xlabel('GOR (Gold/Oil Ratio)', color='#888', fontsize=8)
-        ax.set_title(f'Deep-Risk-OPP  |  {datetime.now().strftime("%Y-%m-%d")}', color='#666', fontsize=10, family='monospace', loc='left', pad=8)
-
-        chart_path = BASE_DIR / "看板日志" / "GOR_Daily_Snapshot.png"
-        fig.savefig(chart_path, dpi=120, facecolor='#0d1117', bbox_inches='tight')
-        plt.close(fig)
-        log(f"  CHART: GOR snapshot saved to 看板日志/GOR_Daily_Snapshot.png")
+        from data_pipeline.charts import snapshot_chart
+        snapshot_chart()
     except Exception as e:
         log(f"  CHART error: {e}")
-
-
 def update_wti_history(gor_output):
     """Append today's data to rolling 60-day WTI history for dynamic hard stop."""
     today = datetime.date.today().strftime('%Y-%m-%d')

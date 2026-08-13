@@ -28,7 +28,7 @@ def main():
     )
     parser.add_argument(
         "--mode",
-        choices=["daily", "weekly", "masters", "backtest", "dashboard", "forecast", "report", "sentiment"],
+        choices=["daily", "weekly", "masters", "backtest", "dashboard", "forecast", "report", "sentiment", "chart"],
         default="daily",
         help="Operating mode (default: daily)",
     )
@@ -93,6 +93,9 @@ def main():
 
     if args.mode == "backtest":
         backtest.mode_backtest(from_date=args.from_date, to_date=args.to_date, chart=args.chart)
+    elif args.mode == "chart":
+        from data_pipeline.charts import generate_all
+        generate_all()
     else:
         handlers[args.mode]()
 

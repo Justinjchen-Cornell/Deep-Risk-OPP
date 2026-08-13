@@ -751,3 +751,4 @@
 [2026-08-13 19:45:49]   FRED: connected
 [2026-08-13 19:47:25]   FRED: connected
 [2026-08-13 19:50:57]   FRED: connected
+[2026-08-13 19:59:41]   CHART: GOR snapshot saved to C:\Users\Admin\Documents\陈嘉-资料备份\08.投资决策框架\看板日志\GOR_Daily_Snapshot.png

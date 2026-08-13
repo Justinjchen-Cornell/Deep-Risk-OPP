@@ -136,4 +136,37 @@ def mode_sentiment():
             else:
                 print(f"  -- GOR={gor_w:.1f} in {regime}. Sentiment in normal range.")
 
+
+    # P2: 情绪数据并入主 JSON
+    payload = {
+        "updated": datetime.now().strftime('%Y-%m-%d %H:%M'),
+        "ok": bool(market or stocks),
+        "market": {
+            "buzz_score": round(float(market.get('buzz_score', 0)), 1),
+            "sentiment_score": round(float(market.get('sentiment_score', 0)), 3),
+            "bullish_pct": market.get('bullish_pct'),
+            "bearish_pct": market.get('bearish_pct'),
+        },
+        "tickers": [
+            {
+                "ticker": t.get('ticker'),
+                "buzz": round(float(t.get('buzz_score') or 0), 1),
+                "sentiment": round(float(t.get('sentiment_score') or 0), 3),
+                "bullish_pct": t.get('bullish_pct'),
+                "bearish_pct": t.get('bearish_pct'),
+                "trend": t.get('trend'),
+            } for t in sorted(stocks, key=lambda x: x.get('buzz_score') or 0, reverse=True)[:10]
+        ],
+        "divergences": divergences,
+    }
+    try:
+        gpath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'gor_latest.json')
+        with open(gpath, 'r', encoding='utf-8') as f:
+            gd = json.load(f)
+        gd['sentiment'] = payload
+        with open(gpath, 'w', encoding='utf-8') as f:
+            json.dump(gd, f, ensure_ascii=False, indent=2)
+        print(f"  ✅ Sentiment merged into gor_latest.json ({len(payload['tickers'])} tickers, {len(divergences)} divergences)")
+    except Exception as e:
+        print(f"  !! Sentiment merge failed: {e}")
     print()

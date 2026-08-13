@@ -79,5 +79,102 @@
       "DXY(网页)": "web"
     },
     "note": "全部数据源正常"
+  },
+  "sentiment": {
+    "updated": "2026-08-13 20:00",
+    "ok": true,
+    "market": {
+      "buzz_score": 38.4,
+      "sentiment_score": 0.045,
+      "bullish_pct": 24,
+      "bearish_pct": 14
+    },
+    "tickers": [
+      {
+        "ticker": "SPY",
+        "buzz": 81.7,
+        "sentiment": 0.025,
+        "bullish_pct": 27,
+        "bearish_pct": 22,
+        "trend": "rising"
+      },
+      {
+        "ticker": "NVDA",
+        "buzz": 79.0,
+        "sentiment": 0.037,
+        "bullish_pct": 29,
+        "bearish_pct": 19,
+        "trend": "stable"
+      },
+      {
+        "ticker": "MSFT",
+        "buzz": 78.9,
+        "sentiment": 0.051,
+        "bullish_pct": 30,
+        "bearish_pct": 20,
+        "trend": "rising"
+      },
+      {
+        "ticker": "AMZN",
+        "buzz": 78.4,
+        "sentiment": 0.065,
+        "bullish_pct": 33,
+        "bearish_pct": 16,
+        "trend": "rising"
+      },
+      {
+        "ticker": "AAPL",
+        "buzz": 77.8,
+        "sentiment": 0.012,
+        "bullish_pct": 21,
+        "bearish_pct": 17,
+        "trend": "stable"
+      },
+      {
+        "ticker": "META",
+        "buzz": 77.2,
+        "sentiment": -0.04,
+        "bullish_pct": 21,
+        "bearish_pct": 29,
+        "trend": "stable"
+      },
+      {
+        "ticker": "GOOGL",
+        "buzz": 75.4,
+        "sentiment": -0.029,
+        "bullish_pct": 22,
+        "bearish_pct": 25,
+        "trend": "rising"
+      },
+      {
+        "ticker": "TSLA",
+        "buzz": 73.4,
+        "sentiment": -0.012,
+        "bullish_pct": 22,
+        "bearish_pct": 22,
+        "trend": "rising"
+      },
+      {
+        "ticker": "QQQ",
+        "buzz": 72.5,
+        "sentiment": 0.04,
+        "bullish_pct": 30,
+        "bearish_pct": 21,
+        "trend": "rising"
+      },
+      {
+        "ticker": "GLD",
+        "buzz": 53.8,
+        "sentiment": 0.055,
+        "bullish_pct": 31,
+        "bearish_pct": 17,
+        "trend": "rising"
+      }
+    ],
+    "divergences": [
+      "AAPL: Buzz=78 but sentiment flat (+0.012) - distribution likely",
+      "TSLA: Buzz=73 but sentiment flat (-0.012) - distribution likely",
+      "IWM: Trend falling but still bullish (Bulls 30% vs Bears 19%)"
+    ]
   }
 }

@@ -7,6 +7,13 @@ from data_pipeline.common import (log, fetch_all, compute_gor, save_gor_json,
     update_html_data_blocks, redraw_gor_chart)
 
 def run_daily():
+    from data_pipeline.config_schema import validate_config
+    problems = validate_config()
+    if problems:
+        for msg in problems:
+            log("  CONFIG VIOLATION: " + msg)
+        log("  FATAL: config schema failed — refusing to run pipeline.")
+        raise SystemExit(1)
     log("=" * 50)
     log(f"  📡 Justinjchen投资决策框架 · 自动化数据更新启动")
     log(f"  📅 {datetime.date.today().strftime('%Y-%m-%d')}")

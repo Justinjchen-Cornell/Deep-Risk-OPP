@@ -190,6 +190,11 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
     nav_history = [(common_idx[0], 100.0)] if chart else None
     bh_nav = 100.0
     bh_history = [(common_idx[0], 100.0)] if chart else None
+    # v3: 日收益序列（夏普/回撤/分段收益）
+    daily_rets, bh_rets = [], []
+    bh_peak = 100.0
+    bh_max_dd = 0.0
+    regime_rets = {'extreme': [], 'recovery': [], 'fair_value': [], 'oil_bubble': []}
 
     for i in range(1, len(common_idx)):
         date = common_idx[i]
@@ -238,12 +243,22 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
         bh_daily = (0.6 * oil_ret + 0.4 * gold_ret)
         bh_nav = bh_nav * (1 + bh_daily)
 
-        # Max drawdown tracking
+        # Max drawdown tracking (both portfolios)
         if nav > nav_peak:
             nav_peak = nav
         dd = (nav - nav_peak) / nav_peak
         if dd < max_drawdown:
             max_drawdown = dd
+        if bh_nav > bh_peak:
+            bh_peak = bh_nav
+        bh_dd = (bh_nav - bh_peak) / bh_peak
+        if bh_dd < bh_max_dd:
+            bh_max_dd = bh_dd
+
+        # v3: 收益序列
+        daily_rets.append(daily)
+        bh_rets.append(bh_daily)
+        regime_rets[regime].append(daily)
 
         if chart:
             nav_history.append((date, nav))
@@ -259,6 +274,23 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
     total_return = nav / 100 - 1
     n_years = (common_idx[-1] - common_idx[0]).days / 365.25
     ann_return = (1 + total_return) ** (1 / n_years) - 1 if n_years > 0 else 0
+
+    # v3: 夏普与分段收益
+    import statistics as _st
+    def _sharpe(rets):
+        if len(rets) < 30:
+            return 0.0
+        mu = _st.mean(rets)
+        sd = _st.stdev(rets)
+        return (mu / sd * (252 ** 0.5)) if sd > 0 else 0.0
+    sharpe = _sharpe(daily_rets)
+    sharpe_bh = _sharpe(bh_rets)
+    regime_ann = {}
+    for k, v in regime_rets.items():
+        if len(v) >= 30:
+            regime_ann[k] = (1 + _st.mean(v)) ** 252 - 1
+        else:
+            regime_ann[k] = 0.0
 
     # Benchmark: 60/40 oil/gold buy-and-hold
     wti_bh = float(wti_px.iloc[-1] / wti_px.iloc[0] - 1)
@@ -285,7 +317,14 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
     Alpha:          {total_return - bh_return:+.1%}
 
     Avg Allocation: {avg_gold:.0f}% Gold | ~{avg_oil:.0f}% Oil | ~{avg_cash:.0f}% Cash
-    Max Drawdown:   {max_drawdown:+.1%}
+    Max Drawdown:   {max_drawdown:+.1%}  (60/40: {bh_max_dd:+.1%})
+    Sharpe:         {sharpe:.2f}  (60/40: {sharpe_bh:.2f})
+  {'='*64}
+    Per-Regime Annualized (GOR strategy):
+      Extreme:      {regime_ann['extreme']:+8.1%}   ({regime_counts['extreme']:>4d} days)
+      Recovery:     {regime_ann['recovery']:+8.1%}   ({regime_counts['recovery']:>4d} days)
+      Fair Value:   {regime_ann['fair_value']:+8.1%}   ({regime_counts['fair_value']:>4d} days)
+      Oil Bubble:   {regime_ann['oil_bubble']:+8.1%}   ({regime_counts['oil_bubble']:>4d} days)
   {'='*64}
     Regime Distribution:
       Extreme:      {regime_counts['extreme']:>5d} days  ({regime_counts['extreme']/total_days*100:5.1f}%)
@@ -308,38 +347,10 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
     # CHART (if --chart flag)
     # ============================================================
     if chart and nav_history:
-        import matplotlib
-        matplotlib.use('Agg')
-        import matplotlib.pyplot as plt
-        import matplotlib.dates as mdates
-
-        fig, ax = plt.subplots(figsize=(14, 6), dpi=120)
-        fig.patch.set_facecolor('#0d1117')
-        ax.set_facecolor('#0d1117')
-
-        dates_nav, vals_nav = zip(*nav_history)
-        dates_bh, vals_bh = zip(*bh_history)
-
-        ax.plot(dates_nav, vals_nav, color='#ffa500', linewidth=2.0, label=f'GOR Strategy ({ann_return:+.1%}/yr)')
-        ax.plot(dates_bh, vals_bh, color='#888888', linewidth=1.2, linestyle='--', label=f'60/40 B&H ({ann_bh:+.1%}/yr)')
-        ax.axhline(y=100, color='#ffffff', linewidth=0.5, alpha=0.2)
-
-        # Style
-        ax.set_title(f'Deep-Risk-OPP Backtest  |  {from_date} -> {to_date}', color='#ffffff', fontsize=14, fontfamily='monospace', pad=12)
-        ax.legend(loc='upper left', facecolor='#1a1a2e', edgecolor='#333', labelcolor='#ccc', fontsize=10)
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-        ax.spines['left'].set_color('#333')
-        ax.spines['bottom'].set_color('#333')
-        ax.tick_params(colors='#888', labelsize=9)
-        ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f'{y:.0f}'))
-        ax.grid(True, alpha=0.08, color='#ffffff')
-        ax.set_ylabel('NAV (base=100)', color='#aaa', fontsize=10)
-
-        chart_path = f"看板日志/backtest_chart_{from_date}_to_{to_date}.png"
-        fig.savefig(chart_path, dpi=150, facecolor='#0d1117', bbox_inches='tight', pad_inches=0.4)
-        plt.close(fig)
-        print(f"  Chart saved: {chart_path}")
+        from data_pipeline.charts import backtest_nav_chart
+        backtest_nav_chart(nav_history, bh_history, from_date, to_date,
+                           ann_return, ann_bh)
+        print(f"  Chart saved: 看板日志/backtest_chart_{from_date}_to_{to_date}.png")
 
     # ============================================================
     # SAVE JSON
