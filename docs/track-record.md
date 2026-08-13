@@ -19,7 +19,7 @@
 
 ---
 
-## Historical Backtest (2020-2026, public in `run.py --mode backtest`)
+## Historical Backtest (2006-2026, 20 years, 5,179 trading days)
 
 | Period | Signal | Outcome |
 |--------|--------|---------|
@@ -27,7 +27,31 @@
 | 2016.01 | GOR 39 recovery → hold | WTI +54% in 12 months ✅ |
 | 2008.12 | GOR 30 recovery → hold | WTI +78% in 12 months ✅ |
 
-**Pattern: GOR ≥ 45 has NEVER failed to precede oil gains in 12-24 months.**
+**Full-period honest stats** (see [backtest summary](../看板日志/reports/backtest_summary_2026-08-13.md)):
+
+| | GOR Strategy | 60/40 |
+|---|---:|---:|
+| 20y total | +209.1% | +246.4% |
+| Sharpe | **1.42** | 0.37 |
+| Max drawdown | **-10.5%** | -66.8% |
+
+*"Never failed" = 4 historical episodes (1998/2008/2016/2020). Small sample. The pre-registered falsification clause below is how we hold ourselves accountable going forward.*
+
+---
+
+## ⚖️ Pre-Registered Falsification Clause (published 2026-08-13)
+
+**The claim under test**: *"GOR ≥ 45 precedes oil gains of +54% or more within 12-24 months."*
+
+**Baseline**: WTI $69.87 on 2026-06-19 — the first day the live system recorded GOR in the extreme zone (GOR 55.26) in the current cycle. (Deepest point: $68.76 on 2026-06-25.)
+
+**Success condition**: WTI closes at or above **$107.60** (+54%) at least once by **2027-06-19** (12 months), or reaches it by 2028-06-19 (24 months, extended window).
+
+**Failure condition (this signal is judged FAILED)**: by **2027-06-19**, WTI never closes ≥ $107.60 **and** the 5-year rolling GOR mean has risen above 40 (see [anchor analysis](equilibrium-anchor-analysis.md)). In that case the mean-reversion anchor itself is declared broken, and the framework must be revised — not the narrative.
+
+**Kill-switch on narrative inflation**: we will NOT redefine the baseline, extend the window retroactively, or switch price benchmarks (WTI→Brent) after publication. Any revision requires a new dated entry on this page.
+
+**Review cadence**: monthly, auto-logged in [看板日志/signal_log_auto.md](../看板日志/signal_log_auto.md).
 
 ---
 
