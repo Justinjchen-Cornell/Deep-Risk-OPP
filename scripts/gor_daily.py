@@ -516,56 +516,6 @@ def generate_weekly_content(gor_output):
     return content
 
 
-# DAILY_MODE: skipped
-# def update_html_text_content(gor_output):
-    """更新HTML中的自动文本区域（本周观察等）"""
-    path = BASE_DIR / '🌊 资本三流观测站.html'
-    if not path.exists():
-        log("  SKIP: 资本三流观测站.html not found")
-        return
-
-    # Extract values needed
-    gw = gor_output.get('gor_wti', 0)
-    wti = gor_output['data']['WTI原油']['price']
-    wti_below = wti < 75 if wti else False
-    gor_extreme = gw >= 60 if gw else False
-
-    with open(path, 'r', encoding='utf-8') as f:
-        html = f.read()
-
-    new_content = generate_weekly_content(gor_output)
-
-    # Replace between AUTO_UPDATE_WEEKLY_SUMMARY markers
-    start_tag = '<!-- AUTO_UPDATE_WEEKLY_SUMMARY_START -->'
-    end_tag = '<!-- ===== 向心坍缩进度条 ===== -->'
-    if start_tag in html and end_tag in html:
-        pre = html[:html.find(start_tag) + len(start_tag)]
-        post = html[html.find(end_tag):]
-        html = pre + '\n' + new_content + '\n<!-- AUTO_UPDATE_WEEKLY_SUMMARY_END -->\n' + post
-        with open(path, 'w', encoding='utf-8') as f: f.write(html)
-        log("  Updated text: 资本三流观测站 weekly summary")
-
-    # Update the 金转油 logic section title
-    old_logic_start = '<div style="font-size:17px;font-weight:800;margin-bottom:12px">'
-    new_logic_title = f'<div style="font-size:17px;font-weight:800;margin-bottom:12px">🔄 金转油 · GOR={gw:.1f}{" 历史级极端" if gor_extreme else ""} {"· 等待WTI回归" if wti_below else ""}</div>'
-    idx = html.find(old_logic_start)
-    if idx != -1 and '金转油' in html[idx:idx+200]:
-        end_of_title = html.find('</div>', idx)
-        if end_of_title != -1:
-            html = html[:idx] + new_logic_title + html[end_of_title + 6:]
-
-    # Update footer date
-    today_fmt = datetime.date.today().strftime('%Y.%m.%d')
-    for old_date in ['2026.06.25', '2026.06.19', '2026.06.20']:
-        old_str = f'本周更新于 {old_date}'
-        if old_str in html:
-            html = html.replace(old_str, f'本周更新于 {today_fmt}')
-
-    with open(path, 'w', encoding='utf-8') as f:
-        f.write(html)
-    log("  Updated text: 资本三流观测站 footer + logic title")
-
-
 def generate_alerts(gor_output):
     """检查熔断器触发条件，写入ALERT.md"""
     data = gor_output['data']
@@ -744,7 +694,6 @@ if __name__ == '__main__':
 
     log("⏳ Step 6/6: 更新 HTML 数据+文本 + 重绘图表...")
     update_html_data_blocks(gor_output, cf_output)
-    update_html_text_content(gor_output)
     redraw_gor_chart()
 
     log("✅ 全部更新完成！")
