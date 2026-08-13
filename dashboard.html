@@ -59,7 +59,15 @@ footer a{color:var(--muted)}
 
 <style>.dq-banner{margin:0 0 16px;padding:10px 16px;background:#452a03;border:1px solid rgba(251,191,36,.4);border-radius:10px;color:#fbbf24;font-family:'Fira Code',monospace;font-size:13px}</style>
 <link rel="manifest" href="manifest.json">
-</head>
+<style id="bd-sub-css">
+.bd-sub{margin:26px auto 0;text-align:center}
+.bd-sub .t{color:#f0c040;font-family:'Fira Code',monospace;font-size:12px;letter-spacing:2px;margin-bottom:10px}
+.bd-sub form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.bd-sub input[type=email]{background:#0d1117;border:1px solid #1f2a40;border-radius:8px;padding:9px 14px;color:#e0e6ed;font-family:'Fira Code',monospace;font-size:12px;width:230px;max-width:80vw}
+.bd-sub input[type=email]:focus{outline:none;border-color:#f0c040}
+.bd-sub input[type=submit]{background:#f0c040;color:#05070d;border:none;border-radius:8px;padding:9px 18px;font-family:'Fira Code',monospace;font-size:12px;font-weight:700;cursor:pointer}
+.bd-sub input[type=submit]:hover{box-shadow:0 0 18px rgba(240,192,64,.4)}
+</style></head>
 <body>
 <style id="dr-nav-css">
 .dr-nav{position:sticky;top:0;z-index:999;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 20px;background:rgba(5,7,13,.93);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #1f2a40;font-family:'Fira Code','PingFang SC','Microsoft YaHei',monospace;font-size:12px;letter-spacing:.5px}
@@ -99,6 +107,13 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠DQ";e.title="degraded
   <div class="sub">One number that tells you when oil is historically cheap · GOR = Gold ÷ Oil</div>
 </header>
 <div id="app"><div class="loading">Loading live data…</div></div>
+<div class="bd-sub">
+  <div class="t">📮 Get the daily signal by email</div>
+  <form action="https://buttondown.com/api/emails/embed-subscribe/chenjia2007" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.com/chenjia2007', 'popupwindow')">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <input type="submit" value="Subscribe">
+  </form>
+</div>
 <footer>
   Research framework · Not investment advice · <a href="https://github.com/Justinjchen-Cornell/Deep-Risk-OPP">GitHub</a><br>
   Data: FRED · akshare · yfinance · Adanos · Auto-updated daily by GitHub Actions

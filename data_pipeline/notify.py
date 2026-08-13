@@ -134,7 +134,7 @@ def send_daily_push(gor_output):
             bd_body = msg.replace(chr(10), chr(10) + chr(10))
             req = urllib.request.Request(
                 'https://api.buttondown.com/v1/emails',
-                data=json.dumps({'subject': subject, 'body': bd_body}).encode('utf-8'),
+                data=json.dumps({'subject': subject, 'body': bd_body, 'status': 'ready'}).encode('utf-8'),
                 headers={'Content-Type': 'application/json', 'Authorization': f'Token {bd_key}'})
             if dry:
                 print(f"  [dry] Buttondown: {subject}")
