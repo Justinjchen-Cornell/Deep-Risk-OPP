@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Deep-Risk-OPP · Live Macro Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0e1a;--card:#111827;--line:#1f2a40;--gold:#f0c040;--red:#ef4444;--green:#22c55e;--blue:#3b82f6;--orange:#f59e0b;--text:#e0e6ed;--muted:#7a8a9a}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,'PingFang SC',sans-serif;min-height:100vh;padding:20px}
+.wrap{max-width:1200px;margin:0 auto}
+header{text-align:center;padding:30px 0 20px}
+header h1{font-size:30px;color:var(--gold);letter-spacing:2px}
+header .sub{color:var(--muted);font-size:13px;margin-top:6px}
+.grid{display:grid;gap:16px;margin-top:20px}
+.row2{grid-template-columns:1fr 1fr}
+.row3{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:800px){.row2,.row3{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h2{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.big-num{font-size:42px;font-weight:800;font-family:monospace;line-height:1}
+.big-num small{font-size:14px;font-weight:400;color:var(--muted)}
+.gauge-track{height:10px;background:#1e293b;border-radius:5px;margin:12px 0 6px;overflow:hidden;position:relative}
+.gauge-fill{height:100%;border-radius:5px;transition:width 1s ease}
+.gauge-labels{display:flex;justify-content:space-between;font-size:9px;color:#475569;font-family:monospace}
+.kv{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1a2336;font-size:14px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:var(--muted)}
+.kv .v{font-weight:700;font-family:monospace}
+.alloc-bar{display:flex;height:36px;border-radius:8px;overflow:hidden;margin:14px 0 8px}
+.alloc-seg{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;font-family:monospace;color:#0a0e1a;min-width:40px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:11px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.alert{background:#4c0519;border:1px solid #7f1d1d;border-radius:8px;padding:10px 14px;margin:8px 0;font-size:13px}
+.alert.warn{background:#1c1917;border-color:#78350f}
+.status-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;font-family:monospace}
+footer{text-align:center;color:#475569;font-size:10px;margin:30px 0;font-family:monospace}
+footer a{color:var(--muted)}
+.loading{text-align:center;color:var(--muted);padding:60px;font-family:monospace}
+.flow-step{display:inline-block;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 14px;font-size:12px;margin:4px}
+.flow-arrow{color:#475569;font-size:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>DEEP-RISK-OPP</h1>
+  <div class="sub">GOR Seismograph · Capital Flow Fault-Line Scan · Live from the daily pipeline</div>
+</header>
+<div id="app"><div class="loading">Loading live data…</div></div>
+<footer>
+  Research framework · Not investment advice · <a href="https://github.com/Justinjchen-Cornell/Deep-Risk-OPP">GitHub</a><br>
+  Data: FRED · akshare · yfinance · Adanos · Auto-updated daily by GitHub Actions
+</footer>
+</div>
+<script>
+async function load(){
+  try{
+    const [gorR, cfR] = await Promise.all([
+      fetch('./gor_latest.json').then(r=>r.json()),
+      fetch('./capital_flows_latest.json').then(r=>r.json()).catch(()=>null)
+    ]);
+    render(gorR, cfR);
+  }catch(e){
+    document.getElementById('app').innerHTML = '<div class="loading">Data files not found. Run scripts/gor_daily.py first.</div>';
+  }
+}
+
+function render(g, cf){
+  const d = g.data || {};
+  const alloc = g.allocation || {};
+  const gw = g.gor_wti || 0, gb = g.gor_brent || 0;
+  const gold = d['黄金期货'] ? d['黄金期货'].price : 0;
+  const wti = d['WTI原油'] ? d['WTI原油'].price : 0;
+  const dxy = d['美元指数DXY'] ? d['美元指数DXY'].price : 0;
+  const y10 = d['10Y美债收益率'] ? d['10Y美债收益率'].price : 0;
+  const vix = d['VIX恐慌指数'] ? d['VIX恐慌指数'].price : 0;
+  const copper = d['COMEX铜'] ? d['COMEX铜'].price : 0;
+  const regime = g.regime || 'unknown';
+  const zone = gw >= 45 ? 'EXTREME OPPORTUNITY' : (gw >= 30 ? 'RECOVERY CYCLE' : (gw >= 20 ? 'FAIR VALUE' : 'OIL BUBBLE'));
+  const zoneColor = gw >= 45 ? '#ef4444' : (gw >= 30 ? '#f59e0b' : (gw >= 20 ? '#22c55e' : '#3b82f6'));
+  const alerts = g.alerts || [];
+
+  const gaugePct = Math.min(gw/80*100, 100);
+  const allocArr = [
+    ['Oil', alloc['油气']||0, '#ef4444'],
+    ['Gold', alloc['黄金']||0, '#f0c040'],
+    ['A-Shares', alloc['A股']||0, '#3b82f6'],
+    ['Cash', alloc['现金']||0, '#475569'],
+  ];
+  const allocBar = allocArr.filter(a=>a[1]>0).map(a=>
+    '<div class="alloc-seg" style="background:'+a[2]+';flex:'+a[1]+'">'+a[0]+' '+a[1]+'%</div>'
+  ).join('');
+
+  const alertHtml = alerts.length ? alerts.map(a=>
+    '<div class="alert'+(a.level==='warning'?' warn':'')+'"><b>'+(a.level==='critical'?'🔴':'⚠️')+' '+a.title+'</b><br><span style="font-size:11px;color:#aaa">'+a.detail+'</span></div>'
+  ).join('') : '<div style="color:#475569;font-size:12px">No active alerts</div>';
+
+  const ctf = g.capital_three_flows || {};
+  const speed = {signal: ctf.speed || ''};
+  const direction = {signal: ctf.direction || '', us30y: ctf.thirtyyear, fed_rate: ctf.fed_rate};
+  const hy = null, ig = null, em = null;
+  const us30y = ctf.thirtyyear, fedRate = ctf.fed_rate;
+  const fed_bs = ctf.fed_balance, m2 = ctf.m2;
+
+  document.getElementById('app').innerHTML = `
+  <div class="grid row2">
+    <div class="card">
+      <h2>📊 GOR Seismograph</h2>
+      <div class="big-num">${gw.toFixed(1)} <small>/ WTI</small></div>
+      <div style="margin-top:4px"><span class="status-badge" style="background:${zoneColor}22;color:${zoneColor}">${zone}</span></div>
+      <div class="gauge-track"><div class="gauge-fill" style="width:${gaugePct}%;background:${zoneColor}"></div></div>
+      <div class="gauge-labels"><span>20<br>Bubble</span><span>30<br>Fair</span><span>45<br>Extreme</span><span>60<br>!</span><span>80<br>ATH</span></div>
+      <div class="kv"><span class="k">GOR (Brent)</span><span class="v">${gb.toFixed(1)}</span></div>
+      <div class="kv"><span class="k">Regime</span><span class="v">${regime}</span></div>
+    </div>
+    <div class="card">
+      <h2>🛢️ Market Snapshot</h2>
+      <div class="kv"><span class="k">Gold</span><span class="v" style="color:#f0c040">$${gold.toLocaleString()}</span></div>
+      <div class="kv"><span class="k">WTI Crude</span><span class="v">$${wti.toFixed(2)}</span></div>
+      <div class="kv"><span class="k">DXY</span><span class="v">${dxy.toFixed(2)}</span></div>
+      <div class="kv"><span class="k">US 10Y</span><span class="v">${y10.toFixed(2)}%</span></div>
+      <div class="kv"><span class="k">VIX</span><span class="v">${vix.toFixed(2)}</span></div>
+      <div class="kv"><span class="k">Copper</span><span class="v">$${copper.toFixed(2)}/lb</span></div>
+    </div>
+  </div>
+  <div class="grid" style="grid-template-columns:1fr">
+    <div class="card">
+      <h2>💰 Allocation</h2>
+      <div class="alloc-bar">${allocBar}</div>
+      <div class="legend">
+        <span><span class="dot" style="background:#ef4444"></span>Oil</span>
+        <span><span class="dot" style="background:#f0c040"></span>Gold</span>
+        <span><span class="dot" style="background:#3b82f6"></span>A-Shares</span>
+        <span><span class="dot" style="background:#475569"></span>Cash</span>
+      </div>
+      ${alertHtml}
+    </div>
+  </div>
+  <div class="grid row3">
+    <div class="card">
+      <h2>🌊 Capital Flows</h2>
+      <div class="kv"><span class="k">Total</span><span class="v" style="color:${ctf.total==='收缩'?'#ef4444':'#22c55e'}">${ctf.total || '—'}</span></div>
+      <div class="kv"><span class="k">Direction</span><span class="v" style="color:${ctf.direction==='向心坍缩'?'#ef4444':'#22c55e'}">${ctf.direction || '—'}</span></div>
+      <div class="kv"><span class="k">Speed</span><span class="v">${ctf.speed || '—'}</span></div>
+      <div class="kv"><span class="k">Fed Balance Sheet</span><span class="v">$${fed_bs ? fed_bs.toFixed(1) : '—'}T</span></div>
+      <div class="kv"><span class="k">M2</span><span class="v">$${m2 ? m2.toFixed(1) : '—'}T</span></div>
+    </div>
+    <div class="card">
+      <h2>🧭 Rates & Dollar</h2>
+      <div class="kv"><span class="k">DXY</span><span class="v">${dxy.toFixed(2)}</span></div>
+      <div class="kv"><span class="k">US 30Y</span><span class="v">${us30y ? us30y.toFixed(2)+'%' : '—'}</span></div>
+      <div class="kv"><span class="k">Fed Rate</span><span class="v">${fedRate ? fedRate.toFixed(2)+'%' : '—'}</span></div>
+      <div class="kv"><span class="k">Warsh Alert</span><span class="v" style="color:${ctf.warsh_alert?'#ef4444':'#22c55e'}">${ctf.warsh_alert ? '⚠️ ACTIVE' : '✓ calm'}</span></div>
+    </div>
+    <div class="card">
+      <h2>⏱️ How It Works</h2>
+      <div class="flow-step">GOR≥45<br><b style="color:#ef4444">Oil cheap</b></div><span class="flow-arrow">→</span>
+      <div class="flow-step">Risk<br>corrections</div><span class="flow-arrow">→</span>
+      <div class="flow-step">Hard<br>stops</div><span class="flow-arrow">→</span>
+      <div class="flow-step">1 decision<br>card</div>
+      <div style="margin-top:14px;font-size:11px;color:var(--muted);line-height:1.7">
+        11 frameworks · 6 masters · 1 ratio.<br>
+        Open source. Run it locally with:<br>
+        <code style="background:#1e293b;padding:2px 8px;border-radius:4px">python run.py --mode daily</code>
+      </div>
+    </div>
+  </div>`;
+}
+load();
+</script>
+</body>
+</html>
