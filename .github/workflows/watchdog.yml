@@ -35,19 +35,17 @@ jobs:
             exit 0
           fi
           BODY=$(cat /tmp/watchdog.txt)
-          gh issue create \
-            --title "🔴 DATA STALE: pipeline missed its daily run" \
-            --body "Watchdog detected stale site data.
+          gh issue create             --title "🔴 DATA STALE: pipeline missed its daily run"             --body "Watchdog detected stale site data.
 
-\`\`\`
-${BODY}
-\`\`\`
+          ```
+          ${BODY}
+          ```
 
-**Impact**: justinjchen-cornell.github.io/Deep-Risk-OPP is serving old numbers.
-**Fix**: check the Daily GOR Update workflow:
-https://github.com/Justinjchen-Cornell/Deep-Risk-OPP/actions/workflows/daily.yml
+          **Impact**: justinjchen-cornell.github.io/Deep-Risk-OPP is serving old numbers.
+          **Fix**: check the Daily GOR Update workflow:
+          https://github.com/Justinjchen-Cornell/Deep-Risk-OPP/actions/workflows/daily.yml
 
-(This issue was opened automatically by the Pipeline Watchdog and will be closed automatically once data recovers.)"
+          (This issue was opened automatically by the Pipeline Watchdog and will be closed automatically once data recovers.)"
 
       - name: Close alert issue (data recovered)
         if: steps.check.outcome == 'success'
