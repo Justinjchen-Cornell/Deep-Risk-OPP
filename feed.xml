@@ -5,7 +5,7 @@
   <link href="https://justinjchen-cornell.github.io/feed.xml" rel="self"/>
   <link href="https://justinjchen-cornell.github.io/"/>
   <id>tag:justinjchen-cornell.github.io,2026:feed</id>
-  <updated>2026-08-13T14:22:50Z</updated>
+  <updated>2026-08-14T01:31:20Z</updated>
   <author><name>Justinjchen</name></author>
   <entry>
     <title>GOR 55.3 · 极端区</title>
@@ -80,10 +80,16 @@
     <updated>2026-08-13T00:00:00Z</updated>
     <content type="html"><p><b>GOR(WTI) 53.8</b> (Brent 50.8) — 极端区</p><p>黄金 $4,453.7 · WTI $82.8 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 15.3</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
   </entry>  <entry>
-    <title>GOR 55.2 · 原油极端低估 · 仓位 50%</title>
+    <title>GOR 53.9 · 极端区</title>
     <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
-    <id>tag:justinjchen-cornell.github.io,2026-08-13:signal</id>
-    <updated>2026-08-13T00:00:00Z</updated>
-    <content type="html"><p><b>GOR(WTI) 55.2</b> (Brent 52.1) — 原油极端低估</p><p>黄金 $4,425.8 · WTI $80.1 · 布伦特 $84.9 · DXY 99.8 · 10Y 4.7% · VIX 14.6</p><p>仓位 50%：油气 25% · 黄金 20% · 现金 48% · A股 7%</p><p>三流：总量收缩 · 方向向心坍缩 · 流速放缓</p><ul><li>[warning] DXY=99.8 > 99 强美元压制 — 仓位-10%</li><li>[warning] 10Y=4.7% > 4.3% 高利率压制 — 仓位-10%</li></ul><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
+    <id>tag:justinjchen-cornell.github.io,2026-08-14:signal</id>
+    <updated>2026-08-14T00:00:00Z</updated>
+    <content type="html"><p><b>GOR(WTI) 53.9</b> (Brent 50.9) — 极端区</p><p>黄金 $4,383.7 · WTI $81.3 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 14.6</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
+  </entry>  <entry>
+    <title>GOR 53.9 · 原油极端低估 · 仓位 50%</title>
+    <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
+    <id>tag:justinjchen-cornell.github.io,2026-08-14:signal</id>
+    <updated>2026-08-14T00:00:00Z</updated>
+    <content type="html"><p><b>GOR(WTI) 53.9</b> (Brent 50.9) — 原油极端低估</p><p>黄金 $4,383.7 · WTI $81.3 · 布伦特 $86.2 · DXY 99.9 · 10Y 4.7% · VIX 14.6</p><p>仓位 50%：油气 25% · 黄金 20% · 现金 48% · A股 7%</p><p>三流：总量收缩 · 方向向心坍缩 · 流速放缓</p><ul><li>[warning] DXY=99.93 > 99 强美元压制 — 仓位-10%</li><li>[warning] 10Y=4.68% > 4.3% 高利率压制 — 仓位-10%</li></ul><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
   </entry>
 </feed>
