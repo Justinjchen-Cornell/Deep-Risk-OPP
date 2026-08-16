@@ -183,7 +183,9 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
     prev_oil_alloc = 0
     prev_gold_alloc = 0
 
-    # Portfolio NAV simulation
+    # Portfolio NAV simulation (v4: 含 0.1% 单边调仓成本，仅在区间切换时收取)
+    FEE_RATE = 0.001
+    trade_count = 0
     nav = 100.0
     nav_peak = 100.0
     max_drawdown = 0.0
@@ -226,6 +228,8 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
         regime_counts[regime] += 1
 
         if regime != prev_regime and prev_regime is not None:
+            nav *= (1 - FEE_RATE)          # v4: 调仓成本
+            trade_count += 1
             signal_changes.append({
                 "date": date.strftime('%Y-%m-%d'),
                 "from": prev_regime, "to": regime,
@@ -332,7 +336,7 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
       Fair Value:   {regime_counts['fair_value']:>5d} days  ({regime_counts['fair_value']/total_days*100:5.1f}%)
       Oil Bubble:   {regime_counts['oil_bubble']:>5d} days  ({regime_counts['oil_bubble']/total_days*100:5.1f}%)
   {'='*64}
-    Signal Changes: {len(signal_changes)}
+    Signal Changes: {len(signal_changes)} (调仓成本 {FEE_RATE*100:.1f}% 单边 × {trade_count} 次已计入)
   {'='*64}
 """)
 
