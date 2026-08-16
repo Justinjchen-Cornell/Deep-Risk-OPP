@@ -66,6 +66,19 @@ GOR地震仪 → 资本流断层扫描 → 11个框架 → 6位大师 → 1张�
 
 ---
 
+## 订阅（免费）
+
+不用再记得打开网站——让信号每天自己来找你：
+
+| 渠道 | 方式 |
+|---|---|
+| 📮 **邮件** | [buttondown.com/chenjia2007](https://buttondown.com/chenjia2007) — 每天一封 |
+| 🔔 **RSS 转邮件** | [follow.it/deep-risk-opp](https://follow.it/deep-risk-opp?leanpub) |
+| 📡 **原始 RSS** | [feed.xml](https://justinjchen-cornell.github.io/Deep-Risk-OPP/feed.xml) |
+| 📱 **安装到手机** | 手机浏览器打开站点 → "添加到主屏幕"（PWA） |
+
+每日管道：00:00 UTC 拉数据 → 算信号 → 推送（飞书/钉钉/Server酱/Telegram）→ RSS → 自动部署。
+
 ## 快速开始
 
 ```bash

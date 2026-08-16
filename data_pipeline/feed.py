@@ -19,7 +19,7 @@ FEED_PATH = BASE_DIR / "feed.xml"
 MAX_ENTRIES = 30
 
 
-def build_entry(updated, d):
+def build_entry(updated, d, prev=None):
     """根据一日数据构造 Atom entry。"""
     date_str = updated[:10]
     gor_w = d.get('gor_wti')
@@ -47,6 +47,15 @@ def build_entry(updated, d):
         lines.append(f"<p>仓位 {pos}%：油气 {alloc.get('油气', 0)}% · 黄金 {alloc.get('黄金', 0)}% · 现金 {alloc.get('现金', 0)}% · A股 {alloc.get('A股', 0)}%</p>")
     if cf.get('total'):
         lines.append(f"<p>三流：总量{cf.get('total', '?')} · 方向{cf.get('direction', '?')} · 流速{cf.get('speed', '?')}</p>")
+    # 昨日验证：前一日信号 vs 今日 WTI 实际
+    wti_now = (data.get('WTI原油') or {}).get('price')
+    if prev and isinstance(prev.get('wti'), (int, float)) and isinstance(wti_now, (int, float)) and wti_now > 0:
+        pv_wti = prev['wti']
+        pv_gor = prev.get('gor_wti')
+        chg = (wti_now - pv_wti) / pv_wti * 100
+        pv_zone = '极端区' if (pv_gor or 0) >= 45 else ('修复区' if (pv_gor or 0) >= 30 else '其他')
+        verdict = '✅ 验证通过' if (pv_gor or 0) >= 45 and chg > 0 else '⚠️ 验证中/未验证'
+        lines.append(f"<p>昨日验证：前日 GOR {pv_gor:.1f}（{pv_zone}）→ 今日 WTI {chg:+.1f}% {verdict}</p>")
     if alerts:
         alert_lines = "".join(f"<li>[{a.get('level', '')}] {a.get('title', '')} — {a.get('detail', '')}</li>" for a in alerts)
         lines.append(f"<ul>{alert_lines}</ul>")
@@ -75,7 +84,8 @@ def generate_feed(gor_output=None):
             hist = json.loads(hist_path.read_text(encoding='utf-8'))
         except Exception:
             hist = []
-    for h in hist[-MAX_ENTRIES + 1:]:
+    for idx, h in enumerate(hist[-MAX_ENTRIES + 1:]):
+        prev = hist[-MAX_ENTRIES + 1:][idx - 1] if idx > 0 else None
         # 把 wti_history 条目扩成 feed 需要的形状
         d = {
             "gor_wti": h.get("gor_wti"), "gor_brent": h.get("gor_brent"),
@@ -89,14 +99,15 @@ def generate_feed(gor_output=None):
             "capital_three_flows": {"total": "", "direction": "", "speed": ""},
             "data_quality": {"ok": True, "degraded_fields": []},
         }
-        entries.append(build_entry(h.get("date"), d))
+        entries.append(build_entry(h.get("date"), d, prev=prev))
     # 2) 当日
     if gor_output is None:
         g_path = BASE_DIR / "gor_latest.json"
         if g_path.exists():
             gor_output = json.loads(g_path.read_text(encoding='utf-8'))
     if gor_output:
-        entries.append(build_entry(gor_output.get("updated", datetime.now().strftime('%Y-%m-%d 12:00')), gor_output))
+        last_hist = hist[-1] if hist else None
+        entries.append(build_entry(gor_output.get("updated", datetime.now().strftime('%Y-%m-%d 12:00')), gor_output, prev=last_hist))
 
     feed = f"""<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">

@@ -204,6 +204,19 @@ For detailed master mappings, see [frameworks/08-六大师映射.md](frameworks/
 
 ---
 
+## Subscribe (free)
+
+Never check the site again — let the signal come to you:
+
+| Channel | How |
+|---|---|
+| 📮 **Email** | [buttondown.com/chenjia2007](https://buttondown.com/chenjia2007) — one email every morning |
+| 🔔 **RSS to email** | [follow.it/deep-risk-opp](https://follow.it/deep-risk-opp?leanpub) |
+| 📡 **Raw RSS** | [feed.xml](https://justinjchen-cornell.github.io/Deep-Risk-OPP/feed.xml) — any reader |
+| 📱 **PWA** | open the site on your phone → "Add to Home Screen" |
+
+Daily pipeline: 00:00 UTC data pull → signal → push to configured channels (Feishu/DingTalk/ServerChan/Telegram) → RSS → auto-deploy.
+
 ## Getting Started
 
 **Level 0 — just look.** No installation. Open the [live site](https://justinjchen-cornell.github.io/Deep-Risk-OPP/) — it updates itself daily.
