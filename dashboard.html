@@ -183,8 +183,20 @@ function render(g, cf){
   const dq = g.data_quality || null;
   const dqBanner = (dq && !dq.ok) ? `<div class="dq-banner">⚠️ DATA DEGRADED: ${dq.degraded_fields.join(', ')} — signals may be unreliable</div>` : '';
 
+  // --- Today's three takeaways (今日三句话) ---
+  const t1 = `GOR ${gw.toFixed(1)} is in the ${zone} zone. Since 1998 it has crossed 45 four times — oil gained 54–167% within 12–24 months each time.`;
+  const t2 = alerts.length
+    ? `Active alerts (${alerts.length}): ${alerts[0].title}${alerts[1] ? ' · ' + alerts[1].title : ''}`
+    : `No active alerts. WTI $${wti.toFixed(2)} is ${(wti - 75).toFixed(2)} away from the $75 hard-stop line.`;
+  const t3 = (dq && !dq.ok)
+    ? `Data degraded: ${dq.degraded_fields.join(', ')} — treat signals with extra caution today.`
+    : `Data complete (FRED · Sina · akshare). Today's posture: ${gw >= 45 ? 'discipline first — build positions gradually, no chasing' : (gw >= 30 ? 'hold and let the trade work' : 'light positions, wait')}.`;
+  const takeaways = [t1, t2, t3];
+  const takeawayHtml = `<div class="card"><h3 style="margin-bottom:10px">Today in three lines</h3>${takeaways.map((t, i) => `<div style="padding:8px 0;border-bottom:${i < 2 ? '1px dashed #1f2a40' : 'none'};line-height:1.7"><span style="color:#f0c040;font-family:'Fira Code',monospace;font-weight:700;margin-right:8px">${i + 1}.</span>${t}</div>`).join('')}</div>`;
+
   document.getElementById('app').innerHTML = `
   ${dqBanner}
+  ${takeawayHtml}
   <div class="grid row2">
     <div class="card">
       <h2>📊 GOR Seismograph</h2>
