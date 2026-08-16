@@ -1,6 +1,6 @@
 {
-  "updated": "2026-08-15 12:00",
-  "week_of": "2026-08-15",
+  "updated": "2026-08-16 12:00",
+  "week_of": "2026-08-16",
   "data_source": "FRED (DGS10/DGS30/DTWEXBGS/VIXCLS/DFF/WALCL/M2SL) + akshare (commodities)",
   "bonds": {
     "us_10y": 4.63,
@@ -66,7 +66,7 @@
     "trend": "铜受强美元+科技股抛售压制·AI基建中长期看涨"
   },
   "currency_flows": {
-    "dxy_signal": "DXY=99.6>99=向心坍缩区间",
-    "dxy": 99.64
+    "dxy_signal": "DXY=99.7>99=向心坍缩区间",
+    "dxy": 99.67
   }
 }
