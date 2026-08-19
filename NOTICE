@@ -1,0 +1,25 @@
+Deep-Risk-OPP
+Copyright 2026 Justinjchen
+
+This product includes software developed by Justinjchen.
+This product is licensed under the Apache License, Version 2.0.
+
+THIRD-PARTY NOTICES
+-------------------
+- yfinance (Yahoo Finance API wrapper) — Apache 2.0
+- pandas / numpy — BSD-3-Clause
+- matplotlib — PSF/BSD-compatible
+- akshare — MIT
+- fredapi — MIT
+- python-dotenv — BSD-3-Clause
+- rich — MIT
+
+Theoretical acknowledgments:
+- Gold/Oil Ratio (GOR) framework: derived from the macro analysis system of Mr. Lu Qiyuan
+- Capital Three-Flows framework: based on liquidity analysis models by various analysts
+- Six Masters Mapping: author's synthesis of six investors' public statements
+
+Data sources:
+- FRED (Federal Reserve Economic Data) — data licensed under FRED terms
+- Yahoo Finance — data used for research purposes
+- Adanos Reddit Sentiment API — data used under API terms

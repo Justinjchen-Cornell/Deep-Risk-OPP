@@ -6,7 +6,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.11+-blue?logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
+  <img src="https://img.shields.io/badge/license-Apache 2.0-green" alt="License">
   <img src="https://img.shields.io/badge/data-FRED%20%7C%20akshare%20%7C%20yfinance-orange" alt="Data">
   <img src="https://img.shields.io/badge/Claude%20Code-skill-6A46D1" alt="Claude Code">
   <img src="https://img.shields.io/badge/回测-2020–2026-ffa500" alt="Backtest">
@@ -428,7 +428,7 @@ GOR比率、资本流扫描、大师共识及所有框架输出，
 
 ## 许可证
 
-MIT © 2026 Justin Chen (Justinjchen-Cornell)
+Apache 2.0 © 2026 Justin Chen (Justinjchen-Cornell)
 
 ---
 

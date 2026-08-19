@@ -7,7 +7,7 @@ name = "deep-risk-opp"
 version = "2.0.0"
 description = "Macro systemic risk early-warning framework. GOR seismograph + capital flow fault-line scan."
 readme = "README.md"
-license = {text = "MIT"}
+license = {text = "Apache-2.0"}
 authors = [{name = "Justin Chen", email = "justin.chen@example.com"}]
 keywords = [
     "macro-risk", "gold-oil-ratio", "systemic-risk", "claude-code",
@@ -16,7 +16,7 @@ keywords = [
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Financial and Insurance Industry",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Office/Business :: Financial :: Investment",

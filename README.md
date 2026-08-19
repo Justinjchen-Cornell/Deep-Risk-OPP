@@ -6,7 +6,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.11+-blue?logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
+  <img src="https://img.shields.io/badge/license-Apache%202.0-blue" alt="License">
   <img src="https://img.shields.io/badge/data-FRED%20%7C%20akshare%20%7C%20yfinance-orange" alt="Data">
   <img src="https://img.shields.io/badge/Claude%20Code-skill-6A46D1" alt="Claude Code">
   <img src="https://img.shields.io/badge/live-dashboard-brightgreen" alt="Live Dashboard">
@@ -432,7 +432,7 @@ independent macro research — not receiving financial advice.
 
 ## License
 
-MIT © 2026 Justin Chen (Justinjchen-Cornell)
+Apache License 2.0 © 2026 Justinjchen (Justinjchen-Cornell)
 
 ---
 
