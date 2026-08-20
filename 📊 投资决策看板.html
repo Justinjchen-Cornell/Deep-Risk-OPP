@@ -333,11 +333,11 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
 <!-- DATA_BLOCK_START -->
 <script>
 window.__GOR_DATA__ = {
-  "updated": "2026-08-19 12:00",
-  "gor_brent": 48.12,
-  "gor_wti": 51.92,
+  "updated": "2026-08-20 12:00",
+  "gor_brent": 50.9,
+  "gor_wti": 53.95,
   "regime": "原油极端低估",
-  "final_position": 50,
+  "final_position": 60,
   "allocation": {
     "油气": 25,
     "黄金": 20,
@@ -348,53 +348,48 @@ window.__GOR_DATA__ = {
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=99.65 > 99 强美元压制",
-      "detail": "仓位-10%"
-    },
-    {
-      "level": "warning",
-      "title": "10Y=4.72% > 4.3% 高利率压制",
+      "title": "10Y=4.71% > 4.3% 高利率压制",
       "detail": "仓位-10%"
     }
   ],
   "data": {
     "黄金期货": {
-      "price": 4396.0,
+      "price": 4565.0,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 84.67,
+      "price": 84.61,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 91.35,
+      "price": 89.69,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 99.65,
+      "price": 98.85,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
-      "price": 4.72,
+      "price": 4.71,
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 15.19,
+      "price": 15.84,
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.563,
+      "price": 6.602,
       "change_pct": 0.0
     }
   },
   "capital_three_flows": {
     "total": "收缩",
-    "direction": "向心坍缩",
+    "direction": "中性",
     "speed": "放缓",
-    "dxy": 99.65,
-    "vix": 15.19,
-    "tenyear": 4.72,
-    "thirtyyear": 5.31,
+    "dxy": 98.85,
+    "vix": 15.84,
+    "tenyear": 4.71,
+    "thirtyyear": 5.28,
     "fed_balance": 6.76,
     "m2": 23.16,
     "fed_rate": 3.63,
@@ -408,7 +403,9 @@ window.__GOR_DATA__ = {
   "data_quality": {
     "ok": true,
     "degraded_fields": [],
-    "fallbacks": {},
+    "fallbacks": {
+      "布伦特(估算WTI×1.06)": "estimated"
+    },
     "note": "全部数据源正常"
   }
 };
