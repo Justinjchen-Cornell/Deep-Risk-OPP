@@ -5,7 +5,7 @@
   <link href="https://justinjchen-cornell.github.io/feed.xml" rel="self"/>
   <link href="https://justinjchen-cornell.github.io/"/>
   <id>tag:justinjchen-cornell.github.io,2026:feed</id>
-  <updated>2026-08-20T00:58:27Z</updated>
+  <updated>2026-08-21T01:02:21Z</updated>
   <author><name>Justinjchen</name></author>
   <entry>
     <title>GOR 55.3 · 极端区</title>
@@ -122,10 +122,16 @@
     <updated>2026-08-20T00:00:00Z</updated>
     <content type="html"><p><b>GOR(WTI) 54.0</b> (Brent 50.9) — 极端区</p><p>黄金 $4,565.0 · WTI $84.6 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 15.8</p><p>昨日验证：前日 GOR 51.9（极端区）→ 今日 WTI -0.1% ⚠️ 验证中/未验证</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
   </entry>  <entry>
-    <title>GOR 54.0 · 原油极端低估 · 仓位 60%</title>
+    <title>GOR 52.9 · 极端区</title>
     <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
-    <id>tag:justinjchen-cornell.github.io,2026-08-20:signal</id>
-    <updated>2026-08-20T00:00:00Z</updated>
-    <content type="html"><p><b>GOR(WTI) 54.0</b> (Brent 50.9) — 原油极端低估</p><p>黄金 $4,565.0 · WTI $84.6 · 布伦特 $89.7 · DXY 98.8 · 10Y 4.7% · VIX 15.8</p><p>仓位 60%：油气 25% · 黄金 20% · 现金 48% · A股 7%</p><p>三流：总量收缩 · 方向中性 · 流速放缓</p><p>昨日验证：前日 GOR 54.0（极端区）→ 今日 WTI +0.0% ⚠️ 验证中/未验证</p><ul><li>[warning] 10Y=4.71% > 4.3% 高利率压制 — 仓位-10%</li></ul><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
+    <id>tag:justinjchen-cornell.github.io,2026-08-21:signal</id>
+    <updated>2026-08-21T00:00:00Z</updated>
+    <content type="html"><p><b>GOR(WTI) 52.9</b> (Brent 49.9) — 极端区</p><p>黄金 $4,566.1 · WTI $86.4 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 14.9</p><p>昨日验证：前日 GOR 54.0（极端区）→ 今日 WTI +2.1% ✅ 验证通过</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
+  </entry>  <entry>
+    <title>GOR 52.9 · 原油极端低估 · 仓位 60%</title>
+    <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
+    <id>tag:justinjchen-cornell.github.io,2026-08-21:signal</id>
+    <updated>2026-08-21T00:00:00Z</updated>
+    <content type="html"><p><b>GOR(WTI) 52.9</b> (Brent 49.9) — 原油极端低估</p><p>黄金 $4,566.1 · WTI $86.4 · 布伦特 $91.6 · DXY 98.8 · 10Y 4.7% · VIX 14.9</p><p>仓位 60%：油气 25% · 黄金 20% · 现金 48% · A股 7%</p><p>三流：总量收缩 · 方向中性 · 流速放缓</p><p>昨日验证：前日 GOR 52.9（极端区）→ 今日 WTI +0.0% ⚠️ 验证中/未验证</p><ul><li>[warning] 10Y=4.65% > 4.3% 高利率压制 — 仓位-10%</li></ul><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
   </entry>
 </feed>
