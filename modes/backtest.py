@@ -197,6 +197,7 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
     bh_peak = 100.0
     bh_max_dd = 0.0
     regime_rets = {'extreme': [], 'recovery': [], 'fair_value': [], 'oil_bubble': []}
+    gor_signal_days = []   # v5: 每日是否 GOR>45
 
     for i in range(1, len(common_idx)):
         date = common_idx[i]
@@ -264,6 +265,9 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
         bh_rets.append(bh_daily)
         regime_rets[regime].append(daily)
 
+        # v5: 记录 GOR>45 指示（用于 t 检验）
+        gor_signal_days.append(1 if (gor >= 45) else 0)
+
         if chart:
             nav_history.append((date, nav))
             bh_history.append((date, bh_nav))
@@ -289,6 +293,24 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
         return (mu / sd * (252 ** 0.5)) if sd > 0 else 0.0
     sharpe = _sharpe(daily_rets)
     sharpe_bh = _sharpe(bh_rets)
+
+    # v5: GOR>45 信号日的日收益 t 检验（Newey-West 修正自相关）
+    sig_rets = [daily_rets[i] for i, flag in enumerate(gor_signal_days) if flag]
+    if len(sig_rets) >= 30:
+        mu = _st.mean(sig_rets)
+        T = len(sig_rets)
+        # Newey-West(5): 调整方差 = γ0 + 2*Σ_{k=1..5}(1-k/6)*γk
+        def _cov(k):
+            n = len(sig_rets) - k
+            if n <= 0: return 0.0
+            m = _st.mean(sig_rets)
+            return sum((sig_rets[i]-m)*(sig_rets[i+k]-m) for i in range(n)) / max(n, 1)
+        var0 = _cov(0)
+        nw_var = var0 + 2 * sum((1 - k/6) * _cov(k) for k in range(1, 6))
+        se = (nw_var / T) ** 0.5 if nw_var > 0 else float('inf')
+        t_stat = mu / se if se not in (0, float('inf')) else 0.0
+    else:
+        t_stat = 0.0
     regime_ann = {}
     for k, v in regime_rets.items():
         if len(v) >= 30:
@@ -323,6 +345,7 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
     Avg Allocation: {avg_gold:.0f}% Gold | ~{avg_oil:.0f}% Oil | ~{avg_cash:.0f}% Cash
     Max Drawdown:   {max_drawdown:+.1%}  (60/40: {bh_max_dd:+.1%})
     Sharpe:         {sharpe:.2f}  (60/40: {sharpe_bh:.2f})
+    GOR>45 t-stat:   {t_stat:.2f}  (Harvey 3.0 门槛: {'PASS' if t_stat >= 3.0 else 'NOT MET'})
   {'='*64}
     Per-Regime Annualized (GOR strategy):
       Extreme:      {regime_ann['extreme']:+8.1%}   ({regime_counts['extreme']:>4d} days)
