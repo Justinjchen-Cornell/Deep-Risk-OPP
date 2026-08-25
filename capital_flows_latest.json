@@ -1,12 +1,12 @@
 {
-  "updated": "2026-08-24 12:00",
-  "week_of": "2026-08-24",
+  "updated": "2026-08-25 12:00",
+  "week_of": "2026-08-25",
   "data_source": "FRED (DGS10/DGS30/DTWEXBGS/VIXCLS/DFF/WALCL/M2SL) + akshare (commodities)",
   "bonds": {
-    "us_10y": 4.69,
-    "us_30y": 5.23,
-    "us_5y": 4.44,
-    "spread_30y_10y": 0.54,
+    "us_10y": 4.74,
+    "us_30y": 5.27,
+    "us_5y": 4.49,
+    "spread_30y_10y": 0.53,
     "yield_curve": "陡峭化",
     "seesaw": {
       "treasury_vs_stocks": "正常",
@@ -45,7 +45,7 @@
     "fed_balance_trillion": 6.75,
     "m2_trillion": 23.16,
     "fed_rate_pct": 3.63,
-    "dgs30_pct": 5.23
+    "dgs30_pct": 5.27
   },
   "gold_flows": {
     "central_bank_purchases": {
@@ -58,7 +58,7 @@
     }
   },
   "oil_flows": {
-    "wti_price": 85.81,
+    "wti_price": 84.88,
     "spr_level": "3.7亿桶",
     "producer_discipline": "OPEC+减产·伊朗和平恢复出口"
   },
@@ -66,7 +66,7 @@
     "trend": "铜受强美元+科技股抛售压制·AI基建中长期看涨"
   },
   "currency_flows": {
-    "dxy_signal": "DXY=98.8",
-    "dxy": 98.79
+    "dxy_signal": "DXY=99.0",
+    "dxy": 98.96
   }
 }
