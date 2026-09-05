@@ -1,12 +1,12 @@
 {
-  "updated": "2026-08-22 12:00",
-  "week_of": "2026-08-22",
+  "updated": "2026-09-05 12:00",
+  "week_of": "2026-09-05",
   "data_source": "FRED (DGS10/DGS30/DTWEXBGS/VIXCLS/DFF/WALCL/M2SL) + akshare (commodities)",
   "bonds": {
-    "us_10y": 4.69,
-    "us_30y": 5.23,
-    "us_5y": 4.44,
-    "spread_30y_10y": 0.54,
+    "us_10y": 4.77,
+    "us_30y": 5.25,
+    "us_5y": 4.52,
+    "spread_30y_10y": 0.48,
     "yield_curve": "陡峭化",
     "seesaw": {
       "treasury_vs_stocks": "正常",
@@ -16,7 +16,7 @@
   },
   "central_banks": {
     "fed": {
-      "balance_sheet": "$6.8万亿",
+      "balance_sheet": "$6.7万亿",
       "trend": "QT收缩中",
       "rate": "3.63%",
       "next_meeting": "2026年7月FOMC",
@@ -42,10 +42,10 @@
     }
   },
   "macro_fred": {
-    "fed_balance_trillion": 6.75,
-    "m2_trillion": 23.16,
+    "fed_balance_trillion": 6.74,
+    "m2_trillion": 23.22,
     "fed_rate_pct": 3.63,
-    "dgs30_pct": 5.23
+    "dgs30_pct": 5.25
   },
   "gold_flows": {
     "central_bank_purchases": {
@@ -58,7 +58,7 @@
     }
   },
   "oil_flows": {
-    "wti_price": 86.65,
+    "wti_price": 91.22,
     "spr_level": "3.7亿桶",
     "producer_discipline": "OPEC+减产·伊朗和平恢复出口"
   },
@@ -66,7 +66,7 @@
     "trend": "铜受强美元+科技股抛售压制·AI基建中长期看涨"
   },
   "currency_flows": {
-    "dxy_signal": "DXY=98.8",
-    "dxy": 98.84
+    "dxy_signal": "DXY=99.2>99=向心坍缩区间",
+    "dxy": 99.16
   }
 }
