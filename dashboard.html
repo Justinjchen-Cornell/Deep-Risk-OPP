@@ -189,9 +189,19 @@ function render(g, cf, gm){
   const t2 = alerts.length
     ? `Active alerts (${alerts.length}): ${alerts[0].title}${alerts[1] ? ' · ' + alerts[1].title : ''}`
     : `No active alerts. WTI $${wti.toFixed(2)} is ${(wti - 75).toFixed(2)} away from the $75 hard-stop line.`;
+  let goldLine = null;
+  if (gm && typeof gm.score === 'number') {
+    const eHigh = (gm.zone === 'strong_ease' || gm.zone === 'mild_ease');
+    let gact;
+    if (gw >= 45) { gact = eHigh ? 'oil leads, gold holds (base kept)' : 'do NOT add gold — oil on its own supply story'; }
+    else if (gw >= 30) { gact = eHigh ? 'gold re-rating window — tier can be raised' : 'double headwind — stand aside, cash'; }
+    else { gact = 'easing sets gold tier only (GOR neutral)'; }
+    goldLine = '🥇 Gold validator: easing ' + (gm.score >= 0 ? '+' : '') + gm.score.toFixed(2) + ' (' + (gm.zone || '') + ') → ' + gact;
+  }
   const t3 = (dq && !dq.ok)
     ? `Data degraded: ${dq.degraded_fields.join(', ')} — treat signals with extra caution today.`
-    : `Data complete (FRED · Sina · akshare). Today's posture: ${gw >= 45 ? 'discipline first — build positions gradually, no chasing' : (gw >= 30 ? 'hold and let the trade work' : 'light positions, wait')}.`;
+    : (goldLine ? goldLine
+       : `Data complete (FRED · Sina · akshare). Today's posture: ${gw >= 45 ? 'discipline first — build positions gradually, no chasing' : (gw >= 30 ? 'hold and let the trade work' : 'light positions, wait')}.`);
   const takeaways = [t1, t2, t3];
   const takeawayHtml = `<div class="card"><h3 style="margin-bottom:10px">Today in three lines</h3>${takeaways.map((t, i) => `<div style="padding:8px 0;border-bottom:${i < 2 ? '1px dashed #1f2a40' : 'none'};line-height:1.7"><span style="color:#f0c040;font-family:'Fira Code',monospace;font-weight:700;margin-right:8px">${i + 1}.</span>${t}</div>`).join('')}</div>`;
 
