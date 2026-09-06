@@ -127,17 +127,18 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠DQ";e.title="degraded
 <script>
 async function load(){
   try{
-    const [gorR, cfR] = await Promise.all([
+    const [gorR, cfR, gmR] = await Promise.all([
       fetch('./gor_latest.json').then(r=>r.json()),
-      fetch('./capital_flows_latest.json').then(r=>r.json()).catch(()=>null)
+      fetch('./capital_flows_latest.json').then(r=>r.json()).catch(()=>null),
+      fetch('./goldmac_latest.json').then(r=>r.json()).catch(()=>null)
     ]);
-    render(gorR, cfR);
+    render(gorR, cfR, gmR);
   }catch(e){
     document.getElementById('app').innerHTML = '<div class="loading">Data files not found. Run scripts/gor_daily.py first.</div>';
   }
 }
 
-function render(g, cf){
+function render(g, cf, gm){
   const d = g.data || {};
   const alloc = g.allocation || {};
   const gw = g.gor_wti || 0, gb = g.gor_brent || 0;
@@ -194,6 +195,44 @@ function render(g, cf){
   const takeaways = [t1, t2, t3];
   const takeawayHtml = `<div class="card"><h3 style="margin-bottom:10px">Today in three lines</h3>${takeaways.map((t, i) => `<div style="padding:8px 0;border-bottom:${i < 2 ? '1px dashed #1f2a40' : 'none'};line-height:1.7"><span style="color:#f0c040;font-family:'Fira Code',monospace;font-weight:700;margin-right:8px">${i + 1}.</span>${t}</div>`).join('')}</div>`;
 
+  // ---- Gold Macro Validator (easing) card ----
+  let gmHtml = '';
+  if (gm && typeof gm.score === 'number') {
+    const ezMeta = {
+      strong_ease: { c: '#22c55e', t: 'STRONG EASING' },
+      mild_ease:   { c: '#a3e635', t: 'MILD EASING' },
+      mild_tight:  { c: '#f59e0b', t: 'MILD TIGHTENING' },
+      strong_tight:{ c: '#ef4444', t: 'STRONG TIGHTENING' }
+    };
+    const ez = ezMeta[gm.zone] || { c: '#94a3b8', t: gm.zone || '—' };
+    const t3 = gm.trend_3m, t6 = gm.trend_6m;
+    const up3 = t3 >= 0 ? '▲' : '▼', up6 = t6 >= 0 ? '▲' : '▼';
+    const c3 = t3 >= 0 ? '#22c55e' : '#ef4444', c6 = t6 >= 0 ? '#22c55e' : '#ef4444';
+    const compLab = { cpi_gap: 'CPI gap', core6_gap: 'Core PCE', unemp_rise: 'Unemployment',
+                      sloos: 'Credit (SLOOS)', house_short: 'Real house' };
+    const comp = gm.components || {};
+    const chips = Object.keys(compLab).map(function (k) {
+      const z = comp[k] && comp[k].z;
+      if (z == null) return '';
+      const c = z >= 0 ? '#22c55e' : '#ef4444';
+      return '<span style="display:inline-block;background:#0f172a;border:1px solid #1f2a40;border-radius:6px;padding:3px 8px;margin:2px 4px 2px 0;font-size:11px;color:' + c + '">' + compLab[k] + ' ' + (z >= 0 ? '+' : '') + z.toFixed(2) + '</span>';
+    }).join('');
+    const eHigh = (gm.zone === 'strong_ease' || gm.zone === 'mild_ease');
+    let act;
+    if (gw >= 45) { act = eHigh ? 'Oil leads, gold holds — double-confirm (gold base kept)' : 'Do NOT add gold — oil runs on its own supply story'; }
+    else if (gw >= 30) { act = eHigh ? 'Gold re-rating window — gold tier can be raised' : 'Double headwind — stand aside, cash'; }
+    else { act = 'Observe only — slow signal, sets gold tier, not timing'; }
+    gmHtml = '<div class="grid" style="grid-template-columns:1fr">' +
+      '<div class="card"><h2>🥇 Gold Macro Validator (easing)</h2>' +
+      '<div class="kv"><span class="k">easing score</span><span class="v" style="color:' + ez.c + ';font-weight:700">' + (gm.score >= 0 ? '+' : '') + gm.score.toFixed(2) + ' · ' + ez.t + '</span></div>' +
+      '<div class="kv"><span class="k">Trend 3m / 6m</span><span class="v"><span style="color:' + c3 + '">' + up3 + ' ' + (t3 >= 0 ? '+' : '') + t3.toFixed(2) + '</span> / <span style="color:' + c6 + '">' + up6 + ' ' + (t6 >= 0 ? '+' : '') + t6.toFixed(2) + '</span></span></div>' +
+      '<div style="margin:8px 0 4px;font-size:11px;color:var(--muted)">Components (z, trailing 10y):</div>' +
+      '<div>' + (chips || '—') + '</div>' +
+      '<div style="margin-top:10px;padding:8px 10px;border-left:3px solid ' + ez.c + ';background:#0f172a;border-radius:0 6px 6px 0;font-size:12px;line-height:1.6">⚡ ' + act + '</div>' +
+      '<div style="margin-top:8px;font-size:10.5px;color:var(--muted)">FRED monthly · as of ' + (gm.as_of || '—') + ' · quarterly hit rate 67.5% (2016-26 backtest) · slow signal: gold position tier, not timing</div>' +
+      '</div></div>';
+  }
+
   document.getElementById('app').innerHTML = `
   ${dqBanner}
   ${takeawayHtml}
@@ -217,6 +256,7 @@ function render(g, cf){
       <div class="kv"><span class="k">Copper</span><span class="v">$${copper.toFixed(2)}/lb</span></div>
     </div>
   </div>
+  ${gmHtml}
   <div class="grid" style="grid-template-columns:1fr">
     <div class="card">
       <h2>💰 Allocation</h2>
