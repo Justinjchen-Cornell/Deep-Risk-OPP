@@ -35,6 +35,9 @@ jobs:
       - name: Run daily update
         run: python scripts/gor_daily.py
 
+      - name: Gold macro validator (easing score)
+        run: python run.py --mode goldmac
+
       - name: Commit & push changes
         run: |
           git config user.name "Deep-Risk Bot"

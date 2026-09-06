@@ -28,7 +28,7 @@ def main():
     )
     parser.add_argument(
         "--mode",
-        choices=["daily", "weekly", "masters", "backtest", "dashboard", "forecast", "report", "sentiment", "chart"],
+        choices=["daily", "weekly", "masters", "backtest", "dashboard", "forecast", "report", "sentiment", "chart", "goldmac"],
         default="daily",
         help="Operating mode (default: daily)",
     )
@@ -73,8 +73,8 @@ def main():
 
     args = parser.parse_args()
 
-    from modes import (backtest, daily, dashboard, forecast, masters,
-                       report, sentiment, weekly)
+    from modes import (backtest, daily, dashboard, forecast, goldmac,
+                       masters, report, sentiment, weekly)
 
     handlers = {
         "daily": daily.mode_daily,
@@ -85,6 +85,7 @@ def main():
         "forecast": forecast.mode_forecast,
         "report": report.mode_report,
         "sentiment": sentiment.mode_sentiment,
+        "goldmac": goldmac.mode_goldmac,
     }
 
     print(f"\n  Deep-Risk-OPP v{config.SKILL_VERSION}")
