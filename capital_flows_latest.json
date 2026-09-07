@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-06 12:00",
-  "week_of": "2026-09-06",
+  "updated": "2026-09-07 12:00",
+  "week_of": "2026-09-07",
   "data_source": "FRED (DGS10/DGS30/DTWEXBGS/VIXCLS/DFF/WALCL/M2SL) + akshare (commodities)",
   "bonds": {
     "us_10y": 4.77,
@@ -58,7 +58,7 @@
     }
   },
   "oil_flows": {
-    "wti_price": 91.22,
+    "wti_price": 92.03,
     "spr_level": "3.7亿桶",
     "producer_discipline": "OPEC+减产·伊朗和平恢复出口"
   },
@@ -67,6 +67,6 @@
   },
   "currency_flows": {
     "dxy_signal": "DXY=99.2>99=向心坍缩区间",
-    "dxy": 99.16
+    "dxy": 99.18
   }
 }
