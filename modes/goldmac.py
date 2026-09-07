@@ -186,7 +186,7 @@ def _action(ezone, gor):
 
 
 def mode_goldmac():
-    print("  Gold Macro Validator (easing) - FRED 月频, 季频命中率 67.5% (2016-26 回测)")
+    print("  Gold Macro Validator (easing) - FRED 月频, 季频命中率 67.5% (2016-09 起 10y 短样本; 发布滞后校正后 65-67.5% 稳健)")
     print("=" * 70)
     try:
         e = compute_easing()
