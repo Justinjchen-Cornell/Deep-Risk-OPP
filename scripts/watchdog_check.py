@@ -57,13 +57,56 @@ def check(path: Path, grace_days: int) -> tuple[bool, str]:
     )
 
 
+LIVE_URL = "https://justinjchen-cornell.github.io/Deep-Risk-OPP/gor_latest.json"
+
+
+def check_live(repo_updated: str) -> tuple:
+    """Compare the LIVE site's data date against the repo's.
+    Catches the silent failure class where the repo is fresh but the Pages
+    deployment was never triggered (bot commits don't fire push events).
+    Incident: repo fresh from 2026-09-07 onward, site frozen at 09-07 for a week."""
+    import urllib.request
+    try:
+        req = urllib.request.Request(LIVE_URL, headers={"User-Agent": "deep-risk-watchdog"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            live = json.loads(r.read().decode("utf-8"))
+        live_updated = str(live.get("updated", ""))[:10]
+        repo_date = str(repo_updated)[:10]
+        if not live_updated:
+            return False, "DEPLOY STALE: live site gor_latest.json has no 'updated' field"
+        if live_updated < repo_date:
+            return False, (
+                "DEPLOY STALE: live site shows " + live_updated + " but repo has " + repo_date +
+                " — Pages deployment did not run (check static.yml workflow_run trigger)"
+            )
+        return True, "live site OK (" + live_updated + ")"
+    except Exception as e:
+        return False, "DEPLOY CHECK FAILED: cannot fetch live site (" + type(e).__name__ + ": " + str(e) + ")"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--path', default=str(BASE_DIR / 'gor_latest.json'))
     ap.add_argument('--grace-days', type=int, default=0)
+    ap.add_argument('--no-live', action='store_true',
+                    help='skip the live-site freshness check (offline runs)')
     args = ap.parse_args()
     fresh, msg = check(Path(args.path), args.grace_days)
     print(msg)
+
+    # Second gate: live site must be as fresh as the repo (catches missed Pages deploys)
+    if fresh and not args.no_live:
+        repo_updated = ""
+        try:
+            d = json.loads(Path(args.path).read_text(encoding="utf-8"))
+            repo_updated = str(d.get("updated", ""))
+        except Exception:
+            pass
+        live_ok, live_msg = check_live(repo_updated)
+        print(live_msg)
+        if not live_ok:
+            sys.exit(1)
+
     sys.exit(0 if fresh else 1)
 
 

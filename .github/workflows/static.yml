@@ -6,6 +6,14 @@ on:
   push:
     branches: ["main"]
 
+  # Runs after the daily data pipeline completes.
+  # WHY: commits pushed by the daily workflow use GITHUB_TOKEN, which by design
+  # does NOT trigger `push` events (GitHub anti-recursion rule). Without this
+  # trigger the site silently served stale data for a week (fixed 2026-09-14).
+  workflow_run:
+    workflows: ["Daily GOR Update"]
+    types: [completed]
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -31,6 +39,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Always deploy the BRANCH TIP. On workflow_run events the default SHA is the
+          # PRE-commit state of the daily run, which would deploy stale data.
+          ref: main
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
