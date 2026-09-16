@@ -16,6 +16,8 @@
 
 > **One number that tells you when oil is historically cheap.**
 > **GOR = Gold ÷ Oil. When it crosses 45, history says oil rallies 54-167% within 12-24 months.**
+>
+> **Honesty audit update (Sep 2026):** we stress-audited this claim against 56 years of data. The direction survives; the evidence is thinner than it sounds — only **~2–3 independent macro episodes** (the "history" is mostly 2020 and today), and the strongest sample months overlap each other. Verdict: GOR ≥ 45 is a **tail marker, not a probability law** — and **panic is the necessary condition** (history: 82.6% mean-reversion when the market was in fear vs 47.8% when it was calm). Sizing on this signal now runs a **mechanism screener** first — leg decomposition · panic signature · oil distress → 🟢 sized / 🟡 observe / 🔴 no new oil on this logic. Details: [`frameworks/01-GOR方向框架.md`](frameworks/01-GOR方向框架.md) ｜ full audit: [Quant-Modeling-Dojo](https://github.com/Justinjchen-Cornell/Quant-Modeling-Dojo)
 
 <p align="center">
   <b>🌐 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/">Live Site</a></b>
@@ -35,7 +37,7 @@
 
 **Deep-Risk-OPP** turns one ratio into a daily macro decision. It watches the Gold/Oil Ratio (GOR) as a seismograph for systemic stress, maps global capital flows as fault-line scans, and runs 11 decision frameworks + 6 legendary-investor mindsets through a priority engine — producing a single allocation card every day, published automatically to a public website.
 
-- **The claim**: GOR ≥ 45 has never failed to precede oil gains of 54-167% over the following 12-24 months (1998, 2008, 2016, 2020).
+- **The claim**: GOR ≥ 45 has never failed to precede oil gains of 54-167% over the following 12-24 months (1998, 2008, 2016, 2020). *(Audited Sep 2026: direction holds; independent episodes ≈ 2–3 — see the honesty audit note above.)*
 - **The state (Aug 2026)**: GOR(WTI) = 53.8 — its 13th consecutive month above 45, the longest stretch in recorded history. Gold $4,454/oz, WTI $82.75.
 - **The output**: a live bilingual website updated daily by GitHub Actions. Zero black-box AI. Every threshold is in `config.py`.
 
@@ -98,7 +100,7 @@ index.html (language chooser)
 
 | Zone | GOR Range | Risk Signal | Action |
 |------|:---------:|-------------|--------|
-| 🔴 **Extreme Opportunity** | ≥ 45 | Oil deeply undervalued. Structural mean-reversion building. | Accumulate energy. Reduce gold. |
+| 🔴 **Extreme Opportunity** | ≥ 45 | Oil deeply undervalued — *if* the mechanism screener agrees (see audit note). | Accumulate energy — 🟢/🟡/🔴 gated. Reduce gold. |
 | 🟠 **Recovery Cycle** | 30–45 | Ratio normalizing. Crisis abating. | Hold. Let the trade work. |
 | 🟢 **Fair Value** | 20–30 | Historical equilibrium. No structural mispricing. | Light positions. Wait. |
 | 🔵 **Oil Bubble** | < 20 | Gold cheap. Oil expensive. Inflation fear peaked. | Cash + gold. No energy exposure. |

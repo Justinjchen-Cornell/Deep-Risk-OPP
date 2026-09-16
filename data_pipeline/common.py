@@ -292,7 +292,7 @@ def compute_gor(data):
     if y and y > 4.3:
         alerts.append({"level": "warning", "title": f"10Y={y}% > 4.3% 高利率压制", "detail": "仓位-10%"})
 
-    # ─── v2.2: 机制筛选器（延伸研究 #01/#02）—— GOR≥45 不再「触发即配油」 ───
+    # ─── 机制筛选器（2026-09 · 延伸研究 #01/#02）—— GOR≥45 不再「触发即配油」 ───
     screener = None
     try:
         from data_pipeline.screener import load_and_compute
@@ -308,7 +308,7 @@ def compute_gor(data):
                                + "｜恐慌=" + ("✓" if screener.get("s2") else "✗")
                                + f"（VIX {screener.get('vix')} vs 阈值 {screener.get('vix_thr')}）"
                                + f"｜油分位={screener.get('oil_pctl')}"
-                               + f"。基线油气 {base_oil}% → {oil_new}%（v2.2，详见 frameworks/01-GOR方向框架.md）")
+                               + f"。基线油气 {base_oil}% → {oil_new}%（详见 frameworks/01-GOR方向框架.md）")
                 })
                 oil_alloc = oil_new
     except Exception as e:

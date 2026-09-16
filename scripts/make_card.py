@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Deep-Risk-OPP — 前向注册卡生成器（v2.2 配套，源自延伸研究 #03）
+"""Deep-Risk-OPP — 前向注册卡生成器（配套工具，源自延伸研究 #03）
 
 用法: python scripts/make_card.py
 输出: 注册卡/注册卡-YYYY-MM-DD-GOR.md（待填写；填完 git commit 即冻结）
@@ -29,7 +29,7 @@ def main():
 
     today = datetime.date.today().strftime("%Y-%m-%d")
     cap = int((scr.get("oil_cap_factor") or 0) * 100)
-    card = f"""# 前向注册卡 · GOR ／ 编号 GOR-{today} · v2.2
+    card = f"""# 前向注册卡 · GOR ／ 编号 GOR-{today}
 
 > 规则：**只写一次、提交即冻结**（git commit 即签署）；到期只读对账，不得修改本卡。
 > 背景：GOR≥45 = 极端报警器而非概率规律（延伸研究 #01/#02）；恐惧是分水岭。

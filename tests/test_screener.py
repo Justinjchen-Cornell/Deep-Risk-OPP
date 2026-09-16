@@ -1,4 +1,4 @@
-"""v2.2 机制筛选器单元测试（纯函数 + 配置不变量，源自延伸研究 #01/#02）"""
+"""机制筛选器单元测试（纯函数 + 配置不变量，源自延伸研究 #01/#02）"""
 import os
 import sys
 
@@ -58,5 +58,5 @@ class TestConfig:
         assert caps["绿"] >= caps["黄"] >= caps["红"]
         assert all(0.0 <= v <= 1.0 for v in caps.values())
 
-    def test_version_bumped(self):
-        assert config.SKILL_VERSION >= "2.2.0"
+    def test_skill_version_present(self):
+        assert isinstance(config.SKILL_VERSION, str) and config.SKILL_VERSION
