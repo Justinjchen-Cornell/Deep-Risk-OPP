@@ -17,7 +17,7 @@
 > **One number that tells you when oil is historically cheap.**
 > **GOR = Gold ÷ Oil. When it crosses 45, history says oil rallies 54-167% within 12-24 months.**
 >
-> **Honesty audit update (Sep 2026):** we stress-audited this claim against 56 years of data. The direction survives; the evidence is thinner than it sounds — only **~2–3 independent macro episodes** (the "history" is mostly 2020 and today), and the strongest sample months overlap each other. Verdict: GOR ≥ 45 is a **tail marker, not a probability law** — and **panic is the necessary condition** (history: 82.6% mean-reversion when the market was in fear vs 47.8% when it was calm). Sizing on this signal now runs a **mechanism screener** first — leg decomposition · panic signature · oil distress → 🟢 sized / 🟡 observe / 🔴 no new oil on this logic. Details: [`frameworks/01-GOR方向框架.md`](frameworks/01-GOR方向框架.md) ｜ full audit: [Quant-Modeling-Dojo](https://github.com/Justinjchen-Cornell/Quant-Modeling-Dojo)
+> **Honesty audit update (Sep 2026):** we stress-audited this claim against 56 years of data. The direction survives; the evidence is thinner than it sounds — only **~2–3 independent macro episodes** (the "history" is mostly 2020 and today), and the strongest sample months overlap each other. Verdict: GOR ≥ 45 is a **tail marker, not a probability law** — and **panic is the necessary condition** (history: 82.6% mean-reversion when the market was in fear vs 47.8% when it was calm). Sizing on this signal now runs a **mechanism screener** first — leg decomposition · panic signature · oil distress → 🟢 sized / 🟡 observe / 🔴 no new oil on this logic (shipped in v2.3). Details: [`frameworks/01-GOR方向框架.md`](frameworks/01-GOR方向框架.md) ｜ full audit: [Quant-Modeling-Dojo](https://github.com/Justinjchen-Cornell/Quant-Modeling-Dojo)
 
 <p align="center">
   <b>🌐 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/">Live Site</a></b>
@@ -387,7 +387,7 @@ Deep-Risk-OPP/
 | v2.0 | Full priority chain with circuit breakers | ✅ Shipped |
 | v2.1 | Weekly automated change reports + dynamic hard stop (60D SMA × 0.85) | ✅ Shipped |
 | v2.2 | Public product: bilingual live site + daily auto pipeline + unified HUD nav | ✅ Shipped (Aug 2026) |
-| v2.3 | Historical backtest suite (2000–2026) | 🔄 In progress |
+| v2.3 | Historical backtest & rule audit (2000–2026): 56-year claim audit + 55-event cross-market study → mechanism screener upgrades the GOR trigger | ✅ Shipped (Sep 2026) |
 | v2.4 | Codebase health: split `run.py` into `modes/`, merge `gor_daily` + `weekly_data_pull`, pytest for core functions, refresh risk calendar | 🔄 In progress |
 | v2.5 | Sentiment (Adanos) merged into main JSON · config schema validation · unified charting entry | 📋 Next |
 | v2.6 | Mining-stock leading indicators (GDX / COPX / XAU-Gold ratio / silver) tracked in daily pipeline | 📋 Next |

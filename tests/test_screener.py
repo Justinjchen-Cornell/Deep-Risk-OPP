@@ -58,5 +58,5 @@ class TestConfig:
         assert caps["绿"] >= caps["黄"] >= caps["红"]
         assert all(0.0 <= v <= 1.0 for v in caps.values())
 
-    def test_skill_version_present(self):
-        assert isinstance(config.SKILL_VERSION, str) and config.SKILL_VERSION
+    def test_version_bumped_v23(self):
+        assert config.SKILL_VERSION >= "2.3.0"

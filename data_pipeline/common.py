@@ -292,7 +292,7 @@ def compute_gor(data):
     if y and y > 4.3:
         alerts.append({"level": "warning", "title": f"10Y={y}% > 4.3% 高利率压制", "detail": "仓位-10%"})
 
-    # ─── 机制筛选器（2026-09 · 延伸研究 #01/#02）—— GOR≥45 不再「触发即配油」 ───
+    # ─── 机制筛选器 v2.3（2026-09 · 延伸研究 #01/#02）—— GOR≥45 不再「触发即配油」 ───
     screener = None
     try:
         from data_pipeline.screener import load_and_compute

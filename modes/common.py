@@ -179,7 +179,7 @@ def get_allocation(zone, dxy=None, yield_10y=None, wti=None, gor=None, vix=None,
         alloc["cash"] += alloc["oil"] - 5
         alloc["oil"] = 5
 
-    # 机制筛选器（仅 extreme 区；screener=None 时行为与旧版完全一致）
+    # 机制筛选器 v2.3（仅 extreme 区；screener=None 时行为与旧版完全一致）
     if screener and zone == "extreme":
         cap = screener.get("oil_cap_factor")
         if isinstance(cap, (int, float)) and alloc.get("oil", 0) > 0:
