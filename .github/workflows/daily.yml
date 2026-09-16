@@ -32,6 +32,11 @@ jobs:
           echo "FRED_API_KEY=${FRED_KEY}" > .env
           echo "OPENFIGI_API_KEY=${FIGI_KEY}" >> .env
 
+      - name: Unit tests
+        run: |
+          pip install pytest
+          python -m pytest tests/ -q
+
       - name: Run daily update
         run: python scripts/gor_daily.py
 

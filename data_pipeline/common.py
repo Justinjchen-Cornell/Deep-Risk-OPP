@@ -292,13 +292,36 @@ def compute_gor(data):
     if y and y > 4.3:
         alerts.append({"level": "warning", "title": f"10Y={y}% > 4.3% 高利率压制", "detail": "仓位-10%"})
 
+    # ─── v2.2: 机制筛选器（延伸研究 #01/#02）—— GOR≥45 不再「触发即配油」 ───
+    screener = None
+    try:
+        from data_pipeline.screener import load_and_compute
+        screener = load_and_compute(current_gold=g, current_oil=w, current_vix=data.get('vix'))
+        if regime == "原油极端低估" and screener.get("oil_cap_factor") is not None:
+            cap = screener["oil_cap_factor"]
+            oil_new = int(round(base_oil * cap))
+            if oil_new != oil_alloc:
+                alerts.append({
+                    "level": "info",
+                    "title": f"机制筛选器：{screener['verdict']}（{screener.get('npass')}/3）→ 油气腿上限 {int(round(cap * 100))}%",
+                    "detail": ("拆腿=" + ("油腿" if screener.get("s1") else "金腿/缺失")
+                               + "｜恐慌=" + ("✓" if screener.get("s2") else "✗")
+                               + f"（VIX {screener.get('vix')} vs 阈值 {screener.get('vix_thr')}）"
+                               + f"｜油分位={screener.get('oil_pctl')}"
+                               + f"。基线油气 {base_oil}% → {oil_new}%（v2.2，详见 frameworks/01-GOR方向框架.md）")
+                })
+                oil_alloc = oil_new
+    except Exception as e:
+        log(f"  Screener skipped: {e}")
+
     cash = 100 - oil_alloc - base_gold - 7
 
     return {
         "gor_brent": gor_b, "gor_wti": gor_w, "regime": regime,
         "final_position": final_pos,
         "allocation": {"油气": oil_alloc, "黄金": base_gold, "现金": max(0, cash), "A股": 7, "铜": 0},
-        "alerts": alerts
+        "alerts": alerts,
+        "screener": screener
     }
 
 
@@ -343,6 +366,7 @@ def save_gor_json(data, gor):
         "gor_brent": gor['gor_brent'], "gor_wti": gor['gor_wti'],
         "regime": gor['regime'], "final_position": gor['final_position'],
         "allocation": gor['allocation'], "alerts": gor['alerts'],
+        "screener": gor.get("screener"),
         "data": {
             "黄金期货": {"price": data.get('gold'), "change_pct": 0.0},
             "WTI原油": {"price": data.get('wti'), "change_pct": 0.0},

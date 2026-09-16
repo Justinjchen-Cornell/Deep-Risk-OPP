@@ -111,7 +111,7 @@ def check_dynamic_hard_stop(wti, gor, vix=None, dxy=None, wti_history=None):
                 "demand_shock")
 
 
-def get_allocation(zone, dxy=None, yield_10y=None, wti=None, gor=None, vix=None, wti_history=None):
+def get_allocation(zone, dxy=None, yield_10y=None, wti=None, gor=None, vix=None, wti_history=None, screener=None):
     """Compute allocation with risk corrections (v2.1: dynamic hard stop)."""
     # FIX-3: blend across transition band
     base = config.BASE_ALLOCATION.get(zone, config.BASE_ALLOCATION["fair_value"])
@@ -178,5 +178,14 @@ def get_allocation(zone, dxy=None, yield_10y=None, wti=None, gor=None, vix=None,
     if hard_stop_active and alloc.get("oil", 0) > 5:
         alloc["cash"] += alloc["oil"] - 5
         alloc["oil"] = 5
+
+    # v2.2: 机制筛选器（仅 extreme 区；screener=None 时行为与旧版完全一致）
+    if screener and zone == "extreme":
+        cap = screener.get("oil_cap_factor")
+        if isinstance(cap, (int, float)) and alloc.get("oil", 0) > 0:
+            oil_before = alloc["oil"]
+            alloc["oil"] = round(oil_before * cap, 1)
+            alloc["cash"] = alloc.get("cash", 0) + (oil_before - alloc["oil"])
+            adjustments.append(f"v2.2 screener {screener.get('verdict')}: oil {oil_before}% → {alloc['oil']}%")
 
     return alloc, adjustments, hard_stop_active, shock_type
