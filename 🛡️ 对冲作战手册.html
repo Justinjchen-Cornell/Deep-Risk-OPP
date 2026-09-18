@@ -254,9 +254,9 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
 <!-- DATA_BLOCK_START -->
 <script>
 window.__GOR_DATA__ = {
-  "updated": "2026-09-17 12:00",
-  "gor_brent": 40.99,
-  "gor_wti": 44.23,
+  "updated": "2026-09-18 12:00",
+  "gor_brent": 42.96,
+  "gor_wti": 45.54,
   "regime": "修复周期",
   "final_position": 30,
   "allocation": {
@@ -269,59 +269,59 @@ window.__GOR_DATA__ = {
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=100.36 > 99 强美元压制",
+      "title": "DXY=100.22 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
       "level": "warning",
-      "title": "10Y=5.0% > 4.3% 高利率压制",
+      "title": "10Y=5.01% > 4.3% 高利率压制",
       "detail": "仓位-10%"
     }
   ],
   "screener": {
-    "d_gold": 0.1625,
-    "d_oil": 0.4714,
+    "d_gold": 0.1803,
+    "d_oil": 0.4599,
     "leg": "油腿主导",
     "s1": true,
-    "vix": 17.2,
+    "vix": 17.71,
     "vix_thr": 22.46,
     "s2": false,
-    "oil": 97.57,
-    "oil_pctl": 0.942,
+    "oil": 96.45,
+    "oil_pctl": 0.933,
     "s3": false,
     "npass": 1,
     "verdict": "红",
     "oil_cap_factor": 0.0,
-    "ts": "2026-09-17 03:07",
+    "ts": "2026-09-18 02:55",
     "history_last": "fetched"
   },
   "data": {
     "黄金期货": {
-      "price": 4315.1,
+      "price": 4392.5,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 97.57,
+      "price": 96.45,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 105.27,
+      "price": 102.24,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 100.36,
+      "price": 100.22,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
-      "price": 5.0,
+      "price": 5.01,
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 17.2,
+      "price": 17.71,
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.5025,
+      "price": 6.635,
       "change_pct": 0.0
     }
   },
@@ -329,11 +329,11 @@ window.__GOR_DATA__ = {
     "total": "收缩",
     "direction": "向心坍缩",
     "speed": "放缓",
-    "dxy": 100.36,
-    "vix": 17.2,
-    "tenyear": 5.0,
-    "thirtyyear": 5.36,
-    "fed_balance": 6.74,
+    "dxy": 100.22,
+    "vix": 17.71,
+    "tenyear": 5.01,
+    "thirtyyear": 5.35,
+    "fed_balance": 6.75,
     "m2": 23.22,
     "fed_rate": 3.63,
     "warsh_alert": true
@@ -346,7 +346,9 @@ window.__GOR_DATA__ = {
   "data_quality": {
     "ok": true,
     "degraded_fields": [],
-    "fallbacks": {},
+    "fallbacks": {
+      "布伦特(估算WTI×1.06)": "estimated"
+    },
     "note": "全部数据源正常"
   }
 };
