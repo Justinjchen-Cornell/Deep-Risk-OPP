@@ -1,12 +1,12 @@
 {
-  "updated": "2026-09-18 12:00",
-  "week_of": "2026-09-18",
+  "updated": "2026-09-19 12:00",
+  "week_of": "2026-09-19",
   "data_source": "FRED (DGS10/DGS30/DTWEXBGS/VIXCLS/DFF/WALCL/M2SL) + akshare (commodities)",
   "bonds": {
-    "us_10y": 5.01,
-    "us_30y": 5.35,
-    "us_5y": 4.76,
-    "spread_30y_10y": 0.34,
+    "us_10y": 4.94,
+    "us_30y": 5.29,
+    "us_5y": 4.69,
+    "spread_30y_10y": 0.35,
     "yield_curve": "陡峭化",
     "seesaw": {
       "treasury_vs_stocks": "正常",
@@ -18,7 +18,7 @@
     "fed": {
       "balance_sheet": "$6.8万亿",
       "trend": "QT收缩中",
-      "rate": "3.63%",
+      "rate": "3.88%",
       "next_meeting": "2026年7月FOMC",
       "gold_reserves": "8,133吨"
     },
@@ -44,8 +44,8 @@
   "macro_fred": {
     "fed_balance_trillion": 6.75,
     "m2_trillion": 23.22,
-    "fed_rate_pct": 3.63,
-    "dgs30_pct": 5.35
+    "fed_rate_pct": 3.88,
+    "dgs30_pct": 5.29
   },
   "gold_flows": {
     "central_bank_purchases": {
@@ -58,7 +58,7 @@
     }
   },
   "oil_flows": {
-    "wti_price": 96.45,
+    "wti_price": 95.47,
     "spr_level": "3.7亿桶",
     "producer_discipline": "OPEC+减产·伊朗和平恢复出口"
   },
@@ -67,6 +67,6 @@
   },
   "currency_flows": {
     "dxy_signal": "DXY=100.2>99=向心坍缩区间",
-    "dxy": 100.22
+    "dxy": 100.21
   }
 }
