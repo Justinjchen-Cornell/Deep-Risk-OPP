@@ -226,10 +226,73 @@ def fetch_all():
     return data
 
 
+def _apply_dynamic_hard_stop(w, gor_w, v, wti_history, alerts):
+    """v2.1 动态硬止损。需求冲击触发时返回油气上限 5，否则 None。告警写入 alerts。
+
+    回归注记（2026-09-22）：此处曾 `from run import check_dynamic_hard_stop`——P1-1 重构
+    把该函数移入 modes/common.py 后，ImportError 被 except 静默吞掉，动态规则实际从未
+    生效（一直走静态 $75 回退）。修复 + 回归测试见 tests/test_core.py::TestDailyPipelineWiring。
+    """
+    try:
+        sys.path.insert(0, str(BASE_DIR))
+        from modes.common import check_dynamic_hard_stop
+        is_hs, hs_reason, shock_type = check_dynamic_hard_stop(
+            w, gor_w, vix=v, wti_history=wti_history
+        )
+        if is_hs:
+            alerts.append({"level": "critical", "title": f"动态硬止损触发 ({shock_type})", "detail": hs_reason})
+            return 5
+        if shock_type == "supply_shock":
+            alerts.append({"level": "info", "title": "供给冲击 — 硬止损被覆盖", "detail": hs_reason})
+        return None
+    except Exception as e:
+        # Fallback to legacy static rule（保持可用性，但必须留痕，不再静默）
+        log(f"  Dynamic hard stop unavailable ({e!r}) — static fallback")
+        if w and w < 75:
+            alerts.append({"level": "critical", "title": f"WTI ${w} < $75 硬止损触发!", "detail": "油气仓位强制降至5%（静态回退）"})
+            return 5
+        return None
+
+
+def _overlay_screener(oil_alloc, base_oil, hs_cap, screener, alerts):
+    """机制筛选器 v2.3 叠加：硬止损与筛选器同为“上限”，取更紧者。
+
+    回归注记（2026-09-22）：原实现直接以 base_oil×cap 覆盖 oil_alloc，硬止损触发后会被
+    筛选器抬回（如绿→25%）。改为 min()——筛选器只能收紧、不能放宽硬止损。
+    """
+    if not screener or screener.get("oil_cap_factor") is None:
+        return oil_alloc
+    cap = screener["oil_cap_factor"]
+    oil_cap_target = int(round(base_oil * cap))
+    oil_final = min(oil_alloc, oil_cap_target)
+    if oil_final != oil_alloc:
+        detail = ("拆腿=" + ("油腿" if screener.get("s1") else "金腿/缺失")
+                  + "｜恐慌=" + ("✓" if screener.get("s2") else "✗")
+                  + f"（VIX {screener.get('vix')} vs 阈值 {screener.get('vix_thr')}）"
+                  + f"｜油分位={screener.get('oil_pctl')}"
+                  + f"。基线油气 {base_oil}% → {oil_final}%"
+                  + ("（与硬止损取更紧者）" if hs_cap is not None and oil_final < oil_cap_target else "")
+                  + "（详见 frameworks/01-GOR方向框架.md）")
+        alerts.append({
+            "level": "info",
+            "title": f"机制筛选器：{screener.get('verdict')}（{screener.get('npass')}/3）→ 油气腿上限 {int(round(cap * 100))}%",
+            "detail": detail,
+        })
+        return oil_final
+    if hs_cap is not None and oil_cap_target > oil_alloc:
+        alerts.append({
+            "level": "info",
+            "title": f"机制筛选器：{screener.get('verdict')}（{screener.get('npass')}/3）→ 上限 {int(round(cap * 100))}%，但硬止损优先",
+            "detail": f"筛选器目标 {oil_cap_target}% > 硬止损上限 {oil_alloc}% → 维持 {oil_alloc}%。",
+        })
+    return oil_alloc
+
+
 def compute_gor(data):
     """GOR计算+仓位分配"""
     g, w, b = data.get('gold'), data.get('wti'), data.get('brent')
     d, y = data.get('dxy'), data.get('us10y')
+    v = data.get('vix')  # 2026-09-22 修复：原 v 未定义（动态止损调用点曾引用未定义变量）
 
     gor_b = round(g / b, 2) if g and b else None
     gor_w = round(g / w, 2) if g and w else None
@@ -269,23 +332,10 @@ def compute_gor(data):
         except Exception:
             pass
 
-    # Use the dynamic hard stop from run.py if available
-    try:
-        sys.path.insert(0, str(BASE_DIR))
-        from run import check_dynamic_hard_stop
-        is_hs, hs_reason, shock_type = check_dynamic_hard_stop(
-            w, gor_w, vix=v, wti_history=wti_history
-        )
-        if is_hs:
-            oil_alloc = 5
-            alerts.append({"level": "critical", "title": f"动态硬止损触发 ({shock_type})", "detail": hs_reason})
-        elif shock_type == "supply_shock":
-            alerts.append({"level": "info", "title": f"供给冲击 — 硬止损被覆盖", "detail": hs_reason})
-    except Exception:
-        # Fallback to legacy static rule
-        if w and w < 75:
-            oil_alloc = 5
-            alerts.append({"level": "critical", "title": f"WTI ${w} < $75 硬止损触发!", "detail": "油气仓位强制降至5%"})
+    # v2.1 动态硬止损（回归修复 2026-09-22：见 _apply_dynamic_hard_stop 注记）
+    hs_cap = _apply_dynamic_hard_stop(w, gor_w, v, wti_history, alerts)
+    if hs_cap is not None:
+        oil_alloc = hs_cap
 
     if d and d > 99:
         alerts.append({"level": "warning", "title": f"DXY={d} > 99 强美元压制", "detail": "仓位-10%"})
@@ -297,20 +347,8 @@ def compute_gor(data):
     try:
         from data_pipeline.screener import load_and_compute
         screener = load_and_compute(current_gold=g, current_oil=w, current_vix=data.get('vix'))
-        if regime == "原油极端低估" and screener.get("oil_cap_factor") is not None:
-            cap = screener["oil_cap_factor"]
-            oil_new = int(round(base_oil * cap))
-            if oil_new != oil_alloc:
-                alerts.append({
-                    "level": "info",
-                    "title": f"机制筛选器：{screener['verdict']}（{screener.get('npass')}/3）→ 油气腿上限 {int(round(cap * 100))}%",
-                    "detail": ("拆腿=" + ("油腿" if screener.get("s1") else "金腿/缺失")
-                               + "｜恐慌=" + ("✓" if screener.get("s2") else "✗")
-                               + f"（VIX {screener.get('vix')} vs 阈值 {screener.get('vix_thr')}）"
-                               + f"｜油分位={screener.get('oil_pctl')}"
-                               + f"。基线油气 {base_oil}% → {oil_new}%（详见 frameworks/01-GOR方向框架.md）")
-                })
-                oil_alloc = oil_new
+        if regime == "原油极端低估":
+            oil_alloc = _overlay_screener(oil_alloc, base_oil, hs_cap, screener, alerts)
     except Exception as e:
         log(f"  Screener skipped: {e}")
 

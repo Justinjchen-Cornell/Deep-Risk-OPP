@@ -141,6 +141,66 @@ class TestAllocation:
         assert a["cash"] >= 0
 
 
+# ============ 每日管道 v2.1/v2.3 接线回归（2026-09-22 修复） ============
+class TestDailyPipelineWiring:
+    """生产路径 = data_pipeline.common.compute_gor（daily.yml → scripts/gor_daily.py）。
+
+    历史回归：该文件曾从 run.py 导入 check_dynamic_hard_stop——P1-1 重构后函数已移入
+    modes/common.py，ImportError 被 except 静默吞掉 → 动态硬止损沦为死代码。
+    """
+
+    def test_hard_stop_helper_uses_modes_common(self):
+        from data_pipeline.common import _apply_dynamic_hard_stop
+        alerts = []
+        # 需求冲击：WTI 70 < 100×0.85=85，GOR 5日持平、VIX 30 ≥ 20 → 触发，返回上限 5
+        cap = _apply_dynamic_hard_stop(70.0, 50.0, 30.0, hist([100.0] * 60), alerts)
+        assert cap == 5
+        assert alerts and alerts[0]["level"] == "critical"
+
+    def test_hard_stop_helper_supply_override(self):
+        from data_pipeline.common import _apply_dynamic_hard_stop
+        alerts = []
+        prices = [100.0] * 55 + [90.0] * 5
+        gors = [50.0] * 55 + [50.0, 52.0, 54.0, 56.0, 58.0]
+        # WTI 70 < 动态线；GOR 5日 +18%、VIX 15 平静 → 供给冲击覆盖，不触发
+        cap = _apply_dynamic_hard_stop(70.0, 59.0, 15.0, hist(prices, gors), alerts)
+        assert cap is None
+        assert alerts and "供给冲击" in alerts[0]["title"]
+
+    def test_screener_never_loosens_hard_stop(self):
+        from data_pipeline.common import _overlay_screener
+        green = {"oil_cap_factor": 1.0, "verdict": "绿", "npass": 3, "s1": True,
+                 "s2": True, "vix": 30, "vix_thr": 22, "oil_pctl": 0.1}
+        red = dict(green, oil_cap_factor=0.0, verdict="红", npass=1, s2=False)
+        # 硬止损 5% + 绿（目标 25%）→ 维持 5%（旧实现会被抬回 25%）
+        assert _overlay_screener(5, 25, 5, green, []) == 5
+        # 硬止损 5% + 红（目标 0%）→ 0%
+        assert _overlay_screener(5, 25, 5, red, []) == 0
+        # 无硬止损 + 红 → 0%（线上现行公开行为，保持不变）
+        assert _overlay_screener(25, 25, None, red, []) == 0
+        # 无硬止损 + 绿 → 25%（不变）
+        assert _overlay_screener(25, 25, None, green, []) == 25
+
+    def test_compute_gor_smoke_no_screener(self, monkeypatch, tmp_path):
+        """全链路冒烟：筛选器离线降级时也不得崩溃，且回归 extreme 基线。
+
+        回归点：compute_gor 曾引用未定义的 v（动态止损传参）→ 静默回退。
+        """
+        import data_pipeline.common as dp_mod
+        import data_pipeline.screener as scr_mod
+        monkeypatch.setattr(dp_mod, "BASE_DIR", tmp_path)  # 不读仓库 wti_history.json，保证确定性
+        monkeypatch.setattr(scr_mod, "load_and_compute",
+                            lambda **kw: (_ for _ in ()).throw(RuntimeError("offline")))
+        data = {"gold": 4380.4, "wti": 92.93, "brent": 96.26, "dxy": 100.39, "us10y": 5.01, "vix": 14.81}
+        out = dp_mod.compute_gor(data)
+        assert out["regime"] == "原油极端低估"
+        assert out["allocation"]["油气"] == 25      # 无筛选器 → 基线
+        assert out["allocation"]["黄金"] == 20
+        assert out["allocation"]["现金"] == 48
+        assert out["final_position"] == 50
+        assert out["screener"] is None
+
+
 # ============ config schema 校验 ============
 class TestConfigSchema:
     def test_valid_config_passes(self):
