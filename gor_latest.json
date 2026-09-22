@@ -1,72 +1,77 @@
 {
-  "updated": "2026-09-21 12:00",
-  "gor_brent": 44.02,
-  "gor_wti": 46.9,
-  "regime": "修复周期",
-  "final_position": 30,
+  "updated": "2026-09-22 12:00",
+  "gor_brent": 45.51,
+  "gor_wti": 47.14,
+  "regime": "原油极端低估",
+  "final_position": 50,
   "allocation": {
-    "油气": 20,
-    "黄金": 15,
-    "现金": 58,
+    "油气": 0,
+    "黄金": 20,
+    "现金": 73,
     "A股": 7,
     "铜": 0
   },
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=100.28 > 99 强美元压制",
+      "title": "DXY=100.39 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
       "level": "warning",
-      "title": "10Y=4.94% > 4.3% 高利率压制",
+      "title": "10Y=5.01% > 4.3% 高利率压制",
       "detail": "仓位-10%"
+    },
+    {
+      "level": "info",
+      "title": "机制筛选器：红（1/3）→ 油气腿上限 0%",
+      "detail": "拆腿=油腿｜恐慌=✗（VIX 14.81 vs 阈值 22.46）｜油分位=0.925。基线油气 25% → 0%（详见 frameworks/01-GOR方向框架.md）"
     }
   ],
   "screener": {
-    "d_gold": 0.1823,
-    "d_oil": 0.4324,
+    "d_gold": 0.1775,
+    "d_oil": 0.4227,
     "leg": "油腿主导",
     "s1": true,
-    "vix": 15.44,
+    "vix": 14.81,
     "vix_thr": 22.46,
     "s2": false,
-    "oil": 93.84,
-    "oil_pctl": 0.933,
+    "oil": 92.93,
+    "oil_pctl": 0.925,
     "s3": false,
     "npass": 1,
     "verdict": "红",
     "oil_cap_factor": 0.0,
-    "ts": "2026-09-21 03:02",
+    "ts": "2026-09-22 03:02",
     "history_last": "fetched"
   },
   "data": {
     "黄金期货": {
-      "price": 4401.5,
+      "price": 4380.4,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 93.84,
+      "price": 92.93,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 99.99,
+      "price": 96.26,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 100.28,
+      "price": 100.39,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
-      "price": 4.94,
+      "price": 5.01,
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 15.44,
+      "price": 14.81,
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.726,
+      "price": 6.8235,
       "change_pct": 0.0
     }
   },
@@ -74,10 +79,10 @@
     "total": "收缩",
     "direction": "向心坍缩",
     "speed": "放缓",
-    "dxy": 100.28,
-    "vix": 15.44,
-    "tenyear": 4.94,
-    "thirtyyear": 5.29,
+    "dxy": 100.39,
+    "vix": 14.81,
+    "tenyear": 5.01,
+    "thirtyyear": 5.34,
     "fed_balance": 6.75,
     "m2": 23.22,
     "fed_rate": 3.88,
