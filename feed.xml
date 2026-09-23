@@ -5,20 +5,14 @@
   <link href="https://justinjchen-cornell.github.io/feed.xml" rel="self"/>
   <link href="https://justinjchen-cornell.github.io/"/>
   <id>tag:justinjchen-cornell.github.io,2026:feed</id>
-  <updated>2026-09-22T03:02:40Z</updated>
+  <updated>2026-09-23T03:02:39Z</updated>
   <author><name>Justinjchen</name></author>
   <entry>
-    <title>GOR 56.0 · 极端区</title>
-    <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
-    <id>tag:justinjchen-cornell.github.io,2026-08-25:signal</id>
-    <updated>2026-08-25T00:00:00Z</updated>
-    <content type="html"><p><b>GOR(WTI) 56.0</b> (Brent 52.8) — 极端区</p><p>黄金 $4,749.5 · WTI $84.9 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 15.1</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
-  </entry>  <entry>
     <title>GOR 58.2 · 极端区</title>
     <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
     <id>tag:justinjchen-cornell.github.io,2026-08-26:signal</id>
     <updated>2026-08-26T00:00:00Z</updated>
-    <content type="html"><p><b>GOR(WTI) 58.2</b> (Brent 54.9) — 极端区</p><p>黄金 $4,695.0 · WTI $80.7 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 15.8</p><p>昨日验证：前日 GOR 56.0（极端区）→ 今日 WTI -5.0% ⚠️ 验证中/未验证</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
+    <content type="html"><p><b>GOR(WTI) 58.2</b> (Brent 54.9) — 极端区</p><p>黄金 $4,695.0 · WTI $80.7 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 15.8</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
   </entry>  <entry>
     <title>GOR 57.4 · 极端区</title>
     <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
@@ -182,10 +176,16 @@
     <updated>2026-09-22T00:00:00Z</updated>
     <content type="html"><p><b>GOR(WTI) 47.1</b> (Brent 45.5) — 极端区</p><p>黄金 $4,380.4 · WTI $92.9 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 14.8</p><p>昨日验证：前日 GOR 46.9（极端区）→ 今日 WTI -1.0% ⚠️ 验证中/未验证</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
   </entry>  <entry>
-    <title>GOR 47.1 · 原油极端低估 · 仓位 50%</title>
+    <title>GOR 48.8 · 极端区</title>
     <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
-    <id>tag:justinjchen-cornell.github.io,2026-09-22:signal</id>
-    <updated>2026-09-22T00:00:00Z</updated>
-    <content type="html"><p><b>GOR(WTI) 47.1</b> (Brent 45.5) — 原油极端低估</p><p>黄金 $4,380.4 · WTI $92.9 · 布伦特 $96.3 · DXY 100.4 · 10Y 5.0% · VIX 14.8</p><p>仓位 50%：油气 0% · 黄金 20% · 现金 73% · A股 7%</p><p>三流：总量收缩 · 方向向心坍缩 · 流速放缓</p><p>昨日验证：前日 GOR 47.1（极端区）→ 今日 WTI +0.0% ⚠️ 验证中/未验证</p><ul><li>[warning] DXY=100.39 > 99 强美元压制 — 仓位-10%</li><li>[warning] 10Y=5.01% > 4.3% 高利率压制 — 仓位-10%</li><li>[info] 机制筛选器：红（1/3）→ 油气腿上限 0% — 拆腿=油腿｜恐慌=✗（VIX 14.81 vs 阈值 22.46）｜油分位=0.925。基线油气 25% → 0%（详见 frameworks/01-GOR方向框架.md）</li></ul><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
+    <id>tag:justinjchen-cornell.github.io,2026-09-23:signal</id>
+    <updated>2026-09-23T00:00:00Z</updated>
+    <content type="html"><p><b>GOR(WTI) 48.8</b> (Brent 46.2) — 极端区</p><p>黄金 $4,370.5 · WTI $89.7 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 14.9</p><p>昨日验证：前日 GOR 47.1（极端区）→ 今日 WTI -3.5% ⚠️ 验证中/未验证</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
+  </entry>  <entry>
+    <title>GOR 48.8 · 原油极端低估 · 仓位 50%</title>
+    <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
+    <id>tag:justinjchen-cornell.github.io,2026-09-23:signal</id>
+    <updated>2026-09-23T00:00:00Z</updated>
+    <content type="html"><p><b>GOR(WTI) 48.8</b> (Brent 46.2) — 原油极端低估</p><p>黄金 $4,370.5 · WTI $89.7 · 布伦特 $94.5 · DXY 100.7 · 10Y 5.0% · VIX 14.9</p><p>仓位 50%：油气 0% · 黄金 20% · 现金 73% · A股 7%</p><p>三流：总量收缩 · 方向向心坍缩 · 流速放缓</p><p>昨日验证：前日 GOR 48.8（极端区）→ 今日 WTI +0.0% ⚠️ 验证中/未验证</p><ul><li>[warning] DXY=100.67 > 99 强美元压制 — 仓位-10%</li><li>[warning] 10Y=4.96% > 4.3% 高利率压制 — 仓位-10%</li><li>[info] 机制筛选器：红（1/3）→ 油气腿上限 0% — 拆腿=油腿｜恐慌=✗（VIX 14.87 vs 阈值 22.46）｜油分位=0.908。基线油气 25% → 0%（详见 frameworks/01-GOR方向框架.md）</li></ul><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
   </entry>
 </feed>
