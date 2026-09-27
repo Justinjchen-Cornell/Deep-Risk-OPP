@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-26 12:00",
-  "week_of": "2026-09-26",
+  "updated": "2026-09-27 12:00",
+  "week_of": "2026-09-27",
   "data_source": "FRED (DGS10/DGS30/DTWEXBGS/VIXCLS/DFF/WALCL/M2SL) + akshare (commodities)",
   "bonds": {
     "us_10y": 5.18,
