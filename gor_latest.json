@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-29 12:00",
-  "gor_brent": 41.9,
-  "gor_wti": 44.41,
+  "updated": "2026-09-30 12:00",
+  "gor_brent": 44.33,
+  "gor_wti": 46.99,
   "regime": "修复周期",
   "final_position": 30,
   "allocation": {
@@ -14,59 +14,59 @@
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=101.25 > 99 强美元压制",
+      "title": "DXY=101.36 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
       "level": "warning",
-      "title": "10Y=5.17% > 4.3% 高利率压制",
+      "title": "10Y=5.24% > 4.3% 高利率压制",
       "detail": "仓位-10%"
     }
   ],
   "screener": {
-    "d_gold": 0.1284,
-    "d_oil": 0.4332,
+    "d_gold": 0.1376,
+    "d_oil": 0.3859,
     "leg": "油腿主导",
     "s1": true,
-    "vix": 14.21,
+    "vix": 16.07,
     "vix_thr": 22.46,
     "s2": false,
-    "oil": 93.91,
-    "oil_pctl": 0.933,
+    "oil": 89.57,
+    "oil_pctl": 0.908,
     "s3": false,
     "npass": 1,
     "verdict": "红",
     "oil_cap_factor": 0.0,
-    "ts": "2026-09-29 03:56",
+    "ts": "2026-09-30 03:43",
     "history_last": "fetched"
   },
   "data": {
     "黄金期货": {
-      "price": 4170.7,
+      "price": 4209.0,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 93.91,
+      "price": 89.57,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 99.54,
+      "price": 94.94,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 101.25,
+      "price": 101.36,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
-      "price": 5.17,
+      "price": 5.24,
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 14.21,
+      "price": 16.07,
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.6225,
+      "price": 6.6295,
       "change_pct": 0.0
     }
   },
@@ -74,10 +74,10 @@
     "total": "收缩",
     "direction": "向心坍缩",
     "speed": "放缓",
-    "dxy": 101.25,
-    "vix": 14.21,
-    "tenyear": 5.17,
-    "thirtyyear": 5.49,
+    "dxy": 101.36,
+    "vix": 16.07,
+    "tenyear": 5.24,
+    "thirtyyear": 5.56,
     "fed_balance": 6.75,
     "m2": 23.34,
     "fed_rate": 3.88,
