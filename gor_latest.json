@@ -1,7 +1,7 @@
 {
-  "updated": "2026-10-15 12:00",
-  "gor_brent": 41.8,
-  "gor_wti": 44.3,
+  "updated": "2026-10-16 12:00",
+  "gor_brent": 39.61,
+  "gor_wti": 43.0,
   "regime": "修复周期",
   "final_position": 30,
   "allocation": {
@@ -14,59 +14,59 @@
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=101.97 > 99 强美元压制",
+      "title": "DXY=102.01 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
       "level": "warning",
-      "title": "10Y=5.21% > 4.3% 高利率压制",
+      "title": "10Y=5.19% > 4.3% 高利率压制",
       "detail": "仓位-10%"
     }
   ],
   "screener": {
-    "d_gold": 0.026,
-    "d_oil": 0.448,
+    "d_gold": 0.0308,
+    "d_oil": 0.4827,
     "leg": "油腿主导",
     "s1": true,
-    "vix": 15.27,
+    "vix": 16.87,
     "vix_thr": 22.46,
     "s2": false,
-    "oil": 94.01,
-    "oil_pctl": 0.925,
+    "oil": 97.33,
+    "oil_pctl": 0.933,
     "s3": false,
     "npass": 1,
     "verdict": "红",
     "oil_cap_factor": 0.0,
-    "ts": "2026-10-15 02:57",
+    "ts": "2026-10-16 02:54",
     "history_last": "fetched"
   },
   "data": {
     "黄金期货": {
-      "price": 4164.9,
+      "price": 4184.8,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 94.01,
+      "price": 97.33,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 99.65,
+      "price": 105.65,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 101.97,
+      "price": 102.01,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
-      "price": 5.21,
+      "price": 5.19,
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 15.27,
+      "price": 16.87,
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.611,
+      "price": 6.6105,
       "change_pct": 0.0
     }
   },
@@ -74,11 +74,11 @@
     "total": "收缩",
     "direction": "向心坍缩",
     "speed": "放缓",
-    "dxy": 101.97,
-    "vix": 15.27,
-    "tenyear": 5.21,
-    "thirtyyear": 5.56,
-    "fed_balance": 6.75,
+    "dxy": 102.01,
+    "vix": 16.87,
+    "tenyear": 5.19,
+    "thirtyyear": 5.52,
+    "fed_balance": 6.76,
     "m2": 23.34,
     "fed_rate": 3.88,
     "warsh_alert": true
@@ -91,9 +91,7 @@
   "data_quality": {
     "ok": true,
     "degraded_fields": [],
-    "fallbacks": {
-      "布伦特(估算WTI×1.06)": "estimated"
-    },
+    "fallbacks": {},
     "note": "全部数据源正常"
   }
 }
