@@ -362,11 +362,13 @@ Deep-Risk-OPP/
 │   ├── gor_daily.py            # Daily pipeline (Actions cron 00:00 UTC)
 │   ├── weekly_data_pull.py     # Weekly change report generator
 │   └── figi_mapper.py          # OpenFIGI identifier mapping
-├── frameworks/                 # 11 decision frameworks (zh)
+├── frameworks/                 # 12 decision frameworks (zh) + 01A/01B appendices
 ├── docs/
 │   ├── track-record.md         # Live track record (incl. mistakes)
 │   ├── promo-pack.md           # Launch copy for social platforms
-│   └── code_review_2026-08.md  # First systematic code review
+│   ├── code_review_2026-08.md  # First systematic code review
+│   ├── trigger-stress-test-2026-10.md  # Trigger stress test (VIX + oil quartile)
+│   └── crisis-checklist-2026Q4.md      # Pre-registered crisis checklist
 ├── 看板日志/ (local only)       # Daily snapshots, content archive & alerts — gitignored
 ├── 管理/ (local only)           # Handoffs, content contract, audit log — gitignored
 ├── 研究专题/ (local only)        # RMB analysis & gold macro replication — not in repo
