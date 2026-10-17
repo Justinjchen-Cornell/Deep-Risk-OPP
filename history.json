@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-17 23:38",
+ "updated": "2026-10-17 23:51",
  "rows": [
   {
    "date": "2026-06-19",
@@ -1295,7 +1295,7 @@
   },
   {
    "date": "2026-10-17",
-   "time": "23:38",
+   "time": "23:51",
    "gor_wti": 41.11,
    "gor_brent": 38.78,
    "gold": 4186.5,
@@ -1311,15 +1311,7 @@
    "flow": {
     "total": "收缩",
     "direction": "向心坍缩",
-    "speed": "放缓",
-    "dxy": 101.84,
-    "vix": 19.99,
-    "tenyear": 5.1,
-    "thirtyyear": 5.43,
-    "fed_balance": 6.76,
-    "m2": 23.34,
-    "fed_rate": 3.88,
-    "warsh_alert": true
+    "speed": "放缓"
    },
    "source": "daily"
   }

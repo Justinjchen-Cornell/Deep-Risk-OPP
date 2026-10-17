@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-17 23:38",
+  "updated": "2026-10-17 23:51",
   "gor_brent": 38.78,
   "gor_wti": 41.11,
   "regime": "修复周期",
@@ -37,7 +37,7 @@
     "npass": 1,
     "verdict": "红",
     "oil_cap_factor": 0.0,
-    "ts": "2026-10-17 15:38",
+    "ts": "2026-10-17 15:51",
     "history_last": "fetched"
   },
   "data": {
