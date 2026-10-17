@@ -169,12 +169,18 @@ def fetch_all():
         except Exception as e:
             log(f"  DXY ERROR: {e}"); data['dxy'] = None
 
-    # 7. VIX — FRED primary, TradingView/CBOE fallback
-    vix_fred = fred_get('VIXCLS')
-    if vix_fred:
-        data['vix'] = round(vix_fred, 2)
-        log(f"  VIX: {data['vix']} (FRED)")
-    else:
+    # 7. VIX — CBOE delayed quote primary; TradingView/CBOE web/FRED fallback
+    data['vix'] = None
+    try:
+        from data_pipeline.quotes import _cboe_vix
+        q = _cboe_vix()
+        data['vix'] = round(float(q['price']), 2)
+        data['_q_vix'] = 'cboe'
+        log(f"  VIX: {data['vix']} (CBOE)")
+    except Exception as e:
+        log(f"  VIX CBOE failed: {e}")
+
+    if data.get('vix') is None:
         try:
             url = 'https://scanner.tradingview.com/america/scan'
             req_body = json.dumps({"symbols":{"tickers":["CBOE:VIX"]},"columns":["close"]}).encode()
@@ -187,20 +193,30 @@ def fetch_all():
                 log(f"  VIX: {data['vix']} (TradingView)")
             else:
                 raise ValueError("Empty")
-        except:
-            try:
-                url = 'https://www.cboe.com/tradable-products/vix/'
-                req = urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0'})
-                resp = urllib.request.urlopen(req, timeout=15)
-                html = resp.read().decode('utf-8',errors='ignore')
-                for pat in [r'VIX Spot Price.*?(\d{1,2}\.\d{2})', r'"price":\s*(\d{1,2}\.\d{2})']:
-                    m = re.search(pat, html, re.DOTALL)
-                    if m: data['vix'] = float(m.group(1)); break
-                if data.get('vix') is not None:
-                    data['_q_vix'] = 'cboe'
-                log(f"  VIX: {data.get('vix')} (CBOE)")
-            except Exception as e2:
-                log(f"  VIX ERROR: {e2}"); data['vix'] = None
+        except Exception:
+            pass
+
+    if data.get('vix') is None:
+        try:
+            url = 'https://www.cboe.com/tradable-products/vix/'
+            req = urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0'})
+            resp = urllib.request.urlopen(req, timeout=15)
+            html = resp.read().decode('utf-8',errors='ignore')
+            for pat in [r'VIX Spot Price.*?(\d{1,2}\.\d{2})', r'"price":\s*(\d{1,2}\.\d{2})']:
+                m = re.search(pat, html, re.DOTALL)
+                if m: data['vix'] = float(m.group(1)); break
+            if data.get('vix') is not None:
+                data['_q_vix'] = 'cboe'
+            log(f"  VIX: {data.get('vix')} (CBOE web)")
+        except Exception as e2:
+            log(f"  VIX CBOE web failed: {e2}")
+
+    if data.get('vix') is None:
+        vix_fred = fred_get('VIXCLS')
+        if vix_fred:
+            data['vix'] = round(vix_fred, 2)
+            data['_q_vix'] = 'fred'
+            log(f"  VIX: {data['vix']} (FRED fallback)")
 
     # ─── NEW: FRED-only macro indicators ───
 
