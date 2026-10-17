@@ -1,0 +1,26 @@
+{
+  "saved": "2026-10-17T15:35:01.942794+00:00",
+  "state": {
+    "updated": "2026-10-17 23:34",
+    "regime": "修复周期",
+    "position": 30.0,
+    "verdict": "红",
+    "npass": 1,
+    "vix": 16.46,
+    "vix_thr": 22.46,
+    "oil_pctl": 0.967,
+    "s2": false,
+    "s3": false,
+    "gor_wti": 41.11,
+    "gor_brent": 38.78,
+    "wti": 101.84,
+    "gold": 4186.5,
+    "hard_stop": false,
+    "hard_stop_thr": 77.9,
+    "contract_completion": 0.847,
+    "contract_target_hit": false,
+    "source": "daily-card",
+    "quote_time": "2026-10-17 23:34",
+    "mode": "daily"
+  }
+}
