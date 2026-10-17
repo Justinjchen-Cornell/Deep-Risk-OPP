@@ -413,7 +413,7 @@ Deep-Risk-OPP/
 | v2.6 | **Data quality**: real Brent feed (EIA RBRTE/RWTC) + GOR(Brent) rebase · sentiment (Adanos) · config schema · unified charting | 📋 Next |
 | v2.7 | Mining-stock leading indicators (GDX / COPX / XAU-Gold ratio / silver) tracked in daily pipeline | 📋 Next |
 | v2.8 | **Content & feedback loop**: 2 long + 3 short/week; 90-day falsification window (to 2027-01-14); weekly newsletter digest | 🔄 In progress |
-| v3.0 | Real-time alerting (email/webhook push on breaker triggers) | 📋 Next |
+| v3.0 | **Real-time alerting**: state-diff engine, intraday quotes, Feishu/Telegram/GitHub Issue delivery, 15-min workflow | 🔄 In progress (MVP dry-run) |
 | v4.0 | Multi-asset portfolio simulation | 📋 Later |
 
 **🚀 Product launch (in progress)**: Xueqiu debut · LinkedIn GOR Pulse #004 · HelloGitHub · Hacker News Show HN · X hook thread — launch copy in [docs/promo-pack.md](docs/promo-pack.md).
