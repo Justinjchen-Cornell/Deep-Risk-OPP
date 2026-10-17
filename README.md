@@ -35,7 +35,7 @@
 
 ## What Is This?
 
-**Deep-Risk-OPP** turns one ratio into a daily macro decision. It watches the Gold/Oil Ratio (GOR) as a seismograph for systemic stress, maps global capital flows as fault-line scans, and runs 11 decision frameworks + 6 legendary-investor mindsets through a priority engine — producing a single allocation card every day, published automatically to a public website.
+**Deep-Risk-OPP** turns one ratio into a daily macro decision. It watches the Gold/Oil Ratio (GOR) as a seismograph for systemic stress, maps global capital flows as fault-line scans, and runs 12 decision frameworks + 6 legendary-investor mindsets through a priority engine — producing a single allocation card every day, published automatically to a public website. Two diagnostic appendices (stage layer, crisis checklist) explain the card without ever changing it.
 
 - **The claim**: GOR ≥ 45 has never failed to precede oil gains of 54-167% over the following 12-24 months (1998, 2008, 2016, 2020). *(Audited Sep 2026: direction holds; independent episodes ≈ 2–3 — see the honesty audit note above.)*
 - **The state (Aug 2026)**: GOR(WTI) = 53.8 — its 13th consecutive month above 45, the longest stretch in recorded history. Gold $4,454/oz, WTI $82.75.
@@ -88,7 +88,7 @@ index.html (language chooser)
 │                                                              │
 │   Seismograph: GOR ratio (Gold/Oil)                         │
 │   Fault scan:  Capital Three-Flows (Total/Direction/Speed)  │
-│   Analysts:    11 frameworks + 6 investment masters         │
+│   Analysts:    12 frameworks + 6 investment masters         │
 │   Output:      1 early-warning decision card                │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
@@ -130,13 +130,15 @@ index.html (language chooser)
 
 ---
 
-## The 11 Frameworks
+## The 12 Frameworks
 
 Every framework answers one question. Together they form a 360-degree risk assessment.
 
 | # | Framework | Core Question | Trigger | File |
 |:-:|-----------|--------------|:------:|------|
 | 01 | **GOR Direction** | What to allocate today? | Daily | [frameworks/01-GOR方向框架.md](frameworks/01-GOR方向框架.md) |
+| 01A | **Stage Layer** *(appendix)* | Which debt-cycle stage are we in? | Monthly | [frameworks/01A-GOR阶段解释层.md](frameworks/01A-GOR阶段解释层.md) |
+| 01B | **Crisis Checklist** *(diagnostic)* | Is it the same this time? | Quarterly | [frameworks/01B-危机检查表.md](frameworks/01B-危机检查表.md) |
 | 02 | **Deep Diligence** | Which specific asset? | On-demand | [frameworks/02-个股四维研判.md](frameworks/02-个股四维研判.md) |
 | 03 | **Bagholder Theory** | What market phase are we in? | Event | [frameworks/03-接盘论框架.md](frameworks/03-接盘论框架.md) |
 | 04 | **Token Dollar** | Where is USD hegemony? | Monthly | [frameworks/04-Token美元进度.md](frameworks/04-Token美元进度.md) |
@@ -201,7 +203,7 @@ For detailed master mappings, see [frameworks/08-六大师映射.md](frameworks/
 
 1. **Data layer** — FRED (12 macro series), akshare (commodities), yfinance (DXY), each with fallbacks.
 2. **Daily pipeline** — `scripts/gor_daily.py` runs on GitHub Actions at 00:00 UTC, writes fresh JSONs, commits them, and Pages auto-deploys.
-3. **Decision engine** — `run.py` loads the 11 frameworks, applies the priority chain, and outputs the daily decision card.
+3. **Decision engine** — `run.py` loads the 12 frameworks, applies the priority chain, and outputs the daily decision card.
 4. **Presentation** — every web page fetches `gor_latest.json` on load; embedded data blocks serve as offline fallback.
 
 ---
@@ -339,6 +341,16 @@ Signals and outcomes are public — including the mistakes. See the full record:
 | **2026.07.15** | 50.85 | **Hard stop released. Accumulate oil 27%.** | In progress — WTI reclaimed $79.49 in 72h. | ⏳ |
 
 *Past signals are backtested on historical data. Real-time signals are tracked live.* Daily snapshots and alerts are archived locally and auditable in commit history.
+
+---
+
+## Research Notes (Oct 2026)
+
+Three additions — public, dated, reproducible. None of them changes the card, the trigger, or `gor_latest.json`.
+
+- **[Stage explanatory layer](frameworks/01A-GOR阶段解释层.md)** — crosses the four GOR zones with the seven debt-cycle stages. It answers "why is the ratio in the recovery zone while the system is late-cycle?" Explanatory only: narrative, never position.
+- **[Crisis checklist](frameworks/01B-危机检查表.md)** — 10 questions, scored quarterly and pre-registered. 2026Q4 reading: policy/flows **3/3**, valuation partial, leverage mostly unknown → **"top → repricing"**, not a broad bubble and not a depression. [Scorecard](docs/crisis-checklist-2026Q4.md).
+- **[Trigger stress test](docs/trigger-stress-test-2026-10.md)** — VIX ≥ 22.5 + oil in the bottom quartile of its trailing decade, 2006–2026: 8 episodes. 12-month WTI median **+18.0%**, 6 of 8 positive; 3-month median **−2.9%** (2008 and 2020 both fell ~35% first). A distress marker, not a timing tool. [Episodes](docs/data/trigger_episodes.csv) · [Reproduce](scripts/trigger_stress_test.py).
 
 ---
 
