@@ -124,7 +124,7 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
   <div class="hero-row">
     <div class="hero-num" id="hero-num">--</div>
     <div class="hero-info">
-      <div class="hero-f" id="hero-f">GOR = 黄金 ÷ 布伦特原油</div>
+      <div class="hero-f" id="hero-f">GOR(WTI) = 黄金 ÷ WTI 原油</div>
       <div class="hero-d" id="hero-d"></div>
       <div class="hero-bar"><div class="hero-bar-f" style="width:100%"></div><div class="hero-marker" style="left:82%"></div></div>
       <div class="hero-labels">
@@ -197,7 +197,7 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
 <div class="grid g3">
   <div class="card">
     <h3>🌊 跨资产流 <span class="badge br">金融资产→商品+现金</span></h3>
-    <div class="metric"><span>GOR 金油比</span><span class="v" id="ca-gor"></span></div>
+    <div class="metric"><span>GOR(WTI)</span><span class="v" id="ca-gor"></span></div>
     <div class="metric"><span>伦敦金</span><span class="v" id="ca-gold"></span></div>
     <div class="metric"><span>布伦特原油</span><span class="v" id="ca-brent"></span></div>
     <div class="metric"><span>WTI 原油</span><span class="v" style="color:var(--rd)" id="ca-wti"></span></div>
@@ -438,7 +438,7 @@ window.__GOR_DATA__ = {
 <script>
 function renderGor(){
   var g=window.__GOR_DATA__;if(!g)return;
-  var gor=g.gor_brent.toFixed(1), gold=g.data['黄金期货'].price, wti=g.data['WTI原油'].price, brent=g.data['布伦特原油'].price, copper=g.data['COMEX铜'].price;
+  var gor=g.gor_wti.toFixed(1), gorB=g.gor_brent.toFixed(1), gold=g.data['黄金期货'].price, wti=g.data['WTI原油'].price, brent=g.data['布伦特原油'].price, copper=g.data['COMEX铜'].price;
   var dxy=g.capital_three_flows.dxy, vix=g.capital_three_flows.vix, tenyear=g.capital_three_flows.tenyear;
   var pos=g.final_position, a=g.allocation, oilP=a['油气'], goldP=a['黄金'], cashP=a['现金'], stkP=a['A股'], copP=a['铜'];
   var wtiDiff=(wti-75).toFixed(2), warsh=g.capital_three_flows.warsh_alert, ctf=g.capital_three_flows;
@@ -447,11 +447,11 @@ function renderGor(){
 
   E('hdr-gold').textContent='$'+gf(gold);E('hdr-wti').textContent='$'+wti.toFixed(2);E('hdr-dxy').textContent=dxy.toFixed(2);E('hdr-10y').textContent=tenyear.toFixed(2)+'%';
   E('hero-num').textContent=gor;
-  E('hero-f').innerHTML='GOR = <b>$'+gf(gold)+'</b> ÷ <b style="color:#f06030">$'+brent.toFixed(2)+'</b> = <b style="color:#f06030">'+gor+' : 1</b>';
-  E('hero-d').innerHTML='<b style="color:#f06030">金转油逻辑：</b>每盎司黄金可购买 <b style="color:#f06030">'+gor+' 桶</b> 原油 — 历史均衡中枢仅 <b>15–25 桶</b>。1986年以来最极端偏离。央行购金锁死金价下跌空间，油价均值回归是大概率事件。<b style="color:#f06030;font-size:17px">金油双持——黄金底仓锁死+超配油气。</b>向心坍缩阶段二出拳窗口·Warsh需$150油价制造恶性通胀·分批建仓·WTI$75强制止损。';
+  E('hero-f').innerHTML='GOR(WTI) = <b>$'+gf(gold)+'</b> ÷ <b style="color:#f06030">$'+wti.toFixed(2)+'</b> = <b style="color:#f06030">'+gor+' : 1</b> <span style="font-size:14px;color:var(--t3);margin-left:12px">GOR(Brent) '+gorB+' : 1（Brent 合成 $'+brent.toFixed(2)+'）</span>';
+  E('hero-d').innerHTML='<b style="color:#f06030">金转油逻辑（WTI 口径）：</b>每盎司黄金可购买 <b style="color:#f06030">'+gor+' 桶</b> WTI 原油 — 历史均衡中枢仅 <b>15–25 桶</b>。1986年以来最极端偏离。央行购金锁死金价下跌空间，油价均值回归是大概率事件。<b style="color:#f06030;font-size:17px">金油双持——黄金底仓锁死+超配油气。</b>向心坍缩阶段二出拳窗口·Warsh需$150油价制造恶性通胀·分批建仓·WTI$75强制止损。';
   E('hero-pos').textContent=pos+'%';
 
-  E('s-ch1').innerHTML='GOR <b>'+gor+'</b> — 1986年以来最极端偏离，金转油：原油以黄金计价处于历史性深度折价。布伦特 <b>$'+brent.toFixed(2)+'</b>';
+  E('s-ch1').innerHTML='GOR(WTI) <b>'+gor+'</b> · GOR(Brent) <b>'+gorB+'</b> — 1986年以来最极端偏离，金转油：原油以黄金计价处于历史性深度折价。WTI <b>$'+wti.toFixed(2)+'</b> / Brent <b>$'+brent.toFixed(2)+'</b>（合成）';
   E('s-ch2').innerHTML='DXY <b>'+dxy.toFixed(2)+'</b> 维持强美元区间（>99），10Y=<b>'+tenyear.toFixed(2)+'%</b> 继续压制全球风险资产定价';
   E('s-ch3').innerHTML=wtiDiff<2?'<b style="color:#f04458">⚠️ WTI $'+wti.toFixed(2)+' 距 $75 硬止损线仅 $'+wtiDiff+' — 2026年以来最接近触发的一次</b>':'WTI <b>$'+wti.toFixed(2)+'</b> 距 $75 硬止损尚有 $'+wtiDiff+' 缓冲';
 
@@ -470,7 +470,7 @@ function renderGor(){
   var ah='';alerts.slice(0,4).forEach(function(a){ah+='<div class="alert-i '+(a.level==='critical'?'ac':'aw')+'"><b>'+a.title+'</b><div style="margin-top:4px">'+a.detail+'</div></div>'});
   E('alert-list').innerHTML=ah||'<div class="alert-i aw">✅ 无活跃预警</div>';
 
-  E('ca-gor').innerHTML=gor+'<span style="font-size:12px;color:var(--t3);margin-left:4px"> : 1</span>';E('ca-gold').textContent='$'+gf(gold);E('ca-brent').textContent='$'+brent.toFixed(2);E('ca-wti').textContent='$'+wti.toFixed(2)+(wtiDiff<2?' ⚠️':'');E('ca-copper').textContent='$'+copper.toFixed(2);
+  E('ca-gor').innerHTML=gor+'<span style="font-size:12px;color:var(--t3);margin-left:4px"> : 1 · Brent '+gorB+'</span>';E('ca-gold').textContent='$'+gf(gold);E('ca-brent').textContent='$'+brent.toFixed(2);E('ca-wti').textContent='$'+wti.toFixed(2)+(wtiDiff<2?' ⚠️':'');E('ca-copper').textContent='$'+copper.toFixed(2);
   E('cb-dxy').textContent=dxy.toFixed(2);E('cb-10y').textContent=tenyear.toFixed(2)+'%';
   E('cc-wtidiff').innerHTML='<span style="color:'+(wtiDiff<2?'var(--rd)':'var(--gn)')+'">$'+wtiDiff+'</span>';
   E('cc-vix').innerHTML=vix.toFixed(1)+(vix<15?'<span style="font-size:12px;color:var(--t3)"> 偏低·自满</span>':vix>25?'<span style="font-size:12px;color:var(--rd)"> ⚠️ 偏高·恐慌</span>':'<span style="font-size:12px;color:var(--t3)"> 正常</span>');
