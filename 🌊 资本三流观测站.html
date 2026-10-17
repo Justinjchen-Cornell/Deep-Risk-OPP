@@ -146,20 +146,26 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
 </header>
 
 <div class="container">
+<div style="font-size:12px;color:var(--t3);border:1px solid var(--bdr);background:rgba(255,255,255,.02);padding:10px 14px;border-radius:8px;margin-bottom:16px">说明：本页顶部卡片为实时数据；下方部分图表为历史/示意数据，已标注，不构成实时报价。</div>
 
 <!-- AUTO_UPDATE_WEEKLY_SUMMARY_START -->
 <div class="card" style="margin-bottom:24px;padding:28px 32px;background:linear-gradient(135deg,rgba(240,96,48,.04),rgba(232,180,28,.04));border-color:rgba(240,96,48,.2)">
-  <div style="font-size:12px;font-weight:700;color:var(--oil);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">📡 本周资本三流观察 · 2026年08月第2周（数据截至08月09日）✅ VIX<17 Straddle窗口！</div>
+  <div style="font-size:12px;font-weight:700;color:var(--oil);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">📡 本周资本三流观察 · 2026-10-17（数据截至 10/17）· VIX 19.99 · GOR 41.1</div>
   <div style="font-size:16px;color:var(--tx);line-height:1.9">
-    <p><b style="color:var(--rd)">🔴 GOR在高位运行</b>黄金$4401/oz，WTI $77.08/bbl。 均值回归方向明确但时机高度不确定——伊朗和平协议+OPEC+减产博弈使油价失去方向。</p>
-    <p style="margin-top:8px"><b style="color:var(--gold)">🟡 油价运行中</b>油价运行正常。</p>
-    <p style="margin-top:8px"><b style="color:var(--gold)">🟡 黄金运行中</b>金价从近期低点反弹，央行购金锁死下跌空间（Q1净购244吨·PBoC连续19月增持·45%央行计划增持）。黄金底仓20%锁死不动。高盛目标$5,400/oz。</p>
-    <p style="margin-top:8px"><b style="color:var(--gn)">✅ VIX=15.15 < 17——SPY Straddle建仓窗口！</b>低波动率时买入Straddle=典型的凸性交易。WTI<$75+Warsh FOMC+明斯基9月=三重不确定→波动率终将扩张。成本降至组合2-3%。</p>
-    <p style="margin-top:8px"><b style="color:var(--bl)">🔵 DXY=99.6·10Y=4.69%·FOMC临近</b>DXY维持>99向心坍缩区间。10Y在4.69%高位压制。Warsh 7月FOMC(7/15-16)临近——市场聚焦9月加息信号。全球央行利率分化：欧美日加息、中国降息。</p>
-    <p style="margin-top:8px"><b style="color:var(--pp)">🟣 三流综合判定：</b>总量收缩+方向向心+流速放缓。当前配置：油气25%+黄金20%+现金48%。</p>
+    <p><b style="color:var(--rd)">🔴 GOR 从高位回落</b>黄金 $4,186.5/oz，WTI $101.84/bbl，GOR(WTI) 41.11。油腿主导、金腿滞后；GOR 已跌破 42，均值回归进入后半程，但节奏仍不确定。</p>
+    <p style="margin-top:8px"><b style="color:var(--oil)">🟠 油价高位运行</b>WTI $101.84、Brent $107.95（合成）；油在十年 96.7 分位，柴油裂解 $113.8（9/29）。</p>
+    <p style="margin-top:8px"><b style="color:var(--gold)">🟡 黄金盘整</b>金价 $4,186.5，距 8 月峰值 −11.9%；央行购金仍是中期支撑（最新季度数据待补）。黄金 15% 底仓不动。</p>
+    <p style="margin-top:8px"><b style="color:var(--gold)">🟠 VIX=19.99（CBOE，10/16 收盘）</b>低于 22.46 的投降门槛；SPY Straddle 窗口需等 VIX 回落或事件前，当前不追。</p>
+    <p style="margin-top:8px"><b style="color:var(--bl)">🔵 DXY=101.84 · 10Y=5.10% · 实际 2.78%</b>DXY>99 向心坍缩区间；10Y 在 5% 上方压制风险资产，关注期限溢价与拍卖。</p>
+    <p style="margin-top:8px"><b style="color:var(--pp)">🟣 三流综合判定：</b>总量收缩+方向向心+流速放缓。当前配置：油气 20% + 黄金 15% + 现金 58% + A股 7%，总仓位 30%。</p>
   </div>
 </div>
 <!-- AUTO_UPDATE_WEEKLY_SUMMARY_END -->
+<div class="card" style="margin-bottom:18px;padding:18px 22px">
+  <div id="drLiveUpdated" style="font-size:12px;color:var(--t3)">数据加载中…</div>
+  <div id="drLiveSummary" style="font-size:15px;line-height:1.7;margin-top:6px"></div>
+  <div id="drLiveInterpret" style="font-size:14px;color:var(--t2);line-height:1.7;margin-top:6px"></div>
+</div>
 <!-- ===== 向心坍缩进度条 ===== -->
 <!-- AUTO_UPDATE_COLLAPSE_START -->\n<div class="section-title">🌀 向心坍缩进度 — 卢麒元"蓄力→出拳→坍缩→抄底"四阶段</div>
 <div class="card" style="margin-bottom:20px;background:linear-gradient(135deg,rgba(240,68,88,.04),rgba(240,96,48,.03));border-color:rgba(240,68,88,.18)">
@@ -194,21 +200,21 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
     </div>
   </div>
   <div style="font-size:14px;color:var(--t2);line-height:1.8;margin-top:12px;padding:12px 16px;background:var(--c2);border-radius:8px">
-    <b>进度解读：</b>阶段一✅完成（2022-2025：Fed QT $1.6万亿·油价被G2压制·央行购金创纪录·利差倒挂15月）。当前处于<b style="color:var(--oil)">阶段二"出拳"的博弈窗口</b>——伊朗冲突推油价至$126（出拳预演完成），和平协议后油价回落至$68-70。但Warsh 7月FOMC（7/15-16）临近——9月加息概率72%。<b>阶段二的完全触发条件：油价持续>$100 + 粮食暴涨 + Warsh正式启动加息。</b>阶段三尚未到来。<b style="color:var(--rd)">⚠️ WTI $68.76 已连续2周+低于$75硬止损线。油气仓位维持5%，现金68%+黄金20%。</b>当前策略：<b style="color:var(--gn)">VIX=16.15<17→建SPY Straddle(2-3%)·黄金20%锁死·等WTI回$75上方激活油气。</b>
+    <b>进度解读：</b>阶段一✅完成（2022-2025：Fed QT $1.6万亿·油价被G2压制·央行购金创纪录·利差倒挂15月）。当前处于<b style="color:var(--oil)">阶段二"出拳"的观察窗口</b>——WTI $101.84 已站上 $100，但粮食 CPI 同比 +2.6%，尚未"暴涨"；10Y 5.10%、实际 2.78%、HY OAS 3.23%（20 天 +53bp）。GOR(WTI) 41.11，已跌破 42。<b>阶段二的完全触发条件：油价持续>$100 + 粮食暴涨 + 联储正式紧缩。</b>当前仓位 30%，油气 20%。
   </div>
 </div>
 
 <!-- ===== 金转油核心逻辑 ===== -->
 <div class="card" style="margin-bottom:20px;background:linear-gradient(135deg,rgba(232,180,28,.06),rgba(240,96,48,.05));border-color:rgba(232,180,28,.2)">
-  <div style="font-size:17px;font-weight:800;margin-bottom:12px">🔄 金转油 · GOR=57.1 </div>
+  <div style="font-size:17px;font-weight:800;margin-bottom:12px">🔄 金转油 · GOR(WTI)=41.1 </div>
   <div class="grid g2">
     <div style="font-size:15px;color:var(--t2);line-height:1.9">
-      <p><b style="color:var(--gold)">金：</b>央行购金锁死下跌空间（Q1 244吨+PBoC连续19月增持）。黄金V型反弹：$3,974→$4,187(+5.4%)。向心坍缩中黄金是最后的锚。当前策略：<b>底仓20%锁死不动，等GOR回归35-40再加仓</b>。央行买盘证明$3,974是铁底。</p>
-      <p style="margin-top:10px"><b style="color:var(--oil)">油：</b>GOR(WTI)=60.89意味着原油以黄金计价处于1986年以来最极端低估——每盎司黄金可换60.89桶WTI，历史均值仅15-20桶。但WTI $68.76<$75硬止损→油气≤5%。<b>纪律优先：等WTI回到$75上方再激活油气仓位，届时第一时间配Put保护。</b></p>
+      <p><b style="color:var(--gold)">金：</b>金价 $4,186.5，距 8 月峰值 −11.9%；央行购金仍是中期支撑（最新季度数据待补）。当前策略：<b>黄金 15% 底仓不动，等 GOR 回到 35–40 再考虑加仓</b>。</p>
+      <p style="margin-top:10px"><b style="color:var(--oil)">油：</b>GOR(WTI)=41.11，油在十年 96.7 分位；WTI $101.84 已高于 $75 硬止损，油气 20%。<b>纪律：不加杠杆，WTI<$75 才强制降至 5%。</b></p>
     </div>
     <div style="font-size:15px;color:var(--t2);line-height:1.9">
       <p><b style="color:var(--oil)">金转油的本质：</b>不是"卖黄金买石油"，而是<b>在黄金底仓锁死的前提下，超配油气</b>。黄金提供极端尾部保护（向心坍缩高潮中唯一能持有的资产），油气提供均值回归收益（GOR从52回归30=油价翻倍或金价跌40%或两者同时发生）。</p>
-      <p style="margin-top:10px"><b>仓位逻辑：</b>GOR≥45→油气25%+黄金20%+现金40%→油气分批建仓WTI$70-80→不加杠杆→WTI<$75强制降至5%。<b>这不是"赌油价涨"，而是"押注历史上每次GOR极端偏离后的均值回归"。</b></p>
+      <p style="margin-top:10px"><b>仓位逻辑：</b>GOR 30–45 → 基准 50%，经 DXY/10Y 修正后当前 30%；油气 20%+黄金 15%+现金 58%。<b>这不是"赌油价涨"，而是押注 GOR 极端偏离后的均值回归。</b></p>
     </div>
   </div>
 </div>
@@ -350,12 +356,12 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
   <div class="card">
     <h3>📊 DXY美元指数与资本流向 <span class="badge br">100.8·12月新高</span></h3>
     <div class="chart-wrap"><canvas id="chart-dxy"></canvas></div>
-    <div style="font-size:14px;color:var(--t2);margin-top:10px;line-height:1.7"><b>当前：</b>DXY=100.8（12个月新高）。Warsh鹰派+ECB/BOJ加息未能削弱美元。<br><b>解读：</b>DXY>99=向心坍缩区域·>101=加速吸引全球资本·<98=离心扩散开始。<b>当前处于向心坍缩强化阶段</b>——美联储加息预期+伊朗和平（降低避险需求但提升美元资产吸引力）双重支撑美元。</div>
+    <div style="font-size:14px;color:var(--t2);margin-top:10px;line-height:1.7"><b>当前：</b>DXY=101.84。Warsh鹰派+ECB/BOJ加息未能削弱美元。<br><b>解读：</b>DXY>99=向心坍缩区域·>101=加速吸引全球资本·<98=离心扩散开始。<b>当前处于向心坍缩强化阶段</b>——美联储加息预期+伊朗和平（降低避险需求但提升美元资产吸引力）双重支撑美元。</div>
   </div>
   <div class="card">
-    <h3>📊 关键货币对趋势 <span class="badge br">日元161·韩元1350</span></h3>
+    <h3>📊 关键货币对趋势 <span class="badge br">日元158·韩元1342</span></h3>
     <div class="chart-wrap"><canvas id="chart-fx"></canvas></div>
-    <div style="font-size:14px;color:var(--t2);margin-top:10px;line-height:1.7"><b>USD/JPY 161.1：</b>近40年低点。BOJ加息至1%但日元反跌——275bp利差维持套利交易。160为政府干预红线。<br><b>USD/CNH 7.18：</b>区间震荡。PBOC降息=贬值压力·CIPS扩容=支撑。<br><b>USD/KRW 1350：</b>外资6月净卖出₩15.8万亿压制韩元。7月BoK加息预期已定价。</div>
+    <div style="font-size:14px;color:var(--t2);margin-top:10px;line-height:1.7"><b>USD/JPY 158.34（10/09）：</b>日元弱势，160 为政府干预红线；美日利差仍支撑套利交易。<br><b>USD/CNH 6.692（10/09）：</b>人民币偏强；中间价与 CIPS 扩容是支撑。<br><b>USD/KRW 1,342（10/09）：</b>韩元偏强；外资流向与 BoK 政策是变量。</div>
   </div>
 </div>
 
@@ -666,7 +672,7 @@ window.__CAPITAL_FLOWS__ = {
 <div class="quote">"股市的涨跌，本质上跟实体经济没有关系，股市的涨跌由资本的3流决定，即<b>流向、流量、流速</b>。"<br>"实质利率（+2到-2之间为理想）= 名义利率 - 实质通货膨胀 = 名义通胀 +（M2增速 - GDP增速）"<br>—— 卢麒元，《通论》第16讲</div>
 
 <div class="footer">
-  🌊 Justinjchen · 资本三流观测站 · 卢麒元框架 · 数据每周六自动更新 · 本周更新于 2026.07.05 · 数据源：IMF/BofA/JP Morgan/Deutsche Börse/iShares/COFER/TradingEconomics ·
+  🌊 Justinjchen · 资本三流观测站 · 卢麒元框架 · 数据每日美股收盘后更新 · 本页更新于 2026-10-17 · 数据源：IMF/BofA/JP Morgan/Deutsche Börse/iShares/COFER/TradingEconomics ·
   <a href="11-资本三流框架.md">完整资本三流框架 →</a> ·
   <a href="📊 投资决策看板.html">决策看板 →</a> ·
   <span id="cf-update-time"></span>
@@ -750,5 +756,6 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(function() {});
 }
 </script>
+<script src="assets/live.js" defer></script>
 </body>
 </html>

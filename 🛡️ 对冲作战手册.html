@@ -98,14 +98,19 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
 </script>
 
 <header class="header">
-  <div><h1>🛡️ <span>Justinjchen</span> · 对冲作战手册</h1><span style="font-size:12px;color:var(--rd);margin-left:12px;font-weight:700">⚠️ WTI跌破$75硬止损 — 已更新至6/25</span></div>
+  <div><h1>🛡️ <span>Justinjchen</span> · 对冲作战手册</h1><span id="drHedgeHeader" data-live-text="hedge_header" style="font-size:12px;color:var(--gn);margin-left:12px;font-weight:700">数据加载中…</span></div>
   <nav>
     <a href="📊 投资决策看板.html">📊 决策看板</a>
     <a href="05-对冲策略选择.md">🛡️ 对冲框架</a>
     <a href="06-风控日历.md">⏰ 风控日历</a>
     <a href="11-资本三流框架.md">🌊 资本三流</a>
   </nav>
-</header>
+</header><div class="card" style="margin-bottom:18px;padding:18px 22px">
+  <div id="drLiveUpdated" style="font-size:12px;color:var(--t3)">数据加载中…</div>
+  <div id="drLiveSummary" style="font-size:15px;line-height:1.7;margin-top:6px"></div>
+  <div id="drLiveHedge" style="font-size:14px;color:var(--t2);line-height:1.7;margin-top:6px"></div>
+</div>
+
 
 <div class="container">
 
@@ -120,8 +125,8 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
 </div>
 
 <!-- ===== 中国大陆投资者对冲行动清单 ===== -->
-<div class="section-title">📋 当前对冲行动清单 · 中国大陆投资者版</div>
-<div class="insight" style="margin-bottom:20px;background:rgba(240,68,88,.06);border:1px solid rgba(240,68,88,.2)"><b>⚠️ 境内可用工具：</b>沪深300 ETF期权(510300)、上证50 ETF期权(510050)、沪深300股指期权(IO·中金所)、商品期货期权、能源ETF(159930)、黄金ETF(518880)、有色ETF(512400)、恒生科技ETF(513180·港股通)。<b>优先推荐境内低成本期权策略——少量资金（每笔几千至几万元）即可执行。</b><br><br><b style="color:var(--rd)">🚨 当前最高优先级行动：</b>① WTI $69.87 < $75 → 立即检查WTI $75 Put赔付对账 → 油气仓位已强制降至5% ② 现金升至73% → 转入防御等待模式 ③ 等WTI回到$75上方重新评估油气建仓+第一时间配Put。</div>
+<div class="section-title">📋 当前对冲行动清单 · 2026-06 历史版（最新状态见顶部动态摘要）</div>
+<div class="insight" style="margin-bottom:20px;background:rgba(232,180,28,.06);border:1px solid rgba(232,180,28,.2)"><b>⚠️ 阅读提示：</b>下方为 2026-06 的历史行动清单，当时 WTI $69.87。当前 WTI $101.84，硬止损未触发；不要按下方“降至5%”执行。以顶部动态摘要与决策看板为准。<br><br><b>⚠️ 境内可用工具：</b>沪深300 ETF期权(510300)、上证50 ETF期权(510050)、沪深300股指期权(IO·中金所)、商品期货期权、能源ETF(159930)、黄金ETF(518880)、有色ETF(512400)、恒生科技ETF(513180·港股通)。<b>优先推荐境内低成本期权策略——少量资金（每笔几千至几万元）即可执行。</b><br><br><b style="color:var(--rd)">🚨 当前最高优先级行动：</b>① WTI $101.84 > $75，硬止损未触发 → 油气 20% 维持；② 现金 58%、黄金 15%；③ 等 VIX ≥ 22.46 且油 ≤ 十年 P25 的投降签名，或 WTI 跌破动态硬止损再减仓。</div>
 <div class="action-summary">
   <div class="action-card priority">
     <h2>🔴 优先一：WTI $75 Put赔付对账 & 油气减仓（当前最高优先级）</h2>
@@ -207,7 +212,7 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
     </div>
   </div>
   <div class="card">
-    <h3>📊 SPY/IO Straddle <span class="badge by" id="hdg-2-badge">VIX=19.32等待回落</span></h3>
+    <h3>📊 SPY/IO Straddle <span class="badge by" id="hdg-2-badge">VIX 见顶部动态摘要</span></h3>
     <div class="tool-card">
       <b>目的：</b>押注波动率从当前位置进一步扩张——对冲系统性崩盘风险。<br>
       <b>境内替代：</b>沪深300 Straddle(IO·中金所·1点=100元·每腿权利金数千元)<br><b>境外工具：</b>SPY ATM Straddle<br>
@@ -359,7 +364,7 @@ window.__GOR_DATA__ = {
 <script>
 function renderGor(){
   var g=window.__GOR_DATA__;if(!g)return;
-  var gor=g.gor_brent.toFixed(1), wti=g.data['WTI原油'].price, vix=g.capital_three_flows.vix, pos=g.final_position, a=g.allocation;
+  var gor=g.gor_wti.toFixed(1), wti=g.data['WTI原油'].price, vix=g.capital_three_flows.vix, pos=g.final_position, a=g.allocation;
   var wtiDiff=(wti-75).toFixed(2), stkP=a['A股']||0;
   var wtiBelow75 = wti < 75; // Critical: hard stop triggered
 
@@ -369,7 +374,7 @@ function renderGor(){
   document.getElementById('st-vix').textContent='VIX '+vix.toFixed(1);
   document.getElementById('st-updated').textContent='数据更新于 '+g.updated;
 
-  document.getElementById('hdg-1-badge').textContent=wtiBelow75?'🚨 PUT已触发！检查赔付':'WTI $'+wtiDiff+'缓冲中';
+  document.getElementById('hdg-1-badge').textContent=wtiBelow75?'🚨 PUT已触发！检查赔付':'距 $75 缓冲 $'+wtiDiff;
   document.getElementById('hdg-1-badge').className='badge '+(wtiBelow75?'br':'by');
   document.getElementById('hdg-2-badge').textContent=vix<17?'VIX='+vix.toFixed(1)+' ✅ 建仓窗口':'VIX='+vix.toFixed(1)+(vix<20?' 偏高等待':' 恐慌酝酿');
   document.getElementById('hdg-2-badge').className='badge '+(vix<17?'gn':(vix<20?'by':'br'));
@@ -407,5 +412,6 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(function() {});
 }
 </script>
+<script src="assets/live.js" defer></script>
 </body>
 </html>

@@ -140,6 +140,11 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
   </div>
 </div>
 
+<div class="card" style="margin-bottom:18px;padding:18px 22px">
+  <div id="drLiveUpdated" style="font-size:12px;color:var(--t3)">数据加载中…</div>
+  <div id="drLiveSummary" style="font-size:15px;line-height:1.7;margin-top:6px"></div>
+  <div id="drLiveInterpret" style="font-size:14px;color:var(--t2);line-height:1.7;margin-top:6px"></div>
+</div>
 <!-- ===== SPOTLIGHT ===== -->
 <div class="spot">
   <div class="card">
@@ -179,7 +184,7 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
     <div class="insight" style="font-size:14px"><b>操作纪律：</b>油气分批建仓（WTI $70-80区间）· 黄金底仓锁死不动 · 不加杠杆（终身铁律）· 不做空 · WTI<$75=油气强制降至5%</div>
   </div>
   <div class="card">
-    <h3>📡 先行指标 <span class="badge bp">多源交叉验证</span></h3>
+    <h3>📡 先行指标 <span class="badge bp">结构性指标（非实时）</span></h3>
     <div class="metric"><span>巴菲特现金储备</span><span class="v" style="color:var(--rd)">$3,974亿</span></div>
     <div class="metric"><span>BRK现金/总资产</span><span class="v" style="color:var(--rd)">~28%</span></div>
     <div class="metric"><span>全球央行购金 YoY</span><span class="v" style="color:var(--gold)">+86%</span></div>
@@ -188,7 +193,7 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
     <div class="metric"><span>美国利息/财政收入</span><span class="v" style="color:var(--rd)">~20%</span></div>
     <div class="metric"><span>10Y-2Y利差</span><span class="v" style="color:var(--rd)">倒挂 >12个月</span></div>
     <div class="metric"><span>精废价差（铜）</span><span class="v" style="color:var(--t2)">待更新</span></div>
-    <div class="insight" style="font-size:14px"><b>信号解读：</b>巴菲特$3,974亿现金=BRK史上最高，他在等。外国持有美债从60%降至20%=官方去美元化加速。10Y-2Y倒挂>12月=衰退概率>70%。精废价差是铜市最敏感的领先指标——价差扩大=供给紧张。</div>
+    <div class="insight" style="font-size:14px"><b>信号解读：</b>以下为结构性指标（季度/年度），非实时报价；用于判断长期方向，不用于当日交易。巴菲特现金、外国持有美债、利差倒挂、精废价差均需按最新财报/季度数据复核。</div>
   </div>
 </div>
 
@@ -250,7 +255,7 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
     <div class="metric"><span>人民币贸易结算</span><span class="v" style="color:var(--bl)">4% (缓慢上升)</span></div>
     <div class="metric"><span>人民币储备占比</span><span class="v" style="color:var(--rd)">1.95% (下降中)</span></div>
     <div class="metric"><span>全球央行购金</span><span class="v" style="color:var(--gold)">+86% YoY</span></div>
-    <div class="insight"><b>向心坍缩</b>——卢麒元定义：全球资本被强制拉回美国的过程。通过制造全球危机→恐慌→资本涌入美元/美债→美元走强→美国低价收购全球资产。当前阶段：油价已涨53%（布伦特$60→$93），但粮食尚未暴涨。油粮同时暴涨=向心坍缩进入高潮=现金70%+对冲升级。</div>
+    <div class="insight"><b>向心坍缩</b>——卢麒元定义：全球资本被强制拉回美国的过程。通过制造全球危机→恐慌→资本涌入美元/美债→美元走强→美国低价收购全球资产。当前阶段：WTI 自 6 月基线 $69.87 涨至 $101.84（+45.8%），Brent $107.95；粮食 CPI +2.6%，尚未暴涨。油粮同时暴涨=向心坍缩进入高潮=现金70%+对冲升级。</div>
   </div>
   <div class="card">
     <h3>⚡ 三流：流速 <span class="badge by" id="l3-badge"></span></h3>
@@ -293,7 +298,7 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
     <div class="insight" style="font-size:13px"><b>抱团风险：</b>"指数牛"与"个股熊"撕裂——科创50创新高但3,700+只个股下跌。寒武纪PE 348x不适合价值投资者。中际旭创市值超茅台=光模块龙头已price-in未来3年增长。</div>
   </div>
   <div class="card">
-    <h3>🔥 本周科技热点 · 二阶三阶传导链</h3>
+    <h3>🔥 科技热点 · 框架示例（2026-06，非本周）</h3>
     <div style="font-size:14px;color:var(--t2);line-height:1.8">
       <p><b style="color:var(--rd)">① 工信部AI芯片三年计划（6月17日）：</b>400亿专项补贴·目标2028年国产AI芯片市占率40%。<b>一阶：</b>AI芯片股暴涨（寒武纪/海光信息）——已反应。<b>二阶：</b>AI芯片上游→半导体设备(拓荆/华海清科)+封装(长电·AI封装占比破40%)+EDA(华大九天)——仍在定价中。<b>三阶：</b>国产AI芯片产能扩张→电力需求暴增→绿电+电网设备+液冷——尚未被充分定价。</p>
       <p style="margin-top:8px"><b style="color:var(--rd)">② 字节跳动120亿AI芯片采购（6月18日）：</b>国产占比首超50%。<b>二阶传导：</b>字节供应商→存储芯片(兆易创新)+PCB(深南电路)+光模块(中际旭创)——订单确定性高。<b>三阶：</b>字节AI算力扩张→数据中心建设→铜缆/光缆/电力→铜需求结构性增长→与GOR金转油逻辑形成共振。</p>
@@ -307,12 +312,11 @@ if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据�
 <div class="sec">⏰ 风控时间轴 & 执行自检</div>
 <div class="grid g2">
   <div class="card">
-    <h3>⏰ 关键时间节点 <span class="badge br">SpaceX IPO 窗口进行中</span></h3>
-    <div class="tl"><span class="tl-p tp-now">现在</span><span><b>2026.06 SpaceX IPO 窗口</b> — 现金 ≥ 50%，规避流动性虹吸。不做新的重仓建仓</span></div>
-    <div class="tl"><span class="tl-p tp-soon">60天后</span><span><b>2026.08-09 原油冲顶期</b> — 油气 ≤ 25%，WTI 触及 $150 分批止盈，不追涨</span></div>
-    <div class="tl"><span class="tl-p tp-soon">90天后</span><span><b>2026.09 明斯基时刻</b> — 现金 ≥ 60%，清掉一切杠杆，美股降至最低</span></div>
-    <div class="tl"><span class="tl-p tp-later">180天后</span><span><b>2027.H1 美元周期见顶</b> — 黄金/油气止盈，A股提至 25%，铜纳入 5-10%</span></div>
-    <div class="tl"><span class="tl-p tp-warn">叠加</span><span><b>Warsh 冲击 + 明斯基双重叠加</b> 🔴 — 如果油粮同时暴涨→向心坍缩高潮→最高警戒</span></div>
+    <h3>⏰ 关键时间节点 <span class="badge br">合同目标 $107.60 · 还差 $5.76</span></h3>
+    <div class="tl"><span class="tl-p tp-now">现在</span><span><b>WTI $101.84 · GOR 41.1（破 42）</b> — 合同 +45.8%（84.7%），距 $107.60 还差 $5.76；仓位 30%</span></div>
+    <div class="tl"><span class="tl-p tp-soon">2026Q4</span><span><b>COFER 2026Q3（约 12 月底）</b> — 看美元份额、$7.5T 绝对持仓线、欧元 20%；GOR 42/40 观察</span></div>
+    <div class="tl"><span class="tl-p tp-later">2027-06</span><span><b>合同截止</b> — WTI ≥ $107.60；未达则公开认错并复盘机制</span></div>
+    <div class="tl"><span class="tl-p tp-warn">风险</span><span><b>投降签名</b> — VIX ≥ 22.46 且油 ≤ 十年 P25；未打印则维持 30%，不预测时点</span></div>
   </div>
   <div class="card">
     <h3>✅ 8项执行自检 <span class="badge bg" id="check-badge"></span></h3>
@@ -509,5 +513,6 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(function() {});
 }
 </script>
+<script src="assets/live.js" defer></script>
 </body>
 </html>
