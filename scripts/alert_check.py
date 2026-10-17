@@ -17,14 +17,15 @@ from datetime import datetime, timezone
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from data_pipeline.alerts import (build_state, evaluate, load_state, save_state,
-                                  append_log)
+                                  append_log, select_for_delivery)
 from data_pipeline.delivery import configured_channels, send_alert, has_any_success
 from data_pipeline.quotes import fetch_quotes, provisional_card, quote_age_minutes
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_CARD = os.path.join(BASE, "gor_latest.json")
 DEFAULT_HISTORY = os.path.join(BASE, "wti_history.json")
-DEFAULT_STATE = os.path.join(BASE, "alerts", "state.json")
+DEFAULT_STATE_DAILY = os.path.join(BASE, "alerts", "state_daily.json")
+DEFAULT_STATE_INTRADAY = os.path.join(BASE, "alerts", "state_intraday.json")
 DEFAULT_LOG = os.path.join(BASE, "alerts", "log.jsonl")
 
 
@@ -37,7 +38,8 @@ def main():
     ap = argparse.ArgumentParser(description="Deep-Risk-OPP v3.0 alert check")
     ap.add_argument("--card", default=DEFAULT_CARD)
     ap.add_argument("--history", default=DEFAULT_HISTORY)
-    ap.add_argument("--state", default=DEFAULT_STATE)
+    ap.add_argument("--state", default=None,
+                    help="state file (default: alerts/state_daily.json or state_intraday.json)")
     ap.add_argument("--log", default=DEFAULT_LOG)
     ap.add_argument("--intraday", action="store_true", help="fetch Yahoo intraday quotes")
     ap.add_argument("--send", action="store_true", help="deliver alerts to configured channels")
@@ -45,7 +47,12 @@ def main():
     ap.add_argument("--json", action="store_true", help="print JSON only")
     ap.add_argument("--max-quote-age", type=float, default=45.0,
                     help="suppress intraday alerts if the WTI quote is older than N minutes")
+    ap.add_argument("--send-min-severity", default=os.environ.get("ALERT_MIN_SEVERITY", "P1"),
+                    choices=["P0", "P1", "P2", "P3"],
+                    help="minimum severity to push (default P1; P2/P3 stay in log)")
     args = ap.parse_args()
+
+    state_path = args.state or (DEFAULT_STATE_INTRADAY if args.intraday else DEFAULT_STATE_DAILY)
 
     card = load_json(args.card)
     history = load_json(args.history) if os.path.exists(args.history) else None
@@ -64,20 +71,24 @@ def main():
         card = provisional_card(card, quotes)
 
     curr = build_state(card, history)
-    prev_raw = load_state(args.state)
+    prev_raw = load_state(state_path)
     mode_switch = bool(prev_raw and prev_raw.get("mode") != curr.get("mode"))
     prev = None if mode_switch else prev_raw
     alerts = evaluate(prev, curr, now=datetime.now(timezone.utc),
                       intraday=args.intraday)
 
     delivery = {}
-    if args.send and alerts:
+    to_send = select_for_delivery(alerts, args.send_min_severity)
+    for a in alerts:
+        if a not in to_send:
+            a["delivery"] = {"skipped": "below " + args.send_min_severity}
+    if args.send and to_send:
         channels = configured_channels()
         if not channels:
             print("send: no channels configured — alert not delivered")
             print("      set FEISHU_WEBHOOK / TELEGRAM_* / DINGTALK_WEBHOOK / SERVERCHAN_SENDKEY")
             sys.exit(1)
-        for a in alerts:
+        for a in to_send:
             res = send_alert(a)
             a["delivery"] = res
             delivery[a["id"]] = res
@@ -85,6 +96,8 @@ def main():
         if channels and not any(has_any_success(r) for r in delivery.values()):
             print("send: all configured channels failed")
             sys.exit(1)
+    elif args.send and alerts:
+        print("send: %d alert(s) below %s — logged only" % (len(alerts), args.send_min_severity))
 
     if args.json:
         print(json.dumps({"state": curr, "alerts": alerts, "delivery": delivery,
@@ -108,10 +121,10 @@ def main():
                 print("      id=" + a["id"])
 
     if args.write and (prev_raw is None or mode_switch or alerts):
-        save_state(args.state, curr)
+        save_state(state_path, curr)
         append_log(args.log, alerts)
         if not args.json:
-            print("wrote state: " + args.state)
+            print("wrote state: " + state_path)
             if alerts:
                 print("appended %d alert(s): %s" % (len(alerts), args.log))
 

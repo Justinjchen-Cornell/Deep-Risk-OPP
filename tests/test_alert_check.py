@@ -136,3 +136,11 @@ def test_delivery_message_contains_id():
     msg = delivery.format_message(a)
     assert "P0" in msg and "硬止损触发" in msg
     assert "2026-10-17T07:12Z-hard_stop" in msg
+
+
+def test_select_for_delivery():
+    from data_pipeline.alerts import select_for_delivery
+    alerts = [{"severity": "P0"}, {"severity": "P1"}, {"severity": "P2"}]
+    assert len(select_for_delivery(alerts, "P0")) == 1
+    assert len(select_for_delivery(alerts, "P1")) == 2
+    assert len(select_for_delivery(alerts, "P2")) == 3

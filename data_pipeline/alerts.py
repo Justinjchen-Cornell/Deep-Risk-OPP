@@ -19,6 +19,7 @@ HARD_STOP_MA = 60
 HARD_STOP_MULT = 0.85
 HARD_STOP_FLOOR = 60.0
 GOR_WATCH_LEVELS = (42.0, 40.0, 38.0)
+SEVERITY_RANK = {"P0": 0, "P1": 1, "P2": 2, "P3": 3}
 
 
 def _num(x):
@@ -95,10 +96,10 @@ def _alert(rule, now, title, message, curr, prev):
         "message": message,
         "created": now.isoformat(),
         "current": {k: curr.get(k) for k in
-                    ("regime", "position", "verdict", "gor_wti", "gor_brent",
+                    ("mode", "regime", "position", "verdict", "gor_wti", "gor_brent",
                      "wti", "vix", "oil_pctl", "hard_stop", "contract_completion")},
         "previous": {k: prev.get(k) for k in
-                     ("regime", "position", "verdict", "gor_wti", "gor_brent",
+                     ("mode", "regime", "position", "verdict", "gor_wti", "gor_brent",
                       "wti", "vix", "oil_pctl", "hard_stop", "contract_completion")},
     }
 
@@ -176,6 +177,12 @@ def evaluate(prev, curr, now=None, intraday=False):
                     "gor_above_" + str(int(lvl)), now, "GOR 升破 " + f"{lvl:g}",
                     "GOR(WTI) " + str(a) + " → " + str(b) + "。", curr, prev))
     return out
+
+
+def select_for_delivery(alerts, min_severity="P1"):
+    """Return alerts at or above the minimum severity (P0 highest)."""
+    limit = SEVERITY_RANK.get(min_severity, 1)
+    return [a for a in alerts if SEVERITY_RANK.get(a.get("severity"), 9) <= limit]
 
 
 def load_state(path):

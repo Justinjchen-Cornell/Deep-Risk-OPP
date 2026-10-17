@@ -38,6 +38,7 @@ jobs:
           SERVERCHAN_SENDKEY: ${{ secrets.SERVERCHAN_SENDKEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          ALERT_MIN_SEVERITY: P1
         run: |
           python scripts/alert_check.py --intraday --send --write
 
