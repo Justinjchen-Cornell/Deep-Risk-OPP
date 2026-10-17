@@ -425,7 +425,12 @@ Deep-Risk-OPP/
 | v2.7 | Mining-stock leading indicators (GDX / COPX / XAU-Gold ratio / silver) tracked in daily pipeline | 📋 Next |
 | v2.8 | **Content & feedback loop**: 2 long + 3 short/week; 90-day falsification window (to 2027-01-14); weekly newsletter digest | 🔄 In progress |
 | v3.0 | **Real-time alerting**: state-diff engine, intraday quotes, Feishu delivery, 08:30 P1/P2 digest, 15-min workflow | 🔄 In progress (Feishu live; shadow mode) |
+| v3.1 | **Feishu subscription app**: QR → H5 preferences (cards / frequency / time) → per-user DM via Feishu Open API; requires a self-built app + backend (Cloudflare Worker + D1); same-tenant only | 📋 Backlog |
 | v4.0 | Multi-asset portfolio simulation | 📋 Later |
+
+### Backlog
+
+- **Feishu subscription app (v3.1)** — QR → H5 form (card options / frequency / time) → per-user DM. Requires a Feishu **self-built app** + backend (Cloudflare Worker + D1); works only within the same Feishu tenant. External readers would need an ISV app/store review — evaluate email/Telegram first. Design not started.
 
 **🚀 Product launch (in progress)**: Xueqiu debut · LinkedIn GOR Pulse #004 · HelloGitHub · Hacker News Show HN · X hook thread — launch copy in [docs/promo-pack.md](docs/promo-pack.md).
 
