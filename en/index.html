@@ -100,6 +100,7 @@ footer a:hover{color:var(--gold)}
 <div class="hero">
   <h1>One number, every morning:<br>is oil cheap today?</h1>
   <div class="sub">GOR = Gold ÷ Oil · when it crossed 45, oil gained 54–167% within 12–24 months (4 of 4 times since 1998) · LIVE</div>
+  <div class="sub" style="color:#fbbf24;font-size:11px">Data updates daily at 08:00 Beijing (not intraday) · intraday alerts via Feishu</div>
 </div>
 <a class="live" href="../dashboard.html">
   <div class="lv-head">
@@ -174,12 +175,12 @@ footer a:hover{color:var(--gold)}
 <script>
 (function(){
 var e=document.getElementById("drGor");
-fetch("../gor_latest.json").then(function(r){return r.json()}).then(function(d){
+fetch("../gor_latest.json?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){
 var g=d.gor_wti;
 e.textContent="GOR "+g.toFixed(1)+(g>=45?" ⚠":"")+" · "+d.updated.slice(5);
 if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠DQ";e.title="degraded: "+d.data_quality.degraded_fields.join(", ");e.className="dr-gor alert";}else{e.className="dr-gor"+(g>=45?" alert":"");}
 }).catch(function(){e.textContent="GOR —";});
-fetch("../gor_latest.json").then(function(r){return r.json()}).then(function(d){
+fetch("../gor_latest.json?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){
   var dq=d.data_quality,w=document.getElementById("dqWarn");
   if(dq&&!dq.ok&&w){w.style.display="block";w.textContent="⚠️ Degraded: "+dq.degraded_fields.join(", ")+" — signals may be unreliable";}
   try{

@@ -7,6 +7,11 @@ import urllib.request, ssl
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+BJ_TZ = datetime.timezone(datetime.timedelta(hours=8))
+
+
+def now_bj_str():
+    return datetime.datetime.now(BJ_TZ).strftime('%Y-%m-%d %H:%M')
 DATA_DIR = BASE_DIR / "看板日志" / "data"
 LOG_FILE = BASE_DIR / "看板日志" / "data" / "update_log.txt"
 
@@ -400,7 +405,7 @@ def save_gor_json(data, gor):
     warsh_s = (fr > 3.5) if fr is not None else None
 
     output = {
-        "updated": f"{today} 12:00",
+        "updated": now_bj_str(),
         "gor_brent": gor['gor_brent'], "gor_wti": gor['gor_wti'],
         "regime": gor['regime'], "final_position": gor['final_position'],
         "allocation": gor['allocation'], "alerts": gor['alerts'],
@@ -485,7 +490,7 @@ def save_capital_flows_json(data):
     speed = "加速中" if (vix_val and vix_val > 20) else ("恐慌" if (vix_val and vix_val > 25) else "放缓")
 
     output = {
-        "updated": f"{today} 12:00",
+        "updated": now_bj_str(),
         "week_of": today,
         "data_source": "FRED (DGS10/DGS30/DTWEXBGS/VIXCLS/DFF/WALCL/M2SL) + akshare (commodities)",
         "bonds": {

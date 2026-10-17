@@ -106,7 +106,7 @@
 </div>
 <script id="dr-live-strip">
 (function(){
-fetch('gor_latest.json').then(function(r){return r.json()}).then(function(d){
+fetch('gor_latest.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
   var cf=d.capital_three_flows;
   function S(id,v){var e=document.getElementById(id);if(e)e.textContent=v}
   function N(v,f){return (v==null)?'—':f(v)}
@@ -132,7 +132,7 @@ fetch('gor_latest.json').then(function(r){return r.json()}).then(function(d){
 <script id="dr-nav-js">
 (function(){
 var e=document.getElementById("drGor");if(!e)return;
-fetch("gor_latest.json").then(function(r){return r.json()}).then(function(d){
+fetch("gor_latest.json?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){
 var g=d.gor_wti;
 e.textContent="GOR "+g.toFixed(1)+(g>=45?" ⚠":"")+" · "+d.updated.slice(5);
 if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据缺失: "+d.data_quality.degraded_fields.join("、");e.className="dr-gor alert";}else{e.className="dr-gor"+(g>=45?" alert":"");}

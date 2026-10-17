@@ -89,7 +89,7 @@
 <script id="dr-nav-js">
 (function(){
 var e=document.getElementById("drGor");if(!e)return;
-fetch("gor_latest.json").then(function(r){return r.json()}).then(function(d){
+fetch("gor_latest.json?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){
 var g=d.gor_wti;
 e.textContent="GOR "+g.toFixed(1)+(g>=45?" ⚠":"")+" · "+d.updated.slice(5);
 if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据缺失: "+d.data_quality.degraded_fields.join("、");e.className="dr-gor alert";}else{e.className="dr-gor"+(g>=45?" alert":"");}
@@ -389,7 +389,7 @@ mkChart('chart-warsh-em',{type:'line',data:{labels:['2025Q3','Q4','2026Q1','Wars
 
 <script id="dr-live-refresh">
 (function(){
-fetch('gor_latest.json').then(function(r){return r.json()}).then(function(f){
+fetch('gor_latest.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(f){
   var ut=document.getElementById('update-time');
   if(ut&&f.data_quality&&!f.data_quality.ok){
     ut.textContent='数据更新于 '+f.updated+' · ⚠️ 数据源降级: '+f.data_quality.degraded_fields.join('、');

@@ -100,6 +100,7 @@ footer a:hover{color:var(--gold)}
 <div class="hero">
   <h1>每天 08:00，一个数字告诉你：<br>油，现在便宜吗？</h1>
   <div class="sub">金油比 = 黄金 ÷ 原油 · 过去 20 年它 &gt;45 时，油价 12-24 个月内涨了 54%~167% · LIVE</div>
+  <div class="sub" style="color:#fbbf24;font-size:11px">数据每日 08:00 BJT 更新（非盘中实时）· 盘中告警走飞书</div>
 </div>
 <a class="live" href="../dashboard.html">
   <div class="lv-head">
@@ -174,12 +175,12 @@ footer a:hover{color:var(--gold)}
 <script>
 (function(){
 var e=document.getElementById("drGor");
-fetch("../gor_latest.json").then(function(r){return r.json()}).then(function(d){
+fetch("../gor_latest.json?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){
 var g=d.gor_wti;
 e.textContent="GOR "+g.toFixed(1)+(g>=45?" ⚠":"")+" · "+d.updated.slice(5);
 if(d.data_quality&&!d.data_quality.ok){e.textContent+=" ⚠缺";e.title="数据缺失: "+d.data_quality.degraded_fields.join("、");e.className="dr-gor alert";}else{e.className="dr-gor"+(g>=45?" alert":"");}
 }).catch(function(){e.textContent="GOR —";});
-fetch("../gor_latest.json").then(function(r){return r.json()}).then(function(d){
+fetch("../gor_latest.json?v="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(d){
   var dq=d.data_quality,w=document.getElementById("dqWarn");
   if(dq&&!dq.ok&&w){w.style.display="block";w.textContent="⚠️ 数据源降级: "+dq.degraded_fields.join("、")+" — 判断可能不可靠";}
   try{

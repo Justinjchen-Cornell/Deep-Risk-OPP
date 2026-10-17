@@ -1,15 +1,18 @@
-/* Deep-Risk-OPP Service Worker — 静态缓存 + JSON 网络优先 */
-const CACHE = 'dr-v1';
-const JSON_SUFFIXES = ['gor_latest.json', 'capital_flows_latest.json', 'feed.xml'];
+/* Deep-Risk-OPP Service Worker — 数据与页面网络优先，静态资源缓存优先 */
+const CACHE = 'dr-v2';
+const DATA_FILES = ['gor_latest.json', 'capital_flows_latest.json', 'feed.xml'];
 
 self.addEventListener('install', (e) => { self.skipWaiting(); });
 self.addEventListener('activate', (e) => { e.waitUntil(self.clients.claim()); });
 
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
-  const isData = JSON_SUFFIXES.some((s) => url.pathname.endsWith(s));
-  if (isData) {
-    // 网络优先：保证数据新鲜；离线时回退缓存
+  const isData = DATA_FILES.some((s) => url.pathname.endsWith(s));
+  const isHTML = e.request.mode === 'navigate' ||
+                 url.pathname.endsWith('.html') ||
+                 url.pathname.endsWith('/');
+  if (isData || isHTML) {
+    // 网络优先：保证页面与数据新鲜；离线时回退缓存
     e.respondWith(
       fetch(e.request)
         .then((r) => {
