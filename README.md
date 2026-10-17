@@ -63,7 +63,7 @@ index.html (language chooser)
 
 - **Every page** carries a unified HUD navigation bar with a live GOR badge — jump between pages from anywhere.
 - **Every page fetches `gor_latest.json` on load** — the data you see is always the latest daily run.
-- **Data pipeline**: GitHub Actions cron (00:00 UTC) → fetch FRED/akshare/yfinance → compute GOR + allocation → commit JSON → auto-deploy to GitHub Pages. Zero manual steps.
+- **Data pipeline**: GitHub Actions cron (21:15 UTC, after US close) → fetch FRED/akshare/yfinance → compute GOR + allocation → commit JSON → auto-deploy to GitHub Pages. Zero manual steps.
 
 ---
 
@@ -190,7 +190,7 @@ For detailed master mappings, see [frameworks/08-六大师映射.md](frameworks/
 ┌──────────────┐   ┌────────────────────┐   ┌──────────────────────────────┐
 │ FRED (Fed)   │   │  gor_daily.py      │   │  gor_latest.json             │
 │ akshare      │──▶│  (GitHub Actions    │──▶│  capital_flows_latest.json   │
-│ yfinance     │   │   cron, 00:00 UTC)  │   │  wti_history.json            │
+│ yfinance     │   │   cron, 21:15 UTC)  │   │  wti_history.json            │
 └──────────────┘   │  Pull → Compute GOR │   │  ALERT_YYYY-MM-DD.md         │
                    │  → Classify → Save  │   └──────────────┬───────────────┘
                    └────────────────────┘                  │ auto-deploy
@@ -202,7 +202,7 @@ For detailed master mappings, see [frameworks/08-六大师映射.md](frameworks/
 ```
 
 1. **Data layer** — FRED (12 macro series), akshare (commodities), yfinance (DXY), each with fallbacks.
-2. **Daily pipeline** — `scripts/gor_daily.py` runs on GitHub Actions at 00:00 UTC, writes fresh JSONs, commits them, and Pages auto-deploys.
+2. **Daily pipeline** — `scripts/gor_daily.py` runs on GitHub Actions at 21:15 UTC (after US close), writes fresh JSONs, commits them, and Pages auto-deploys.
 3. **Decision engine** — `run.py` loads the 12 frameworks, applies the priority chain, and outputs the daily decision card.
 4. **Presentation** — every web page fetches `gor_latest.json` on load; embedded data blocks serve as offline fallback.
 
@@ -219,7 +219,7 @@ Never check the site again — let the signal come to you:
 | 📡 **Raw RSS** | [feed.xml](https://justinjchen-cornell.github.io/Deep-Risk-OPP/feed.xml) — any reader |
 | 📱 **PWA** | open the site on your phone → "Add to Home Screen" |
 
-Daily pipeline: 00:00 UTC data pull → signal → push to configured channels (Feishu/DingTalk/ServerChan/Telegram) → RSS → auto-deploy.
+Daily pipeline: 21:15 UTC data pull (05:15 Beijing) → signal → push to configured channels (Feishu/DingTalk/ServerChan/Telegram) → RSS → auto-deploy.
 
 ### Feishu alerts (1-minute setup)
 
@@ -386,7 +386,7 @@ Deep-Risk-OPP/
 ├── config.py                   # All thresholds & parameters
 ├── run.py                      # CLI decision engine (8 modes)
 ├── scripts/
-│   ├── gor_daily.py            # Daily pipeline (Actions cron 00:00 UTC)
+│   ├── gor_daily.py            # Daily pipeline (Actions cron 21:15 UTC)
 │   ├── weekly_data_pull.py     # Weekly change report generator
 │   └── figi_mapper.py          # OpenFIGI identifier mapping
 ├── frameworks/                 # 12 decision frameworks (zh) + 01A/01B appendices

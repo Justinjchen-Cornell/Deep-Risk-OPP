@@ -79,7 +79,7 @@ GOR地震仪 → 资本流断层扫描 → 12个框架 → 6位大师 → 1张�
 | 📡 **原始 RSS** | [feed.xml](https://justinjchen-cornell.github.io/Deep-Risk-OPP/feed.xml) |
 | 📱 **安装到手机** | 手机浏览器打开站点 → "添加到主屏幕"（PWA） |
 
-每日管道：00:00 UTC 拉数据 → 算信号 → 推送（飞书/钉钉/Server酱/Telegram）→ RSS → 自动部署。
+每日管道：21:15 UTC（北京 05:15，美股收盘后）拉数据 → 算信号 → 推送（飞书/钉钉/Server酱/Telegram）→ RSS → 自动部署。
 
 ### 飞书告警（1 分钟接入）
 

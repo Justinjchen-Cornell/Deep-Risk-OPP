@@ -2,7 +2,7 @@ name: Daily GOR Update
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # UTC 00:00 daily
+    - cron: '15 21 * * *'  # 21:15 UTC = 05:15 Beijing, after US close
   workflow_dispatch:       # manual trigger
 
 jobs:
