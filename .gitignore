@@ -17,3 +17,7 @@ compact-handoff.md
 研究专题/
 人民币升值分析/
 黄金宏观因子复刻/
+
+# local tooling
+node_modules/
+package-lock.json
