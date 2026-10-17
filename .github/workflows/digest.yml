@@ -1,0 +1,51 @@
+name: Daily Digest (08:30 Beijing)
+
+on:
+  schedule:
+    - cron: '30 0 * * *'   # 00:30 UTC = 08:30 Beijing
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: alert-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Send digest
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
+          SERVERCHAN_SENDKEY: ${{ secrets.SERVERCHAN_SENDKEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python scripts/alert_digest.py --send --write
+
+      - name: Commit digest state
+        run: |
+          git config user.name "Deep-Risk Alert Bot"
+          git config user.email "alert@deep-risk.dev"
+          git add alerts
+          if git diff --staged --quiet; then
+            echo "No digest state change — nothing to commit."
+            exit 0
+          fi
+          git commit -m "Digest: 08:30 state [$(date -u +%FT%TZ)]"
+          git pull --rebase origin main
+          git push

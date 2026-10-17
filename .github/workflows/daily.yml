@@ -53,7 +53,7 @@ jobs:
           SERVERCHAN_SENDKEY: ${{ secrets.SERVERCHAN_SENDKEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-          ALERT_MIN_SEVERITY: P1
+          ALERT_MIN_SEVERITY: P0
         run: python scripts/alert_check.py --send --write
 
       - name: Commit & push changes

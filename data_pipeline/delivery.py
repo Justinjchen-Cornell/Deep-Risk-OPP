@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Alert delivery — Feishu / Telegram / DingTalk / ServerChan (v3.0 MVP).
+"""Alert delivery — Feishu / Telegram / DingTalk / ServerChan (v3.0).
 
 No secrets in code. Returns per-channel status; never logs tokens/URLs.
+GitHub Issue is a FALLBACK only (created when every primary channel fails).
 Buttondown is intentionally NOT used for real-time alerts.
 """
 from __future__ import annotations
@@ -31,15 +32,14 @@ def configured_channels():
 
 def format_message(a):
     cur = a.get("current") or {}
-    lines = [
+    return "\n".join([
         "[" + a.get("severity", "?") + "] " + a.get("title", a.get("rule", "")),
         a.get("message", ""),
         "GOR(WTI) " + str(cur.get("gor_wti")) + " · WTI " + str(cur.get("wti")) +
         " · VIX " + str(cur.get("vix")) + " · 仓位 " + str(cur.get("position")) + "%",
         "卡片: " + CARD_URL,
         "ID: " + a.get("id", ""),
-    ]
-    return "\n".join(lines)
+    ])
 
 
 def _post_json(url, payload, timeout=10):
@@ -59,9 +59,7 @@ def _get(url, timeout=10):
         return r.status
 
 
-def send_alert(a):
-    """Send one alert to every configured channel. Returns dict of statuses."""
-    text = format_message(a)
+def _dispatch(text, title="Deep-Risk-OPP", severity="P2", alert_id=""):
     results = {}
     feishu = os.environ.get("FEISHU_WEBHOOK")
     if feishu:
@@ -98,20 +96,19 @@ def send_alert(a):
     sc = os.environ.get("SERVERCHAN_SENDKEY")
     if sc:
         try:
-            title = a.get("title", "Deep-Risk-OPP alert")
             url = ("https://sctapi.ftqq.com/" + sc + ".send?title=" +
                    urllib.parse.quote(title) + "&desp=" + urllib.parse.quote(text))
             _get(url)
             results["serverchan"] = "ok"
         except Exception as e:
             results["serverchan"] = "error: " + type(e).__name__
-    # GitHub Issue is a FALLBACK only: create it when every primary channel failed.
+
+    # GitHub Issue: fallback only, when every primary channel failed.
     gh_token = os.environ.get("GITHUB_TOKEN")
     gh_repo = os.environ.get("GITHUB_REPOSITORY")
     if gh_token and gh_repo and not any(v == "ok" for v in results.values()):
         try:
-            payload = {"title": "[" + a.get("severity", "?") + "] " + a.get("title", a.get("rule", "")),
-                       "body": text}
+            payload = {"title": "[" + severity + "] " + title, "body": text}
             req = urllib.request.Request(
                 "https://api.github.com/repos/" + gh_repo + "/issues",
                 data=json.dumps(payload).encode("utf-8"),
@@ -123,6 +120,15 @@ def send_alert(a):
         except Exception as e:
             results["github_issue"] = "error: " + type(e).__name__
     return results
+
+
+def send_alert(a):
+    return _dispatch(format_message(a), a.get("title", a.get("rule", "")),
+                     a.get("severity", "?"), a.get("id", ""))
+
+
+def send_text(text, title="Deep-Risk-OPP", severity="P2", alert_id=""):
+    return _dispatch(text, title, severity, alert_id)
 
 
 def has_any_success(results):
