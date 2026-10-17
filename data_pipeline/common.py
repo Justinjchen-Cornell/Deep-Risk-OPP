@@ -501,6 +501,15 @@ def save_capital_flows_json(data):
         spread = None
         yc_status = "陡峭化预警"
 
+    # FX + net interest (for live charts)
+    net_int = fred_get('A091RC1Q027SBEA')
+    fx_rates = {
+        "usdjpy": fred_get('DEXJPUS'),
+        "usdkrw": fred_get('DEXKOUS'),
+        "usdcnh": fred_get('DEXCHUS'),
+        "usdeur": fred_get('DEXUSEU'),
+    }
+
     # Capital flow direction
     direction = "向心坍缩" if (dxy_val and dxy_val > 99) else ("离心扩散" if (dxy_val and dxy_val < 98) else "中性")
     speed = "加速中" if (vix_val and vix_val > 20) else ("恐慌" if (vix_val and vix_val > 25) else "放缓")
@@ -537,11 +546,13 @@ def save_capital_flows_json(data):
             "fed_balance_trillion": fed_bs,
             "m2_trillion": m2_val,
             "fed_rate_pct": fed_rate,
-            "dgs30_pct": us30y
+            "dgs30_pct": us30y,
+            "net_interest_trillion": round(net_int / 1000, 2) if net_int else None
         },
         "gold_flows": {"central_bank_purchases": {"2024_total": "1,037吨", "2025_q1": "289吨", "trend": "央行购金不减"}, "etf_flows": {"trend": "黄金从ATH跌-29%·央行独自接盘"}},
         "oil_flows": {"wti_price": data.get('wti'), "spr_level": "3.7亿桶", "producer_discipline": "OPEC+减产·伊朗和平恢复出口"},
         "commodity_index": {"trend": "铜受强美元+科技股抛售压制·AI基建中长期看涨"},
+        "fx_rates": {k: (round(v, 3) if isinstance(v, (int, float)) else v) for k, v in fx_rates.items()},
         "currency_flows": {"dxy_signal": dxy_signal, "dxy": dxy_val}
     }
 

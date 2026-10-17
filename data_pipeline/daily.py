@@ -31,6 +31,14 @@ def run_daily():
     gor_output = save_gor_json(data, gor)
     cf_output = save_capital_flows_json(data)
 
+    # Public audit trail: daily snapshot + changed fields
+    try:
+        from data_pipeline.history import record as record_history
+        row, changes = record_history(gor_output, cf_output)
+        log("  History: " + str(len(changes)) + " changed field(s) -> history.json")
+    except Exception as e:
+        log("  History record failed: " + str(e))
+
     log("⏳ Step 4/6: 更新 WTI 历史 (动态硬止损)...")
     update_wti_history(gor_output)
 

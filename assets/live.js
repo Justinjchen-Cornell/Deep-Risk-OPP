@@ -16,6 +16,19 @@
     return {thr: thr, on: on, dist: wti - thr};
   }
 
+  function setLast(id, values, label) {
+    if (!window.Chart) return;
+    var c = Chart.getChart ? Chart.getChart(id) : null;
+    if (!c) return;
+    for (var i = 0; i < c.data.datasets.length && i < values.length; i++) {
+      var v = values[i]; if (v == null) continue;
+      var arr = c.data.datasets[i].data; if (!arr.length) continue;
+      arr[arr.length - 1] = v;
+    }
+    if (label) c.data.labels[c.data.labels.length - 1] = label;
+    c.update('none');
+  }
+
   function regimeNote(g, gorW, gorB) {
     if (gorW == null) return 'GOR 数据缺失';
     if (gorW >= 45) return '极端区：金相对油贵，避险/需求恐惧占上风';
@@ -27,9 +40,11 @@
   Promise.all([
     get('gor_latest.json'),
     get('capital_flows_latest.json').catch(function () { return null; }),
-    get('wti_history.json').catch(function () { return null; })
+    get('wti_history.json').catch(function () { return null; }),
+    get('history.json').catch(function () { return null; }),
+    get('history_weekly.json').catch(function () { return null; })
   ]).then(function (out) {
-    var g = out[0] || {}, cf = out[1], hist = out[2];
+    var g = out[0] || {}, cf = out[1], hist = out[2], dailyRows = out[3], weeklyRows = out[4];
     var d = g.data || {}, s = g.screener || {}, a = g.allocation || {}, c = g.capital_three_flows || {};
     var gold = num((d['黄金期货'] || {}).price), wti = num((d['WTI原油'] || {}).price);
     var brent = num((d['布伦特原油'] || {}).price), dxy = num((d['美元指数DXY'] || {}).price);
@@ -63,6 +78,15 @@
     var hedge = '硬止损' + vals.hard_stop + ' · 油气 ' + vals.oil_pct + ' · 现金 ' + vals.cash_pct +
       ' · 总仓位 ' + vals.position + '。' + (hs.on ? '按纪律：油气降至 5%。' : '未触发，维持当前配置；VIX ≥ ' + vals.vix_gate + ' 且油 ≤ 十年 P25 才是投降签名。');
     var flowText = '总量 ' + vals.flow_total + ' · 方向 ' + vals.flow_direction + ' · 流速 ' + vals.flow_speed;
+
+    // Update the 4 core charts' last point (Chart.js 4)
+    var mf = (cf && cf.macro_fred) || {};
+    var fx = (cf && cf.fx_rates) || {};
+    setLast('chart-qt', [mf.fed_balance_trillion || c.fed_balance], 'Now');
+    setLast('chart-interest', [((mf.net_interest_trillion || 1.28) * 10)], '2026E');
+    setLast('chart-dxy', [dxy], 'Now');
+    setLast('chart-fx', [fx.usdcnh, fx.usdjpy, fx.usdeur], 'Now');
+    setLast('chart-usdjpy', [fx.usdjpy], 'Now');
     var texts = {summary: summary, interpret: interpret, hedge: hedge, flow: flowText,
       hedge_header: 'WTI ' + vals.wti + ' · 硬止损' + vals.hard_stop + ' · 仓位 ' + vals.position};
 
@@ -80,7 +104,29 @@
       if (id === 'drLiveHedge') el.textContent = hedge;
       if (id === 'drLiveFlow') el.textContent = flowText;
     });
-    window.DR = {card: g, flows: cf, history: hist, values: vals};
+    // Change ledger: weekly GOR + daily prices/VIX
+    var daily = (dailyRows && dailyRows.rows) ? dailyRows.rows : [];
+    var weekly = (weeklyRows && weeklyRows.rows) ? weeklyRows.rows : [];
+    var dNow = daily.length ? daily[daily.length - 1] : null;
+    var dPrev = daily.length > 1 ? daily[daily.length - 2] : null;
+    var wNow = weekly.length ? weekly[weekly.length - 1] : null;
+    var wPrev = weekly.length > 1 ? weekly[weekly.length - 2] : null;
+    function diff(a, b, d) { return (a == null || b == null) ? '—' : (a - b).toFixed(d); }
+    var changeLine = '';
+    if (wNow && wPrev) changeLine += 'GOR 周变化：' + wNow.gor_wti + '（上周 ' + wPrev.gor_wti + '，' + diff(wNow.gor_wti, wPrev.gor_wti, 2) + '）';
+    if (dNow && dPrev) changeLine += (changeLine ? ' · ' : '') + 'WTI 日变化：' + diff(dNow.wti, dPrev.wti, 2) + ' · VIX 日变化：' + diff(dNow.vix, dPrev.vix, 2) + ' · 仓位 ' + (dNow.position == null ? '—' : dNow.position + '%');
+    var elChange = $('drChangeLine'); if (elChange) elChange.textContent = changeLine || '变化数据待生成';
+    var elHist = $('drHistory');
+    if (elHist) {
+      var rows = weekly.slice(-10).reverse();
+      var html = '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="color:var(--t3);text-align:left"><th style="padding:4px 6px">周</th><th>日期</th><th>GOR(WTI)</th><th>WTI</th><th>VIX</th><th>仓位</th></tr></thead><tbody>';
+      rows.forEach(function (r) {
+        html += '<tr style="border-top:1px solid var(--bdr)"><td style="padding:5px 6px">' + (r.week || '') + '</td><td>' + (r.date || '') + '</td><td>' + (r.gor_wti != null ? r.gor_wti.toFixed(2) : '—') + '</td><td>' + (r.wti != null ? '$' + r.wti.toFixed(2) : '—') + '</td><td>' + (r.vix != null ? r.vix.toFixed(2) : '—') + '</td><td>' + (r.position != null ? r.position + '%' : '—') + '</td></tr>';
+      });
+      html += '</tbody></table>';
+      elHist.innerHTML = html;
+    }
+    window.DR = {card: g, flows: cf, history: hist, daily: daily, weekly: weekly, values: vals};
   }).catch(function (e) {
     var el = $('drLiveUpdated'); if (el) el.textContent = '动态数据加载失败：' + e.message;
   });

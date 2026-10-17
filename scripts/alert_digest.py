@@ -85,6 +85,22 @@ def main():
                          " — " + a.get("message", ""))
     else:
         lines.append("过去 24h：无 P1/P2 状态变化。")
+    # Weekly GOR change + daily price change
+    try:
+        import json as _json
+        base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        wk = _json.load(open(os.path.join(base, 'history_weekly.json'), encoding='utf-8')).get('rows', [])
+        dl = _json.load(open(os.path.join(base, 'history.json'), encoding='utf-8')).get('rows', [])
+        if len(wk) >= 2:
+            a, b = wk[-2], wk[-1]
+            lines.append('较上周：GOR ' + str(b.get('gor_wti')) + '（上周 ' + str(a.get('gor_wti')) + '，' + ('%+.2f' % ((b.get('gor_wti') or 0) - (a.get('gor_wti') or 0))) + '）')
+        if len(dl) >= 2:
+            a, b = dl[-2], dl[-1]
+            def _d(k):
+                return ('%+.2f' % ((b.get(k) or 0) - (a.get(k) or 0))) if isinstance(b.get(k), (int, float)) and isinstance(a.get(k), (int, float)) else '—'
+            lines.append('较上次：WTI ' + _d('wti') + ' · VIX ' + _d('vix') + ' · 仓位 ' + str(b.get('position')) + '%')
+    except Exception:
+        pass
     lines += ["", "P0 仍即时推送；本摘要不重复 P0。", "卡片: https://justinjchen-cornell.github.io/Deep-Risk-OPP"]
     text = "\n".join(lines)
 
