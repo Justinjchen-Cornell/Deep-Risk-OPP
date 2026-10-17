@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-17 23:34",
+  "updated": "2026-10-17 23:38",
   "week_of": "2026-10-17",
   "data_source": "FRED (DGS10/DGS30/DTWEXBGS/VIXCLS/DFF/WALCL/M2SL) + akshare (commodities)",
   "bonds": {
@@ -9,7 +9,7 @@
     "spread_30y_10y": 0.33,
     "yield_curve": "陡峭化",
     "seesaw": {
-      "treasury_vs_stocks": "正常",
+      "treasury_vs_stocks": "科技股抛售→资金涌入国债（避险）",
       "treasury_vs_gold": "国债与黄金同跌·现金为王信号增强",
       "credit_spread_warning": "正常"
     }

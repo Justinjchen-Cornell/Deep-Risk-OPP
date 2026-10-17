@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-17 23:34",
+  "updated": "2026-10-17 23:38",
   "gor_brent": 38.78,
   "gor_wti": 41.11,
   "regime": "修复周期",
@@ -28,7 +28,7 @@
     "d_oil": 0.528,
     "leg": "油腿主导",
     "s1": true,
-    "vix": 16.46,
+    "vix": 19.99,
     "vix_thr": 22.46,
     "s2": false,
     "oil": 101.84,
@@ -37,7 +37,7 @@
     "npass": 1,
     "verdict": "红",
     "oil_cap_factor": 0.0,
-    "ts": "2026-10-17 15:34",
+    "ts": "2026-10-17 15:38",
     "history_last": "fetched"
   },
   "data": {
@@ -62,7 +62,7 @@
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 16.46,
+      "price": 19.99,
       "change_pct": 0.0
     },
     "COMEX铜": {
@@ -75,7 +75,7 @@
     "direction": "向心坍缩",
     "speed": "放缓",
     "dxy": 101.84,
-    "vix": 16.46,
+    "vix": 19.99,
     "tenyear": 5.1,
     "thirtyyear": 5.43,
     "fed_balance": 6.76,
@@ -92,7 +92,8 @@
     "ok": true,
     "degraded_fields": [],
     "fallbacks": {
-      "布伦特(估算WTI×1.06)": "estimated"
+      "布伦特(估算WTI×1.06)": "estimated",
+      "VIX(第三方)": "cboe"
     },
     "note": "全部数据源正常"
   }
