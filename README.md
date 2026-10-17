@@ -367,7 +367,9 @@ Deep-Risk-OPP/
 │   ├── track-record.md         # Live track record (incl. mistakes)
 │   ├── promo-pack.md           # Launch copy for social platforms
 │   └── code_review_2026-08.md  # First systematic code review
-├── 看板日志/ (local only)       # Daily snapshots & alerts — gitignored
+├── 看板日志/ (local only)       # Daily snapshots, content archive & alerts — gitignored
+├── 管理/ (local only)           # Handoffs, content contract, audit log — gitignored
+├── 研究专题/ (local only)        # RMB analysis & gold macro replication — not in repo
 └── .github/workflows/
     ├── daily.yml               # Daily data update
     └── static.yml              # GitHub Pages deploy

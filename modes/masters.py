@@ -114,8 +114,8 @@ def mode_masters():
     # Save
     result = {"date": datetime.now().strftime('%Y-%m-%d'), "masters": masters,
               "defensive_votes": defensive, "bullish_energy_votes": bullish}
-    os.makedirs("看板日志", exist_ok=True)
-    out = f"看板日志/masters_{datetime.now().strftime('%Y-%m-%d')}.json"
+    os.makedirs("看板日志/data", exist_ok=True)
+    out = f"看板日志/data/masters_{datetime.now().strftime('%Y-%m-%d')}.json"
     with open(out, 'w', encoding='utf-8') as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
     print(f"\n  Saved: {out}")

@@ -361,17 +361,20 @@ Deep-Risk-OPP/
 │   └── weekly_data_pull.py            # 每周：含CPI/PCE/债务等全量FRED
 │
 ├── 看板日志/ (本地)                   # 每日存档 — 已 gitignore
-│   ├── 2026-06-19-每日简报.md
-│   ├── 2026-06-25-变化比对报告.md
-│   ├── 2026-07-05-变化比对报告.md
-│   ├── 2026-07-12-变化比对报告.md
-│   ├── *.json                          # 机器可读信号
-│   └── 📋 看板日志索引.md
+│   ├── data/                           # gor-data、ALERT、信号日志、周报
+│   ├── cache/                          # 全部缓存（backtest/eia/imf）
+│   ├── reports/                        # 深度报告与图表
+│   └── linkedin/                       # 内容库：6 目录，编号归档（见 00_index/CONTENT-INDEX.md）
 │
 ├── gor_latest.json                    # 最新GOR+配置
 ├── capital_flows_latest.json          # 最新资本流数据
 │
-└── 审计记录/                           # 决策审计历史
+├── 管理/ (本地)                        # 交接/契约/审计 — 已 gitignore
+│   ├── handoff-*.md
+│   ├── 内容契约-v1-1016.md
+│   └── 审计记录/
+│
+└── 研究专题/ (本地)                    # 人民币升值分析 / 黄金宏观因子复刻 — 不入库
 ```
 
 ---

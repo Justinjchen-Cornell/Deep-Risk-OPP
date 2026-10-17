@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
 
-CACHE_DIR = BASE_DIR / "看板日志" / "backtest_cache"
+CACHE_DIR = BASE_DIR / "看板日志" / "cache" / "backtest"
 GOLD_WTI_CSV = CACHE_DIR / "gold_wti_history.csv"
 VIX_CSV = CACHE_DIR / "vix_history.csv"
 

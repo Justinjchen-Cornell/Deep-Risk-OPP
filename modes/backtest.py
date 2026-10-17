@@ -28,7 +28,7 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
 
     # Load cached history if present (avoids API rate limits on re-runs)
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    CACHE = os.path.join(BASE_DIR, "看板日志", "backtest_cache", "gold_wti_history.csv")
+    CACHE = os.path.join(BASE_DIR, "看板日志", "cache", "backtest", "gold_wti_history.csv")
     try:
         import pandas as pd
         if os.path.exists(CACHE):
@@ -377,7 +377,7 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
         from data_pipeline.charts import backtest_nav_chart
         backtest_nav_chart(nav_history, bh_history, from_date, to_date,
                            ann_return, ann_bh)
-        print(f"  Chart saved: 看板日志/backtest_chart_{from_date}_to_{to_date}.png")
+        print(f"  Chart saved: 看板日志/data/backtest_chart_{from_date}_to_{to_date}.png")
 
     # ============================================================
     # SAVE JSON
@@ -392,8 +392,8 @@ def mode_backtest(from_date=None, to_date=None, chart=False):
         "regime_distribution": regime_counts,
         "signal_changes": signal_changes[-20:],
     }
-    out_path = f"看板日志/backtest_{from_date}_to_{to_date}.json"
-    os.makedirs("看板日志", exist_ok=True)
+    out_path = f"看板日志/data/backtest_{from_date}_to_{to_date}.json"
+    os.makedirs("看板日志/data", exist_ok=True)
     with open(out_path, 'w', encoding='utf-8') as f:
         json.dump(result, f, indent=2)
     print(f"\n  Saved: {out_path}")

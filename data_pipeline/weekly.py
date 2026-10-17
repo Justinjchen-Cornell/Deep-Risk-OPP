@@ -3,7 +3,7 @@ Deep-Risk-OPP — 周度管道入口 (P1-2 拆分)
 """
 import datetime
 from data_pipeline.common import (log, fetch_all, compute_gor, save_gor_json,
-    save_capital_flows_json, update_html_data_blocks, generate_weekly_content)
+    save_capital_flows_json, update_html_data_blocks, generate_weekly_content, DATA_DIR)
 
 
 
@@ -99,7 +99,7 @@ tags: [变化比对, 周报, 市场更新]
     report_path = DATA_DIR / f"{today_str}-变化比对报告.md"
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write(report)
-    log(f"  Change report: 看板日志/{today_str}-变化比对报告.md")
+    log(f"  Change report: 看板日志/data/{today_str}-变化比对报告.md")
 
 
 def update_html_text_content(gor_output):

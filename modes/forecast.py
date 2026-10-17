@@ -191,8 +191,8 @@ def mode_forecast():
         },
         "triggers": [{"trigger": t[0], "probability": t[2]} for t in triggers],
     }
-    os.makedirs("看板日志", exist_ok=True)
-    out = f"看板日志/forecast_{datetime.now().strftime('%Y-%m-%d')}.json"
+    os.makedirs("看板日志/data", exist_ok=True)
+    out = f"看板日志/data/forecast_{datetime.now().strftime('%Y-%m-%d')}.json"
     with open(out, 'w', encoding='utf-8') as f:
         json.dump(result, f, indent=2)
     print(f"  Forecast saved: {out}")

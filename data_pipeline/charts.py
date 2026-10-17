@@ -14,7 +14,7 @@ from data_pipeline.common import BASE_DIR, log
 
 
 def snapshot_chart():
-    """每日 GOR 决策卡快照图 → 看板日志/GOR_Daily_Snapshot.png"""
+    """每日 GOR 决策卡快照图 → 看板日志/data/GOR_Daily_Snapshot.png"""
     import json
     from datetime import datetime
     import matplotlib
@@ -61,7 +61,7 @@ def snapshot_chart():
     ax.set_xlabel('GOR (Gold/Oil Ratio)', color='#888', fontsize=8)
     ax.set_title(f'Deep-Risk-OPP  |  {datetime.now().strftime("%Y-%m-%d")}', color='#666', fontsize=10, family='monospace', loc='left', pad=8)
 
-    chart_path = BASE_DIR / "看板日志" / "GOR_Daily_Snapshot.png"
+    chart_path = BASE_DIR / "看板日志" / "data" / "GOR_Daily_Snapshot.png"
     fig.savefig(chart_path, dpi=120, facecolor='#0d1117', bbox_inches='tight')
     plt.close(fig)
     return str(chart_path)
@@ -69,7 +69,7 @@ def snapshot_chart():
 
 def backtest_nav_chart(nav_history, bh_history, from_date, to_date,
                        ann_return=0.0, ann_bh=0.0):
-    """回测 NAV 对比图 → 看板日志/backtest_chart_{from}_to_{to}.png"""
+    """回测 NAV 对比图 → 看板日志/data/backtest_chart_{from}_to_{to}.png"""
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -96,7 +96,7 @@ def backtest_nav_chart(nav_history, bh_history, from_date, to_date,
     ax.grid(True, alpha=0.08, color='#ffffff')
     ax.set_ylabel('NAV (base=100)', color='#aaa', fontsize=10)
 
-    chart_path = BASE_DIR / "看板日志" / f"backtest_chart_{from_date}_to_{to_date}.png"
+    chart_path = BASE_DIR / "看板日志" / "data" / f"backtest_chart_{from_date}_to_{to_date}.png"
     fig.savefig(chart_path, dpi=150, facecolor='#0d1117', bbox_inches='tight', pad_inches=0.4)
     plt.close(fig)
     return str(chart_path)

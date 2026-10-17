@@ -4,7 +4,7 @@ Deep-Risk-OPP - mode goldmac (Gold Macro Validator, easing score)
 Gold macro support factor (easing theme), replicated from Macrosynergy
 "Gold and macro factors" (Sep 2026) with free FRED data. Validated
 2016-2026 in-house: quarterly hit rate 67.5%, long-short Sharpe ~1.1
-(see 08.投资决策框架/黄金宏观因子复刻).
+(see 08.投资决策框架/研究专题/黄金宏观因子复刻).
 
 Score: how strongly US macro pushes the Fed toward easing ->
 lower real rates -> gold tailwind.

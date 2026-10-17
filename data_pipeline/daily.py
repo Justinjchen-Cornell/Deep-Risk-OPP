@@ -44,7 +44,7 @@ def run_daily():
     # P3: 自动信号流水账（证伪条款的月度复核数据源）
     try:
         import datetime as _dt
-        sig_path = BASE_DIR / "看板日志" / "signal_log_auto.md"
+        sig_path = BASE_DIR / "看板日志" / "data" / "signal_log_auto.md"
         header = ""
         if not sig_path.exists():
             header = (
@@ -62,7 +62,7 @@ def run_daily():
                + " | " + f"{gor_output['final_position']}% | " + f"{gap:+.2f} |" + chr(10))
         with open(sig_path, 'a', encoding='utf-8') as f:
             f.write(header + row)
-        log("  Signal log appended: 看板日志/signal_log_auto.md")
+        log("  Signal log appended: 看板日志/data/signal_log_auto.md")
     except Exception as e:
         log(f"  Signal log append failed: {e}")
 

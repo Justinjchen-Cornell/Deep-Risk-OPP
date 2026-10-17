@@ -241,7 +241,7 @@ def mode_report():
 </body>
 </html>"""
 
-    out_path = f"看板日志/report_{today}.html"
+    out_path = f"看板日志/data/report_{today}.html"
     with open(out_path, 'w', encoding='utf-8') as f:
         f.write(html)
     print(f"  Report saved: {out_path}")

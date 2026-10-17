@@ -27,7 +27,7 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-LOG_PATH = BASE_DIR / "看板日志" / "subscriber_import_log.txt"
+LOG_PATH = BASE_DIR / "看板日志" / "data" / "subscriber_import_log.txt"
 
 
 def load_key():

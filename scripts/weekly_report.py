@@ -17,7 +17,7 @@ from pathlib import Path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-OUT_DIR = BASE_DIR / "看板日志"
+OUT_DIR = BASE_DIR / "看板日志" / "data"
 
 
 def zone_of(gor):

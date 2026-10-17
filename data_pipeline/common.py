@@ -7,8 +7,8 @@ import urllib.request, ssl
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "看板日志"
-LOG_FILE = BASE_DIR / "看板日志" / "update_log.txt"
+DATA_DIR = BASE_DIR / "看板日志" / "data"
+LOG_FILE = BASE_DIR / "看板日志" / "data" / "update_log.txt"
 
 _fred = None
 
@@ -437,7 +437,7 @@ def save_gor_json(data, gor):
     log_path = DATA_DIR / f"{today}-gor-data.json"
     with open(log_path, 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
-    log(f"  Saved: 看板日志/{today}-gor-data.json")
+    log(f"  Saved: 看板日志/data/{today}-gor-data.json")
     return output
 
 
@@ -640,7 +640,7 @@ def generate_alerts(gor_output):
         alerts.append(("🟢 OPPORTUNITY", f"VIX {vix:.2f} < 17 — SPY Straddle window. Cost = 2-3% of portfolio."))
 
     if alerts:
-        alert_path = BASE_DIR / "看板日志" / f"ALERT_{today}.md"
+        alert_path = BASE_DIR / "看板日志" / "data" / f"ALERT_{today}.md"
         lines = [f"# 🚨 Deep-Risk-OPP Alert · {today}", ""]
         lines.append(f"GOR(WTI)={gor_output['gor_wti']} | GOR(Brent)={gor_output['gor_brent']}")
         lines.append(f"Oil={alloc['油气']}% | Gold={alloc['黄金']}% | Cash={alloc['现金']}%")
