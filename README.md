@@ -338,9 +338,13 @@ Signals and outcomes are public — including the mistakes. See the full record:
 | 2016.01 | ~39 | Recovery: hold oil | WTI +54% in 12 months | ✅ |
 | 2008.12 | ~30 | Recovery: hold oil | WTI +78% in 12 months | ✅ |
 | **2026.06.25** | 53.33 | **Circuit breaker: WTI < $75 → oil 5%** | WTI fell to $68.76. Capital preserved. | ✅ |
-| **2026.07.15** | 50.85 | **Hard stop released. Accumulate oil 27%.** | In progress — WTI reclaimed $79.49 in 72h. | ⏳ |
+| **2026.07.15** | 50.85 | **Hard stop released. Accumulate oil 27%.** | Resolved — WTI $101.84 by Oct 17 (+28% from $79.49). | ✅ |
+| **2026.09.17** | 44.2 | **Regime switch: GOR below 45 → position 30%** | Oil leg re-fired; GOR 41.1 by Oct 17. | ✅ |
+| **2026.10.17** | 41.11 | **Contract: +45.8% (84.7% of target)** | WTI $101.84; $5.76 to $107.60; 256 days left. | ⏳ |
 
 *Past signals are backtested on historical data. Real-time signals are tracked live.* Daily snapshots and alerts are archived locally and auditable in commit history.
+
+**2026-10 audit**: the capitulation trigger was stress-tested over 8 episodes (2006–2026). 12-month WTI median **+18.0%**, 6 of 8 positive; 3-month median **−2.9%** (2008/2020 fell ~35% first). A distress marker, not a timing tool. [Report](docs/trigger-stress-test-2026-10.md)
 
 ---
 
@@ -405,8 +409,10 @@ Deep-Risk-OPP/
 | v2.2 | Public product: bilingual live site + daily auto pipeline + unified HUD nav | ✅ Shipped (Aug 2026) |
 | v2.3 | Historical backtest & rule audit (2000–2026): 56-year claim audit + 55-event cross-market study → mechanism screener upgrades the GOR trigger | ✅ Shipped (Sep 2026) |
 | v2.4 | Codebase health: split `run.py` into `modes/`, merge `gor_daily` + `weekly_data_pull`, pytest for core functions, refresh risk calendar | 🔄 In progress |
-| v2.5 | Sentiment (Adanos) merged into main JSON · config schema validation · unified charting entry | 📋 Next |
-| v2.6 | Mining-stock leading indicators (GDX / COPX / XAU-Gold ratio / silver) tracked in daily pipeline | 📋 Next |
+| v2.5 | **Public research layer**: stage explanatory layer (01A), crisis checklist (01B), trigger stress test (8 episodes, 2006–2026) | ✅ Shipped (Oct 2026) |
+| v2.6 | **Data quality**: real Brent feed (EIA RBRTE/RWTC) + GOR(Brent) rebase · sentiment (Adanos) · config schema · unified charting | 📋 Next |
+| v2.7 | Mining-stock leading indicators (GDX / COPX / XAU-Gold ratio / silver) tracked in daily pipeline | 📋 Next |
+| v2.8 | **Content & feedback loop**: 2 long + 3 short/week; 90-day falsification window (to 2027-01-14); weekly newsletter digest | 🔄 In progress |
 | v3.0 | Real-time alerting (email/webhook push on breaker triggers) | 📋 Next |
 | v4.0 | Multi-asset portfolio simulation | 📋 Later |
 
