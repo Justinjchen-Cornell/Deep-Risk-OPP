@@ -81,6 +81,17 @@ GOR地震仪 → 资本流断层扫描 → 12个框架 → 6位大师 → 1张�
 
 每日管道：00:00 UTC 拉数据 → 算信号 → 推送（飞书/钉钉/Server酱/Telegram）→ RSS → 自动部署。
 
+### 飞书告警（1 分钟接入）
+
+[![飞书接入二维码](docs/assets/feishu-setup-qr.png)](docs/feishu-setup.html)
+
+1. 飞书群 → 设置 → 群机器人 → **自定义机器人** → 复制 Webhook。
+2. GitHub → Settings → Secrets → Actions → 新建 `FEISHU_WEBHOOK`，粘贴。
+3. Actions → **Feishu Test** → Run workflow。
+
+或者本机运行 `python scripts/feishu_setup.py`：自动发测试消息，并通过 `gh` 写入 Secret。
+P0/P1 告警同时会开 GitHub Issue，作为零配置兜底。
+
 ## 快速开始
 
 ```bash

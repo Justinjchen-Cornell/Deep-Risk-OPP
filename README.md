@@ -221,6 +221,17 @@ Never check the site again — let the signal come to you:
 
 Daily pipeline: 00:00 UTC data pull → signal → push to configured channels (Feishu/DingTalk/ServerChan/Telegram) → RSS → auto-deploy.
 
+### Feishu alerts (1-minute setup)
+
+[![Feishu setup QR](docs/assets/feishu-setup-qr.png)](docs/feishu-setup.html)
+
+1. Feishu group → Settings → Bots → **Custom bot** → copy webhook.
+2. GitHub → Settings → Secrets → Actions → add `FEISHU_WEBHOOK`.
+3. Actions → **Feishu Test** → Run workflow.
+
+Or run `python scripts/feishu_setup.py` — it sends a test and stores the secret via `gh`.
+P0/P1 alerts also open a GitHub Issue as a zero-config fallback.
+
 ## Getting Started
 
 **Level 0 — just look.** No installation. Open the [live site](https://justinjchen-cornell.github.io/Deep-Risk-OPP/) — it updates itself daily.

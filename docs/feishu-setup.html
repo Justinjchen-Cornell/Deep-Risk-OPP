@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep-Risk-OPP · 飞书告警接入</title>
+<style>
+  :root { --navy:#2f4166; --ink:#182238; --gold:#b08a2e; --cream:#FCFAF5; --txt:#3c465c; --gray:#8b93a1; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--cream); color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 28px 20px 60px; }
+  .brand { font-size:12px; letter-spacing:.18em; color:var(--navy); font-weight:700; }
+  .rule { height:2px; background:var(--gold); width:64px; margin:14px 0 26px; }
+  h1 { font-size:34px; line-height:1.25; margin:0 0 10px; letter-spacing:-.02em; }
+  .sub { color:var(--txt); margin:0 0 30px; }
+  .step { background:#fff; border:1px solid #e6e0d3; border-radius:14px; padding:18px 18px 16px; margin:14px 0; }
+  .step b { display:inline-block; width:28px; height:28px; line-height:28px; text-align:center; border-radius:50%; background:var(--navy); color:#fff; font-size:14px; margin-right:8px; }
+  .btn { display:inline-block; margin:10px 8px 0 0; padding:11px 16px; border-radius:10px; background:var(--navy); color:#fff; text-decoration:none; font-weight:600; font-size:15px; }
+  .btn.gold { background:var(--gold); }
+  .btn.ghost { background:transparent; color:var(--navy); border:1px solid var(--navy); }
+  code { background:#f2eee4; padding:2px 6px; border-radius:6px; font-size:14px; }
+  .cmd { display:flex; gap:8px; align-items:center; background:#f2eee4; border-radius:10px; padding:10px 12px; margin-top:10px; }
+  .cmd code { background:none; padding:0; flex:1; word-break:break-all; }
+  .note { font-size:13px; color:var(--gray); margin-top:26px; border-top:1px solid #e6e0d3; padding-top:16px; }
+  .ok { color:#1f7a4d; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">DEEP-RISK-OPP · FEISHU ALERTS</div>
+  <div class="rule"></div>
+  <h1>用飞书接收告警，1 分钟。</h1>
+  <p class="sub">不需要服务器，不需要飞书应用审核。一个群机器人 + 一个 GitHub Secret。</p>
+
+  <div class="step"><b>1</b><strong>在飞书群里创建自定义机器人</strong><br>
+    飞书群 → 设置 → 群机器人 → 添加机器人 → <strong>自定义机器人</strong> → 复制 Webhook 地址。
+  </div>
+
+  <div class="step"><b>2</b><strong>把 Webhook 存成 GitHub Secret</strong><br>
+    打开下面的页面，名称填 <code>FEISHU_WEBHOOK</code>，值粘贴上一步的地址。
+    <br><a class="btn" href="https://github.com/Justinjchen-Cornell/Deep-Risk-OPP/settings/secrets/actions/new">打开 GitHub Secret 页面</a>
+    <a class="btn ghost" href="https://github.com/Justinjchen-Cornell/Deep-Risk-OPP/settings/secrets/actions">查看已有 Secrets</a>
+  </div>
+
+  <div class="step"><b>3</b><strong>发一条测试消息</strong><br>
+    打开 Actions → <strong>Feishu Test</strong> → Run workflow。收到消息即接通。
+    <br><a class="btn gold" href="https://github.com/Justinjchen-Cornell/Deep-Risk-OPP/actions/workflows/feishu-test.yml">打开 Feishu Test</a>
+  </div>
+
+  <div class="step"><b>⚡</b><strong>或者：一条命令搞定（本机）</strong><br>
+    在项目目录运行向导：它会发测试消息，并通过 <code>gh</code> 自动写入 Secret。
+    <div class="cmd"><code id="c">python scripts/feishu_setup.py</code><button class="btn ghost" onclick="navigator.clipboard.writeText(document.getElementById('c').innerText)">复制</button></div>
+  </div>
+
+  <p class="note"><span class="ok">安全说明：</span>Webhook 本身就是密钥，<strong>不会</strong>被编进任何二维码或提交进仓库。二维码只打开本页或 GitHub Secret 页面。若 webhook 泄露，在飞书群机器人设置里重置即可。<br><br>
+  接入后：P0/P1 告警 → 飞书（主通道）+ GitHub Issue（零配置兜底）。设计见 <a href="v3.0-alerting-design.md">docs/v3.0-alerting-design.md</a>。</p>
+</div>
+</body>
+</html>
