@@ -44,6 +44,9 @@ jobs:
       - name: Gold macro validator (easing score)
         run: python run.py --mode goldmac
 
+      - name: Update model portfolio
+        run: python scripts/update_model_portfolio.py
+
       - name: Alert check (daily close)
         env:
           FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}

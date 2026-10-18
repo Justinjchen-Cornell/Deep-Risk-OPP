@@ -28,9 +28,10 @@
     get('history.json').catch(function () { return null; }),
     get('history_weekly.json').catch(function () { return null; }),
     get('weekly_review.json').catch(function () { return null; }),
-    get('capital_flows_weekly.json').catch(function () { return null; })
+    get('capital_flows_weekly.json').catch(function () { return null; }),
+    get('model_portfolio.json').catch(function () { return null; })
   ]).then(function (out) {
-    var g = out[0] || {}, cf = out[1], hist = out[2], dailyDoc = out[3], weeklyDoc = out[4], review = out[5], fw = out[6];
+    var g = out[0] || {}, cf = out[1], hist = out[2], dailyDoc = out[3], weeklyDoc = out[4], review = out[5], fw = out[6], pf = out[7];
     var d = g.data || {}, s = g.screener || {}, a = g.allocation || {}, c = g.capital_three_flows || {};
     var gold = n((d['黄金期货'] || {}).price), wti = n((d['WTI原油'] || {}).price);
     var brent = n((d['布伦特原油'] || {}).price), dxy = n((d['美元指数DXY'] || {}).price);
@@ -140,7 +141,7 @@
       '不在油十年 96.7 分位追买 Call：赔率不在你这边。'
     ];
     V.daily = daily; V.weekly = weekly;
-    render(V, g, cf, hist, review, fw);
+    render(V, g, cf, hist, review, fw, pf);
   });
 
   function weekPair(V) {
@@ -203,7 +204,11 @@
     'VIX': {icon:'vix', tone:'red', note:'恐慌指数 · ≥22.5 才是投降门槛'},
     'GOR(WTI)': {icon:'gor', tone:'gold', note:'金油比 · 越低油越强'},
     'GOR(Brent)': {icon:'gor', tone:'gold', note:'Brent 腿 · 合成口径'},
-    '仓位': {icon:'shield', tone:'green', note:'总仓位 · 机器输出'}
+    '仓位': {icon:'shield', tone:'green', note:'总仓位 · 机器输出'},
+    '净值': {icon:'history', tone:'gold', note:'固定本金 100 · Paper'},
+    '成立以来': {icon:'target', tone:'green', note:'自起始日累计'},
+    'MTD': {icon:'history', tone:'blue', note:'本月至今'},
+    '最大回撤': {icon:'alert', tone:'red', note:'峰值到谷底'}
   };
   function icon(name, size) {
     var p = ICONS[name] || ICONS.gold;
@@ -276,7 +281,7 @@
     return '<div class="timeline">' + rows.map(function (r) { return '<div class="row"><span class="when">' + r[0] + '</span><span>' + r[1] + '</span></div>'; }).join('') + '</div>';
   }
 
-  function render(V, g, cf, hist, review, fw) {
+  function render(V, g, cf, hist, review, fw, pf) {
     registerLastPoint();
     var badge = byId('gorBadge');
     if (badge) {
@@ -286,6 +291,7 @@
     var app = byId('app');
     if (!app) return;
     if (page === 'capital') { app.innerHTML = capitalHTML(V, cf, review, fw); makeCapitalCharts(V, cf, fw); }
+    else if (page === 'track') { app.innerHTML = trackHTML(V, pf); makeNavChart(pf); }
     else if (page === 'hedge') { app.innerHTML = hedgeHTML(V); makeAllocChart(V, 'c-alloc'); makeWeeklyGorChart(V, 'c-week-h'); makePayoffChart(V); makeLadderChart(V); }
     else { app.innerHTML = decisionHTML(V, g, review); makeGorChart(V, 'c-gor-d'); makeAllocChart(V, 'c-alloc-d'); makeWeeklyGorChart(V, 'c-week-d'); makeWtiGorChart(V, 'c-wti-gor'); }
   }
@@ -560,6 +566,49 @@
     makeFlowsChart(fw, 'c-flows');
     makeSystematicChart(fw, 'c-sys');
     makeWeeklyGorChart(V, 'c-week-cap');
+  }
+
+  function trackHTML(V, p) {
+    if (!p) return '<div class="card"><h2>模型组合</h2><div class="muted">数据加载失败。</div></div>';
+    var nav = p.nav || p.base_nav || 100;
+    var base = p.base_nav || 100;
+    var since = (nav / base - 1) * 100;
+    var hist = p.history || [];
+    var peak = -Infinity, dd = 0;
+    hist.forEach(function (h) { peak = Math.max(peak, h.nav); dd = Math.min(dd, (h.nav / peak - 1) * 100); });
+    var month = (p.updated || '').slice(0, 7);
+    var mtdBase = null;
+    hist.forEach(function (h) { if ((h.date || '').slice(0, 7) === month && mtdBase == null) mtdBase = h.nav; });
+    var mtd = mtdBase ? ((nav / mtdBase - 1) * 100) : null;
+    var weights = p.weights || {};
+    var wrows = Object.keys(weights).map(function (k) {
+      return '<tr><td>' + k + '</td><td>' + weights[k] + '%</td><td>' + (k === '现金' ? '0 收益（保守）' : k === '油气' ? 'WTI 日收益' : k === '黄金' ? '黄金期货日收益' : '暂按 0 收益') + '</td></tr>';
+    }).join('');
+    var trades = (p.trades || []).slice(-20).reverse().map(function (t) {
+      return '<tr><td>' + (t.date || '') + '</td><td>' + (t.action || '') + '</td><td>' + (t.nav == null ? '—' : t.nav.toFixed(2)) + '</td><td>' + (t.note || '') + '</td></tr>';
+    }).join('');
+    return '<div class="hero"><div class="hero-kicker">MODEL PORTFOLIO · PAPER · 起始 ' + (p.start_date || '') + '</div>' +
+      '<div class="hero-row"><div class="hero-num">' + nav.toFixed(2) + '</div><div class="hero-side">' +
+      '<div class="hero-f">净值 <b>' + nav.toFixed(2) + '</b> · 成立以来 <b>' + (since >= 0 ? '+' : '') + since.toFixed(2) + '%</b></div>' +
+      '<div class="hero-sub">' + (p.mandate || '') + '</div></div></div>' +
+      '<div class="hero-tags">' + tag('模型组合（Paper）', 'gold') + tag('基准 ' + (p.benchmark || '—'), 'warn') + tag('更新 ' + (p.updated || ''), 'ok') + '</div></div>' +
+      secTitle('01','history','组合净值','固定本金 100 · 每日按油/金收盘更新') + legendBar() +
+      '<div class="metrics">' + metric('GOR(WTI)', V.gorW) + metric('净值', nav.toFixed(2)) + metric('成立以来', (since >= 0 ? '+' : '') + since.toFixed(2) + '%') + metric('MTD', mtd == null ? '—' : (mtd >= 0 ? '+' : '') + mtd.toFixed(2) + '%') + metric('最大回撤', dd.toFixed(2) + '%') + '</div>' +
+      '<div class="card"><div class="card-head"><span class="ic">📈</span><h2>NAV · 成立以来</h2></div><div class="chart"><canvas id="c-nav"></canvas></div>' + chartNote('模型组合按公开卡片权重记账；现金/A股/铜暂按 0 收益，更新后会自动计入。') + '</div>' +
+      secTitle('02','pie','持仓与权重','按卡片 allocation；权重变化才再平衡') +
+      '<div class="card"><div class="compare"><table><thead><tr><th>资产</th><th>权重</th><th>收益口径</th></tr></thead><tbody>' + wrows + '</tbody></table></div></div>' +
+      secTitle('03','target','交易日志','每次再平衡/权重变化留痕') +
+      '<div class="card">' + (trades ? '<div class="compare"><table><thead><tr><th>日期</th><th>动作</th><th>NAV</th><th>备注</th></tr></thead><tbody>' + trades + '</tbody></table></div>' : '<div class="muted">尚无交易；起始日 ' + (p.start_date || '') + '。</div>') + '</div>' +
+      secTitle('04','bank','方法与口径','可复现、可审计、不是实盘') +
+      '<div class="card"><ul class="advice">' + (p.notes || []).map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>';
+  }
+
+  function makeNavChart(p) {
+    if (!window.Chart || !p) return;
+    var el = byId('c-nav'); if (!el) return;
+    var rows = (p.history || []);
+    new Chart(el, {type: 'line', data: {labels: rows.map(function (h) { return (h.date || '').slice(5); }),
+      datasets: [{data: rows.map(function (h) { return h.nav; }), borderColor: '#a67c1f', backgroundColor: 'rgba(166,124,31,.08)', fill: true, tension: .25, pointRadius: 2}]}, options: chartBase()});
   }
 
   function hedgeHTML(V) {
