@@ -27,9 +27,10 @@
     get('wti_history.json').catch(function () { return null; }),
     get('history.json').catch(function () { return null; }),
     get('history_weekly.json').catch(function () { return null; }),
-    get('weekly_review.json').catch(function () { return null; })
+    get('weekly_review.json').catch(function () { return null; }),
+    get('capital_flows_weekly.json').catch(function () { return null; })
   ]).then(function (out) {
-    var g = out[0] || {}, cf = out[1], hist = out[2], dailyDoc = out[3], weeklyDoc = out[4], review = out[5];
+    var g = out[0] || {}, cf = out[1], hist = out[2], dailyDoc = out[3], weeklyDoc = out[4], review = out[5], fw = out[6];
     var d = g.data || {}, s = g.screener || {}, a = g.allocation || {}, c = g.capital_three_flows || {};
     var gold = n((d['黄金期货'] || {}).price), wti = n((d['WTI原油'] || {}).price);
     var brent = n((d['布伦特原油'] || {}).price), dxy = n((d['美元指数DXY'] || {}).price);
@@ -97,7 +98,7 @@
       ['三流', V.flowDir + ' / ' + V.flowSpeed, 'ok']
     ];
     V.daily = daily; V.weekly = weekly;
-    render(V, g, cf, hist, review);
+    render(V, g, cf, hist, review, fw);
   });
 
   function weekPair(V) {
@@ -190,7 +191,7 @@
     return '<div class="timeline">' + rows.map(function (r) { return '<div class="row"><span class="when">' + r[0] + '</span><span>' + r[1] + '</span></div>'; }).join('') + '</div>';
   }
 
-  function render(V, g, cf, hist, review) {
+  function render(V, g, cf, hist, review, fw) {
     var badge = byId('gorBadge');
     if (badge) {
       badge.textContent = 'GOR ' + V.gorW + ' · ' + V.regime;
@@ -198,7 +199,7 @@
     }
     var app = byId('app');
     if (!app) return;
-    if (page === 'capital') { app.innerHTML = capitalHTML(V, cf, review); makeCapitalCharts(V, cf); }
+    if (page === 'capital') { app.innerHTML = capitalHTML(V, cf, review, fw); makeCapitalCharts(V, cf); }
     else if (page === 'hedge') { app.innerHTML = hedgeHTML(V); makeAllocChart(V); }
     else { app.innerHTML = decisionHTML(V, g, review); makeGorChart(V, 'c-gor-d'); }
   }
@@ -280,7 +281,33 @@
         backgroundColor: 'rgba(240,96,48,.08)', fill: true, tension: .25, pointRadius: 1.5}]}, options: chartBase()});
   }
 
-  function capitalHTML(V, cf, review) {
+  function flowWeekHTML(fw) {
+    if (!fw) return '';
+    var flows = (fw.weekly_flows || []).map(function (x) {
+      return '<div class="flow-mini"><div class="k">' + x.label + '</div><div class="v">' + x.value + '</div><div class="s">' + (x.note || '') + '</div></div>';
+    }).join('');
+    var pos = (fw.positioning || []).map(function (x) {
+      return '<div class="check"><span class="l">' + x.label + '</span><span class="v">' + x.value + '</span></div><div class="muted" style="font-size:11px;margin:-4px 0 6px">' + (x.note || '') + '</div>';
+    }).join('');
+    var sys = (fw.systematic || []).map(function (x) {
+      var cls = x.scenario.indexOf('下跌') >= 0 ? 'bad' : x.scenario.indexOf('上涨') >= 0 ? 'ok' : 'warn';
+      return '<div class="sys"><span class="tag ' + cls + '">' + x.scenario + '</span><b>' + x.flow + '</b><div class="muted">' + (x.note || '') + '</div></div>';
+    }).join('');
+    var cta = (fw.cta || []).map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    var credit = (fw.credit || []).concat(fw.regional || [], fw.commodities || []).map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    var scen = (fw.scenarios || []).map(function (s) {
+      return '<div class="scen"><b>' + s.name + '</b><div class="muted">条件：' + s.condition + '</div><div class="muted">倾向：' + s.market + '</div><div class="muted">证伪：' + s.falsify + '</div></div>';
+    }).join('');
+    var watch = (fw.watch || []).map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    return '<div class="card flow-module"><div class="card-head"><span class="ic">🌐</span><h2>本周资金流（机构）· 一周一期</h2>' + tag(fw.period || '', 'gold') + '</div>' +
+      '<div class="review-thesis">' + (fw.summary || '') + '</div><div class="muted" style="margin-bottom:12px">' + (fw.source || '') + '</div>' +
+      '<div class="flow-grid">' + flows + '</div>' +
+      '<div class="grid2" style="margin-top:14px"><div class="subcard"><h3>仓位与拥挤</h3>' + pos + '</div><div class="subcard"><h3>系统性资金</h3>' + sys + '</div></div>' +
+      '<div class="grid2"><div class="subcard"><h3>CTA / 久期</h3><ul class="advice">' + cta + '</ul></div><div class="subcard"><h3>信用 / 区域 / 商品</h3><ul class="advice">' + credit + '</ul></div></div>' +
+      '<div class="grid2"><div class="subcard"><h3>三种情景</h3>' + scen + '</div><div class="subcard"><h3>观察阈值</h3><ul class="advice">' + watch + '</ul></div></div></div>';
+  }
+
+  function capitalHTML(V, cf, review, fw) {
     return '<div class="hero"><div class="hero-kicker">CAPITAL THREE FLOWS · ' + V.updated + '</div>' +
       '<div class="hero-row"><div class="hero-num" style="font-size:64px;letter-spacing:-2px">' + V.flowDir + '</div>' +
       '<div class="hero-side"><div class="hero-f">总量 <b>' + V.flowTotal + '</b> · 流速 <b>' + V.flowSpeed + '</b></div>' +
@@ -293,7 +320,7 @@
       '<div class="flow-row"><div class="flow"><div class="k">总量</div><div class="v">' + V.flowTotal + '</div></div>' +
       '<div class="flow"><div class="k">方向</div><div class="v">' + V.flowDir + '</div></div>' +
       '<div class="flow"><div class="k">流速</div><div class="v">' + V.flowSpeed + '</div></div></div>' +
-      reviewHTML(review, V) + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🥇</span><h2>金 · 底仓</h2></div><div class="line">黄金 ' + V.gold + ' · 配置 ' + V.goldP + '% · GOR(WTI) ' + V.gorW + '</div><div class="line muted" style="margin-top:6px">金价距 8 月峰值回撤约 11.9%；央行购金仍是中期支撑。</div></div>' +
+      flowWeekHTML(fw) + reviewHTML(review, V) + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🥇</span><h2>金 · 底仓</h2></div><div class="line">黄金 ' + V.gold + ' · 配置 ' + V.goldP + '% · GOR(WTI) ' + V.gorW + '</div><div class="line muted" style="margin-top:6px">金价距 8 月峰值回撤约 11.9%；央行购金仍是中期支撑。</div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🛢️</span><h2>油 · 合同</h2></div><div class="line">WTI ' + V.wti + ' · 配置 ' + V.oil + '% · 合同 ' + V.comp + '</div><div class="line muted" style="margin-top:6px">距 $107.60 还差 ' + V.gap + ' · ' + V.days + '；硬止损 ' + (V.hsOn ? '已触发' : '未触发') + '（阈值 ' + V.hsThr + '）。</div></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div><div class="line">' + V.summary + '</div><div class="line muted" style="margin-top:8px">' + V.interpret + '</div></div>' +
       '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR(WTI) · 近 60 个交易日</h2></div><div class="chart"><canvas id="c-gor"></canvas></div></div>' +
