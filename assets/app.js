@@ -170,6 +170,8 @@
   function secTitle(n, ic, title, sub) {
     return '<div class="sec-title"><span class="sec-num">' + n + '</span><span class="sec-ic">' + icon(ic, 18) + '</span><div><div class="sec-h">' + title + '</div><div class="sec-s">' + sub + '</div></div></div>';
   }
+  function numList(items) { return '<ol class="num-list">' + items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ol>'; }
+  function chartNote(text) { return '<div class="chart-note">' + text + '</div>'; }
   function legendBar() {
     return '<div class="legend-bar">' + tag('红 = 风险/触发', 'bad') + tag('黄 = 观察', 'warn') + tag('绿 = 正常/通过', 'ok') + tag('金 = 主指标', 'gold') + '<span class="muted">数据：卡面 / FRED / 机构转引，均已标注</span></div>';
   }
@@ -240,9 +242,9 @@
     }
     var app = byId('app');
     if (!app) return;
-    if (page === 'capital') { app.innerHTML = capitalHTML(V, cf, review, fw); makeCapitalCharts(V, cf); }
-    else if (page === 'hedge') { app.innerHTML = hedgeHTML(V); makeAllocChart(V); }
-    else { app.innerHTML = decisionHTML(V, g, review); makeGorChart(V, 'c-gor-d'); }
+    if (page === 'capital') { app.innerHTML = capitalHTML(V, cf, review, fw); makeCapitalCharts(V, cf, fw); }
+    else if (page === 'hedge') { app.innerHTML = hedgeHTML(V); makeAllocChart(V, 'c-alloc'); makeWeeklyGorChart(V, 'c-week-h'); }
+    else { app.innerHTML = decisionHTML(V, g, review); makeGorChart(V, 'c-gor-d'); makeAllocChart(V, 'c-alloc-d'); makeWeeklyGorChart(V, 'c-week-d'); makeWtiGorChart(V, 'c-wti-gor'); }
   }
 
   function reviewHTML(review, V) {
@@ -285,10 +287,26 @@
       tag(V.hsOn ? '硬止损 已触发' : '硬止损 未触发', V.hsOn ? 'bad' : 'ok') + '</div></div>' +
       secTitle('01','target','本周状态','价格、GOR、仓位与筛选器') + legendBar() + '<div class="metrics">' + metric('黄金', V.gold) + metric('WTI', V.wti) + metric('Brent', V.brent) +
       metric('DXY', V.dxy) + metric('10Y', V.us10y) + metric('VIX', V.vix) + '</div>' +
+      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR 周度</h2></div><div class="chart-sm"><canvas id="c-week-d"></canvas></div>' + chartNote('最近 8 周 GOR：从 46 区间回落到 41，方向向下。') + '</div>' +
+      '<div class="card"><div class="card-head"><span class="ic">🥧</span><h2>仓位结构</h2></div><div class="chart-sm"><canvas id="c-alloc-d"></canvas></div>' + chartNote('现金 ' + V.cash + '% + 黄金 ' + V.goldP + '% + 油气 ' + V.oil + '%：防御底仓。') + '</div></div>' +
+      '<div class="subcard" style="margin-bottom:14px"><h3>1 / 2 / 3 读法</h3>' + numList([
+        'GOR ' + V.gorW + '，' + V.regime + '；' + (V.gorW < 42 ? '已跌破 42' : '仍在 42 上方'),
+        'VIX ' + V.vix + ' vs 门槛 ' + V.vixGate + '：' + (V.s2 ? '已过门槛' : '未到投降签名'),
+        '油分位 ' + V.oilPctl + '：' + (V.oilPctl !== '—' && parseFloat(V.oilPctl) <= 25 ? '底部区域' : '非底部') + '；合同 ' + V.comp
+      ]) + '</div>' +
       secTitle('02','gor','机器解读','变化、建议、阶段') + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📌</span><h2>本周重要变化</h2></div><div class="line">' + changeLine(V) + '</div><div class="line muted" style="margin-top:6px">' + weeklyReview(V) + '</div><div class="change-grid" style="margin-top:10px">' + changeCards(V) + '</div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">💡</span><h2>投资建议</h2></div><ul class="advice">' + adviceItems(V) + '</ul></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🌀</span><h2>向心坍缩阶段</h2></div>' + stageHTML(V) + '</div>' +
-      secTitle('03','bank','机构对照','本周机构 vs 机器') + reviewHTML(review, V) + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div>' +
+      secTitle('03','bank','机构对照','本周机构 vs 机器') + '<div class="subcard" style="margin-bottom:12px"><h3>1 / 2 / 3 对照</h3>' + numList([
+        '机构：增长尚可、通胀黏性、资本更贵',
+        '我们：GOR ' + V.gorW + '、仓位 ' + V.pos + '、筛选器 ' + V.verdict + '，没有投降签名',
+        '差异：机构偏“盈利轮动”，机器等“困境打印”'
+      ]) + '</div>' + '<div class="subcard" style="margin-bottom:12px"><h3>1 / 2 / 3 建议</h3>' + numList([
+        '机器：GOR ' + V.gorW + '、仓位 ' + V.pos + '；没有投降签名就不动',
+        '机构：基准是“盈利轮动”，不是全面衰退',
+        '差异：机构偏股票内部轮动，机器只做商品/合同与困境'
+      ]) + '</div>' +
+      '<details class="fold"><summary>展开：本周机构 vs 机器（' + ((review && review.period) || '') + '）</summary>' + reviewHTML(review, V) + '</details>' + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div>' +
       '<div class="line">' + V.summary + '</div><div class="line muted" style="margin-top:8px">' + V.interpret + '</div>' +
       '<div style="margin-top:12px">' + screenTags(V) + '</div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">💰</span><h2>今日配置 · 总仓位 ' + V.pos + '</h2></div>' +
@@ -300,8 +318,9 @@
       '<div class="line">硬止损 <b>' + (V.hsOn ? '已触发' : '未触发') + '</b> · 阈值 ' + V.hsThr + ' · 距离 ' + V.hsDist + '</div>' +
       '<div class="line">裁决 <b>' + V.verdict + '</b> · 通过 ' + V.npass + '/3 · 油分位 ' + V.oilPctl + ' · VIX ' + V.vix + '（门槛 ' + V.vixGate + '）</div>' +
       '<div style="margin-top:12px">' + screenTags(V) + '</div></div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">📊</span><h2>WTI × GOR 双轴 · 近 60 日</h2></div><div class="chart"><canvas id="c-wti-gor"></canvas></div>' + chartNote('WTI 上行、GOR 下行：油腿主导；两条线反向，是“金转油”的盘面证据。') + '</div>' +
       secTitle('04','history','数据留底','GOR 走势、时间轴与最近 10 周') +
-      '<div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR 走势 · 近 60 日</h2></div><div class="chart"><canvas id="c-gor-d"></canvas></div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR 走势 · 近 60 日</h2></div><div class="chart"><canvas id="c-gor-d"></canvas></div>' + chartNote('当前 GOR ' + V.gorW + '：油腿主导，已跌破 42；下一道观察线 40。') + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div>';
   }
@@ -312,6 +331,48 @@
       scales: {x: {grid: grid, ticks: tick}, y: {grid: grid, ticks: tick}}};
     if (extra) for (var k in extra) o[k] = extra[k];
     return o;
+  }
+  function parseFlow(v) {
+    if (!v) return 0;
+    var s = String(v).replace(/[$,]/g, '');
+    var m = s.match(/([0-9.]+)/);
+    var n = m ? parseFloat(m[1]) : 0;
+    return s.indexOf('-') >= 0 ? -n : n;
+  }
+  function makeWeeklyGorChart(V, id) {
+    if (!window.Chart) return;
+    var rows = (V.weekly || []).slice(-8);
+    var el = byId(id); if (!el) return;
+    new Chart(el, {type: 'bar', data: {labels: rows.map(function (r) { return (r.date || '').slice(5); }),
+      datasets: [{data: rows.map(function (r) { return r.gor_wti; }), backgroundColor: rows.map(function (r) { return r.gor_wti >= 45 ? 'rgba(240,68,88,.65)' : 'rgba(240,192,64,.55)'; })}]}, options: chartBase()});
+  }
+  function makeFlowsChart(fw, id) {
+    if (!window.Chart || !fw) return;
+    var rows = fw.weekly_flows || [];
+    var el = byId(id); if (!el) return;
+    new Chart(el, {type: 'bar', data: {labels: rows.map(function (x) { return x.label; }),
+      datasets: [{data: rows.map(function (x) { return parseFlow(x.value); }), backgroundColor: rows.map(function (x) { return parseFlow(x.value) >= 0 ? 'rgba(110,231,183,.55)' : 'rgba(240,68,88,.55)'; })}]},
+      options: chartBase({indexAxis: 'y'})});
+  }
+  function makeSystematicChart(fw, id) {
+    if (!window.Chart || !fw) return;
+    var rows = fw.systematic || [];
+    var el = byId(id); if (!el) return;
+    new Chart(el, {type: 'bar', data: {labels: rows.map(function (x) { return x.scenario; }),
+      datasets: [{data: rows.map(function (x) { return parseFlow(x.flow); }), backgroundColor: rows.map(function (x) { return parseFlow(x.flow) <= -50 ? 'rgba(240,68,88,.65)' : 'rgba(251,191,36,.55)'; })}]}, options: chartBase()});
+  }
+  function makeWtiGorChart(V, id) {
+    if (!window.Chart) return;
+    var rows = (V.daily || []).filter(function (r) { return r.gor_wti != null && r.wti != null; }).slice(-60);
+    var el = byId(id); if (!el) return;
+    new Chart(el, {type: 'line', data: {labels: rows.map(function (r) { return (r.date || '').slice(5); }),
+      datasets: [
+        {label: 'GOR(WTI)', data: rows.map(function (r) { return r.gor_wti; }), borderColor: '#f0c040', yAxisID: 'y', tension: .25, pointRadius: 1.2},
+        {label: 'WTI', data: rows.map(function (r) { return r.wti; }), borderColor: '#f06030', yAxisID: 'y1', tension: .25, pointRadius: 1.2}
+      ]}, options: chartBase({plugins: {legend: {display: true, labels: {color: '#7a8a9a', boxWidth: 10}}},
+        scales: {x: {grid: {color: 'rgba(255,255,255,.06)'}, ticks: {color: '#7a8a9a', font: {size: 11}}},
+          y: {position: 'left', grid: {color: 'rgba(255,255,255,.06)'}, ticks: {color: '#f0c040', font: {size: 11}}},
+          y1: {position: 'right', grid: {display: false}, ticks: {color: '#f06030', font: {size: 11}}}}})});
   }
   function makeGorChart(V, id) {
     if (!window.Chart) return;
@@ -361,20 +422,33 @@
       '<div class="flow-row"><div class="flow"><div class="k">总量</div><div class="v">' + V.flowTotal + '</div></div>' +
       '<div class="flow"><div class="k">方向</div><div class="v">' + V.flowDir + '</div></div>' +
       '<div class="flow"><div class="k">流速</div><div class="v">' + V.flowSpeed + '</div></div></div>' +
-      secTitle('02','bank','机构资金','一周一期') + flowWeekHTML(fw) + secTitle('03','gor','机器与市场','GOR、仓位、合同') + reviewHTML(review, V) + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🥇</span><h2>金 · 底仓</h2></div><div class="line">黄金 ' + V.gold + ' · 配置 ' + V.goldP + '% · GOR(WTI) ' + V.gorW + '</div><div class="line muted" style="margin-top:6px">金价距 8 月峰值回撤约 11.9%；央行购金仍是中期支撑。</div></div>' +
+      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🌐</span><h2>周度资金流</h2></div><div class="chart-sm"><canvas id="c-flows"></canvas></div>' + chartNote('股票 +$64.5B、债券 +$11.8B、现金 −$53.1B：不是撤退，是再平衡。') + '</div>' +
+      '<div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR 周度</h2></div><div class="chart-sm"><canvas id="c-week-cap"></canvas></div>' + chartNote('GOR 从 46.05 回落到 41.11：油腿主导，合同方向一致。') + '</div></div>' +
+      '<div class="subcard" style="margin-bottom:14px"><h3>1 / 2 / 3 读法</h3>' + numList([
+        '总量：股票、债券同流入，现金流出——风险偏好未全面退潮',
+        '结构：科技/AI 仍吸金，但拥挤度上升、回撤弹性变大',
+        '信用：IG 吸金、HY 流出——买久期，不买低等级'
+      ]) + '</div>' +
+      secTitle('02','bank','机构资金','一周一期') + '<div class="card"><div class="card-head"><span class="ic">⚙️</span><h2>系统性资金 · 三种路径</h2></div><div class="chart-sm"><canvas id="c-sys"></canvas></div>' + chartNote('下跌路径卖出 ~$810 亿：市场不需要全面撤资，价格走弱本身就会放大卖压。') + '</div>' +
+      '<div class="subcard" style="margin-bottom:12px"><h3>1 / 2 / 3 观察</h3>' + numList([
+        '标普 500 距最近卖出触发位约 1.1%',
+        '10Y 4.85–4.95% 才触发 CTA 明显回补；4.65% 约回补一半',
+        '现金 3.9% 低于 4.0% 阈值，科技超配为 2020-08 以来最大'
+      ]) + '</div>' +
+      '<details class="fold"><summary>展开：本周资金流（机构）· 股票 / 债券 / 现金</summary>' + flowWeekHTML(fw) + '</details>' + secTitle('03','gor','机器与市场','GOR、仓位、合同') + '<details class="fold"><summary>展开：本周机构 vs 机器（' + ((review && review.period) || '') + '）</summary>' + reviewHTML(review, V) + '</details>' + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🥇</span><h2>金 · 底仓</h2></div><div class="line">黄金 ' + V.gold + ' · 配置 ' + V.goldP + '% · GOR(WTI) ' + V.gorW + '</div><div class="line muted" style="margin-top:6px">金价距 8 月峰值回撤约 11.9%；央行购金仍是中期支撑。</div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🛢️</span><h2>油 · 合同</h2></div><div class="line">WTI ' + V.wti + ' · 配置 ' + V.oil + '% · 合同 ' + V.comp + '</div><div class="line muted" style="margin-top:6px">距 $107.60 还差 ' + V.gap + ' · ' + V.days + '；硬止损 ' + (V.hsOn ? '已触发' : '未触发') + '（阈值 ' + V.hsThr + '）。</div></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div><div class="line">' + V.summary + '</div><div class="line muted" style="margin-top:8px">' + V.interpret + '</div></div>' +
-      '<div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR(WTI) · 近 60 个交易日</h2></div><div class="chart"><canvas id="c-gor"></canvas></div></div>' +
-      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🏦</span><h2>美联储资产负债表（万亿美元）</h2></div><div class="chart"><canvas id="c-fed"></canvas></div></div>' +
-      '<div class="card"><div class="card-head"><span class="ic">💸</span><h2>联邦净利息（千亿美元 / 年化）</h2></div><div class="chart"><canvas id="c-int"></canvas></div></div>' +
-      '<div class="card"><div class="card-head"><span class="ic">💵</span><h2>DXY · 美元指数</h2></div><div class="chart"><canvas id="c-dxy"></canvas></div></div>' +
-      '<div class="card"><div class="card-head"><span class="ic">🌐</span><h2>FX · USD/CNH · USD/JPY · EUR/USD</h2></div><div class="chart"><canvas id="c-fx"></canvas></div></div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR(WTI) · 近 60 个交易日</h2></div><div class="chart"><canvas id="c-gor"></canvas></div>' + chartNote('GOR 回落 = 油相对金走强；与合同方向一致，但机器仍等投降签名。') + '</div>' +
+      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🏦</span><h2>美联储资产负债表（万亿美元）</h2></div><div class="chart"><canvas id="c-fed"></canvas></div>' + chartNote('资产负债表 ' + (((cf && cf.macro_fred && cf.macro_fred.fed_balance_trillion) || 6.76)) + ' 万亿、同比基本持平：QT 已停，但未重新大幅扩表。') + '</div>' +
+      '<div class="card"><div class="card-head"><span class="ic">💸</span><h2>联邦净利息（千亿美元 / 年化）</h2></div><div class="chart"><canvas id="c-int"></canvas></div>' + chartNote('净利息 ' + (((cf && cf.macro_fred && cf.macro_fred.net_interest_trillion) || 1.28)) + ' 万亿（年化）：利息账单是当前最大的资本容器。') + '</div>' +
+      '<div class="card"><div class="card-head"><span class="ic">💵</span><h2>DXY · 美元指数</h2></div><div class="chart"><canvas id="c-dxy"></canvas></div>' + chartNote('DXY ' + V.dxy + '，仍在 >99 的向心坍缩区间；没有出现美元挤兑式升值。') + '</div>' +
+      '<div class="card"><div class="card-head"><span class="ic">🌐</span><h2>FX · USD/CNH · USD/JPY · EUR/USD</h2></div><div class="chart"><canvas id="c-fx"></canvas></div>' + chartNote('USD/JPY ' + (((cf && cf.fx_rates && cf.fx_rates.usdjpy) || 158.34)) + '（日元弱）、USD/CNH ' + (((cf && cf.fx_rates && cf.fx_rates.usdcnh) || 6.692)) + '（人民币偏强）、EUR/USD ' + (((cf && cf.fx_rates && cf.fx_rates.usdeur) || 1.119)) + '。') + '</div></div>' +
       secTitle('04','history','数据留底','图表与最近 10 周') + '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📎</span><h2>口径说明</h2></div><div class="line muted">数值来自公开卡片 / FRED / EIA 缓存；GOR(Brent) 为 WTI×1.06 合成，真实 Brent 价差更宽。图表历史点为公开序列，最后一点为当前值。</div></div>';
   }
 
-  function makeCapitalCharts(V, cf) {
+  function makeCapitalCharts(V, cf, fw) {
     if (!window.Chart) return;
     var daily = V.daily || [];
     var gorRows = daily.filter(function (r) { return r.gor_wti != null; }).slice(-60);
@@ -398,6 +472,9 @@
         {label: 'USD/JPY', data: [140,148,150,159,143,157,149,144,150, fx.usdjpy || 158.34], borderColor: '#f06030', tension: .3, pointRadius: 1.5},
         {label: 'EUR/USD', data: [1.08,1.05,1.08,1.07,1.11,1.04,1.07,1.09,1.10, fx.usdeur || 1.119], borderColor: '#6ee7b7', tension: .3, pointRadius: 1.5}
       ]}, options: chartBase({plugins: {legend: {display: true, labels: {color: '#7a8a9a', boxWidth: 10}}}})});
+    makeFlowsChart(fw, 'c-flows');
+    makeSystematicChart(fw, 'c-sys');
+    makeWeeklyGorChart(V, 'c-week-cap');
   }
 
   function hedgeHTML(V) {
@@ -419,14 +496,20 @@
       '<div class="card"><div class="card-head"><span class="ic">🎯</span><h2>当前行动</h2></div><ul class="actions">' + actions + '</ul></div>' +
       secTitle('02','target','工具与自检','四类工具 + 六项自检') + '<div class="grid2">' + tools + '</div>' +
       '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">✅</span><h2>执行自检</h2></div>' + checks + '</div>' +
-      '<div class="card"><div class="card-head"><span class="ic">🥧</span><h2>仓位结构</h2></div><div class="chart-sm"><canvas id="c-alloc"></canvas></div></div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">🥧</span><h2>仓位结构</h2></div><div class="chart-sm"><canvas id="c-alloc"></canvas></div>' + chartNote('现金 ' + V.cash + '% + 黄金 ' + V.goldP + '% + 油气 ' + V.oil + '%：防御底仓，等 VIX ≥ ' + V.vixGate + ' 且油 ≤ P25 的扳机。') + '</div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR 周度</h2></div><div class="chart-sm"><canvas id="c-week-h"></canvas></div>' + chartNote('GOR 从 46.05 回落到 41.11：油腿主导；仓位 30% 未变。') + '</div>' +
+      '<div class="subcard" style="margin-bottom:12px"><h3>1 / 2 / 3 自检</h3>' + numList([
+        '硬止损：' + (V.hsOn ? '已触发' : '未触发') + '（阈值 ' + V.hsThr + '）',
+        'VIX ' + V.vix + ' vs 门槛 ' + V.vixGate + '：' + (V.s2 ? '已过门槛' : '未到投降'),
+        '油分位 ' + V.oilPctl + '：' + (V.oilPctl !== '—' && parseFloat(V.oilPctl) <= 25 ? '底部区域' : '非底部')
+      ]) + '</div>' +
       secTitle('03','history','数据留底','时间轴与最近 10 周') + '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div>';
   }
 
-  function makeAllocChart(V) {
+  function makeAllocChart(V, id) {
     if (!window.Chart) return;
-    var el = byId('c-alloc'); if (!el) return;
+    var el = byId(id || 'c-alloc'); if (!el) return;
     new Chart(el, {type: 'doughnut', data: {labels: ['油气', '黄金', '现金', 'A股', '铜'],
       datasets: [{data: [V.oil, V.goldP, V.cash, V.astock, V.copper], backgroundColor: ['#f06030', '#f0c040', '#64748b', '#ef4444', '#fb923c'], borderWidth: 0}]},
       options: {responsive: true, maintainAspectRatio: false, plugins: {legend: {position: 'bottom', labels: {color: '#7a8a9a', boxWidth: 10}}}}});
