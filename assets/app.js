@@ -26,9 +26,10 @@
     get('capital_flows_latest.json').catch(function () { return null; }),
     get('wti_history.json').catch(function () { return null; }),
     get('history.json').catch(function () { return null; }),
-    get('history_weekly.json').catch(function () { return null; })
+    get('history_weekly.json').catch(function () { return null; }),
+    get('weekly_review.json').catch(function () { return null; })
   ]).then(function (out) {
-    var g = out[0] || {}, cf = out[1], hist = out[2], dailyDoc = out[3], weeklyDoc = out[4];
+    var g = out[0] || {}, cf = out[1], hist = out[2], dailyDoc = out[3], weeklyDoc = out[4], review = out[5];
     var d = g.data || {}, s = g.screener || {}, a = g.allocation || {}, c = g.capital_three_flows || {};
     var gold = n((d['黄金期货'] || {}).price), wti = n((d['WTI原油'] || {}).price);
     var brent = n((d['布伦特原油'] || {}).price), dxy = n((d['美元指数DXY'] || {}).price);
@@ -96,7 +97,7 @@
       ['三流', V.flowDir + ' / ' + V.flowSpeed, 'ok']
     ];
     V.daily = daily; V.weekly = weekly;
-    render(V, g, cf, hist);
+    render(V, g, cf, hist, review);
   });
 
   function weekPair(V) {
@@ -189,7 +190,7 @@
     return '<div class="timeline">' + rows.map(function (r) { return '<div class="row"><span class="when">' + r[0] + '</span><span>' + r[1] + '</span></div>'; }).join('') + '</div>';
   }
 
-  function render(V, g, cf, hist) {
+  function render(V, g, cf, hist, review) {
     var badge = byId('gorBadge');
     if (badge) {
       badge.textContent = 'GOR ' + V.gorW + ' · ' + V.regime;
@@ -197,12 +198,36 @@
     }
     var app = byId('app');
     if (!app) return;
-    if (page === 'capital') { app.innerHTML = capitalHTML(V, cf); makeCapitalCharts(V, cf); }
+    if (page === 'capital') { app.innerHTML = capitalHTML(V, cf, review); makeCapitalCharts(V, cf); }
     else if (page === 'hedge') { app.innerHTML = hedgeHTML(V); makeAllocChart(V); }
-    else { app.innerHTML = decisionHTML(V, g); makeGorChart(V, 'c-gor-d'); }
+    else { app.innerHTML = decisionHTML(V, g, review); makeGorChart(V, 'c-gor-d'); }
   }
 
-  function decisionHTML(V, g) {
+  function reviewHTML(review, V) {
+    if (!review) return '';
+    function st(s) { return s === 'match' ? '一致' : s === 'near' ? '接近' : s === 'diff' ? '差异' : '参考'; }
+    function stCls(s) { return s === 'match' ? 'ok' : s === 'near' ? 'warn' : s === 'diff' ? 'bad' : ''; }
+    var rows = (review.key_data || []).map(function (r) {
+      return '<tr><td>' + r.label + '</td><td>' + r.report + '</td><td>' + r.ours + '</td><td>' + tag(st(r.status), stCls(r.status)) + '<div class="muted" style="font-size:10px">' + (r.note || '') + '</div></td></tr>';
+    }).join('');
+    var agree = (review.agreements || []).map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    var diff = (review.differences || []).map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    var forks = (review.forks || []).map(function (f) {
+      return '<div class="fork"><div class="fh">' + f.title + '</div><div class="fk">盯：' + f.watch + '</div><div class="fk bad">证伪：' + f.falsify + '</div></div>';
+    }).join('');
+    var flows = (review.flows || []).map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    var scen = (review.scenarios || []).map(function (s) {
+      return '<div class="scen"><b>' + s.name + '</b><div class="muted">条件：' + s.condition + '</div><div class="muted">倾向：' + s.market + '</div><div class="muted">证伪/重开：' + s.falsify + '</div></div>';
+    }).join('');
+    return '<div class="card review"><div class="card-head"><span class="ic">🏛️</span><h2>本周机构 vs 机器 · 一周一期</h2>' + tag(review.period || '', 'gold') + '</div>' +
+      '<div class="review-thesis">' + (review.thesis || '') + '</div><div class="muted" style="margin-bottom:12px">' + (review.source || '') + ' · ' + (review.title || '') + '</div>' +
+      '<div class="compare"><table><thead><tr><th>指标</th><th>机构</th><th>我们</th><th>判定</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+      '<div class="grid2" style="margin-top:14px"><div class="subcard"><h3>一致</h3><ul class="advice">' + agree + '</ul></div><div class="subcard"><h3>差异</h3><ul class="advice">' + diff + '</ul></div></div>' +
+      '<div class="fork-grid">' + forks + '</div>' +
+      '<div class="grid2"><div class="subcard"><h3>资金与仓位</h3><ul class="advice">' + flows + '</ul></div><div class="subcard"><h3>三种情景</h3>' + scen + '</div></div></div>';
+  }
+
+  function decisionHTML(V, g, review) {
     var bars = [['油气', V.oil, '#f06030'], ['黄金', V.goldP, '#f0c040'], ['现金', V.cash, '#64748b'], ['A股', V.astock, '#ef4444'], ['铜', V.copper, '#fb923c']];
     var barsHTML = bars.filter(function (x) { return x[1] > 0; }).map(function (x) { return '<i style="width:' + x[1] + '%;background:' + x[2] + '"></i>'; }).join('');
     var legend = bars.map(function (x) { return '<span><b>' + x[0] + '</b> ' + x[1] + '%</span>'; }).join('');
@@ -221,7 +246,7 @@
       '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📌</span><h2>本周重要变化</h2></div><div class="line">' + changeLine(V) + '</div><div class="line muted" style="margin-top:6px">' + weeklyReview(V) + '</div><div class="change-grid" style="margin-top:10px">' + changeCards(V) + '</div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">💡</span><h2>投资建议</h2></div><ul class="advice">' + adviceItems(V) + '</ul></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🌀</span><h2>向心坍缩阶段</h2></div>' + stageHTML(V) + '</div>' +
-      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div>' +
+      reviewHTML(review, V) + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div>' +
       '<div class="line">' + V.summary + '</div><div class="line muted" style="margin-top:8px">' + V.interpret + '</div>' +
       '<div style="margin-top:12px">' + screenTags(V) + '</div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">💰</span><h2>今日配置 · 总仓位 ' + V.pos + '</h2></div>' +
@@ -255,7 +280,7 @@
         backgroundColor: 'rgba(240,96,48,.08)', fill: true, tension: .25, pointRadius: 1.5}]}, options: chartBase()});
   }
 
-  function capitalHTML(V, cf) {
+  function capitalHTML(V, cf, review) {
     return '<div class="hero"><div class="hero-kicker">CAPITAL THREE FLOWS · ' + V.updated + '</div>' +
       '<div class="hero-row"><div class="hero-num" style="font-size:64px;letter-spacing:-2px">' + V.flowDir + '</div>' +
       '<div class="hero-side"><div class="hero-f">总量 <b>' + V.flowTotal + '</b> · 流速 <b>' + V.flowSpeed + '</b></div>' +
@@ -268,7 +293,7 @@
       '<div class="flow-row"><div class="flow"><div class="k">总量</div><div class="v">' + V.flowTotal + '</div></div>' +
       '<div class="flow"><div class="k">方向</div><div class="v">' + V.flowDir + '</div></div>' +
       '<div class="flow"><div class="k">流速</div><div class="v">' + V.flowSpeed + '</div></div></div>' +
-      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🥇</span><h2>金 · 底仓</h2></div><div class="line">黄金 ' + V.gold + ' · 配置 ' + V.goldP + '% · GOR(WTI) ' + V.gorW + '</div><div class="line muted" style="margin-top:6px">金价距 8 月峰值回撤约 11.9%；央行购金仍是中期支撑。</div></div>' +
+      reviewHTML(review, V) + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🥇</span><h2>金 · 底仓</h2></div><div class="line">黄金 ' + V.gold + ' · 配置 ' + V.goldP + '% · GOR(WTI) ' + V.gorW + '</div><div class="line muted" style="margin-top:6px">金价距 8 月峰值回撤约 11.9%；央行购金仍是中期支撑。</div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🛢️</span><h2>油 · 合同</h2></div><div class="line">WTI ' + V.wti + ' · 配置 ' + V.oil + '% · 合同 ' + V.comp + '</div><div class="line muted" style="margin-top:6px">距 $107.60 还差 ' + V.gap + ' · ' + V.days + '；硬止损 ' + (V.hsOn ? '已触发' : '未触发') + '（阈值 ' + V.hsThr + '）。</div></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div><div class="line">' + V.summary + '</div><div class="line muted" style="margin-top:8px">' + V.interpret + '</div></div>' +
       '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR(WTI) · 近 60 个交易日</h2></div><div class="chart"><canvas id="c-gor"></canvas></div></div>' +

@@ -94,3 +94,17 @@ tr:last-child td{border-bottom:0}
 .timeline .row:last-child{border-bottom:0}
 .timeline .when{flex:0 0 92px;color:var(--gold);font-family:"SF Mono",Consolas,monospace;font-size:12px}
 .flow-card{background:linear-gradient(135deg,rgba(240,96,48,.05),rgba(232,180,28,.04));border:1px solid rgba(240,96,48,.2)}
+.review-thesis{font-size:16px;line-height:1.9;color:var(--text);border-left:2px solid var(--gold);padding-left:14px;margin:10px 0 8px}
+.subcard{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px}
+.subcard h3{font-size:13px;color:var(--gold);margin-bottom:6px;letter-spacing:1px;text-transform:uppercase}
+.compare table{font-size:12px}
+.compare td:first-child{color:var(--muted);font-family:inherit}
+.fork-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.fork{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px}
+.fork .fh{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:6px}
+.fork .fk{font-size:12px;color:var(--muted);line-height:1.65}
+.fork .fk.bad{color:rgba(240,68,88,.85)}
+.scen{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;line-height:1.7}
+.scen:last-child{border-bottom:0}
+.scen b{color:var(--text)}
+@media(max-width:820px){.fork-grid{grid-template-columns:1fr}}
