@@ -421,7 +421,7 @@ Deep-Risk-OPP/
 | v2.3 | Historical backtest & rule audit (2000–2026): 56-year claim audit + 55-event cross-market study → mechanism screener upgrades the GOR trigger | ✅ Shipped (Sep 2026) |
 | v2.4 | Codebase health: split `run.py` into `modes/`, merge `gor_daily` + `weekly_data_pull`, pytest for core functions, refresh risk calendar | 🔄 In progress |
 | v2.5 | **Public research layer**: stage explanatory layer (01A), crisis checklist (01B), trigger stress test (8 episodes, 2006–2026) | ✅ Shipped (Oct 2026) |
-| v2.6 | **Data quality**: real Brent feed (EIA RBRTE/RWTC) + GOR(Brent) rebase · sentiment (Adanos) · config schema · unified charting | 📋 Next |
+| v2.6 | **Data quality**: real Brent feed (Yahoo BZ=F → Tencent → EIA/FRED → akshare; synthetic only as last resort) + GOR(Brent) rebase · model portfolio benchmarks/costs · performance log | ✅ 2026-10-18 |
 | v2.7 | Mining-stock leading indicators (GDX / COPX / XAU-Gold ratio / silver) tracked in daily pipeline | 📋 Next |
 | v2.8 | **Content & feedback loop**: 2 long + 3 short/week; 90-day falsification window (to 2027-01-14); weekly newsletter digest | 🔄 In progress |
 | v3.0 | **Real-time alerting**: state-diff engine, intraday quotes, Feishu delivery, 08:30 P1/P2 digest, 15-min workflow | 🔄 In progress (Feishu live; shadow mode) |

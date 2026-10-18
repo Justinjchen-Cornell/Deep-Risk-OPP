@@ -2,34 +2,77 @@
  "name": "Deep-Risk-OPP Model Portfolio",
  "start_date": "2026-10-18",
  "base_nav": 100.0,
- "nav": 100.0,
+ "nav": 99.979,
  "currency": "USD",
- "mandate": "按公开卡片权重持有；卡片权重变化时下一交易日按收盘再平衡；不计交易成本与税；不加杠杆。",
- "benchmark": "SPY / 60-40（待接入）",
+ "mandate": "按公开卡片权重持有；卡片权重变化时下一交易日按收盘再平衡；按单边换手计入 5 bps 成本；不计税、不加杠杆。",
+ "benchmark": "SPY / 60-40（60% SPY + 40% AGG，每日再平衡、不计成本）",
  "weights": {
-  "油气": 20,
-  "黄金": 15,
-  "现金": 58,
-  "A股": 7,
-  "铜": 0
+  "油气": 20.0,
+  "黄金": 15.0,
+  "现金": 58.0,
+  "A股": 7.0,
+  "铜": 0.0
  },
  "last_prices": {
   "wti": 101.84,
-  "gold": 4186.5
+  "gold": 4186.5,
+  "copper": 6.563,
+  "ashare": 31.12,
+  "spy": 763.25,
+  "agg": 95.38
  },
  "updated": "2026-10-18",
  "history": [
   {
    "date": "2026-10-18",
-   "nav": 100.0,
-   "note": "init"
+   "nav": 99.979,
+   "note": "init; inception cost 0.021",
+   "bench_spy": 100.0,
+   "bench_6040": 100.0
   }
  ],
- "trades": [],
+ "trades": [
+  {
+   "date": "2026-10-18",
+   "action": "inception",
+   "nav": 99.979,
+   "turnover_pct": 42.0,
+   "cost": 0.021,
+   "cost_bps": 5.0,
+   "note": "initial allocation: 42% invested x 5 bps"
+  }
+ ],
  "notes": [
-  "现金、A股、铜按 0 收益处理（保守；待接入对应价格后更新）。",
-  "油用 WTI、金用黄金期货；权重以卡片 allocation 为准。",
-  "每日管道自动更新；每次权重变化记一笔 rebalance。",
+  "油/金/铜用公开卡片的收盘价；A股用 ASHR（CSI 300 A 股 ETF，美元计价）；现金 0% 收益。",
+  "基准：SPY；60-40 = 60% SPY + 40% AGG（每日再平衡、不计成本）。",
+  "成本 5 bps/边，按单边换手在再平衡与建仓时计入；不计税、不加杠杆。",
   "这是模型组合，不是真实账户；不公开任何个人资金规模。"
- ]
+ ],
+ "benchmarks": {
+  "spy": {
+   "nav": 100.0,
+   "start": "2026-10-18",
+   "last_price": 763.25
+  },
+  "6040": {
+   "nav": 100.0,
+   "start": "2026-10-18",
+   "mix": "60% SPY + 40% AGG",
+   "last_price_spy": 763.25,
+   "last_price_agg": 95.38
+  }
+ },
+ "costs_paid": 0.021,
+ "inception_cost_paid": true,
+ "cost_bps": 5.0,
+ "data_sources": {
+  "油气": "卡片 WTI 收盘（Yahoo CL=F 兜底）",
+  "黄金": "卡片黄金期货收盘（Yahoo GC=F 兜底）",
+  "A股": "Yahoo ASHR（CSI 300 A 股 ETF，美元计价）",
+  "铜": "卡片 COMEX 铜收盘（Yahoo HG=F 兜底）",
+  "现金": "0% 收益",
+  "SPY": "Yahoo SPY",
+  "60-40": "60% SPY + 40% AGG，每日常数混合",
+  "cost": "5 bps/边，再平衡与建仓时计入"
+ }
 }

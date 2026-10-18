@@ -157,6 +157,20 @@ def provisional_card(card, quotes):
     put("10Y美债收益率", "us10y")
     put("VIX恐慌指数", "vix")
 
+    # Never let a synthetic Brent masquerade as a real quote.
+    c["brent_source"] = (brent_q or {}).get("source") or ("estimated" if brent else None)
+    c["brent_asof"] = (brent_q or {}).get("time")
+    dq = c.setdefault("data_quality", {})
+    sources = dq.setdefault("sources", {})
+    if brent_q:
+        sources["布伦特"] = brent_q.get("source") or "yahoo"
+        dq["fallbacks"] = {k: v for k, v in (dq.get("fallbacks") or {}).items()
+                           if "布伦特" not in k}
+    elif brent:
+        sources["布伦特"] = "WTI×1.06 合成"
+        dq.setdefault("fallbacks", {})["布伦特"] = "WTI×1.06 合成"
+        dq["ok"] = False
+
     if wti and gold:
         c["gor_wti"] = round(gold / wti, 2)
         c["gor_brent"] = round(gold / brent, 2) if brent else c["gor_wti"]

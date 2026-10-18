@@ -47,6 +47,9 @@ jobs:
       - name: Update model portfolio
         run: python scripts/update_model_portfolio.py
 
+      - name: Performance report (contract clause 6)
+        run: python scripts/performance_report.py --write
+
       - name: Alert check (daily close)
         env:
           FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}

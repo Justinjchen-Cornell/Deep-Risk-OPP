@@ -72,6 +72,72 @@ def fred_get(series_id):
         return None
 
 
+def fred_get_last(series_id):
+    """Latest FRED observation + its date. Returns (value, 'YYYY-MM-DD') or (None, None)."""
+    fred = _init_fred()
+    if not fred:
+        return None, None
+    try:
+        series = fred.get_series(series_id).dropna()
+        if series.empty:
+            return None, None
+        return float(series.iloc[-1]), series.index[-1].strftime("%Y-%m-%d")
+    except Exception as e:
+        log(f"  FRED {series_id}: {e}")
+        return None, None
+
+
+BRENT_SOURCE_LABELS = {
+    "yahoo": "Yahoo BZ=F",
+    "tencent": "腾讯 BZ",
+    "fred-spot": "EIA Brent 现货 (FRED, 滞后)",
+    "akshare": "akshare B00Y",
+    "estimated": "WTI×1.06 合成",
+}
+
+
+def fetch_brent_price(wti=None):
+    """Brent front-month price, real sources first.
+
+    Chain: Yahoo BZ=F -> Tencent hf_BZ -> EIA spot via FRED (lagged)
+           -> akshare B00Y -> WTI×1.06 (explicit synthetic last resort).
+
+    Returns (price, source, asof).  Source is persisted in gor_latest.json so the
+    card never silently presents a synthetic Brent as a real quote.
+    """
+    try:
+        from data_pipeline.quotes import _yahoo
+        q = _yahoo("BZ=F")
+        return round(float(q["price"]), 2), "yahoo", q.get("time")
+    except Exception as e:
+        log(f"  Brent Yahoo failed: {e}")
+
+    try:
+        from data_pipeline.quotes import _tencent
+        q = _tencent("hf_BZ")
+        return round(float(q["price"]), 2), "tencent", q.get("time")
+    except Exception as e:
+        log(f"  Brent Tencent failed: {e}")
+
+    # EIA Brent spot (DCOILBRENTEU) — real, but typically 1–3 days lagged.
+    val, asof = fred_get_last("DCOILBRENTEU")
+    if val is not None:
+        return round(float(val), 2), "fred-spot", asof
+
+    try:
+        import akshare as ak
+        df = ak.futures_global_hist_em(symbol="B00Y")
+        last = df.tail(1).iloc[0]
+        asof = str(last.iloc[0]) if len(last) else None
+        return round(float(last.iloc[3]), 2), "akshare", asof
+    except Exception as e:
+        log(f"  Brent akshare failed: {e}")
+
+    if wti:
+        return round(float(wti) * 1.06, 2), "estimated", None
+    return None, None, None
+
+
 def fetch_all():
     """拉取所有市场数据"""
     import akshare as ak
@@ -83,6 +149,7 @@ def fetch_all():
         df = ak.futures_foreign_hist(symbol='GC')
         last = df.tail(1).iloc[0]
         data['gold'] = round(float(last['close']), 2)
+        data['_q_gold'] = 'akshare GC'
         log(f"  Gold: ${data['gold']}/oz")
     except Exception as e:
         log(f"  Gold ERROR: {e}"); data['gold'] = None
@@ -92,29 +159,28 @@ def fetch_all():
         df = ak.futures_foreign_hist(symbol='CL')
         last = df.tail(1).iloc[0]
         data['wti'] = round(float(last['close']), 2)
+        data['_q_wti'] = 'akshare CL'
         log(f"  WTI: ${data['wti']}/bbl")
     except Exception as e:
         log(f"  WTI ERROR: {e}"); data['wti'] = None
 
-    # 3. 布伦特原油 (B00Y) — akshare，失败时用WTI*1.06估算
-    try:
-        df = ak.futures_global_hist_em(symbol='B00Y')
-        last = df.tail(1).iloc[0]
-        data['brent'] = round(float(last.iloc[3]), 2)
-        log(f"  Brent: ${data['brent']}/bbl")
-    except Exception as e:
-        if data.get('wti'):
-            data['brent'] = round(data['wti'] * 1.06, 2)
-            data['_q_brent'] = 'estimated'
-            log(f"  Brent: ${data['brent']}/bbl (WTI*1.06)")
-        else:
-            log(f"  Brent ERROR: {e}"); data['brent'] = None
+    # 3. 布伦特原油 — real feed chain (Yahoo -> Tencent -> EIA/FRED -> akshare -> synthetic)
+    brent, brent_src, brent_asof = fetch_brent_price(data.get('wti'))
+    data['brent'] = brent
+    data['_q_brent'] = brent_src
+    data['_brent_time'] = brent_asof
+    if brent_src == 'estimated':
+        log(f"  Brent: ${brent}/bbl (WTI*1.06 — SYNTHETIC)")
+    elif brent:
+        extra = f", asof {brent_asof}" if brent_asof else ""
+        log(f"  Brent: ${brent}/bbl ({brent_src}{extra})")
 
     # 4. COMEX铜 (HG) — akshare
     try:
         df = ak.futures_foreign_hist(symbol='HG')
         last = df.tail(1).iloc[0]
         data['copper'] = round(float(last['close']) / 100, 4)
+        data['_q_copper'] = 'akshare HG'
         log(f"  Copper: ${data['copper']}/lb")
     except Exception as e:
         log(f"  Copper ERROR: {e}"); data['copper'] = None
@@ -123,6 +189,7 @@ def fetch_all():
     us10y = fred_get('DGS10')
     if us10y:
         data['us10y'] = round(us10y, 2)
+        data['_q_us10y'] = 'FRED'
         log(f"  10Y: {data['us10y']}% (FRED)")
     else:
         # Fallback: akshare
@@ -152,6 +219,7 @@ def fetch_all():
         hist = ticker.history(period="5d")
         if len(hist) > 0:
             data['dxy'] = round(float(hist['Close'].iloc[-1]), 2)
+            data['_q_dxy'] = 'yfinance'
             log(f"  DXY: {data['dxy']} (yfinance)")
         else:
             raise ValueError("No yfinance data")
@@ -385,7 +453,7 @@ def compute_gor(data):
 
 
 def build_data_quality(data):
-    """生成数据质量报告：哪些字段缺失、哪些走了兜底源。"""
+    """生成数据质量报告：哪些字段缺失、哪些走了兜底源、每个字段的源。"""
     labels = {
         'gold': '黄金期货', 'wti': 'WTI原油', 'brent': '布伦特原油', 'copper': 'COMEX铜',
         'us10y': '10Y美债收益率', 'dxy': '美元指数DXY', 'vix': 'VIX恐慌指数',
@@ -393,16 +461,47 @@ def build_data_quality(data):
         'fed_balance': '美联储资产负债表', 'm2': 'M2货币供应',
     }
     degraded = [lab for key, lab in labels.items() if data.get(key) is None]
-    fallbacks = {}
-    for key, lab in [('_q_brent', '布伦特(估算WTI×1.06)'), ('_q_us10y', '10Y(akshare)'),
-                     ('_q_dxy', 'DXY(网页)'), ('_q_vix', 'VIX(第三方)')]:
+
+    sources = {}
+    for key, lab in [('_q_gold', '黄金'), ('_q_wti', 'WTI'), ('_q_brent', '布伦特'),
+                     ('_q_copper', '铜'), ('_q_us10y', '10Y'), ('_q_dxy', 'DXY'),
+                     ('_q_vix', 'VIX')]:
         if data.get(key):
-            fallbacks[lab] = data[key]
+            value = data[key]
+            if key == '_q_brent':
+                value = BRENT_SOURCE_LABELS.get(value, value)
+            sources[lab] = value
+
+    fallbacks = {}
+    if data.get('_q_brent') in ('estimated', 'fred-spot'):
+        fallbacks['布伦特'] = BRENT_SOURCE_LABELS[data['_q_brent']]
+    if data.get('_q_us10y') == 'akshare':
+        fallbacks['10Y'] = 'akshare'
+    if data.get('_q_dxy') == 'web':
+        fallbacks['DXY'] = 'web'
+    if data.get('_q_vix') in ('tradingview', 'fred'):
+        fallbacks['VIX'] = data['_q_vix']
+
+    warnings = []
+    if data.get('_q_brent') == 'estimated':
+        warnings.append('布伦特为合成值（WTI×1.06），GOR(Brent) 仅作参考')
+    elif data.get('_q_brent') == 'fred-spot':
+        warnings.append('布伦特为 EIA 现货（FRED）滞后值，非盘中报价')
+
+    ok = len(degraded) == 0 and data.get('_q_brent') != 'estimated'
+    if ok and not warnings:
+        note = "全部数据源正常"
+    elif ok:
+        note = "；".join(warnings)
+    else:
+        note = "部分数据源缺失或降级，相关判断可能不可靠"
     return {
-        "ok": len(degraded) == 0,
+        "ok": ok,
         "degraded_fields": degraded,
         "fallbacks": fallbacks,
-        "note": "全部数据源正常" if not degraded else "部分数据源缺失或降级，相关判断可能不可靠"
+        "sources": sources,
+        "warnings": warnings,
+        "note": note,
     }
 
 
@@ -423,6 +522,8 @@ def save_gor_json(data, gor):
     output = {
         "updated": now_bj_str(),
         "gor_brent": gor['gor_brent'], "gor_wti": gor['gor_wti'],
+        "brent_source": data.get('_q_brent'),
+        "brent_asof": data.get('_brent_time'),
         "regime": gor['regime'], "final_position": gor['final_position'],
         "allocation": gor['allocation'], "alerts": gor['alerts'],
         "screener": gor.get("screener"),
