@@ -1,5 +1,5 @@
 {
- "as_of": "2026-10-18 21:04",
+ "as_of": "2026-10-18 21:35",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -20,7 +20,7 @@
  "backfill": {
   "published": 6,
   "measured": 2,
-  "impressions": 1113,
+  "impressions": 1120,
   "engagements": 2,
   "followers": 0,
   "clicks": 0,
@@ -30,7 +30,7 @@
  "totals": {
   "published": 9,
   "measured": 3,
-  "impressions": 1329,
+  "impressions": 1341,
   "engagements": 2,
   "followers": 0,
   "clicks": 0,
@@ -41,7 +41,7 @@
   "LinkedIn": {
    "published": 3,
    "measured": 3,
-   "impressions": 1329,
+   "impressions": 1341,
    "engagements": 2,
    "followers": 0,
    "clicks": 0,
@@ -142,17 +142,17 @@
    "language": "EN",
    "scope": "contract",
    "status": "measured",
-   "impressions": 216,
+   "impressions": 221,
    "engagements": 0,
    "followers": 0,
    "clicks": null,
    "measured": true,
-   "measured_at": "2026-10-18T21:04+08:00",
+   "measured_at": "2026-10-18T21:35+08:00",
    "within_24h": true,
    "within_7d": true,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "LinkedIn Analytics 登录态抓取（2026-10-18 全量）"
+   "note": "LinkedIn 官方 XLSX 导出（2026-10-18）"
   },
   {
    "id": "016-diesel-cn-xueqiu",
@@ -205,17 +205,17 @@
    "language": "EN",
    "scope": "backfill",
    "status": "measured",
-   "impressions": 343,
+   "impressions": 347,
    "engagements": 0,
    "followers": 0,
    "clicks": null,
    "measured": true,
-   "measured_at": "2026-10-18T21:04+08:00",
+   "measured_at": "2026-10-18T21:35+08:00",
    "within_24h": false,
    "within_7d": true,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "LinkedIn Analytics 登录态抓取（2026-10-18 全量）"
+   "note": "LinkedIn 官方 XLSX 导出（2026-10-18）"
   },
   {
    "id": "015-brent-wti-cn-xueqiu",
@@ -268,17 +268,17 @@
    "language": "EN",
    "scope": "backfill",
    "status": "measured",
-   "impressions": 770,
+   "impressions": 773,
    "engagements": 2,
    "followers": 0,
    "clicks": null,
    "measured": true,
-   "measured_at": "2026-10-18T21:04+08:00",
+   "measured_at": "2026-10-18T21:35+08:00",
    "within_24h": false,
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "LinkedIn Analytics 登录态抓取（2026-10-18 全量）"
+   "note": "LinkedIn 官方 XLSX 导出（2026-10-18）"
   }
  ],
  "planned": [
