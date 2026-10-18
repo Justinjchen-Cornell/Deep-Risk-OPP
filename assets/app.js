@@ -97,6 +97,48 @@
       ['合同完成度', V.comp, 'ok'],
       ['三流', V.flowDir + ' / ' + V.flowSpeed, 'ok']
     ];
+    V.putLong = Math.round((wti || 100) * 0.88 / 5) * 5;
+    V.putShort = Math.max(60, Math.round((hs.thr || 75) * 0.96 / 5) * 5);
+    V.goldCallLong = Math.round((gold || 4180) * 1.03 / 50) * 50;
+    V.goldCallShort = Math.round((gold || 4180) * 1.10 / 50) * 50;
+    V.optionIdeas = [
+      {name: 'WTI 保护性看跌价差', structure: 'Buy ' + V.putLong + ' Put / Sell ' + V.putShort + ' Put（6M）',
+       budget: '≤ 组合 1.0%', role: '覆盖硬止损下方的缺口；用价差降成本',
+       maxloss: '净权利金', exit: 'WTI < ' + V.putLong + ' 或硬止损触发时平仓/行权',
+       status: hs.on ? '硬止损已触发：先减仓，不用期权替代纪律' : '硬止损未触发：保险可提前买'},
+      {name: 'SPY / IO 跨式', structure: 'ATM Straddle（3–6M）',
+       budget: '2–3%', role: '事件凸性；VIX < 17 才建，>25 改 Put',
+       maxloss: '净权利金', exit: '事件落地/VIX 回落即平；不长期持有',
+       status: (vix != null && vix < 17) ? 'VIX < 17：可建仓窗口' : 'VIX ' + V.vix + '：等待，不追'},
+      {name: 'A股 300 Put', structure: '510300 / IO Put（3M）',
+       budget: '0–0.5%', role: 'A股配置 >15% 才需要；当前 ' + V.astock + '%',
+       maxloss: '净权利金', exit: 'A股 <10% 不需要；>15% 再评估',
+       status: V.astock < 10 ? '不需要' : '可考虑'},
+      {name: '黄金看涨价差', structure: 'Buy ' + V.goldCallLong + ' Call / Sell ' + V.goldCallShort + ' Call（6M）',
+       budget: '≤ 0.5%', role: '美元信用/避险尾部；用价差控制成本',
+       maxloss: '净权利金', exit: 'GOR 回升或金价跌破 4,000',
+       status: '可选，非核心'}
+    ];
+    V.secondThird = [
+      {order: '二阶', theme: '黄金矿商现金流', vehicle: 'GDX', structure: '6M Call Spread', budget: '0.3–0.5%',
+       trigger: '金价站稳 4,200 / GOR 回升', risk: '金价跌破 4,000'},
+      {order: '二阶', theme: '银行/保险久期', vehicle: 'XLF / KRE', structure: 'Put Spread（尾部）', budget: '0.2–0.3%',
+       trigger: '10Y 快速上行 + 期限溢价失控', risk: '收益率回落 / 信用利差收窄'},
+      {order: '二阶', theme: '能源资本纪律', vehicle: 'XOP', structure: 'Call Spread', budget: '0.2–0.3%',
+       trigger: 'WTI 站稳 100 且资本开支下修', risk: 'OPEC+ 增产 / 需求破坏'},
+      {order: '三阶', theme: '电网 / 输电', vehicle: 'GRID', structure: '12M Call Spread', budget: '0.4–0.6%',
+       trigger: 'AI 数据中心电力合同 / 资本开支兑现', risk: '项目延期 / 利率上行'},
+      {order: '三阶', theme: '铜 / 电气化', vehicle: 'COPX', structure: '12M Call Spread', budget: '0.3–0.5%',
+       trigger: '铜库存低位 + 电网投资', risk: '全球增长下修'},
+      {order: '三阶', theme: '公用事业 / 电力', vehicle: 'XLU', structure: 'Call Spread', budget: '0.2–0.3%',
+       trigger: 'AI 电力需求 + 利率稳定', risk: '利率上行压制估值'}
+    ];
+    V.optionAvoid = [
+      '不裸卖 Put：5% 的无风险利率下，尾部风险不对称。',
+      '不在 VIX >25 时买 Straddle：波动率已经太贵。',
+      '不用杠杆 ETF 替代期权：路径依赖和展期损耗不可控。',
+      '不在油十年 96.7 分位追买 Call：赔率不在你这边。'
+    ];
     V.daily = daily; V.weekly = weekly;
     render(V, g, cf, hist, review, fw);
   });
@@ -235,6 +277,7 @@
   }
 
   function render(V, g, cf, hist, review, fw) {
+    registerLastPoint();
     var badge = byId('gorBadge');
     if (badge) {
       badge.textContent = 'GOR ' + V.gorW + ' · ' + V.regime;
@@ -243,7 +286,7 @@
     var app = byId('app');
     if (!app) return;
     if (page === 'capital') { app.innerHTML = capitalHTML(V, cf, review, fw); makeCapitalCharts(V, cf, fw); }
-    else if (page === 'hedge') { app.innerHTML = hedgeHTML(V); makeAllocChart(V, 'c-alloc'); makeWeeklyGorChart(V, 'c-week-h'); }
+    else if (page === 'hedge') { app.innerHTML = hedgeHTML(V); makeAllocChart(V, 'c-alloc'); makeWeeklyGorChart(V, 'c-week-h'); makePayoffChart(V); makeLadderChart(V); }
     else { app.innerHTML = decisionHTML(V, g, review); makeGorChart(V, 'c-gor-d'); makeAllocChart(V, 'c-alloc-d'); makeWeeklyGorChart(V, 'c-week-d'); makeWtiGorChart(V, 'c-wti-gor'); }
   }
 
@@ -325,9 +368,43 @@
       '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div>';
   }
 
+  function registerLastPoint() {
+    if (!window.Chart || window.__drLastPoint) return;
+    window.__drLastPoint = true;
+    Chart.register({
+      id: 'drLastPoint',
+      afterDatasetsDraw: function (chart) {
+        var ctx = chart.ctx;
+        chart.data.datasets.forEach(function (ds, i) {
+          var meta = chart.getDatasetMeta(i);
+          if (!meta || meta.type === 'doughnut' || meta.type === 'pie') return;
+          var pts = meta.data; if (!pts || !pts.length) return;
+          var idx = ds.data.length - 1;
+          while (idx >= 0 && ds.data[idx] == null) idx--;
+          if (idx < 0 || !pts[idx]) return;
+          var value = ds.data[idx];
+          var text = ds.lastLabel != null ? ds.lastLabel : (typeof value === 'number' ? value.toFixed(2) : String(value));
+          ctx.save();
+          ctx.font = '600 10px Inter, "Microsoft YaHei", sans-serif';
+          var w = ctx.measureText(text).width;
+          var x = Math.min(pts[idx].x + 8, chart.width - w - 8);
+          var y = Math.max(14, pts[idx].y - 9 - (i % 3) * 12);
+          ctx.fillStyle = 'rgba(13,17,23,.88)';
+          ctx.strokeStyle = ds.borderColor || ds.backgroundColor || '#7a8a9a';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(x - 3, y - 9); ctx.lineTo(x + w + 5, y - 9); ctx.lineTo(x + w + 5, y + 5); ctx.lineTo(x - 3, y + 5); ctx.closePath();
+          ctx.fill(); ctx.stroke();
+          ctx.fillStyle = ds.borderColor || '#e0e6ed';
+          ctx.fillText(text, x + 2, y + 1);
+          ctx.restore();
+        });
+      }
+    });
+  }
   function chartBase(extra) {
-    var grid = {color: 'rgba(255,255,255,.06)'}, tick = {color: '#7a8a9a', font: {size: 10}};
-    var o = {responsive: true, maintainAspectRatio: false, plugins: {legend: {display: false}},
+    var grid = {color: 'rgba(20,38,61,.08)'}, tick = {color: '#5f7186', font: {size: 11}};
+    var o = {responsive: true, maintainAspectRatio: false, layout: {padding: {right: 78, top: 16}}, plugins: {legend: {display: false}},
       scales: {x: {grid: grid, ticks: tick}, y: {grid: grid, ticks: tick}}};
     if (extra) for (var k in extra) o[k] = extra[k];
     return o;
@@ -442,7 +519,7 @@
       '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🏦</span><h2>美联储资产负债表（万亿美元）</h2></div><div class="chart"><canvas id="c-fed"></canvas></div>' + chartNote('资产负债表 ' + (((cf && cf.macro_fred && cf.macro_fred.fed_balance_trillion) || 6.76)) + ' 万亿、同比基本持平：QT 已停，但未重新大幅扩表。') + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">💸</span><h2>联邦净利息（千亿美元 / 年化）</h2></div><div class="chart"><canvas id="c-int"></canvas></div>' + chartNote('净利息 ' + (((cf && cf.macro_fred && cf.macro_fred.net_interest_trillion) || 1.28)) + ' 万亿（年化）：利息账单是当前最大的资本容器。') + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">💵</span><h2>DXY · 美元指数</h2></div><div class="chart"><canvas id="c-dxy"></canvas></div>' + chartNote('DXY ' + V.dxy + '，仍在 >99 的向心坍缩区间；没有出现美元挤兑式升值。') + '</div>' +
-      '<div class="card"><div class="card-head"><span class="ic">🌐</span><h2>FX · USD/CNH · USD/JPY · EUR/USD</h2></div><div class="chart"><canvas id="c-fx"></canvas></div>' + chartNote('USD/JPY ' + (((cf && cf.fx_rates && cf.fx_rates.usdjpy) || 158.34)) + '（日元弱）、USD/CNH ' + (((cf && cf.fx_rates && cf.fx_rates.usdcnh) || 6.692)) + '（人民币偏强）、EUR/USD ' + (((cf && cf.fx_rates && cf.fx_rates.usdeur) || 1.119)) + '。') + '</div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">🌐</span><h2>FX · 区间涨跌（起点=0%）</h2></div><div class="chart"><canvas id="c-fx"></canvas></div>' + chartNote('区间涨跌（起点=0%）：USD/JPY ' + (((((cf && cf.fx_rates && cf.fx_rates.usdjpy) || 158.34) / 140 - 1) * 100).toFixed(1)) + '%（日元弱）、USD/CNH ' + (((((cf && cf.fx_rates && cf.fx_rates.usdcnh) || 6.692) / 6.90 - 1) * 100).toFixed(1)) + '%（人民币强）、EUR/USD ' + (((((cf && cf.fx_rates && cf.fx_rates.usdeur) || 1.119) / 1.08 - 1) * 100).toFixed(1)) + '%。') + '</div></div>' +
       secTitle('04','history','数据留底','图表与最近 10 周') + '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📎</span><h2>口径说明</h2></div><div class="line muted">数值来自公开卡片 / FRED / EIA 缓存；GOR(Brent) 为 WTI×1.06 合成，真实 Brent 价差更宽。图表历史点为公开序列，最后一点为当前值。</div></div>';
@@ -466,45 +543,96 @@
     new Chart(byId('c-dxy'), {type: 'line', data: {labels: ['2023H1','H2','2024Q1','Q2','Q3','Q4','2025Q1','Q2','2026Q1','Now'],
       datasets: [{data: [103,105,104,106,101,107,99,97,100, parseFloat(V.dxy)], borderColor: '#4d9bff', backgroundColor: 'rgba(77,155,255,.08)', fill: true, tension: .3, pointRadius: 1.5}]}, options: chartBase()});
     var fx = (cf && cf.fx_rates) || {};
+    var fxSeries = [
+      {label: 'USD/CNH', data: [6.90,7.25,7.20,7.28,7.10,7.32,7.25,7.15,7.10, fx.usdcnh || 6.692], color: '#4d9bff'},
+      {label: 'USD/JPY', data: [140,148,150,159,143,157,149,144,150, fx.usdjpy || 158.34], color: '#f06030'},
+      {label: 'EUR/USD', data: [1.08,1.05,1.08,1.07,1.11,1.04,1.07,1.09,1.10, fx.usdeur || 1.119], color: '#6ee7b7'}
+    ];
+    function norm(arr) { var b = arr[0]; return arr.map(function (v) { return ((v / b) - 1) * 100; }); }
     new Chart(byId('c-fx'), {type: 'line', data: {labels: ['2023H1','H2','2024Q1','Q2','Q3','Q4','2025Q1','Q2','2026Q1','Now'],
-      datasets: [
-        {label: 'USD/CNH', data: [6.90,7.25,7.20,7.28,7.10,7.32,7.25,7.15,7.10, fx.usdcnh || 6.692], borderColor: '#4d9bff', tension: .3, pointRadius: 1.5},
-        {label: 'USD/JPY', data: [140,148,150,159,143,157,149,144,150, fx.usdjpy || 158.34], borderColor: '#f06030', tension: .3, pointRadius: 1.5},
-        {label: 'EUR/USD', data: [1.08,1.05,1.08,1.07,1.11,1.04,1.07,1.09,1.10, fx.usdeur || 1.119], borderColor: '#6ee7b7', tension: .3, pointRadius: 1.5}
-      ]}, options: chartBase({plugins: {legend: {display: true, labels: {color: '#7a8a9a', boxWidth: 10}}}})});
+      datasets: fxSeries.map(function (x) {
+        var n = norm(x.data);
+        return {label: x.label, data: n, borderColor: x.color, tension: .3, pointRadius: 1.6,
+          lastLabel: x.label.split('/')[1] + ' ' + (n[n.length-1] >= 0 ? '+' : '') + n[n.length-1].toFixed(1) + '%'};
+      })}, options: chartBase({plugins: {legend: {display: true, labels: {color: '#7a8a9a', boxWidth: 10}}},
+        scales: {x: {grid: {color: 'rgba(255,255,255,.06)'}, ticks: {color: '#7a8a9a', font: {size: 11}}},
+          y: {grid: {color: 'rgba(255,255,255,.06)'}, ticks: {color: '#7a8a9a', font: {size: 11}, callback: function (v) { return v + '%'; }}}}})});
     makeFlowsChart(fw, 'c-flows');
     makeSystematicChart(fw, 'c-sys');
     makeWeeklyGorChart(V, 'c-week-cap');
   }
 
   function hedgeHTML(V) {
-    var actions = V.actions.map(function (x, i) { return '<li><span class="n">' + (i + 1) + '</span><div>' + x + '</div></li>'; }).join('');
-    var tools = V.tools.map(function (t) {
-      return '<div class="tool"><h3>' + t.name + ' ' + tag(t.status, t.cls) + '</h3><div class="t">' + t.text + '</div></div>';
+    var ideas = V.optionIdeas.map(function (x) {
+      var cls = x.status.indexOf('已触发') >= 0 || x.status.indexOf('不需要') >= 0 ? 'warn' : (x.status.indexOf('可建仓') >= 0 ? 'ok' : 'gold');
+      return '<div class="tool"><h3>' + x.name + ' ' + tag(x.status, cls) + '</h3><div class="t"><b>结构：</b>' + x.structure + '<br><b>预算：</b>' + x.budget + ' · <b>最大损失：</b>' + x.maxloss + '<br><b>作用：</b>' + x.role + '<br><b>退出：</b>' + x.exit + '</div></div>';
     }).join('');
-    var checks = V.checks.map(function (c) {
-      return '<div class="check"><span class="l">' + c[0] + '</span><span class="v">' + c[1] + '</span>' + tag(c[2] === 'bad' ? '注意' : c[2] === 'warn' ? '观察' : '正常', c[2]) + '</div>';
+    var rows = V.secondThird.map(function (x) {
+      return '<tr><td>' + x.order + '</td><td>' + x.theme + '</td><td>' + x.vehicle + '</td><td>' + x.structure + '</td><td>' + x.budget + '</td><td>' + x.trigger + '</td><td>' + x.risk + '</td></tr>';
     }).join('');
-    return '<div class="hero"><div class="hero-kicker">HEDGE PLAYBOOK · ' + V.updated + '</div>' +
+    var avoid = V.optionAvoid.map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    var exec = [
+      '单笔权利金 ≤ 组合 0.5–1.0%；期权总预算 ≤ 3%。',
+      '只用限价单；买卖价差 >10% 不成交；检查未平仓量。',
+      '到期前 30 天滚动或平仓，不持有到自动行权。',
+      '不用期权替代硬止损：WTI < ' + V.hsThr + ' 仍先减仓。',
+      '每笔记录：结构、成本、希腊字母、退出条件。'
+    ].map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    var greeks = '<table><thead><tr><th>策略</th><th>Delta</th><th>Theta</th><th>Vega</th><th>用途</th></tr></thead><tbody>' +
+      '<tr><td>Long Put</td><td>−</td><td>−</td><td>+</td><td>尾部保护</td></tr>' +
+      '<tr><td>Put Spread</td><td>−</td><td>−</td><td>+/−</td><td>降成本保护</td></tr>' +
+      '<tr><td>Straddle</td><td>0</td><td>−</td><td>+</td><td>事件凸性</td></tr>' +
+      '<tr><td>Call Spread</td><td>+</td><td>−</td><td>+</td><td>有限追涨</td></tr></tbody></table>';
+    return '<div class="hero"><div class="hero-kicker">OPTIONS PLAYBOOK · ' + V.updated + '</div>' +
       '<div class="hero-row"><div class="hero-num">' + V.pos + '</div><div class="hero-side">' +
-      '<div class="hero-f">总仓位 <b>' + V.pos + '</b> · 硬止损 <b>' + (V.hsOn ? '已触发' : '未触发') + '</b></div>' +
+      '<div class="hero-f">期权作战室 · 总仓位 <b>' + V.pos + '</b> · 硬止损 <b>' + (V.hsOn ? '已触发' : '未触发') + '</b></div>' +
       '<div class="hero-sub">油气 ' + V.oil + '% · 黄金 ' + V.goldP + '% · 现金 ' + V.cash + '% · A股 ' + V.astock + '%</div></div></div>' +
-      '<div class="hero-tags">' + tag(V.regime, 'gold') + tag('WTI ' + V.wti, 'ok') + tag('VIX ' + V.vix, 'warn') + tag('阈值 ' + V.hsThr, 'ok') + '</div></div>' +
-      secTitle('01','shield','当前动作','按机器状态生成') + legendBar() + '<div class="card"><div class="card-head"><span class="ic">🌀</span><h2>向心坍缩阶段</h2></div>' + stageHTML(V) + '</div>' +
+      '<div class="hero-tags">' + tag(V.regime, 'gold') + tag('WTI ' + V.wti, 'ok') + tag('VIX ' + V.vix, 'warn') + tag('期权预算 ≤3%', 'gold') + '</div></div>' +
+      secTitle('01','shield','风险预算与持仓','先定亏损预算，再谈期权') + legendBar() +
       '<div class="metrics">' + metric('GOR(WTI)', V.gorW) + metric('WTI', V.wti) + metric('VIX', V.vix) + metric('10Y', V.us10y) + metric('仓位', V.pos) + '</div>' +
-      '<div class="change-grid">' + changeCards(V) + '</div>' +
-      '<div class="card"><div class="card-head"><span class="ic">🎯</span><h2>当前行动</h2></div><ul class="actions">' + actions + '</ul></div>' +
-      secTitle('02','target','工具与自检','四类工具 + 六项自检') + '<div class="grid2">' + tools + '</div>' +
-      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">✅</span><h2>执行自检</h2></div>' + checks + '</div>' +
-      '<div class="card"><div class="card-head"><span class="ic">🥧</span><h2>仓位结构</h2></div><div class="chart-sm"><canvas id="c-alloc"></canvas></div>' + chartNote('现金 ' + V.cash + '% + 黄金 ' + V.goldP + '% + 油气 ' + V.oil + '%：防御底仓，等 VIX ≥ ' + V.vixGate + ' 且油 ≤ P25 的扳机。') + '</div></div>' +
+      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🥧</span><h2>持仓结构</h2></div><div class="chart-sm"><canvas id="c-alloc"></canvas></div>' + chartNote('现金 ' + V.cash + '% + 黄金 ' + V.goldP + '% + 油气 ' + V.oil + '%：防御底仓，期权只做边际保护。') + '</div>' +
+      '<div class="card"><div class="card-head"><span class="ic">🧮</span><h2>1 / 2 / 3 预算</h2></div>' + numList([
+        '单笔权利金 ≤ 组合 0.5–1.0%',
+        '期权总预算 ≤ 组合 3%',
+        '不用期权替代硬止损：先减仓，再买保险'
+      ]) + '</div></div>' +
+      secTitle('02','target','期权建议','结构 / 期限 / 预算 / 退出') +
+      '<div class="grid2">' + ideas + '</div>' +
+      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📉</span><h2>WTI ' + V.putLong + '/' + V.putShort + ' Put Spread · 到期损益</h2></div><div class="chart"><canvas id="c-payoff"></canvas></div>' + chartNote('示意：买入 ' + V.putLong + ' Put / 卖出 ' + V.putShort + ' Put，净成本约 $3；最大损失=净权利金，最大收益=价差−成本。') + '</div>' +
+      '<div class="card"><div class="card-head"><span class="ic">🚫</span><h2>当前不建议</h2></div><ul class="advice">' + avoid + '</ul></div></div>' +
+      secTitle('03','flow','二阶 / 三阶','谁改变行为 · 谁拿现金流') +
+      '<div class="card"><div class="card-head"><span class="ic">🧭</span><h2>二阶 / 三阶策略表</h2></div><div class="compare"><table><thead><tr><th>阶</th><th>主题</th><th>标的</th><th>期权结构</th><th>预算</th><th>触发</th><th>风险</th></tr></thead><tbody>' + rows + '</tbody></table></div><div class="muted" style="margin-top:8px">二阶=价格变化后谁改变行为；三阶=谁最终拿到现金流。ETF 仅作表达工具，非个股推荐。</div></div>' +
+      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📶</span><h2>预算阶梯（示意）</h2></div><div class="chart-sm"><canvas id="c-ladder"></canvas></div>' + chartNote('一阶核心 2.0% · 二阶 0.85% · 三阶 1.15%：大部分预算留给一阶，二阶/三阶用小仓位表达。）') + '</div>' +
+      '<div class="card"><div class="card-head"><span class="ic">🔗</span><h2>1 / 2 / 3 映射</h2></div>' + numList([
+        '一阶：金/油/现金——宏观本身',
+        '二阶：矿商/银行保险/能源资本纪律——谁改变行为',
+        '三阶：电网/铜/电力——谁拿现金流'
+      ]) + '</div></div>' +
+      secTitle('04','history','情景 · 执行 · 留底','希腊字母 / 检查表 / 周度') +
+      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📐</span><h2>希腊字母简表</h2></div>' + greeks + '</div>' +
+      '<div class="card"><div class="card-head"><span class="ic">✅</span><h2>执行纪律 · 1 / 2 / 3</h2></div><ul class="advice">' + exec + '</ul></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR 周度</h2></div><div class="chart-sm"><canvas id="c-week-h"></canvas></div>' + chartNote('GOR 从 46.05 回落到 41.11：油腿主导；仓位 30% 未变。') + '</div>' +
-      '<div class="subcard" style="margin-bottom:12px"><h3>1 / 2 / 3 自检</h3>' + numList([
-        '硬止损：' + (V.hsOn ? '已触发' : '未触发') + '（阈值 ' + V.hsThr + '）',
-        'VIX ' + V.vix + ' vs 门槛 ' + V.vixGate + '：' + (V.s2 ? '已过门槛' : '未到投降'),
-        '油分位 ' + V.oilPctl + '：' + (V.oilPctl !== '—' && parseFloat(V.oilPctl) <= 25 ? '底部区域' : '非底部')
-      ]) + '</div>' +
-      secTitle('03','history','数据留底','时间轴与最近 10 周') + '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div>';
+  }
+
+  function makePayoffChart(V) {
+    if (!window.Chart) return;
+    var el = byId('c-payoff'); if (!el) return;
+    var labels = [], data = [];
+    for (var s = 60; s <= 130; s += 5) {
+      labels.push('$' + s);
+      data.push(Math.max(0, V.putLong - s) - Math.max(0, V.putShort - s) - 3);
+    }
+    new Chart(el, {type: 'line', data: {labels: labels,
+      datasets: [{data: data, borderColor: '#6ee7b7', backgroundColor: 'rgba(110,231,183,.08)', fill: true, tension: 0, pointRadius: 1.4, lastLabel: '净成本 -$3'}]},
+      options: chartBase()});
+  }
+  function makeLadderChart(V) {
+    if (!window.Chart) return;
+    var el = byId('c-ladder'); if (!el) return;
+    new Chart(el, {type: 'bar', data: {labels: ['一阶', '二阶', '三阶'],
+      datasets: [{data: [2.0, 0.85, 1.15], backgroundColor: ['rgba(240,192,64,.65)', 'rgba(77,155,255,.55)', 'rgba(110,231,183,.55)']}]},
+      options: chartBase()});
   }
 
   function makeAllocChart(V, id) {
