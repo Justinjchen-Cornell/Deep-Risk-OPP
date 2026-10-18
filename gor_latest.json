@@ -1,7 +1,9 @@
 {
-  "updated": "2026-10-18 07:07",
-  "gor_brent": 38.78,
-  "gor_wti": 41.11,
+  "updated": "2026-10-19 07:12",
+  "gor_brent": 38.6,
+  "gor_wti": 42.78,
+  "brent_source": "yahoo",
+  "brent_asof": "2026-10-18T23:01:17+00:00",
   "regime": "修复周期",
   "final_position": 30,
   "allocation": {
@@ -14,7 +16,7 @@
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=101.84 > 99 强美元压制",
+      "title": "DXY=101.92 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
@@ -24,37 +26,37 @@
     }
   ],
   "screener": {
-    "d_gold": 0.0312,
-    "d_oil": 0.528,
+    "d_gold": 0.0341,
+    "d_oil": 0.491,
     "leg": "油腿主导",
     "s1": true,
     "vix": 19.99,
     "vix_thr": 22.46,
     "s2": false,
-    "oil": 101.84,
-    "oil_pctl": 0.967,
+    "oil": 98.14,
+    "oil_pctl": 0.933,
     "s3": false,
     "npass": 1,
     "verdict": "红",
     "oil_cap_factor": 0.0,
-    "ts": "2026-10-17 23:07",
+    "ts": "2026-10-18 23:12",
     "history_last": "fetched"
   },
   "data": {
     "黄金期货": {
-      "price": 4186.5,
+      "price": 4198.7,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 101.84,
+      "price": 98.14,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 107.95,
+      "price": 108.78,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 101.84,
+      "price": 101.92,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
@@ -66,7 +68,7 @@
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.563,
+      "price": 6.5675,
       "change_pct": 0.0
     }
   },
@@ -74,7 +76,7 @@
     "total": "收缩",
     "direction": "向心坍缩",
     "speed": "放缓",
-    "dxy": 101.84,
+    "dxy": 101.92,
     "vix": 19.99,
     "tenyear": 5.1,
     "thirtyyear": 5.43,
@@ -91,10 +93,17 @@
   "data_quality": {
     "ok": true,
     "degraded_fields": [],
-    "fallbacks": {
-      "布伦特(估算WTI×1.06)": "estimated",
-      "VIX(第三方)": "cboe"
+    "fallbacks": {},
+    "sources": {
+      "黄金": "akshare GC",
+      "WTI": "akshare CL",
+      "布伦特": "Yahoo BZ=F",
+      "铜": "akshare HG",
+      "10Y": "FRED",
+      "DXY": "yfinance",
+      "VIX": "cboe"
     },
+    "warnings": [],
     "note": "全部数据源正常"
   }
 }
