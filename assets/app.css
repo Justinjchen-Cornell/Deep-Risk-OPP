@@ -116,3 +116,26 @@ tr:last-child td{border-bottom:0}
 .sys{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04)}
 .sys:last-child{border-bottom:0}
 .sys b{display:block;font-size:18px;font-family:"SF Mono",Consolas,monospace;margin:4px 0 2px}
+.m-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.m-ic{width:30px;height:30px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 30px}
+.m-ic.gold{color:var(--gold);background:rgba(240,192,64,.10);border:1px solid rgba(240,192,64,.22)}
+.m-ic.oil{color:var(--oil);background:rgba(240,96,48,.10);border:1px solid rgba(240,96,48,.22)}
+.m-ic.blue{color:var(--blue);background:rgba(77,155,255,.10);border:1px solid rgba(77,155,255,.22)}
+.m-ic.amber{color:var(--amber);background:rgba(251,191,36,.10);border:1px solid rgba(251,191,36,.22)}
+.m-ic.red{color:var(--red);background:rgba(240,68,88,.10);border:1px solid rgba(240,68,88,.22)}
+.m-ic.green{color:var(--green);background:rgba(110,231,183,.10);border:1px solid rgba(110,231,183,.22)}
+.m-ic.neutral{color:var(--muted);background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.metric .k{font-size:11px;color:var(--muted);letter-spacing:.5px}
+.metric .v{font-size:22px;line-height:1.25}
+.m-note{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.55}
+.icon{display:block;flex:0 0 auto}
+.sec-title{display:flex;align-items:center;gap:10px;margin:24px 0 12px;padding:0 0 10px;border-bottom:1px solid var(--line)}
+.sec-title .sec-num{font-size:11px;font-weight:800;color:var(--gold);letter-spacing:1px;font-family:"SF Mono",Consolas,monospace}
+.sec-title .sec-ic{width:30px;height:30px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;color:var(--gold);background:rgba(240,192,64,.08);border:1px solid rgba(240,192,64,.18)}
+.sec-h{font-size:19px;font-weight:800;letter-spacing:.5px}
+.sec-s{font-size:12px;color:var(--muted);margin-top:1px}
+.legend-bar{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:10px 0 4px;font-size:11px}
+.compare{overflow-x:auto}
+.compare table{min-width:560px;font-size:13px}
+.compare td{font-size:13px}
+@media(max-width:820px){.compare table{min-width:520px}.sec-h{font-size:17px}.metric .v{font-size:20px}}

@@ -136,10 +136,51 @@
     return h + '</tbody></table>';
   }
 
+  var ICONS = {
+    gold: '<circle cx="12" cy="12" r="8"/><path d="M9 9h6M9 15h6M12 6v12"/>',
+    oil: '<path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11z"/>',
+    dollar: '<path d="M12 3v18M16 7.5c0-1.4-1.8-2.5-4-2.5s-4 1.1-4 2.5 1.8 2.5 4 2.5 4 1.1 4 2.5-1.8 2.5-4 2.5-4-1.1-4-2.5"/>',
+    yield: '<path d="M4 18l5-6 4 3 7-9"/><path d="M16 6h4v4"/>',
+    vix: '<path d="M3 12h4l2-7 4 14 2-7h6"/>',
+    gor: '<circle cx="8" cy="12" r="4"/><circle cx="16" cy="12" r="4"/><path d="M12 6v12"/>',
+    shield: '<path d="M12 3l7 3v6c0 4-3 7-7 9-4-2-7-5-7-9V6l7-3z"/>',
+    bank: '<path d="M3 9l9-6 9 6"/><path d="M5 9v8M9 9v8M15 9v8M19 9v8M3 21h18"/>',
+    flow: '<path d="M3 8c4 0 4 8 8 8s4-8 8-8"/><path d="M3 14c4 0 4 4 8 4s4-4 8-4"/>',
+    history: '<circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/>',
+    alert: '<path d="M12 3l9 17H3L12 3z"/><path d="M12 9v5M12 17h.01"/>',
+    target: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>',
+    globe: '<circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16"/>',
+    pie: '<path d="M12 3v9h9"/><path d="M21 12a9 9 0 1 1-9-9"/>'
+  };
+  var META = {
+    '黄金': {icon:'gold', tone:'gold', note:'避险/储备资产 · GOR 分子'},
+    'WTI': {icon:'oil', tone:'oil', note:'美国基准原油 · GOR 分母'},
+    'Brent': {icon:'oil', tone:'oil', note:'全球基准 · 卡面为 WTI×1.06 合成'},
+    'DXY': {icon:'dollar', tone:'blue', note:'美元指数 · >99 向心坍缩区间'},
+    '10Y': {icon:'yield', tone:'amber', note:'长端利率 · 5% 上方压制估值'},
+    'VIX': {icon:'vix', tone:'red', note:'恐慌指数 · ≥22.5 才是投降门槛'},
+    'GOR(WTI)': {icon:'gor', tone:'gold', note:'金油比 · 越低油越强'},
+    'GOR(Brent)': {icon:'gor', tone:'gold', note:'Brent 腿 · 合成口径'},
+    '仓位': {icon:'shield', tone:'green', note:'总仓位 · 机器输出'}
+  };
+  function icon(name, size) {
+    var p = ICONS[name] || ICONS.gold;
+    return '<svg class="icon" width="' + (size || 18) + '" height="' + (size || 18) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + p + '</svg>';
+  }
+  function secTitle(n, ic, title, sub) {
+    return '<div class="sec-title"><span class="sec-num">' + n + '</span><span class="sec-ic">' + icon(ic, 18) + '</span><div><div class="sec-h">' + title + '</div><div class="sec-s">' + sub + '</div></div></div>';
+  }
+  function legendBar() {
+    return '<div class="legend-bar">' + tag('红 = 风险/触发', 'bad') + tag('黄 = 观察', 'warn') + tag('绿 = 正常/通过', 'ok') + tag('金 = 主指标', 'gold') + '<span class="muted">数据：卡面 / FRED / 机构转引，均已标注</span></div>';
+  }
+
   function tag(txt, cls) { return '<span class="tag ' + (cls || '') + '">' + txt + '</span>'; }
-  function metric(k, v, icon, delta, cls) {
-    return '<div class="metric"><div class="k">' + (icon || '') + ' ' + k + '</div><div class="v">' + v + '</div>' +
-      (delta ? '<div class="d ' + (cls || 'flat') + '">' + delta + '</div>' : '') + '</div>';
+  function metric(k, v, delta, cls) {
+    var m = META[k] || {icon: 'gold', tone: 'neutral', note: ''};
+    return '<div class="metric"><div class="m-top"><span class="m-ic ' + m.tone + '">' + icon(m.icon, 17) + '</span><span class="k">' + k + '</span></div>' +
+      '<div class="v">' + v + '</div>' +
+      (delta ? '<div class="d ' + (cls || 'flat') + '">' + delta + '</div>' : '') +
+      '<div class="m-note">' + m.note + '</div></div>';
   }
   function changeCard(k, v, s, cls) {
     return '<div class="change"><div class="k">' + k + '</div><div class="v ' + (cls || '') + '">' + v + '</div><div class="s">' + s + '</div></div>';
@@ -242,12 +283,12 @@
       '<div class="hero-sub">GOR(Brent) ' + V.gorB + '（合成 ' + V.brent + '） · 合同 ' + V.comp + ' · 距目标 ' + V.gap + '</div></div></div>' +
       '<div class="hero-tags">' + tag(V.regime, 'gold') + tag('仓位 ' + V.pos, 'ok') + tag('筛选器 ' + V.verdict, V.verdict === '红' ? 'bad' : 'warn') +
       tag(V.hsOn ? '硬止损 已触发' : '硬止损 未触发', V.hsOn ? 'bad' : 'ok') + '</div></div>' +
-      '<div class="metrics">' + metric('黄金', V.gold, '🥇') + metric('WTI', V.wti, '🛢️') + metric('Brent', V.brent, '🛢️') +
-      metric('DXY', V.dxy, '💵') + metric('10Y', V.us10y, '📈') + metric('VIX', V.vix, '🌪️') + '</div>' +
-      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📌</span><h2>本周重要变化</h2></div><div class="line">' + changeLine(V) + '</div><div class="line muted" style="margin-top:6px">' + weeklyReview(V) + '</div><div class="change-grid" style="margin-top:10px">' + changeCards(V) + '</div></div>' +
+      secTitle('01','target','本周状态','价格、GOR、仓位与筛选器') + legendBar() + '<div class="metrics">' + metric('黄金', V.gold) + metric('WTI', V.wti) + metric('Brent', V.brent) +
+      metric('DXY', V.dxy) + metric('10Y', V.us10y) + metric('VIX', V.vix) + '</div>' +
+      secTitle('02','gor','机器解读','变化、建议、阶段') + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📌</span><h2>本周重要变化</h2></div><div class="line">' + changeLine(V) + '</div><div class="line muted" style="margin-top:6px">' + weeklyReview(V) + '</div><div class="change-grid" style="margin-top:10px">' + changeCards(V) + '</div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">💡</span><h2>投资建议</h2></div><ul class="advice">' + adviceItems(V) + '</ul></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🌀</span><h2>向心坍缩阶段</h2></div>' + stageHTML(V) + '</div>' +
-      reviewHTML(review, V) + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div>' +
+      secTitle('03','bank','机构对照','本周机构 vs 机器') + reviewHTML(review, V) + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div>' +
       '<div class="line">' + V.summary + '</div><div class="line muted" style="margin-top:8px">' + V.interpret + '</div>' +
       '<div style="margin-top:12px">' + screenTags(V) + '</div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">💰</span><h2>今日配置 · 总仓位 ' + V.pos + '</h2></div>' +
@@ -259,10 +300,10 @@
       '<div class="line">硬止损 <b>' + (V.hsOn ? '已触发' : '未触发') + '</b> · 阈值 ' + V.hsThr + ' · 距离 ' + V.hsDist + '</div>' +
       '<div class="line">裁决 <b>' + V.verdict + '</b> · 通过 ' + V.npass + '/3 · 油分位 ' + V.oilPctl + ' · VIX ' + V.vix + '（门槛 ' + V.vixGate + '）</div>' +
       '<div style="margin-top:12px">' + screenTags(V) + '</div></div></div>' +
+      secTitle('04','history','数据留底','GOR 走势、时间轴与最近 10 周') +
+      '<div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR 走势 · 近 60 日</h2></div><div class="chart"><canvas id="c-gor-d"></canvas></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
-      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR 走势 · 近 60 日</h2></div><div class="chart"><canvas id="c-gor-d"></canvas></div></div>' +
-      '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
-      '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div></div>';
+      '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div>';
   }
 
   function chartBase(extra) {
@@ -313,22 +354,22 @@
       '<div class="hero-side"><div class="hero-f">总量 <b>' + V.flowTotal + '</b> · 流速 <b>' + V.flowSpeed + '</b></div>' +
       '<div class="hero-sub">GOR(WTI) ' + V.gorW + ' · 仓位 ' + V.pos + ' · 合同 ' + V.comp + '</div></div></div>' +
       '<div class="hero-tags">' + tag('向心坍缩', 'gold') + tag('VIX ' + V.vix, 'warn') + tag('10Y ' + V.us10y, 'warn') + tag('DXY ' + V.dxy, 'ok') + '</div></div>' +
-      '<div class="card"><div class="card-head"><span class="ic">🌀</span><h2>向心坍缩阶段</h2></div>' + stageHTML(V) + '</div>' +
-      '<div class="metrics">' + metric('GOR(WTI)', V.gorW, '📊') + metric('GOR(Brent)', V.gorB, '📊') + metric('DXY', V.dxy, '💵') +
-      metric('10Y', V.us10y, '📈') + metric('VIX', V.vix, '🌪️') + metric('WTI', V.wti, '🛢️') + '</div>' +
+      secTitle('01','flow','资金流总览','总量、方向、流速') + legendBar() + '<div class="card"><div class="card-head"><span class="ic">🌀</span><h2>向心坍缩阶段</h2></div>' + stageHTML(V) + '</div>' +
+      '<div class="metrics">' + metric('GOR(WTI)', V.gorW) + metric('GOR(Brent)', V.gorB) + metric('DXY', V.dxy) +
+      metric('10Y', V.us10y) + metric('VIX', V.vix) + metric('WTI', V.wti) + '</div>' +
       '<div class="change-grid">' + changeCards(V) + '</div>' +
       '<div class="flow-row"><div class="flow"><div class="k">总量</div><div class="v">' + V.flowTotal + '</div></div>' +
       '<div class="flow"><div class="k">方向</div><div class="v">' + V.flowDir + '</div></div>' +
       '<div class="flow"><div class="k">流速</div><div class="v">' + V.flowSpeed + '</div></div></div>' +
-      flowWeekHTML(fw) + reviewHTML(review, V) + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🥇</span><h2>金 · 底仓</h2></div><div class="line">黄金 ' + V.gold + ' · 配置 ' + V.goldP + '% · GOR(WTI) ' + V.gorW + '</div><div class="line muted" style="margin-top:6px">金价距 8 月峰值回撤约 11.9%；央行购金仍是中期支撑。</div></div>' +
+      secTitle('02','bank','机构资金','一周一期') + flowWeekHTML(fw) + secTitle('03','gor','机器与市场','GOR、仓位、合同') + reviewHTML(review, V) + '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🥇</span><h2>金 · 底仓</h2></div><div class="line">黄金 ' + V.gold + ' · 配置 ' + V.goldP + '% · GOR(WTI) ' + V.gorW + '</div><div class="line muted" style="margin-top:6px">金价距 8 月峰值回撤约 11.9%；央行购金仍是中期支撑。</div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🛢️</span><h2>油 · 合同</h2></div><div class="line">WTI ' + V.wti + ' · 配置 ' + V.oil + '% · 合同 ' + V.comp + '</div><div class="line muted" style="margin-top:6px">距 $107.60 还差 ' + V.gap + ' · ' + V.days + '；硬止损 ' + (V.hsOn ? '已触发' : '未触发') + '（阈值 ' + V.hsThr + '）。</div></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div><div class="line">' + V.summary + '</div><div class="line muted" style="margin-top:8px">' + V.interpret + '</div></div>' +
-      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR(WTI) · 近 60 个交易日</h2></div><div class="chart"><canvas id="c-gor"></canvas></div></div>' +
-      '<div class="card"><div class="card-head"><span class="ic">🏦</span><h2>美联储资产负债表（万亿美元）</h2></div><div class="chart"><canvas id="c-fed"></canvas></div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR(WTI) · 近 60 个交易日</h2></div><div class="chart"><canvas id="c-gor"></canvas></div></div>' +
+      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🏦</span><h2>美联储资产负债表（万亿美元）</h2></div><div class="chart"><canvas id="c-fed"></canvas></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">💸</span><h2>联邦净利息（千亿美元 / 年化）</h2></div><div class="chart"><canvas id="c-int"></canvas></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">💵</span><h2>DXY · 美元指数</h2></div><div class="chart"><canvas id="c-dxy"></canvas></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🌐</span><h2>FX · USD/CNH · USD/JPY · EUR/USD</h2></div><div class="chart"><canvas id="c-fx"></canvas></div></div></div>' +
-      '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
+      secTitle('04','history','数据留底','图表与最近 10 周') + '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📎</span><h2>口径说明</h2></div><div class="line muted">数值来自公开卡片 / FRED / EIA 缓存；GOR(Brent) 为 WTI×1.06 合成，真实 Brent 价差更宽。图表历史点为公开序列，最后一点为当前值。</div></div>';
   }
@@ -372,14 +413,14 @@
       '<div class="hero-f">总仓位 <b>' + V.pos + '</b> · 硬止损 <b>' + (V.hsOn ? '已触发' : '未触发') + '</b></div>' +
       '<div class="hero-sub">油气 ' + V.oil + '% · 黄金 ' + V.goldP + '% · 现金 ' + V.cash + '% · A股 ' + V.astock + '%</div></div></div>' +
       '<div class="hero-tags">' + tag(V.regime, 'gold') + tag('WTI ' + V.wti, 'ok') + tag('VIX ' + V.vix, 'warn') + tag('阈值 ' + V.hsThr, 'ok') + '</div></div>' +
-      '<div class="card"><div class="card-head"><span class="ic">🌀</span><h2>向心坍缩阶段</h2></div>' + stageHTML(V) + '</div>' +
-      '<div class="metrics">' + metric('GOR(WTI)', V.gorW, '📊') + metric('WTI', V.wti, '🛢️') + metric('VIX', V.vix, '🌪️') + metric('10Y', V.us10y, '📈') + metric('仓位', V.pos, '🛡️') + '</div>' +
+      secTitle('01','shield','当前动作','按机器状态生成') + legendBar() + '<div class="card"><div class="card-head"><span class="ic">🌀</span><h2>向心坍缩阶段</h2></div>' + stageHTML(V) + '</div>' +
+      '<div class="metrics">' + metric('GOR(WTI)', V.gorW) + metric('WTI', V.wti) + metric('VIX', V.vix) + metric('10Y', V.us10y) + metric('仓位', V.pos) + '</div>' +
       '<div class="change-grid">' + changeCards(V) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">🎯</span><h2>当前行动</h2></div><ul class="actions">' + actions + '</ul></div>' +
-      '<div class="grid2">' + tools + '</div>' +
+      secTitle('02','target','工具与自检','四类工具 + 六项自检') + '<div class="grid2">' + tools + '</div>' +
       '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">✅</span><h2>执行自检</h2></div>' + checks + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">🥧</span><h2>仓位结构</h2></div><div class="chart-sm"><canvas id="c-alloc"></canvas></div></div></div>' +
-      '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
+      secTitle('03','history','数据留底','时间轴与最近 10 周') + '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div>';
   }
 
