@@ -1,5 +1,5 @@
 {
- "as_of": "2026-10-18 20:13",
+ "as_of": "2026-10-18 20:31",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -9,44 +9,44 @@
  "contract6": {
   "baseline_start": "2026-10-16",
   "published": 3,
-  "measured": 0,
-  "completeness_pct": 0.0,
-  "within_24h": 0,
-  "within_7d": 0,
+  "measured": 1,
+  "completeness_pct": 33.3,
+  "within_24h": 1,
+  "within_7d": 1,
   "overdue_24h": 0,
   "overdue_7d": 0,
   "status": "at_risk"
  },
  "backfill": {
   "published": 6,
-  "measured": 0,
-  "impressions": 0,
-  "engagements": 0,
+  "measured": 2,
+  "impressions": 1111,
+  "engagements": 2,
   "followers": 0,
   "clicks": 0,
-  "engagement_rate_pct": null,
-  "follower_rate_pct": null
+  "engagement_rate_pct": 0.18,
+  "follower_rate_pct": 0.0
  },
  "totals": {
   "published": 9,
-  "measured": 0,
-  "impressions": 0,
-  "engagements": 0,
+  "measured": 3,
+  "impressions": 1323,
+  "engagements": 2,
   "followers": 0,
   "clicks": 0,
-  "engagement_rate_pct": null,
-  "follower_rate_pct": null
+  "engagement_rate_pct": 0.15,
+  "follower_rate_pct": 0.0
  },
  "by_platform": {
   "LinkedIn": {
    "published": 3,
-   "measured": 0,
-   "impressions": 0,
-   "engagements": 0,
+   "measured": 3,
+   "impressions": 1323,
+   "engagements": 2,
    "followers": 0,
    "clicks": 0,
-   "engagement_rate_pct": null,
-   "follower_rate_pct": null
+   "engagement_rate_pct": 0.15,
+   "follower_rate_pct": 0.0
   },
   "知乎": {
    "published": 3,
@@ -141,18 +141,18 @@
    "piece": "017",
    "language": "EN",
    "scope": "contract",
-   "status": "pending",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
+   "status": "measured",
+   "impressions": 212,
+   "engagements": 0,
+   "followers": 0,
    "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
+   "measured": true,
+   "measured_at": "2026-10-18T20:31+08:00",
+   "within_24h": true,
+   "within_7d": true,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "待回填；发布后 24h / 7d 各一次"
+   "note": "LinkedIn Analytics 登录态抓取（2026-10-18）"
   },
   {
    "id": "016-diesel-cn-xueqiu",
@@ -204,18 +204,18 @@
    "piece": "016",
    "language": "EN",
    "scope": "backfill",
-   "status": "pending",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
+   "status": "measured",
+   "impressions": 341,
+   "engagements": 0,
+   "followers": 0,
    "clicks": null,
-   "measured": false,
-   "measured_at": null,
+   "measured": true,
+   "measured_at": "2026-10-18T20:31+08:00",
    "within_24h": false,
-   "within_7d": false,
+   "within_7d": true,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "补录基线；平台后台可查"
+   "note": "LinkedIn Analytics 登录态抓取（2026-10-18）"
   },
   {
    "id": "015-brent-wti-cn-xueqiu",
@@ -267,18 +267,18 @@
    "piece": "015",
    "language": "EN",
    "scope": "backfill",
-   "status": "pending",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
+   "status": "measured",
+   "impressions": 770,
+   "engagements": 2,
+   "followers": 0,
    "clicks": null,
-   "measured": false,
-   "measured_at": null,
+   "measured": true,
+   "measured_at": "2026-10-18T20:31+08:00",
    "within_24h": false,
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "补录基线；平台后台可查"
+   "note": "LinkedIn Analytics 登录态抓取（2026-10-18）"
   }
  ],
  "planned": [
