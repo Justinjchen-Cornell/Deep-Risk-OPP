@@ -93,12 +93,9 @@ def main():
         dl = _json.load(open(os.path.join(base, 'history.json'), encoding='utf-8')).get('rows', [])
         if len(wk) >= 2:
             a, b = wk[-2], wk[-1]
-            lines.append('较上周：GOR ' + str(b.get('gor_wti')) + '（上周 ' + str(a.get('gor_wti')) + '，' + ('%+.2f' % ((b.get('gor_wti') or 0) - (a.get('gor_wti') or 0))) + '）')
-        if len(dl) >= 2:
-            a, b = dl[-2], dl[-1]
             def _d(k):
                 return ('%+.2f' % ((b.get(k) or 0) - (a.get(k) or 0))) if isinstance(b.get(k), (int, float)) and isinstance(a.get(k), (int, float)) else '—'
-            lines.append('较上次：WTI ' + _d('wti') + ' · VIX ' + _d('vix') + ' · 仓位 ' + str(b.get('position')) + '%')
+            lines.append('本周 vs 上周：GOR ' + str(b.get('gor_wti')) + '（上周 ' + str(a.get('gor_wti')) + '，' + _d('gor_wti') + '）· WTI ' + str(b.get('wti')) + '（上周 ' + str(a.get('wti')) + '，' + _d('wti') + '）· VIX ' + str(b.get('vix')) + '（上周 ' + str(a.get('vix')) + '，' + _d('vix') + '）')
     except Exception:
         pass
     lines += ["", "P0 仍即时推送；本摘要不重复 P0。", "卡片: https://justinjchen-cornell.github.io/Deep-Risk-OPP"]

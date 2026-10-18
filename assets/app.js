@@ -99,29 +99,26 @@
     render(V, g, cf, hist);
   });
 
-  function prevDistinct(rows) {
-    if (!rows || rows.length < 2) return null;
-    var y = rows[rows.length - 1];
-    for (var i = rows.length - 2; i >= 0; i--) {
-      var x = rows[i];
-      if (x.wti !== y.wti || x.vix !== y.vix) return {prev: x, curr: y};
-    }
-    return {prev: rows[rows.length - 2], curr: y};
+  function weekPair(V) {
+    var w = V.weekly || [];
+    return w.length >= 2 ? {prev: w[w.length - 2], curr: w[w.length - 1]} : null;
+  }
+  function weeklyReview(V) {
+    var p = weekPair(V);
+    if (!p) return '本周对比数据待生成。';
+    var a = p.prev, b = p.curr;
+    return '本周 GOR ' + (b.gor_wti == null ? '—' : b.gor_wti.toFixed(2)) +
+      '（上周 ' + (a.gor_wti == null ? '—' : a.gor_wti.toFixed(2)) + '，' + signed((b.gor_wti || 0) - (a.gor_wti || 0), 2) + '）· ' +
+      'WTI ' + usd(b.wti) + '（上周 ' + usd(a.wti) + '，' + signed((b.wti || 0) - (a.wti || 0), 2) + '）· ' +
+      'VIX ' + (b.vix == null ? '—' : b.vix.toFixed(2)) + '（上周 ' + (a.vix == null ? '—' : a.vix.toFixed(2)) + '，' + signed((b.vix || 0) - (a.vix || 0), 2) + '）· ' +
+      '仓位 ' + (b.position == null ? '—' : b.position + '%') + '（' + (a.position == null ? '上周未记录' : '上周 ' + a.position + '%') + '）。' +
+      '解读：' + regimeNote(b.gor_wti) + '；' + ((b.vix != null && b.vix >= V.vixGate && b.wti != null && b.wti < 60) ? '投降签名成立' : '筛选器 ' + V.verdict + '，尚未触发投降签名') + '；合同 ' + V.comp + '。';
   }
   function changeLine(V) {
-    var w = V.weekly || [], d = V.daily || [], out = [];
-    if (w.length >= 2) {
-      var a = w[w.length - 2], b = w[w.length - 1];
-      out.push('GOR 周变化：' + (b.gor_wti == null ? '—' : b.gor_wti.toFixed(2)) +
-        '（上周 ' + (a.gor_wti == null ? '—' : a.gor_wti.toFixed(2)) + '，' +
-        signed((b.gor_wti || 0) - (a.gor_wti || 0), 2) + '）');
-    }
-    var pair = prevDistinct(d);
-    if (pair) {
-      out.push('WTI 较上一交易日 ' + signed((pair.curr.wti || 0) - (pair.prev.wti || 0), 2) +
-        ' · VIX ' + signed((pair.curr.vix || 0) - (pair.prev.vix || 0), 2));
-    }
-    return out.join(' · ') || '变化数据待生成';
+    var p = weekPair(V);
+    if (!p) return '本周对比数据待生成';
+    var a = p.prev, b = p.curr;
+    return '本周 vs 上周：GOR ' + (b.gor_wti == null ? '—' : b.gor_wti.toFixed(2)) + '（上周 ' + (a.gor_wti == null ? '—' : a.gor_wti.toFixed(2)) + '，' + signed((b.gor_wti || 0) - (a.gor_wti || 0), 2) + '）· WTI ' + usd(b.wti) + '（上周 ' + usd(a.wti) + '，' + signed((b.wti || 0) - (a.wti || 0), 2) + '）· VIX ' + (b.vix == null ? '—' : b.vix.toFixed(2)) + '（上周 ' + (a.vix == null ? '—' : a.vix.toFixed(2)) + '，' + signed((b.vix || 0) - (a.vix || 0), 2) + '）';
   }
 
   function historyTable(rows, limit) {
@@ -146,20 +143,15 @@
     return '<div class="change"><div class="k">' + k + '</div><div class="v ' + (cls || '') + '">' + v + '</div><div class="s">' + s + '</div></div>';
   }
   function changeCards(V) {
-    var w = V.weekly || [], d = V.daily || [], cards = [];
-    if (w.length >= 2) {
-      var a = w[w.length - 2], b = w[w.length - 1], dg = (b.gor_wti || 0) - (a.gor_wti || 0);
-      cards.push(changeCard('GOR 周变化', (b.gor_wti == null ? '—' : b.gor_wti.toFixed(2)),
-        '上周 ' + (a.gor_wti == null ? '—' : a.gor_wti.toFixed(2)) + ' · ' + signed(dg, 2), dg >= 0 ? 'up' : 'down'));
+    var p = weekPair(V), cards = [];
+    if (p) {
+      var a = p.prev, b = p.curr, dg = (b.gor_wti || 0) - (a.gor_wti || 0), dw = (b.wti || 0) - (a.wti || 0), dv = (b.vix || 0) - (a.vix || 0);
+      cards.push(changeCard('GOR 本周 vs 上周', (b.gor_wti == null ? '—' : b.gor_wti.toFixed(2)), '上周 ' + (a.gor_wti == null ? '—' : a.gor_wti.toFixed(2)) + ' · ' + signed(dg, 2), dg >= 0 ? 'up' : 'down'));
+      cards.push(changeCard('WTI 本周 vs 上周', usd(b.wti), '上周 ' + usd(a.wti) + ' · ' + signed(dw, 2), dw >= 0 ? 'up' : 'down'));
+      cards.push(changeCard('VIX 本周 vs 上周', b.vix == null ? '—' : b.vix.toFixed(2), '上周 ' + (a.vix == null ? '—' : a.vix.toFixed(2)) + ' · ' + signed(dv, 2), dv >= 0 ? 'up' : 'down'));
+      cards.push(changeCard('仓位 / 区间', (b.position == null ? '—' : b.position + '%') + ' / ' + (b.regime || '—'), (a.position == null ? '上周未记录' : '上周 ' + a.position + '%') + ' / ' + (a.regime || '—'), 'flat'));
     }
-    var pair = prevDistinct(d);
-    if (pair) {
-      var x = pair.prev, y = pair.curr, dw = (y.wti || 0) - (x.wti || 0), dv = (y.vix || 0) - (x.vix || 0);
-      cards.push(changeCard('WTI 较上一交易日', usd(y.wti), '前值 ' + usd(x.wti) + ' · ' + signed(dw, 2), dw >= 0 ? 'up' : 'down'));
-      cards.push(changeCard('VIX 较上一交易日', y.vix == null ? '—' : y.vix.toFixed(2), '前值 ' + (x.vix == null ? '—' : x.vix.toFixed(2)) + ' · ' + signed(dv, 2), dv >= 0 ? 'up' : 'down'));
-    }
-    cards.push(changeCard('仓位 / 合同', V.pos + ' / ' + V.comp, '距 $107.60 还差 ' + V.gap + ' · ' + V.days, 'flat'));
-    cards.push(changeCard('硬止损', V.hsOn ? '已触发' : '未触发', '阈值 ' + V.hsThr + ' · 距离 ' + V.hsDist, V.hsOn ? 'up' : 'down'));
+    cards.push(changeCard('合同 / 硬止损', V.comp + ' / ' + (V.hsOn ? '触发' : '未触发'), '距 $107.60 还差 ' + V.gap + ' · 阈值 ' + V.hsThr, V.hsOn ? 'up' : 'down'));
     return cards.join('');
   }
   function screenTags(V) {
@@ -226,7 +218,7 @@
       tag(V.hsOn ? '硬止损 已触发' : '硬止损 未触发', V.hsOn ? 'bad' : 'ok') + '</div></div>' +
       '<div class="metrics">' + metric('黄金', V.gold, '🥇') + metric('WTI', V.wti, '🛢️') + metric('Brent', V.brent, '🛢️') +
       metric('DXY', V.dxy, '💵') + metric('10Y', V.us10y, '📈') + metric('VIX', V.vix, '🌪️') + '</div>' +
-      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📌</span><h2>本周重要变化</h2></div><div class="line">' + changeLine(V) + '</div><div class="change-grid" style="margin-top:10px">' + changeCards(V) + '</div></div>' +
+      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📌</span><h2>本周重要变化</h2></div><div class="line">' + changeLine(V) + '</div><div class="line muted" style="margin-top:6px">' + weeklyReview(V) + '</div><div class="change-grid" style="margin-top:10px">' + changeCards(V) + '</div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">💡</span><h2>投资建议</h2></div><ul class="advice">' + adviceItems(V) + '</ul></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🌀</span><h2>向心坍缩阶段</h2></div>' + stageHTML(V) + '</div>' +
       '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div>' +
