@@ -20,6 +20,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 from datetime import datetime, timedelta, timezone
@@ -28,7 +29,9 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG_JSON = os.path.join(BASE, "performance_log.json")
 LOG_MD = os.path.join(BASE, "看板日志", "linkedin", "00_index", "performance_log.md")
 OUT_JSON = os.path.join(BASE, "performance_latest.json")
+TEMPLATE_CSV = os.path.join(BASE, "performance_backfill_template.csv")
 BJ = timezone(timedelta(hours=8))
+METRIC_FIELDS = ("impressions", "likes", "comments", "shares", "followers", "clicks")
 
 
 def now_bj():
@@ -249,6 +252,8 @@ def render_markdown(report):
         "### 回填命令",
         "",
         "```bash",
+        "python scripts/performance_report.py --template          # 导出待填 CSV（9 条）",
+        "python scripts/performance_report.py --import-csv performance_backfill_template.csv --write",
         "python scripts/performance_report.py --set <id> --impressions N --likes N --comments N --shares N --followers N --clicks N",
         "python scripts/performance_report.py --no-data <id> --note \"平台未保留\"",
         "python scripts/performance_report.py --write",
@@ -277,6 +282,59 @@ def find_entry(doc, entry_id):
     raise SystemExit("unknown id: %s" % entry_id)
 
 
+def write_template(doc, path=TEMPLATE_CSV):
+    """Export all published, unmeasured entries as a fill-in CSV (metrics left blank)."""
+    baseline = _parse_date((doc.get("contract") or {}).get("baseline_start", "1970-01-01"))
+    rows = []
+    for e in doc.get("entries") or []:
+        if e.get("status") == "planned" or e.get("status") == "measured":
+            continue
+        pub = _parse_date(e["publish_date"])
+        rows.append({
+            "id": e.get("id"),
+            "scope": "contract" if pub >= baseline else "backfill",
+            "publish_date": e.get("publish_date"),
+            "platform": e.get("platform"),
+            "title": e.get("title"),
+            "impressions": "",
+            "likes": "",
+            "comments": "",
+            "shares": "",
+            "followers": "",
+            "clicks": "",
+            "note": e.get("note") or "",
+        })
+    fields = ["id", "scope", "publish_date", "platform", "title"] + list(METRIC_FIELDS) + ["note"]
+    with open(path, "w", newline="", encoding="utf-8-sig") as f:
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        w.writerows(rows)
+    return path, len(rows)
+
+
+def import_csv(doc, path):
+    """Import filled metrics from a backfill CSV. Blank metric rows are skipped."""
+    n = 0
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            if not row.get("id"):
+                continue
+            has_metric = any(str(row.get(k) or "").strip() for k in METRIC_FIELDS)
+            if not has_metric:
+                continue
+            e = find_entry(doc, row["id"])
+            for k in METRIC_FIELDS:
+                raw = str(row.get(k) or "").strip()
+                if raw:
+                    e[k] = int(float(raw))
+            e["status"] = "measured"
+            e["measured_at"] = now_bj().isoformat(timespec="minutes")
+            if row.get("note"):
+                e["note"] = row["note"]
+            n += 1
+    return n
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Content performance tracker (contract clause 6)")
     ap.add_argument("--set", dest="set_id", help="entry id to update with measured numbers")
@@ -289,6 +347,10 @@ def main(argv=None):
     ap.add_argument("--followers", type=int)
     ap.add_argument("--clicks", type=int)
     ap.add_argument("--note")
+    ap.add_argument("--template", nargs="?", const=TEMPLATE_CSV,
+                    help="export published, unmeasured entries to a fill-in CSV")
+    ap.add_argument("--import-csv", dest="import_csv", metavar="PATH",
+                    help="import filled metrics from a backfill CSV")
     ap.add_argument("--list", action="store_true", help="list pending/overdue entries")
     ap.add_argument("--check", action="store_true", help="exit 1 if any 7d window is overdue")
     ap.add_argument("--write", action="store_true", help="write performance_latest.json + markdown")
@@ -297,6 +359,15 @@ def main(argv=None):
 
     doc = load_doc()
     touched = False
+
+    if args.template:
+        path, n = write_template(doc, args.template)
+        print("wrote template: %s (%d unmeasured entries)" % (path, n))
+
+    if args.import_csv:
+        n = import_csv(doc, args.import_csv)
+        touched = touched or n > 0
+        print("imported %d measured entries from %s" % (n, args.import_csv))
 
     if args.set_id:
         e = find_entry(doc, args.set_id)

@@ -1,0 +1,10 @@
+﻿id,scope,publish_date,platform,title,impressions,likes,comments,shares,followers,clicks,note
+017-siphon-en-linkedin,contract,2026-10-17,LinkedIn,The Siphon (EN),,,,,,,待回填；发布后 24h / 7d 各一次
+017-siphon-cn-xueqiu,contract,2026-10-18,雪球,The Siphon（中文）,,,,,,,待回填；发布后 24h / 7d 各一次
+017-siphon-cn-zhihu,contract,2026-10-18,知乎,The Siphon（中文）,,,,,,,待回填；发布后 24h / 7d 各一次
+016-diesel-en-linkedin,backfill,2026-10-12,LinkedIn,Diesel Sequel (EN),,,,,,,补录基线；平台后台可查
+016-diesel-cn-xueqiu,backfill,2026-10-12,雪球,Diesel Sequel（中文）,,,,,,,补录基线；平台后台可查
+016-diesel-cn-zhihu,backfill,2026-10-12,知乎,Diesel Sequel（中文）,,,,,,,补录基线；平台后台可查
+015-brent-wti-en-linkedin,backfill,2026-10-07,LinkedIn,Brent-WTI Spread (EN),,,,,,,补录基线；平台后台可查
+015-brent-wti-cn-xueqiu,backfill,2026-10-07,雪球,Brent-WTI Spread（中文）,,,,,,,补录基线；平台后台可查
+015-brent-wti-cn-zhihu,backfill,2026-10-07,知乎,Brent-WTI Spread（中文）,,,,,,,补录基线；平台后台可查
