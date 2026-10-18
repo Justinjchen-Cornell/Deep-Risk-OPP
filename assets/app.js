@@ -99,6 +99,15 @@
     render(V, g, cf, hist);
   });
 
+  function prevDistinct(rows) {
+    if (!rows || rows.length < 2) return null;
+    var y = rows[rows.length - 1];
+    for (var i = rows.length - 2; i >= 0; i--) {
+      var x = rows[i];
+      if (x.wti !== y.wti || x.vix !== y.vix) return {prev: x, curr: y};
+    }
+    return {prev: rows[rows.length - 2], curr: y};
+  }
   function changeLine(V) {
     var w = V.weekly || [], d = V.daily || [], out = [];
     if (w.length >= 2) {
@@ -107,10 +116,10 @@
         '（上周 ' + (a.gor_wti == null ? '—' : a.gor_wti.toFixed(2)) + '，' +
         signed((b.gor_wti || 0) - (a.gor_wti || 0), 2) + '）');
     }
-    if (d.length >= 2) {
-      var x = d[d.length - 2], y = d[d.length - 1];
-      out.push('WTI 日变化 ' + signed((y.wti || 0) - (x.wti || 0), 2) +
-        ' · VIX 日变化 ' + signed((y.vix || 0) - (x.vix || 0), 2));
+    var pair = prevDistinct(d);
+    if (pair) {
+      out.push('WTI 较上一交易日 ' + signed((pair.curr.wti || 0) - (pair.prev.wti || 0), 2) +
+        ' · VIX ' + signed((pair.curr.vix || 0) - (pair.prev.vix || 0), 2));
     }
     return out.join(' · ') || '变化数据待生成';
   }
@@ -143,10 +152,11 @@
       cards.push(changeCard('GOR 周变化', (b.gor_wti == null ? '—' : b.gor_wti.toFixed(2)),
         '上周 ' + (a.gor_wti == null ? '—' : a.gor_wti.toFixed(2)) + ' · ' + signed(dg, 2), dg >= 0 ? 'up' : 'down'));
     }
-    if (d.length >= 2) {
-      var x = d[d.length - 2], y = d[d.length - 1], dw = (y.wti || 0) - (x.wti || 0), dv = (y.vix || 0) - (x.vix || 0);
-      cards.push(changeCard('WTI 日变化', usd(y.wti), '前值 ' + usd(x.wti) + ' · ' + signed(dw, 2), dw >= 0 ? 'up' : 'down'));
-      cards.push(changeCard('VIX 日变化', y.vix == null ? '—' : y.vix.toFixed(2), '前值 ' + (x.vix == null ? '—' : x.vix.toFixed(2)) + ' · ' + signed(dv, 2), dv >= 0 ? 'up' : 'down'));
+    var pair = prevDistinct(d);
+    if (pair) {
+      var x = pair.prev, y = pair.curr, dw = (y.wti || 0) - (x.wti || 0), dv = (y.vix || 0) - (x.vix || 0);
+      cards.push(changeCard('WTI 较上一交易日', usd(y.wti), '前值 ' + usd(x.wti) + ' · ' + signed(dw, 2), dw >= 0 ? 'up' : 'down'));
+      cards.push(changeCard('VIX 较上一交易日', y.vix == null ? '—' : y.vix.toFixed(2), '前值 ' + (x.vix == null ? '—' : x.vix.toFixed(2)) + ' · ' + signed(dv, 2), dv >= 0 ? 'up' : 'down'));
     }
     cards.push(changeCard('仓位 / 合同', V.pos + ' / ' + V.comp, '距 $107.60 还差 ' + V.gap + ' · ' + V.days, 'flat'));
     cards.push(changeCard('硬止损', V.hsOn ? '已触发' : '未触发', '阈值 ' + V.hsThr + ' · 距离 ' + V.hsDist, V.hsOn ? 'up' : 'down'));
@@ -156,6 +166,35 @@
     return tag('拆腿 ' + (V.s1 ? '通过' : '未过'), V.s1 ? 'ok' : 'bad') +
       tag('恐慌 ' + (V.s2 ? '通过' : '未过'), V.s2 ? 'ok' : 'warn') +
       tag('油分位 ' + (V.s3 ? '通过' : '未过'), V.s3 ? 'ok' : 'warn');
+  }
+
+  function stageHTML(V) {
+    var s2 = V.s2, s3 = V.s3, cap = s2 && s3;
+    var st = [
+      ['01', '蓄力', 'QT/购金/利差', 'done'],
+      ['02', '出拳', '油价/通胀/紧缩', (V.gorW >= 30 && !cap) ? 'active' : (V.gorW < 30 ? 'done' : '')],
+      ['03', '坍缩', '资本回中心', (V.vix != null && V.vixGate != null && V.vix >= V.vixGate) ? 'active' : ''],
+      ['04', '抄底', '收购/重置', '']
+    ];
+    return '<div class="stage-row">' + st.map(function (x) {
+      return '<div class="stage ' + x[3] + '"><div class="num">' + x[0] + '</div><div class="name">' + x[1] + '</div><div class="desc">' + x[2] + '</div></div>';
+    }).join('') + '</div>';
+  }
+  function adviceItems(V) {
+    var cls = V.hsOn ? 'bad' : (V.s2 && V.s3 ? 'ok' : 'warn');
+    return V.actions.map(function (x, i) {
+      return '<li><span class="tag ' + cls + '">' + (i === 0 ? '首要' : '执行') + '</span>' + x + '</li>';
+    }).join('');
+  }
+  function timelineHTML(V) {
+    var rows = [
+      ['现在', 'WTI ' + V.wti + ' · GOR ' + V.gorW + ' · 仓位 ' + V.pos],
+      ['合同', '目标 $107.60 · 还差 ' + V.gap + ' · ' + V.days],
+      ['2026Q4', 'COFER 2026Q3（约 12 月底）· GOR 42/40 观察'],
+      ['风险', 'VIX ≥ ' + V.vixGate + ' 且油分位 ≤ 25% 才是投降签名'],
+      ['数据', '更新 ' + V.updated]
+    ];
+    return '<div class="timeline">' + rows.map(function (r) { return '<div class="row"><span class="when">' + r[0] + '</span><span>' + r[1] + '</span></div>'; }).join('') + '</div>';
   }
 
   function render(V, g, cf, hist) {
@@ -187,7 +226,9 @@
       tag(V.hsOn ? '硬止损 已触发' : '硬止损 未触发', V.hsOn ? 'bad' : 'ok') + '</div></div>' +
       '<div class="metrics">' + metric('黄金', V.gold, '🥇') + metric('WTI', V.wti, '🛢️') + metric('Brent', V.brent, '🛢️') +
       metric('DXY', V.dxy, '💵') + metric('10Y', V.us10y, '📈') + metric('VIX', V.vix, '🌪️') + '</div>' +
-      '<div class="change-grid">' + changeCards(V) + '</div>' +
+      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📌</span><h2>本周重要变化</h2></div><div class="line">' + changeLine(V) + '</div><div class="change-grid" style="margin-top:10px">' + changeCards(V) + '</div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">💡</span><h2>投资建议</h2></div><ul class="advice">' + adviceItems(V) + '</ul></div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">🌀</span><h2>向心坍缩阶段</h2></div>' + stageHTML(V) + '</div>' +
       '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div>' +
       '<div class="line">' + V.summary + '</div><div class="line muted" style="margin-top:8px">' + V.interpret + '</div>' +
       '<div style="margin-top:12px">' + screenTags(V) + '</div></div>' +
@@ -200,7 +241,9 @@
       '<div class="line">硬止损 <b>' + (V.hsOn ? '已触发' : '未触发') + '</b> · 阈值 ' + V.hsThr + ' · 距离 ' + V.hsDist + '</div>' +
       '<div class="line">裁决 <b>' + V.verdict + '</b> · 通过 ' + V.npass + '/3 · 油分位 ' + V.oilPctl + ' · VIX ' + V.vix + '（门槛 ' + V.vixGate + '）</div>' +
       '<div style="margin-top:12px">' + screenTags(V) + '</div></div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
       '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR 走势 · 近 60 日</h2></div><div class="chart"><canvas id="c-gor-d"></canvas></div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div></div>';
   }
 
@@ -226,18 +269,22 @@
       '<div class="hero-side"><div class="hero-f">总量 <b>' + V.flowTotal + '</b> · 流速 <b>' + V.flowSpeed + '</b></div>' +
       '<div class="hero-sub">GOR(WTI) ' + V.gorW + ' · 仓位 ' + V.pos + ' · 合同 ' + V.comp + '</div></div></div>' +
       '<div class="hero-tags">' + tag('向心坍缩', 'gold') + tag('VIX ' + V.vix, 'warn') + tag('10Y ' + V.us10y, 'warn') + tag('DXY ' + V.dxy, 'ok') + '</div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">🌀</span><h2>向心坍缩阶段</h2></div>' + stageHTML(V) + '</div>' +
       '<div class="metrics">' + metric('GOR(WTI)', V.gorW, '📊') + metric('GOR(Brent)', V.gorB, '📊') + metric('DXY', V.dxy, '💵') +
       metric('10Y', V.us10y, '📈') + metric('VIX', V.vix, '🌪️') + metric('WTI', V.wti, '🛢️') + '</div>' +
       '<div class="change-grid">' + changeCards(V) + '</div>' +
       '<div class="flow-row"><div class="flow"><div class="k">总量</div><div class="v">' + V.flowTotal + '</div></div>' +
       '<div class="flow"><div class="k">方向</div><div class="v">' + V.flowDir + '</div></div>' +
       '<div class="flow"><div class="k">流速</div><div class="v">' + V.flowSpeed + '</div></div></div>' +
+      '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">🥇</span><h2>金 · 底仓</h2></div><div class="line">黄金 ' + V.gold + ' · 配置 ' + V.goldP + '% · GOR(WTI) ' + V.gorW + '</div><div class="line muted" style="margin-top:6px">金价距 8 月峰值回撤约 11.9%；央行购金仍是中期支撑。</div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">🛢️</span><h2>油 · 合同</h2></div><div class="line">WTI ' + V.wti + ' · 配置 ' + V.oil + '% · 合同 ' + V.comp + '</div><div class="line muted" style="margin-top:6px">距 $107.60 还差 ' + V.gap + ' · ' + V.days + '；硬止损 ' + (V.hsOn ? '已触发' : '未触发') + '（阈值 ' + V.hsThr + '）。</div></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🧭</span><h2>状态解读</h2></div><div class="line">' + V.summary + '</div><div class="line muted" style="margin-top:8px">' + V.interpret + '</div></div>' +
       '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">📈</span><h2>GOR(WTI) · 近 60 个交易日</h2></div><div class="chart"><canvas id="c-gor"></canvas></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🏦</span><h2>美联储资产负债表（万亿美元）</h2></div><div class="chart"><canvas id="c-fed"></canvas></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">💸</span><h2>联邦净利息（千亿美元 / 年化）</h2></div><div class="chart"><canvas id="c-int"></canvas></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">💵</span><h2>DXY · 美元指数</h2></div><div class="chart"><canvas id="c-dxy"></canvas></div></div>' +
       '<div class="card"><div class="card-head"><span class="ic">🌐</span><h2>FX · USD/CNH · USD/JPY · EUR/USD</h2></div><div class="chart"><canvas id="c-fx"></canvas></div></div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📎</span><h2>口径说明</h2></div><div class="line muted">数值来自公开卡片 / FRED / EIA 缓存；GOR(Brent) 为 WTI×1.06 合成，真实 Brent 价差更宽。图表历史点为公开序列，最后一点为当前值。</div></div>';
   }
@@ -281,12 +328,14 @@
       '<div class="hero-f">总仓位 <b>' + V.pos + '</b> · 硬止损 <b>' + (V.hsOn ? '已触发' : '未触发') + '</b></div>' +
       '<div class="hero-sub">油气 ' + V.oil + '% · 黄金 ' + V.goldP + '% · 现金 ' + V.cash + '% · A股 ' + V.astock + '%</div></div></div>' +
       '<div class="hero-tags">' + tag(V.regime, 'gold') + tag('WTI ' + V.wti, 'ok') + tag('VIX ' + V.vix, 'warn') + tag('阈值 ' + V.hsThr, 'ok') + '</div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">🌀</span><h2>向心坍缩阶段</h2></div>' + stageHTML(V) + '</div>' +
       '<div class="metrics">' + metric('GOR(WTI)', V.gorW, '📊') + metric('WTI', V.wti, '🛢️') + metric('VIX', V.vix, '🌪️') + metric('10Y', V.us10y, '📈') + metric('仓位', V.pos, '🛡️') + '</div>' +
       '<div class="change-grid">' + changeCards(V) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">🎯</span><h2>当前行动</h2></div><ul class="actions">' + actions + '</ul></div>' +
       '<div class="grid2">' + tools + '</div>' +
       '<div class="grid2"><div class="card"><div class="card-head"><span class="ic">✅</span><h2>执行自检</h2></div>' + checks + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">🥧</span><h2>仓位结构</h2></div><div class="chart-sm"><canvas id="c-alloc"></canvas></div></div></div>' +
+      '<div class="card"><div class="card-head"><span class="ic">⏰</span><h2>关键时间节点</h2></div>' + timelineHTML(V) + '</div>' +
       '<div class="card"><div class="card-head"><span class="ic">📜</span><h2>最近 10 周 GOR · 留底</h2></div><div class="line muted" style="margin-bottom:8px">' + changeLine(V) + '</div>' + historyTable(V.weekly, 10) + '</div>';
   }
 
