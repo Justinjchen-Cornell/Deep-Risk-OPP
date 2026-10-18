@@ -2,7 +2,7 @@
 
 > 窗口：未来 **14 天** 日历 + 过去 **7 天** 新闻
 > 来源：Google News RSS · Google Trends RSS · EIA RSS · FRED release calendar · Fed FOMC calendar
-> 生成：2026-10-18 22:11 BJT
+> 生成：2026-10-18 22:22 BJT
 
 ## 1. 未来 14 天日历
 
@@ -37,7 +37,7 @@
 - [How the Fed Is Quietly Inflating the AI Bubble While Hiking Your Electric Bill](https://news.google.com/rss/articles/CBMidkFVX3lxTFBGR080ZEtxVjhCckxQX2s1eG5UZ2Nma2lLS05zako3OHRJSDhIdm5Bc1ctUHVLYlY2ZmstSHVwd0FNeGJRRmdSRHdObjd2R2dSN0VQZU9SRFUxdFY4d19KNWV0MldESHUxLWRWZWZha0tVN0xSUkE?oc=5) — BIG by Matt Stoller · 2026-10-17 21:12
 - [Fed May Pause Rate Hike in October, but a December Hike Is Still on the Table](https://news.google.com/rss/articles/CBMi0AFBVV95cUxQTW8xRnN3SFpZLTFONkJaNERtd3JneTJwTV9FaE05WTVla003RmVnSVItVEJkM25CMFljN1J2cmtKLXc0cEFQX3NVYXFoVGtucFRDZDlGajNtM1d5TzJRU1liVHFzVUNBZTdwNFFMWEVEdEx1aWJ1X09UYmctUzM4Wk0tYjNWdHdJTmo1SGoxWG9raTk3Nldyd0Q4YXJLeDZrbFFNN1AwY3dDUWJOUV9ZRFFXbEVjejBKR1lITGlWc0dDZFpOTE04ckdEVW5NYkdl?oc=5) — TradingView · 2026-10-17 20:23
 - [Gold Faces Year-End Downward Pressure..."90% Odds of Fed Rate Hike in December"](https://news.google.com/rss/articles/CBMidkFVX3lxTE9zcTdreElPODI0OXM2eE13ZU1OejdjdjRzU1BlVWRCMVltZ2hGYlI4Ym5jQmpkS2w2Y3d6WElEbm9ENUFBZ3BkYmw0dGE4MjJkTnY1LU0zZUtHN1hlOXhQanZ0UXVpMHhQMWJLbGNybElJTThxMEE?oc=5) — BigGo Finance · 2026-10-17 19:35
-- [Fed interest-rate decision this month is a closer call than markets think](https://news.google.com/rss/articles/CBMitwFBVV95cUxOWG1TSFJvUk1SVTFSN1pNX0NvU2ZjSlNrb0E3aHRzNTlRZkJ3Z2FCZUd3aW56bXJEbERUc3ktcXloS3RXQWtoNTlvMDdHTW5wY0REcy1TMUl5clExUnRKeFBVWG0xM2pqbmNLdkNmcENYWUZocU1zNXE4eTI2VlhrZjVwUHlnaGUwZVZZMGsyTmJXd18wUU5laXVrVmpELWFheWZ3dHliSGk4RDh3SVJDNmhJc2ZIMVE?oc=5) — MarketWatch · 2026-10-17 19:00
+- [High interest rates aren’t slowing the AI boom. That’s a problem for the Fed.](https://news.google.com/rss/articles/CBMipwFBVV95cUxNQjZrQnNsWF9Kd2x1X0dNUDFSOGU4Y1VvZHVDZnFOMm5MVl9XNTk4MHdrR3NVcTN4VWNSeFFlZUxoR1pfN1J5cENuX3YtTlJLZnYwdlJCY0Z3VXlVcG5udHRmZHpTMkdTZ1dWUkpid0YxRVJtWlk3UUlaZnVVZU5vcGVXMmQwdm1PT2lJa3lmcXFUNDZ6VGlaQlA1U3JUcjBBaTE2djFXZw?oc=5) — Inquirer.com · 2026-10-17 17:01
 
 ### Treasury
 - [Long-Term Treasury Yields Buffeted by Hot Inflation and Cracks in AI Mania](https://news.google.com/rss/articles/CBMirgFBVV95cUxNdmFpNHk0NHJLZU1leHRJYzVYNllqTnlpM2RZN3BpcjFtb1FJaDAzVlZ2dlRxVEpFaFlFSDZBQUZHNVVwdGxUZWEtcVd4Z3hXbHFDbFVYalBZeC1Ndm5aSzhRVXV6ZlhXOVRmUlloaHZpV3QyZHE0MnBkdjJSbnZ2ZjdWSENHdHVheDJ0NXpVU1ltN2t1c2YweTlHaHM2azdZU2I1UHFLNTV2QWM3VFE?oc=5) — Wolf Street · 2026-10-18 14:19
@@ -62,11 +62,11 @@
 
 ## 3. Google Trends · US
 
-- **julia louis-dreyfus** · 2000+ · Playbill（非宏观，仅作背景）
-- **allison janney** · 20000+ · Forbes（非宏观，仅作背景）
-- **bryan mbeumo** · 200+ · BBC（非宏观，仅作背景）
-- **is marvin harrison jr starting** · 200+ · Sports Illustrated（非宏观，仅作背景）
-- **cam skattebo** · 2000+ · Yahoo Sports（非宏观，仅作背景）
+- **chris rodriguez** · 5000+ · Yahoo Sports（非宏观，仅作背景）
+- **henry to'oto'o** · 500+ · CBS Sports（非宏观，仅作背景）
+- **ameer abdullah** · 200+ · ESPN（非宏观，仅作背景）
+- **marvel studios** · 200+ · Yahoo（非宏观，仅作背景）
+- **c. j. stroud** · 200+ · Texans Wire（非宏观，仅作背景）
 
 ## 4. EIA 最新
 
@@ -80,7 +80,76 @@
 - **Crude oil exports through the Straits of Hormuz are nearly back to nor** — J.P. Morgan · 互动 397（赞 349 / 评 14 / 转 34）
 - **Crude oil distillation process 👇** — Petroleum Engineers Association · 互动 324（赞 272 / 评 4 / 转 48）
 
-## 6. 本周选题建议
+## 6. LinkedIn 选题引导
+
+| 优先级 | 时机 | 标题 | 结构 |
+|---|---|---|---|
+| P0 | 10/19 08:00–09:00 BJT（若未发） | GOR 41.11：45 线破了，40 是下一层地板吗？ | 1 个数字 + 3 条证据 + 二选一问题 |
+| P0 | 10/28–29（决议 10/29 02:00 BJT） | FOMC 前夜：这次“暂停”比“加息”更难交易 | 预注册 scorecard：3 个鹰派信号 vs 3 个鸽派信号 + 二选一 |
+| P0 | 10/29 20:30 BJT | GDP + PCE 同日：增长和通胀的错位 | 数据卡片：预期 vs 前值 vs 资产反应；二选一 |
+| P1 | 10/21 或 10/28 22:30 BJT | EIA 库存周：柴油、裂解、Brent–WTI，哪个先动？ | 一个对象，四种价格（WTI/Brent/柴油/黄金） |
+| P1 | 本周（Oil 新闻热度最高） | Hormuz 正常化 vs $150 尾部：油价的两种世界 | 两种情景 + 一个被低估的变量（柴油/价差） |
+| P1 | 本周（Gold 热点） | Gold +64% 之后：GOR 现在告诉你什么 | 一个数字 + 三条反例 + 二选一 |
+| P2 | 本周（Treasury 热点） | 24 年新高收益率：谁先撑不住？ | 机制图：利率 → 美元 → 黄金/油；三个受害者 |
+| P2 | 本周（中国数据/刺激） | 中国刺激迟到：用美国利率看，而不是用中国情绪看 | 二阶思维：中国 → 商品 → 美元/利率 |
+
+### P0 · GOR 41.11：45 线破了，40 是下一层地板吗？
+- **钩子**：五周拉锯后，45 线终于破了——但机器仍然不动。
+- **结构**：1 个数字 + 3 条证据 + 二选一问题
+- **证据**：GOR(WTI) 41.11 / GOR(Brent) 38.78；合同完成度 84.7%，缺口 $5.76；VIX 19.99 vs 门槛 22.5；仓位 30%
+- **CTA**：40 成为下一层地板，还是 45 线重新压回？
+- **为什么**：GOR/Gold 是你互动率最高的类型（0.40%）；用固定格式承接 #008。
+
+### P0 · FOMC 前夜：这次“暂停”比“加息”更难交易
+- **钩子**：市场在赌 10 月暂停、12 月重启；真正的变量是发布会和点阵图。
+- **结构**：预注册 scorecard：3 个鹰派信号 vs 3 个鸽派信号 + 二选一
+- **证据**：Gold set for a weekly drop as traders assess Fed signals；How the Fed Is Quietly Inflating the AI Bubble While Hiking Your Electric Bill；长端收益率 24 年新高；热通胀未退（CPI 3.7%）
+- **CTA**：暂停 = 鸽，还是“暂停但保留 12 月” = 鹰？
+- **为什么**：FOMC 记分卡有差异化，但过去互动偏低；这次必须给一个可投票的问题。
+
+### P0 · GDP + PCE 同日：增长和通胀的错位
+- **钩子**：同一天两份数据，市场只会选一个交易。
+- **结构**：数据卡片：预期 vs 前值 vs 资产反应；二选一
+- **证据**：September CPI: Sticky Inflation, But An October Hike Remains Unlikely；Japan core inflation likely exceeded BOJ target for first time since December；GDP/PCE 同日发布
+- **CTA**：增长下修 + 通胀粘性，先交易衰退还是先交易利率？
+- **为什么**：你的 Rates/Treasury 类型平均曝光 606、互动率 0.41%，是“曝光×互动”最平衡的题材。
+
+### P1 · EIA 库存周：柴油、裂解、Brent–WTI，哪个先动？
+- **钩子**：原油库存是头条，柴油和价差才是信号。
+- **结构**：一个对象，四种价格（WTI/Brent/柴油/黄金）
+- **证据**：Citi Raises Brent Forecast for 2026; Sees $150 Oil if Hormuz Disruption Persists；Oil Prices Settle More Than 1% Higher, Log Strongest Month Since March；自己的 Brent–WTI 帖：773 曝光 / 87 触达
+- **CTA**：如果库存下降但柴油裂解不涨，是需求还是补库？
+- **为什么**：Energy/Oil 平均曝光最高（794），但互动率只有 0.13%；用“四种价格”结构补互动。
+
+### P1 · Hormuz 正常化 vs $150 尾部：油价的两种世界
+- **钩子**：Citi 说 $150，JPM 说出口已恢复——同一个海峡，两个叙事。
+- **结构**：两种情景 + 一个被低估的变量（柴油/价差）
+- **证据**：Citi Raises Brent Forecast for 2026; Sees $150 Oil if Hormuz Disruption Persists；Oil Prices Settle More Than 1% Higher, Log Strongest Month Since March；J.P. Morgan：Hormuz 出口接近恢复（397 互动）
+- **CTA**：你交易正常化，还是尾部？
+- **为什么**：Oil 是本周 Google News 最热话题；也是你曝光最强的类型。
+
+### P1 · Gold +64% 之后：GOR 现在告诉你什么
+- **钩子**：WEF 的 +64% 是过去；GOR 41.11 是现在。
+- **结构**：一个数字 + 三条反例 + 二选一
+- **证据**：WEF：Gold +64%（715 互动）；Chart of the day: Gold price eyes $4,200 breakout, but buyers still face two major hurdles；GOR(WTI) 41.11；合同完成度 84.7%
+- **CTA**：金价再涨 20%，油要涨多少才能让 GOR 回到 30？
+- **为什么**：Gold/GOR 是 LinkedIn 互动最高的主题；WEF 已经把钩子做热。
+
+### P2 · 24 年新高收益率：谁先撑不住？
+- **钩子**：收益率新高不是“机会”，是一个压力测试。
+- **结构**：机制图：利率 → 美元 → 黄金/油；三个受害者
+- **证据**：Long-Term Treasury Yields Buffeted by Hot Inflation and Cracks in AI Mania；Invesco Stock And 2 ETF Issuers Worth Watching As Treasury Yields Stay High；CPI 3.7%；热通胀 + AI 交易裂缝
+- **CTA**：先崩的是估值、信用，还是美元？
+- **为什么**：Treasury 题材曝光不低，但“机会”角度互动弱；换成“谁先撑不住”。
+
+### P2 · 中国刺激迟到：用美国利率看，而不是用中国情绪看
+- **钩子**：IMF 喊刺激、信贷收缩、增长低于 4.5%——但交易在美元和长端。
+- **结构**：二阶思维：中国 → 商品 → 美元/利率
+- **证据**：China's household credit keeps shrinking despite years of stimulus spending；IMF urges China to boost fiscal stimulus to curb deflation；China/Currency 历史：0 互动、0 涨粉
+- **CTA**：中国刺激会先推高铜/油，还是先压美元？
+- **为什么**：China/Currency 是你最弱的类型；必须换框架，不要单写中国。
+
+## 7. 本周选题建议
 
 - 通胀数据周：做一张“预期 vs 前值 vs 资产反应”卡片；从 GOR/黄金或长端利率切入。
 - GDP：区分名义/实际与赤字路径；长端利率比增速本身更有交易含义。
@@ -89,7 +158,7 @@
 - Google News 热度集中在 **Oil**；用你的框架给反例/二阶影响，不要复述标题。
 - LinkedIn 高互动：The price of gold rose by 64% in 2025, reaching an all-time （715 互动）；可做数据拆解或反方观点。
 
-## 7. 口径与限制
+## 8. 口径与限制
 
 - FRED 日历使用 release_id + realtime 窗口；时间为通常发布时间，以官方为准。
 - Google News RSS 是聚合结果，存在标题党/重复；链接为 Google News 跳转。

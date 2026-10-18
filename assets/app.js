@@ -30,9 +30,10 @@
     get('weekly_review.json').catch(function () { return null; }),
     get('capital_flows_weekly.json').catch(function () { return null; }),
     get('model_portfolio.json').catch(function () { return null; }),
-    get('performance_latest.json').catch(function () { return null; })
+    get('performance_latest.json').catch(function () { return null; }),
+    get('macro_radar_latest.json').catch(function () { return null; })
   ]).then(function (out) {
-    var g = out[0] || {}, cf = out[1], hist = out[2], dailyDoc = out[3], weeklyDoc = out[4], review = out[5], fw = out[6], pf = out[7], perf = out[8];
+    var g = out[0] || {}, cf = out[1], hist = out[2], dailyDoc = out[3], weeklyDoc = out[4], review = out[5], fw = out[6], pf = out[7], perf = out[8], radar = out[9];
     var d = g.data || {}, s = g.screener || {}, a = g.allocation || {}, c = g.capital_three_flows || {};
     var gold = n((d['黄金期货'] || {}).price), wti = n((d['WTI原油'] || {}).price);
     var brent = n((d['布伦特原油'] || {}).price), dxy = n((d['美元指数DXY'] || {}).price);
@@ -145,7 +146,7 @@
       '不在油十年 96.7 分位追买 Call：赔率不在你这边。'
     ];
     V.daily = daily; V.weekly = weekly;
-    render(V, g, cf, hist, review, fw, pf);
+    render(V, g, cf, hist, review, fw, pf, perf, radar);
   });
 
   function weekPair(V) {
@@ -285,7 +286,7 @@
     return '<div class="timeline">' + rows.map(function (r) { return '<div class="row"><span class="when">' + r[0] + '</span><span>' + r[1] + '</span></div>'; }).join('') + '</div>';
   }
 
-  function render(V, g, cf, hist, review, fw, pf) {
+  function render(V, g, cf, hist, review, fw, pf, perf, radar) {
     registerLastPoint();
     var badge = byId('gorBadge');
     if (badge) {
@@ -296,6 +297,7 @@
     if (!app) return;
     if (page === 'capital') { app.innerHTML = capitalHTML(V, cf, review, fw); makeCapitalCharts(V, cf, fw); }
     else if (page === 'track') { app.innerHTML = trackHTML(V, pf, perf); makeNavChart(pf); }
+    else if (page === 'radar') { app.innerHTML = radarHTML(radar); }
     else if (page === 'hedge') { app.innerHTML = hedgeHTML(V); makeAllocChart(V, 'c-alloc'); makeWeeklyGorChart(V, 'c-week-h'); makePayoffChart(V); makeLadderChart(V); }
     else { app.innerHTML = decisionHTML(V, g, review); makeGorChart(V, 'c-gor-d'); makeAllocChart(V, 'c-alloc-d'); makeWeeklyGorChart(V, 'c-week-d'); makeWtiGorChart(V, 'c-wti-gor'); }
   }
@@ -572,7 +574,7 @@
     makeWeeklyGorChart(V, 'c-week-cap');
   }
 
-  function trackHTML(V, p) {
+  function trackHTML(V, p, perf) {
     if (!p) return '<div class="card"><h2>模型组合</h2><div class="muted">数据加载失败。</div></div>';
     var nav = p.nav || p.base_nav || 100;
     var base = p.base_nav || 100;
@@ -638,6 +640,64 @@
     }
     new Chart(el, {type: 'line', data: {labels: rows.map(function (h) { return (h.date || '').slice(5); }), datasets: ds},
       options: chartBase({plugins: {legend: {display: true, labels: {color: '#7a8a9a', boxWidth: 10}}}})});
+  }
+
+  function radarHTML(r) {
+    if (!r) return '<div class="card"><h2>宏观雷达</h2><div class="muted">数据加载失败；先运行 scripts/macro_radar.py --latest。</div></div>';
+    var cal = (r.calendar || []).slice().sort(function (a, b) {
+      return (a.date || '').localeCompare(b.date || '') || (a.bjt || '').localeCompare(b.bjt || '');
+    });
+    var news = r.news || {};
+    var briefs = r.linkedin_briefs || [];
+    var high = cal.filter(function (e) { return e.importance === '★★★'; });
+    var newsCount = Object.keys(news).reduce(function (a, k) {
+      return a + (news[k] || []).filter(function (x) { return !x.error; }).length;
+    }, 0);
+    var calRows = cal.map(function (e) {
+      if (e.error) return '<tr><td>—</td><td>—</td><td>—</td><td>—</td><td>' + e.event + '</td><td>—</td><td>—</td></tr>';
+      return '<tr><td>' + e.date + '</td><td>' + e.weekday + '</td><td>' + e.bjt + '</td><td>' + e.et + '</td><td>' + e.event + '</td><td>' + e.importance + '</td><td>' + e.source + '</td></tr>';
+    }).join('');
+    var newsCards = Object.keys(news).map(function (k) {
+      var items = (news[k] || []).filter(function (x) { return !x.error; }).slice(0, 3);
+      var lis = items.map(function (x) {
+        return '<li><a href="' + x.link + '" target="_blank" rel="noopener">' + x.title + '</a><br><span class="muted">' + x.source + ' · ' + x.date + '</span></li>';
+      }).join('');
+      return '<div class="subcard"><h3>' + k + '</h3><ul class="advice">' + (lis || '<li class="muted">无数据</li>') + '</ul></div>';
+    }).join('');
+    var macroTrends = (r.trends || []).filter(function (t) { return t.macro; });
+    var trendItems = (macroTrends.length ? macroTrends : (r.trends || []).slice(0, 5)).map(function (t) {
+      return '<li><b>' + t.title + '</b> · ' + (t.traffic || '') + ' · ' + (t.source || '') + (t.macro ? '' : ' <span class="muted">（非宏观，仅背景）</span>') + '</li>';
+    }).join('') || '<li class="muted">无数据</li>';
+    var eiaItems = (r.eia || []).slice(0, 6).map(function (x) {
+      if (x.error) return '<li class="muted">' + x.feed + '：抓取失败</li>';
+      return '<li><a href="' + x.link + '" target="_blank" rel="noopener">' + x.title + '</a><br><span class="muted">' + x.feed + ' · ' + x.date + '</span></li>';
+    }).join('') || '<li class="muted">无数据</li>';
+    var hotRows = (r.linkedin || []).map(function (x) {
+      return '<tr><td>' + x.author + '</td><td>' + (x.title || '').slice(0, 70) + '</td><td>' + x.engagements + '</td><td>' + x.reactions + ' / ' + x.comments + ' / ' + x.reposts + '</td></tr>';
+    }).join('');
+    var briefCards = briefs.map(function (b) {
+      var cls = b.priority === 'P0' ? 'bad' : (b.priority === 'P1' ? 'warn' : 'gold');
+      return '<div class="tool"><h3>' + b.title + ' ' + tag(b.priority, cls) + ' ' + tag(b.timing, 'gold') + '</h3><div class="t">' +
+        '<b>钩子：</b>' + b.hook + '<br><b>结构：</b>' + b.format + '<br><b>证据：</b>' + (b.evidence || []).join('；') +
+        '<br><b>CTA：</b>' + b.cta + '<br><b>为什么：</b>' + b.why + '</div></div>';
+    }).join('');
+    return '<div class="hero"><div class="hero-kicker">MACRO RADAR · ' + (r.date || '') + '</div>' +
+      '<div class="hero-row"><div class="hero-num">' + high.length + '</div><div class="hero-side">' +
+      '<div class="hero-f">未来 <b>' + r.days + '</b> 天高重要度事件 · 过去 <b>' + r.news_days + '</b> 天新闻</div>' +
+      '<div class="hero-sub">Google News · Google Trends · EIA · FRED · Fed FOMC · LinkedIn 热点</div></div></div>' +
+      '<div class="hero-tags">' + tag('每周宏观雷达', 'gold') + tag('生成 ' + (r.generated_at || ''), 'ok') + tag(r.geo || 'US', 'warn') + '</div></div>' +
+      secTitle('01', 'history', '未来 ' + r.days + ' 天日历', '北京时间优先；美东时间为参考') +
+      '<div class="card"><div class="compare"><table><thead><tr><th>北京日期</th><th>星期</th><th>北京</th><th>美东</th><th>事件</th><th>重要度</th><th>来源</th></tr></thead><tbody>' + (calRows || '<tr><td colspan="7" class="muted">无数据</td></tr>') + '</tbody></table></div></div>' +
+      secTitle('02', 'globe', 'Google News · 过去 ' + r.news_days + ' 天', '按主题聚合；点击跳转') +
+      '<div class="grid2">' + (newsCards || '<div class="muted">无数据</div>') + '</div>' +
+      secTitle('03', 'vix', 'Trends + EIA', '美国日趋势与能源最新') +
+      '<div class="grid2"><div class="subcard"><h3>Google Trends · ' + (r.geo || 'US') + '</h3><ul class="advice">' + trendItems + '</ul></div><div class="subcard"><h3>EIA 最新</h3><ul class="advice">' + eiaItems + '</ul></div></div>' +
+      secTitle('04', 'target', 'LinkedIn 热点', '本周高互动同行帖子') +
+      '<div class="card">' + (hotRows ? '<div class="compare"><table><thead><tr><th>作者</th><th>标题</th><th>互动</th><th>赞 / 评 / 转</th></tr></thead><tbody>' + hotRows + '</tbody></table></div>' : '<div class="muted">暂无；先跑 linkedin_intel.py hot。</div>') + '</div>' +
+      secTitle('05', 'target', 'LinkedIn 选题引导', '从日历、新闻、你的历史数据生成') +
+      (briefCards || '<div class="card"><div class="muted">暂无选题建议。</div></div>') +
+      secTitle('06', 'bank', '口径', '信号聚合，不是投资建议') +
+      '<div class="card"><ul class="advice"><li>FRED 日历时间为通常发布时间，以官方为准；EIA 节假日可能调整。</li><li>Google News 为聚合结果，存在标题党/重复；Google Trends 不一定有宏观词。</li><li>LinkedIn 热点为搜索样本，互动数为页面可见计数，仅作信号。</li><li>本页只做信号聚合，不构成投资建议。</li></ul></div>';
   }
 
   function hedgeHTML(V) {

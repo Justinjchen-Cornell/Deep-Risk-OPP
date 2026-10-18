@@ -28,6 +28,34 @@ def test_suggestions_cover_events_news_trends_linkedin():
     assert "Google News" in text
 
 
+def test_linkedin_briefs_cover_events_and_gor():
+    calendar = [
+        {"event": "FOMC 决议 + 发布会", "importance": "★★★"},
+        {"event": "GDP", "importance": "★★★"},
+        {"event": "EIA Weekly Petroleum Status Report", "importance": "★★★"},
+    ]
+    news = {
+        "Oil": [{"title": "Citi sees $150"}],
+        "Gold": [{"title": "Gold +64%"}],
+        "Fed/Rates": [{"title": "Fed pause debate"}],
+        "Treasury": [{"title": "24-year high"}],
+        "China": [{"title": "IMF urges stimulus"}],
+        "Inflation": [{"title": "CPI 3.7%"}],
+    }
+    gor = {
+        "gor_wti": 41.11, "gor_brent": 38.78, "final_position": 30,
+        "data": {"WTI原油": {"price": 101.84}, "黄金期货": {"price": 4186.5},
+                 "VIX恐慌指数": {"price": 19.99}},
+    }
+    briefs = mr.build_linkedin_briefs(calendar, news, [], [{"title": "WEF", "engagements": 715}], gor)
+    titles = " ".join(b["title"] for b in briefs)
+    assert "GOR 41.11" in titles
+    assert "FOMC" in titles
+    assert "GDP" in titles
+    assert "EIA" in titles
+    assert any(b["priority"] == "P0" for b in briefs)
+
+
 def test_render_contains_all_sections():
     radar = {
         "date": "2026-10-18",

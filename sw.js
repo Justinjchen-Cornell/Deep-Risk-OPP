@@ -1,7 +1,8 @@
 /* Deep-Risk-OPP Service Worker — 数据与页面网络优先，静态资源缓存优先 */
-const CACHE = 'dr-v15';
+const CACHE = 'dr-v16';
 const DATA_FILES = ['gor_latest.json', 'capital_flows_latest.json', 'feed.xml',
-                    'model_portfolio.json', 'performance_latest.json'];
+                    'model_portfolio.json', 'performance_latest.json',
+                    'macro_radar_latest.json'];
 
 self.addEventListener('install', (e) => { self.skipWaiting(); });
 self.addEventListener('activate', (e) => { e.waitUntil(self.clients.claim()); });
