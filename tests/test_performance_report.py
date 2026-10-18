@@ -90,6 +90,72 @@ def test_markdown_never_invents_numbers():
     assert "| 2026-10-07 | LinkedIn | T | 无数据 |" in md
 
 
+def test_linkedin_csv_import_matches_by_date_and_title(tmp_path):
+    doc = {"contract": {"baseline_start": "2026-10-16"}, "entries": [
+        entry("017-siphon-en-linkedin", "2026-10-17", "pending"),
+        entry("016-diesel-en-linkedin", "2026-10-12", "pending"),
+    ]}
+    doc["entries"][0]["title"] = "The Siphon (EN)"
+    doc["entries"][1]["title"] = "Diesel Sequel (EN)"
+    path = tmp_path / "linkedin.csv"
+    path.write_text(
+        "Post title,Posted on,Impressions,Reactions,Comments,Reposts,Followers gained,Link clicks\n"
+        "The Siphon — the floor gives way,10/17/2026,\"1,234\",18,4,2,3,25\n"
+        "Diesel Sequel follow-up,10/12/2026,2.5K,30,5,1,4,10\n",
+        encoding="utf-8")
+    planned, results = pr.import_linkedin_csv(doc, str(path))
+    assert [r["id"] for r in results] == [
+        "017-siphon-en-linkedin", "016-diesel-en-linkedin"]
+    assert all(r["match"] in ("date", "title") for r in results)
+    siphon = planned["entries"][0]
+    assert siphon["impressions"] == 1234
+    assert siphon["likes"] == 18 and siphon["comments"] == 4 and siphon["shares"] == 2
+    assert siphon["followers"] == 3 and siphon["clicks"] == 25
+    assert siphon["status"] == "measured"
+    assert planned["entries"][1]["impressions"] == 2500
+
+
+def test_linkedin_csv_chinese_headers(tmp_path):
+    doc = {"contract": {"baseline_start": "2026-10-16"}, "entries": [
+        entry("017-siphon-en-linkedin", "2026-10-17", "pending"),
+    ]}
+    path = tmp_path / "linkedin_cn.csv"
+    path.write_text(
+        "帖子标题,发布日期,曝光,点赞,评论,转发,新增粉丝,点击\n"
+        "The Siphon,10/17/2026,1000,10,2,1,3,5\n",
+        encoding="utf-8")
+    planned, results = pr.import_linkedin_csv(doc, str(path))
+    assert results[0]["match"] in ("date", "title")
+    assert planned["entries"][0]["impressions"] == 1000
+    assert planned["entries"][0]["followers"] == 3
+
+
+def test_linkedin_csv_preview_does_not_mutate_unmatched(tmp_path):
+    doc = {"contract": {"baseline_start": "2026-10-16"}, "entries": [
+        entry("017-siphon-en-linkedin", "2026-10-17", "pending"),
+    ]}
+    path = tmp_path / "linkedin.csv"
+    path.write_text(
+        "Post title,Posted on,Impressions,Reactions\nUnknown post,11/01/2026,100,5\n",
+        encoding="utf-8")
+    planned, results = pr.import_linkedin_csv(doc, str(path))
+    assert results[0]["match"] == "unmatched"
+    assert doc["entries"][0]["status"] == "pending"
+    assert planned["entries"][0]["status"] == "pending"
+
+
+def test_linkedin_csv_create_missing(tmp_path):
+    doc = {"contract": {"baseline_start": "2026-10-16"}, "entries": []}
+    path = tmp_path / "linkedin.csv"
+    path.write_text(
+        "Post title,Posted on,Impressions,Reactions,Comments\nBrand new post,10/19/2026,900,12,3\n",
+        encoding="utf-8")
+    planned, results = pr.import_linkedin_csv(doc, str(path), create_missing=True)
+    assert results[0]["match"] == "created"
+    assert planned["entries"][0]["id"].startswith("li-20261019-")
+    assert planned["entries"][0]["impressions"] == 900
+
+
 def test_template_and_csv_import(tmp_path):
     doc = {"contract": {"baseline_start": "2026-10-16"}, "entries": [
         entry("a", "2026-10-07", "pending"),

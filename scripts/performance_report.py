@@ -15,14 +15,17 @@ Usage:
   python scripts/performance_report.py --set 017-siphon-en-linkedin \
       --impressions 1200 --likes 18 --comments 4 --shares 2 --followers 3 --clicks 25
   python scripts/performance_report.py --no-data 015-brent-wti-cn-zhihu --note "平台未保留"
+  python scripts/performance_report.py --import-linkedin-csv linkedin_export.csv --write
   python scripts/performance_report.py --check   # exit 1 if any 7d window is overdue
 """
 from __future__ import annotations
 
 import argparse
+import copy
 import csv
 import json
 import os
+import re
 from datetime import datetime, timedelta, timezone
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,6 +35,85 @@ OUT_JSON = os.path.join(BASE, "performance_latest.json")
 TEMPLATE_CSV = os.path.join(BASE, "performance_backfill_template.csv")
 BJ = timezone(timedelta(hours=8))
 METRIC_FIELDS = ("impressions", "likes", "comments", "shares", "followers", "clicks")
+
+# LinkedIn analytics exports vary by account type/locale. Match headers fuzzily.
+LINKEDIN_ALIASES = {
+    "id": ("id", "entry id"),
+    "date": ("posted on", "post date", "date posted", "date", "created date",
+             "publish date", "posted date", "发布日期", "发布日", "日期"),
+    "title": ("post title", "title", "post text", "post content", "content",
+              "post", "update", "description", "帖子标题", "标题", "帖子内容"),
+    "url": ("post url", "url", "permalink", "link", "帖子链接", "链接"),
+    "impressions": ("impressions", "impression", "post impressions",
+                    "total impressions", "views", "曝光", "曝光次数",
+                    "展示", "展示次数"),
+    "likes": ("reactions", "likes", "reaction", "reaction count",
+              "reactions count", "like count", "点赞", "赞", "赞同"),
+    "comments": ("comments", "comment", "comment count", "评论", "评论数"),
+    "shares": ("reposts", "shares", "reposts shares", "repost count",
+               "share count", "转发", "转发数", "分享", "分享数"),
+    "followers": ("followers", "followers gained", "new followers",
+                  "follower growth", "follows", "follows gained",
+                  "粉丝", "新增粉丝", "粉丝增长", "关注", "新增关注"),
+    "clicks": ("clicks", "link clicks", "click count", "点击", "链接点击"),
+    "engagements": ("engagements", "engagement", "total engagements",
+                    "social engagements", "互动", "互动数", "互动次数"),
+}
+
+
+def _norm_header(s):
+    return " ".join(re.sub(r"[^\w]+", " ", str(s).lower()).split())
+
+
+def _norm_title(s):
+    return _norm_header(s)
+
+
+def _num(raw):
+    """Parse '1,234', '2.5K', '12%', '—' -> int or None."""
+    if raw is None:
+        return None
+    s = str(raw).strip().replace(",", "").replace(" ", "")
+    if not s or s.lower() in ("-", "—", "–", "n/a", "na", "none", "null"):
+        return None
+    mult = 1
+    if s[-1].lower() == "k":
+        mult, s = 1000, s[:-1]
+    elif s[-1].lower() == "m":
+        mult, s = 1_000_000, s[:-1]
+    s = s.rstrip("%")
+    try:
+        return int(round(float(s) * mult))
+    except ValueError:
+        return None
+
+
+def _date_norm(raw):
+    """Normalize common LinkedIn export date formats to YYYY-MM-DD."""
+    s = str(raw or "").strip()
+    if not s:
+        return None
+    for fmt in ("%Y-%m-%d", "%m/%d/%Y", "%d/%m/%Y", "%Y/%m/%d",
+                "%b %d, %Y", "%B %d, %Y", "%d %b %Y", "%d %B %Y"):
+        try:
+            return datetime.strptime(s, fmt).date().isoformat()
+        except ValueError:
+            pass
+    try:
+        return datetime.strptime(s[:10], "%Y-%m-%d").date().isoformat()
+    except ValueError:
+        return None
+
+
+def _map_linkedin_headers(fieldnames):
+    normalized = {_norm_header(h): h for h in (fieldnames or []) if h}
+    mapping = {}
+    for field, aliases in LINKEDIN_ALIASES.items():
+        for alias in aliases:
+            if alias in normalized:
+                mapping[field] = normalized[alias]
+                break
+    return mapping
 
 
 def now_bj():
@@ -254,6 +336,8 @@ def render_markdown(report):
         "```bash",
         "python scripts/performance_report.py --template          # 导出待填 CSV（9 条）",
         "python scripts/performance_report.py --import-csv performance_backfill_template.csv --write",
+        "python scripts/performance_report.py --import-linkedin-csv linkedin_export.csv          # 预览匹配",
+        "python scripts/performance_report.py --import-linkedin-csv linkedin_export.csv --write  # 保存",
         "python scripts/performance_report.py --set <id> --impressions N --likes N --comments N --shares N --followers N --clicks N",
         "python scripts/performance_report.py --no-data <id> --note \"平台未保留\"",
         "python scripts/performance_report.py --write",
@@ -335,6 +419,134 @@ def import_csv(doc, path):
     return n
 
 
+def _linkedin_entries(doc):
+    return [e for e in doc.get("entries") or []
+            if str(e.get("platform", "")).lower() == "linkedin"
+            and e.get("status") != "planned"]
+
+
+def _match_linkedin_entry(doc, row, headers):
+    entries = _linkedin_entries(doc)
+
+    if "id" in headers:
+        eid = str(row.get(headers["id"]) or "").strip()
+        for e in entries:
+            if e.get("id") == eid:
+                return e, "id"
+
+    if "url" in headers:
+        url = str(row.get(headers["url"]) or "").strip().rstrip("/")
+        if url:
+            for e in entries:
+                if str(e.get("url") or "").strip().rstrip("/") == url:
+                    return e, "url"
+
+    date = _date_norm(row.get(headers["date"])) if "date" in headers else None
+    if date:
+        cands = [e for e in entries if e.get("publish_date") == date]
+        if len(cands) == 1:
+            return cands[0], "date"
+
+    title = str(row.get(headers["title"]) or "") if "title" in headers else ""
+    if title:
+        nt = _norm_title(title)
+        cands = []
+        for e in entries:
+            et = _norm_title(e.get("title", ""))
+            if et == nt or (len(et) >= 4 and len(nt) >= 4 and (et in nt or nt in et)):
+                cands.append(e)
+        if len(cands) == 1:
+            return cands[0], "title"
+        for kw in ("siphon", "diesel", "brent", "gor pulse"):
+            if kw in nt:
+                cands = [e for e in entries if kw in _norm_title(e.get("title", ""))]
+                if len(cands) == 1:
+                    return cands[0], "keyword:" + kw
+
+    return None, None
+
+
+def _row_metrics(row, headers):
+    vals = {}
+    for k in METRIC_FIELDS:
+        if k in headers:
+            v = _num(row.get(headers[k]))
+            if v is not None:
+                vals[k] = v
+    if "engagements" in headers:
+        v = _num(row.get(headers["engagements"]))
+        if v is not None:
+            vals["engagements"] = v
+    return vals
+
+
+def import_linkedin_csv(doc, path, create_missing=False):
+    """Parse a LinkedIn analytics CSV and plan metric updates.
+
+    Returns (planned_doc, rows). Does not mutate the input document.
+    Matching order: explicit id -> post URL -> publish date -> title/keyword.
+    """
+    planned = copy.deepcopy(doc)
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        sample = f.read(4096)
+        f.seek(0)
+        try:
+            dialect = csv.Sniffer().sniff(sample, delimiters=",\t;")
+        except csv.Error:
+            dialect = csv.excel
+        reader = csv.DictReader(f, dialect=dialect)
+        headers = _map_linkedin_headers(reader.fieldnames or [])
+        if not any(k in headers for k in METRIC_FIELDS + ("engagements",)):
+            raise SystemExit(
+                "LinkedIn CSV has no recognized metric columns. Headers: %s" %
+                ", ".join(reader.fieldnames or []))
+
+        results = []
+        for line, row in enumerate(reader, start=2):
+            metrics = _row_metrics(row, headers)
+            if not metrics:
+                results.append({"line": line, "id": "", "match": "no_metrics", "metrics": {}})
+                continue
+            e, how = _match_linkedin_entry(planned, row, headers)
+            if e is None:
+                if not create_missing:
+                    results.append({"line": line, "id": "", "match": "unmatched", "metrics": metrics})
+                    continue
+                title = str(row.get(headers.get("title", "")) or "").strip() or "LinkedIn post"
+                date = _date_norm(row.get(headers.get("date", ""))) or now_bj().date().isoformat()
+                slug = re.sub(r"[^a-z0-9]+", "-", _norm_title(title)).strip("-")[:40] or "post"
+                eid = "li-%s-%s" % (date.replace("-", ""), slug)
+                base, n = eid, 2
+                while any(x.get("id") == eid for x in planned.get("entries") or []):
+                    eid = "%s-%d" % (base, n)
+                    n += 1
+                e = {
+                    "id": eid, "publish_date": date, "platform": "LinkedIn",
+                    "title": title, "piece": "", "language": "EN",
+                    "url": str(row.get(headers.get("url", "")) or "").strip(),
+                    "status": "measured", "impressions": None, "likes": None,
+                    "comments": None, "shares": None, "followers": None,
+                    "clicks": None, "measured_at": None,
+                    "note": "created from LinkedIn CSV import",
+                }
+                planned.setdefault("entries", []).append(e)
+                how = "created"
+
+            for k, v in metrics.items():
+                e[k] = v
+            e["status"] = "measured"
+            e["measured_at"] = now_bj().isoformat(timespec="minutes")
+            url = str(row.get(headers.get("url", "")) or "").strip()
+            if url and not e.get("url"):
+                e["url"] = url
+            note = e.get("note") or ""
+            if "LinkedIn CSV 导入" not in note:
+                e["note"] = (note + "；" if note else "") + "LinkedIn CSV 导入"
+            results.append({"line": line, "id": e.get("id"), "match": how, "metrics": metrics})
+
+    return planned, results
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Content performance tracker (contract clause 6)")
     ap.add_argument("--set", dest="set_id", help="entry id to update with measured numbers")
@@ -351,6 +563,10 @@ def main(argv=None):
                     help="export published, unmeasured entries to a fill-in CSV")
     ap.add_argument("--import-csv", dest="import_csv", metavar="PATH",
                     help="import filled metrics from a backfill CSV")
+    ap.add_argument("--import-linkedin-csv", dest="import_linkedin_csv", metavar="PATH",
+                    help="import a LinkedIn analytics export (CSV/TSV); preview unless --write")
+    ap.add_argument("--create-missing", action="store_true",
+                    help="create a new LinkedIn entry when a CSV row matches nothing")
     ap.add_argument("--list", action="store_true", help="list pending/overdue entries")
     ap.add_argument("--check", action="store_true", help="exit 1 if any 7d window is overdue")
     ap.add_argument("--write", action="store_true", help="write performance_latest.json + markdown")
@@ -363,6 +579,21 @@ def main(argv=None):
     if args.template:
         path, n = write_template(doc, args.template)
         print("wrote template: %s (%d unmeasured entries)" % (path, n))
+
+    if args.import_linkedin_csv:
+        planned, results = import_linkedin_csv(
+            doc, args.import_linkedin_csv, create_missing=args.create_missing)
+        if not args.json:
+            print("linkedin CSV: %d row(s)" % len(results))
+            for r in results:
+                print("  line %-3s %-38s %-12s %s" % (
+                    r["line"], r["id"] or "-", r["match"], r["metrics"]))
+        if args.write:
+            doc = planned
+            touched = touched or any(
+                r["match"] not in ("unmatched", "no_metrics") for r in results)
+        elif not args.json:
+            print("  preview only — add --write to save")
 
     if args.import_csv:
         n = import_csv(doc, args.import_csv)
