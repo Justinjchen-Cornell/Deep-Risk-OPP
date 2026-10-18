@@ -1,0 +1,442 @@
+{
+ "date": "2026-10-18",
+ "generated_at": "2026-10-18 22:11",
+ "days": 14,
+ "news_days": 7,
+ "geo": "US",
+ "calendar": [
+  {
+   "date": "2026-10-29",
+   "weekday": "Thu",
+   "bjt": "20:30",
+   "et": "10-29 08:30",
+   "event": "GDP",
+   "importance": "★★★",
+   "source": "FRED",
+   "note": "时间按惯例，以官方为准"
+  },
+  {
+   "date": "2026-10-29",
+   "weekday": "Thu",
+   "bjt": "20:30",
+   "et": "10-29 08:30",
+   "event": "PCE",
+   "importance": "★★★",
+   "source": "FRED",
+   "note": "时间按惯例，以官方为准"
+  },
+  {
+   "date": "2026-10-21",
+   "weekday": "Wed",
+   "bjt": "22:30",
+   "et": "10-21 10:30",
+   "event": "EIA Weekly Petroleum Status Report",
+   "importance": "★★★",
+   "source": "EIA",
+   "note": "库存/产量/炼化；能源腿核心"
+  },
+  {
+   "date": "2026-10-22",
+   "weekday": "Thu",
+   "bjt": "22:30",
+   "et": "10-22 10:30",
+   "event": "EIA Natural Gas Storage Report",
+   "importance": "★★",
+   "source": "EIA",
+   "note": "天然气库存"
+  },
+  {
+   "date": "2026-10-28",
+   "weekday": "Wed",
+   "bjt": "22:30",
+   "et": "10-28 10:30",
+   "event": "EIA Weekly Petroleum Status Report",
+   "importance": "★★★",
+   "source": "EIA",
+   "note": "库存/产量/炼化；能源腿核心"
+  },
+  {
+   "date": "2026-10-29",
+   "weekday": "Thu",
+   "bjt": "22:30",
+   "et": "10-29 10:30",
+   "event": "EIA Natural Gas Storage Report",
+   "importance": "★★",
+   "source": "EIA",
+   "note": "天然气库存"
+  },
+  {
+   "date": "2026-10-29",
+   "weekday": "Thu",
+   "bjt": "02:00",
+   "et": "10-28 14:00",
+   "event": "FOMC 决议 + 发布会",
+   "importance": "★★★",
+   "source": "Fed",
+   "note": "决议 14:00 ET，发布会 14:30 ET"
+  }
+ ],
+ "news": {
+  "Oil": [
+   {
+    "title": "Citi Raises Brent Forecast for 2026; Sees $150 Oil if Hormuz Disruption Persists",
+    "source": "EnergyNow.com",
+    "date": "2026-10-18 18:59",
+    "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQdk5UVWpBQWFNVy1reG1ZeFlEdlQxcWlxWkMzTFNfUmFKdVFZaWRqNm4zTFo5V05Pd2o5b3hpOXNLeWJ3Tm9XdzR1aEk1VWd1S29vaW1GUVZ1OTU5c0hsUE5fWnhUV1RoakRubVlGcW14cHBhaER0VzZmeDVFNGZkeEVUb2l6WGhtTVlBUXBMTFFYNkMwalRYZmYzQUItWEhDLUhiVkdaOFBoU0Q4Vnc?oc=5"
+   },
+   {
+    "title": "Oil Prices Settle More Than 1% Higher, Log Strongest Month Since March",
+    "source": "EnergyNow.com",
+    "date": "2026-10-18 18:39",
+    "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPa1hxYUNYOVNkdlVySWM0cDd2VnBIOFY5MU56eWRhTzZvSjNBNDFjYzhzSnB2TS03V01tTUtRMU9pZURsaVdUR3BGa0VIS3VwMTA3QVR6ZWdEOGtyT1BNRUxqUXNyRnBsU2J1Mk10bjZtazlFelZCek8zSy1obXN5VzBGQlU3bnhzWHU2QU1xdGM?oc=5"
+   },
+   {
+    "title": "Banks Hike Oil Price Forecasts on Prolonged Gulf Disruptions",
+    "source": "EnergyNow.com",
+    "date": "2026-10-18 18:38",
+    "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPNkJCUnJ0UGhBRDNCcWRtN1QzR2h5eEl4TEoxWGVaaVowMXA5NWxtM19jYnA5OUtYanNlZTloLUM2VFZTenhiazU5M1VjWU1vM2JXVTM4bUd6NG9FMnlQMWlDRVpWalJIQTY0V2c0QS1KeWdtQVFHa184aW56NEdGMWdPNi1kLUM5eW1YU0xJLU83ZkFWd1E?oc=5"
+   },
+   {
+    "title": "Oil Prices Stay High as War Keeps Supply Tight Into 2027",
+    "source": "Crude Oil Prices Today | OilPrice.com",
+    "date": "2026-10-18 07:00",
+    "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOdWk4WFNnZ1pCa1hzQ3FlZWNhMmJlVC1QejlndUplUDllMWtOVXNpbklEZ1ZsRFBldlgtNURlQWJlSVMzQjBESkFtMzdVWjUxVHNJWk1ITDV2Z280VWFZY3J6Y0xTZHNTdDJMZElwa2FZUzU5QjlIMzJXNmQ0TUo3T0N6UmFReXk2VDV1czdlT2FVT1VDZXVVbl9fOFhfV2xvbEHSAacBQVVfeXFMTnhFV1FibGFVc2t2YnRBdkt6NmhNWDNSSmNQMjJSeE5IZUx0MFFwWV9Kb0dHaHliYVJmZkMtVGZ0RlhpLWNiSk1XaXBILURySi1Ca3ktZGNWbllfQUxmdEJJZVpTUmRpSnY2cWszdU1uVUdRLWYxN25xamQ3ZGZFb29lNmlFdVNqLUt0R0UxNi1PUWtIZldkekJTMjYtOFVQZWY3SmkxczQ?oc=5"
+   },
+   {
+    "title": "Middle East Chemicals Keep Their Cost Edge Despite Hormuz Crisis",
+    "source": "Crude Oil Prices Today | OilPrice.com",
+    "date": "2026-10-18 05:00",
+    "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQaFJNUkdUUFVUT1RyTlQ5VkFhdDNFb2hlWURLcWtoMkVYME1UM01IT1d0WWpKX3ltTGdPRXZaUU1WZkUxMUlVbjRQc2FIUUg3VGE2Q0IwcWVCVUdaRk56S0poMmVNWDlUS0Jzdnlaem5QOEt3SkVYbklLaGRVeGwza0MzWE9rbjBUWHA3aURhZXRLVTQxNGM1c1pReVluYmltWGRzWEhURVFmWlYwTWfSAbMBQVVfeXFMT3haTXNHdl9CS0IteG9uMUZCeU14Y08xVkNWWDdROUZkaXdpTGZ5b1dZd01ZSFdCUGhFbXRFVnp3bExHZGxUMG4xXzd0VUNhbWFoNDUxNEVpeE5lR2NXcGN0VFAwMU1CendGMXM2bHlfOWQzMnNoeTE4SXFaeHBGRkRJUXo3eXo4RElZeU5PbGNzTGdjdWVFRnZWb2VxUncxTEJyZnctcFpHYUg3dTBVVUl6SW8?oc=5"
+   }
+  ],
+  "Gold": [
+   {
+    "title": "Chart of the day: Gold price eyes $4,200 breakout, but buyers still face two major hurdles",
+    "source": "investingLive",
+    "date": "2026-10-18 21:31",
+    "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNOER5UkJFZFQ0TFdXaXBaaW40TXNHYWFGeU9HQTlQcnlraURWQTFPZFJfY0pKZUVJdWZwSGpiS0hmMXFLT2xHX2xXX1kxVEtxMTZrR1VCQ21TclRBTFQwQTlvbFJGellfUkd1X0NTeFNHMmQ5dGtQMDZyOEJpX0lRSUM0a1NxYmJVREl3WWQzZDdHbUNMRjdYUF9zYTZDdWs0NXFVTGdlYWo3YjBYVEVoM0R4eFhnYkF5ZGVITlE4ejdBZFpDc1ZwYTlnQW94dw?oc=5"
+   },
+   {
+    "title": "Gold Price Canada Today | Live Gold Price in CAD",
+    "source": "Kitco",
+    "date": "2026-10-18 08:00",
+    "link": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFBVMHM0YXN3UkRUdlVZXzdrUjJmSHh5eFZ6Q0pSOVhYV1pLU0VzSXNhWGRVREpJbm9uX3pvSkZsMDNVRmg4a3JPYXlTY2N3OEF5Wm00MA?oc=5"
+   },
+   {
+    "title": "Safe Havens, Dwindling Assets: What SSR’s Roxmore Acquisition Means for Gold M&A",
+    "source": "Crux Investor",
+    "date": "2026-10-17 21:40",
+    "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNb2tXVUplelpCRExhSGIwamt1bmltZFJMbnNSVXpEZFp6R1h6SkVaeENOQ3NKTTJ6Yk1HQUxZMG4tX29nM2pPd0txd0NlRzVsazB6LTF2dHdvRm1ERlJPMml6eVFDU3BacFBybndaazZlRHExcDVvb1R6Nm12eTlQQThwQ0E4RjgxMVBOb2JKbWlaenhjVkxYMzA1dTczQXZhZEFmQ3lWa0pvYlhiMURyVDZ3?oc=5"
+   },
+   {
+    "title": "Gold Price Slides on Hot Inflation, but Schiff Says It’s a Gift",
+    "source": "Yahoo Finance",
+    "date": "2026-10-17 19:13",
+    "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQQlR6SnFnWE5FUVJlWUk4Rm9VU0NBbzk2TzdXcTZ3OHRWejZ6anZTcnZvWWNzbDJ0bGNOM0tyRWhLNmZVdDMwOVh0VXBzTHltczVac25KaDlscnE5NGlwbF81bHlLR3AyX3lLQjFCSklWZ3JLT1lXZ3EzRjU0MnBRYW1Jd3NxbXNFaE1DeTlPRE9Tb2J3bkduSlJ1QTRPYklHUUZr?oc=5"
+   },
+   {
+    "title": "Gold Price Slides on Hot Inflation, but Schiff Says It’s a Gift",
+    "source": "BeInCrypto",
+    "date": "2026-10-17 19:13",
+    "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE02MGk3U0cwZGtLRXRHSGhNT2gyOHlpd19TMGd5alZFUHFPMmpBTEhrVENxZFpFN0NXS1RjMXNPaFYtem1jRTl4RmR0aHU0ZVBFbzJYVGU4ME9kcXpqbF93c2ZKSGY4Z2xvclF5cTVn?oc=5"
+   }
+  ],
+  "Fed/Rates": [
+   {
+    "title": "Gold set for a weekly drop as traders assess Fed signals",
+    "source": "Business Recorder",
+    "date": "2026-10-18 07:53",
+    "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE11ZEFwbENFMDhRZkZLT01TcUhST3lqZU8taC1NbTNIXzB2TzhjOEVlX0lCcUZHOXd4UlBwd2Y4dzBzRUJSaWF3aXI1Nm1kbnczU3RjSHBB0gFWQVVfeXFMTXVkQXBsQ0UwOFFmRktPTVNxSFJPeWplTy1oLU1tM0hfMHZPOGM4RWVfSUJxRkc5d3hSUHB3Zjh3MHNFQlJpYXdpcjU2bWRudzNTdGNIcEE?oc=5"
+   },
+   {
+    "title": "How the Fed Is Quietly Inflating the AI Bubble While Hiking Your Electric Bill",
+    "source": "BIG by Matt Stoller",
+    "date": "2026-10-17 21:12",
+    "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBGR080ZEtxVjhCckxQX2s1eG5UZ2Nma2lLS05zako3OHRJSDhIdm5Bc1ctUHVLYlY2ZmstSHVwd0FNeGJRRmdSRHdObjd2R2dSN0VQZU9SRFUxdFY4d19KNWV0MldESHUxLWRWZWZha0tVN0xSUkE?oc=5"
+   },
+   {
+    "title": "Fed May Pause Rate Hike in October, but a December Hike Is Still on the Table",
+    "source": "TradingView",
+    "date": "2026-10-17 20:23",
+    "link": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQTW8xRnN3SFpZLTFONkJaNERtd3JneTJwTV9FaE05WTVla003RmVnSVItVEJkM25CMFljN1J2cmtKLXc0cEFQX3NVYXFoVGtucFRDZDlGajNtM1d5TzJRU1liVHFzVUNBZTdwNFFMWEVEdEx1aWJ1X09UYmctUzM4Wk0tYjNWdHdJTmo1SGoxWG9raTk3Nldyd0Q4YXJLeDZrbFFNN1AwY3dDUWJOUV9ZRFFXbEVjejBKR1lITGlWc0dDZFpOTE04ckdEVW5NYkdl?oc=5"
+   },
+   {
+    "title": "Gold Faces Year-End Downward Pressure...\"90% Odds of Fed Rate Hike in December\"",
+    "source": "BigGo Finance",
+    "date": "2026-10-17 19:35",
+    "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9zcTdreElPODI0OXM2eE13ZU1OejdjdjRzU1BlVWRCMVltZ2hGYlI4Ym5jQmpkS2w2Y3d6WElEbm9ENUFBZ3BkYmw0dGE4MjJkTnY1LU0zZUtHN1hlOXhQanZ0UXVpMHhQMWJLbGNybElJTThxMEE?oc=5"
+   },
+   {
+    "title": "Fed interest-rate decision this month is a closer call than markets think",
+    "source": "MarketWatch",
+    "date": "2026-10-17 19:00",
+    "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOWG1TSFJvUk1SVTFSN1pNX0NvU2ZjSlNrb0E3aHRzNTlRZkJ3Z2FCZUd3aW56bXJEbERUc3ktcXloS3RXQWtoNTlvMDdHTW5wY0REcy1TMUl5clExUnRKeFBVWG0xM2pqbmNLdkNmcENYWUZocU1zNXE4eTI2VlhrZjVwUHlnaGUwZVZZMGsyTmJXd18wUU5laXVrVmpELWFheWZ3dHliSGk4RDh3SVJDNmhJc2ZIMVE?oc=5"
+   }
+  ],
+  "Treasury": [
+   {
+    "title": "Long-Term Treasury Yields Buffeted by Hot Inflation and Cracks in AI Mania",
+    "source": "Wolf Street",
+    "date": "2026-10-18 14:19",
+    "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNdmFpNHk0NHJLZU1leHRJYzVYNllqTnlpM2RZN3BpcjFtb1FJaDAzVlZ2dlRxVEpFaFlFSDZBQUZHNVVwdGxUZWEtcVd4Z3hXbHFDbFVYalBZeC1Ndm5aSzhRVXV6ZlhXOVRmUlloaHZpV3QyZHE0MnBkdjJSbnZ2ZjdWSENHdHVheDJ0NXpVU1ltN2t1c2YweTlHaHM2azdZU2I1UHFLNTV2QWM3VFE?oc=5"
+   },
+   {
+    "title": "Invesco Stock And 2 ETF Issuers Worth Watching As Treasury Yields Stay High",
+    "source": "Simply Wall Street",
+    "date": "2026-10-18 05:37",
+    "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQazU3aTFQVHNIemZCcHVZS3JEQ0ZubHkyNG14LWhvYkxUWFNNU3ZSS1pERWZQQVZFYjBOajRXX1l4RGFTUEczcFk1YXUzU09pVWI5NWlndHFZYmxNZDAzamlJNjlWWmNwcHdCSWpPV3pXRzlMUGRZUHlPd1lQOUN6T05EVndpTklLaExYWUd2LTh4eGtYQW5vNEs3VjhxLXhKci1QbEdwTTczVnp2S2V4TDFzbVZJREJnbVJmQ3VVbkZDblRFZGpwa3htUl9YdmRVV0ZjTkFtSlg1VnV5d1djaUFJWWdEckXSAewBQVVfeXFMT2xtdEZUdVNPdFFiRmliSWV0N0JVeTNvbUFrM0QxNXhDel92YWN3aWNPUFRyMGNhbUd1OEFIbERCZzhwR3JpYjhWbFNId2otUVpQLUVSb1k4YlN5bnZZdFdmRnFxYnY2bTZvRWYteHVjWFY2b0U5R0ZyanFTLUh4ZDFTaWQ2emkyNm9RV3ZHZ3FSRldxZUczNVhtTG9GWHliTllLUXlsMkx6NmRKM0VWendoOFBoOFZFaFQwcTZwMVlaZWUtSVVBdmQtakp4LVd5bmgyaDhFZ0lmTHoyZllzZk1QUHh0SlE3c1duNXo?oc=5"
+   },
+   {
+    "title": "3 Financial Stocks Tied To Rising Treasury Yields Retail Investors Should Screen",
+    "source": "Yahoo Finance",
+    "date": "2026-10-18 00:11",
+    "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQei1hd0F4RDFlcEVOc0N5b29lUzg5S21paXhQWUFSbmZ0ZnVOTi1TUWJxdTVtejhLYXVxUEJtb1NJTlJPeTJmR0Q0SjVlOHFUYllKbm1OclhtZmNwMjBRT2hobWNqUzltQW5OdEV1ckk5dTJ6V0gtcUNJVlpfVXNQM0FONURsSUpfZGhuVHI2cXNTYXIzbWpSbms4aw?oc=5"
+   },
+   {
+    "title": "Treasury Yields Hit a 24-Year High This Month. Is Vanguard's High-Dividend ETF Still Worth Buying?",
+    "source": "The Motley Fool",
+    "date": "2026-10-17 23:09",
+    "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNQ1c0b25TTXlHdjIxcnpxZUlndGpHNl9vM2RMTThNcmRLOHBlMzFZUXdzb1NwUS0zV3RHeGVSTmxOSHBNbjI3R2g2cjVoSDhyT2JHdGhJVzQyV3EzdkpZd2w0WVVBaWxOY1NIdUVablJoZkdPNDJiMWREOE9DVHFvRkl2T1VqdGhSSkpWb29ZVWZiaW80TjlvRjdUcU9NQWl1VU1JRzJrVGNZWU00Q0tKcDNQSnMyc2ppZFNhNVhIcC1YWU9jR0RpX1E0SHZtV2hHMEhZV1J3?oc=5"
+   },
+   {
+    "title": "Treasury Yields Hit a 24-Year High This Month. Is Vanguard's High-Dividend ETF Still Worth Buying?",
+    "source": "Yahoo Finance",
+    "date": "2026-10-17 22:29",
+    "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPd3VVYlhNd2tKUUtCbVo3UXZCbks1T2p5S0pEd2Q3ZDF2TEdPZ0VDZWJrVXo3VHIxUmxFdFo4di10b3JVOWliazVLaTdpS193QVItSUo1dW9HZGVLbExlV2pVTVRWTE52MmNEVm9jQ1lKWHBRSHNPLW51elg0MWVwODJuUUZzVzBvR0ZSdmxwaklzeXZpZWs4?oc=5"
+   }
+  ],
+  "Inflation": [
+   {
+    "title": "September CPI: Sticky Inflation, But An October Hike Remains Unlikely",
+    "source": "Seeking Alpha",
+    "date": "2026-10-16 14:35",
+    "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNNS1pd3VCZy1QUkYyWFY3QnNGQ2YzX0VfQnQ2Rjd4aEJZRWl1MkdITXEza25NNWwxZXowckVRcGxOUE8xODJjTG5ZaDR1eDBOcWJyMy01UkZWR0VFU2J4TFpyM1F4bGNiZnFjYzFGOXQ4RlVGNF8xOERVRFNCbnE3UHdtOUdiMFJfOEpfeldZTnc4UVlnNHVqRUVzcnpnZmVickVjNGJVMU9DNjNtSGRxbFZwMFFySC1RdVNQTTgwdklnVjRzWU43YnUzSQ?oc=5"
+   },
+   {
+    "title": "Japan core inflation likely exceeded BOJ target for first time since December",
+    "source": "Reuters",
+    "date": "2026-10-16 11:13",
+    "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOS2ZXYXlaM0trWHJkOFVlWGNlRDZoYlJHLXpRb0pGZ0RPd3pKS2xvWVUteGZZaFVHQ25OV0dwNUZJeW5VNWljY21kQ2R3LV83QXF3Q0otYm1RMlFfR2ZCZlg4dzBhRE1rZHBkMmxXYnJTeDV4UThIQTdYMEJNVVU1TXV1eE96bmgyTnl1MkJ4S0pCelBhM0dqaXpZWVVRUHhraFpFT2ZoYVNuWjdEYkhJVEpnR1VmUWRiUGx5VDJ6bTBSMW4zT1dj?oc=5"
+   },
+   {
+    "title": "Dollar recedes from 18-month high as bond rally tempers impact of hot inflation data",
+    "source": "Reuters",
+    "date": "2026-10-16 03:43",
+    "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPbDE0ZWJRMm1PNWhpVzUwaDhHb2o1YkVXVExaeFVQWWFwcnJtemVfakY3WHV0aFFQWHR3dkR4eVN1OTZ3dXVqb0QzQ0ZuNkNhek1IbFRhVEtBXzNKcVpSQ1dHQm16ZGMxZHF1Z0txU2xHVUVsb0txUzhxLVljb0NXWWZzX2ZETk9QbHF1dm5XdmMybWFYRzl4d1VuS3J0NlU4enJvQVFuYTYydDNYUVVHM3pjandDUHdHbHhLT2otUU1HQk1PTVpReHpmTQ?oc=5"
+   },
+   {
+    "title": "CPI update: Inflation rises to 3.7% as energy costs climb",
+    "source": "Empower",
+    "date": "2026-10-16 03:28",
+    "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQT3d1aERFbFdQeHNuekJsUC04VzJyYTdyaU95LW0xRkxjalJIMVZqTDlhdGpFZVAwUU5JOWVqNlQ0dmxoMUlpM3RjVXRVSzZTY01YMXBtdFMtMjcwWU5Mall4ak1iaHZzWUV1MzNRMFhJLVY5ZmpzeFhRTFZibU9jZmNR?oc=5"
+   },
+   {
+    "title": "Accelerating CPI Inflation Raises Prospect Of Further Fed Rate Hikes",
+    "source": "Forbes",
+    "date": "2026-10-16 02:45",
+    "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQVlVtWF9VVGwzM1VhTGdNcVdjeldVc0J3RnFnNUNrWDBHeVhwSWxWbXMzVVM2azVzd2RCdFNjTUdHZktTampxLUp0b0JORDdtZHR0SGlQaVgyczlaSE9HMnhOa01UdUVfaUc3alh0ZlJDdi0zdXJqS1NYMVJYY0FZbzJ4amZCMUxRQ1lKOFJCZjFyWHJTbXB2Y3JCeF81c0RCbE9CYWEtWEtzMnpHZ3lsc05UdkZVdWh4Z3hzTQ?oc=5"
+   }
+  ],
+  "China": [
+   {
+    "title": "China's household credit keeps shrinking despite years of stimulus spending",
+    "source": "Startup Fortune",
+    "date": "2026-10-18 10:09",
+    "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPQWUwZW41eDN6WU5KZDR3ZHdWeV9OR2JYdXlQSTlvVG1WMHpmQWtJX1FWNlR1ZTlHc1hKVmVUWFZmSkl3TG5VODVpakZ5MWUwQkFBZ3dVeXlSTHFDSTk1YmVDeEdsdnNrUHk3c0JnSDNLX01veGt0eHJ5SE9IZHR6QktNNm1UZXg1YkUwckJKUXQ0Zm1kQ0VEaUx6YTdkbENsMG1DZA?oc=5"
+   },
+   {
+    "title": "IMF urges China to boost fiscal stimulus to curb deflation",
+    "source": "IDNFinancials",
+    "date": "2026-10-17 07:00",
+    "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQVVhERUNHaFg2RmRpeGtxNWF1dlBxRVBqckpuYTlheVFOeFlac2ZwLWJOZ21MUVlqbnQzNVV4My1DeVB2NHZSeElaTEtPdkVOOEg3allXWEhSTUNGNEtZQnFRVlo1RXlyZ2ZxdGFzQkd3MnFDTWZYc0Vyd1BCRFRKendWNWM0WnhJRloxcnBZbkNGcGt4a1RyQlRqTzRGb0dk?oc=5"
+   },
+   {
+    "title": "PMI rises as stimulus pays off big",
+    "source": "The Independent",
+    "date": "2026-10-16 22:07",
+    "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQZjNmVkxtYU4yamY2cGx0LWxOdkhyUkxhZkR4X0pDWTlnZ3c5cTQ1S0t2cEZFUXZMaVk1STFUZ1hELVZMQVBzWWc2U1pJbUhSaUZ3UXU2Z1AwNHlFRDlpNUZQX3J6SUhsLVlqblplREozcW1IOFU3TkNDb1cwbUJSdUoycW5SNWNkS053V1pwMVRuLWVyeTdQRTJYRmZveFN5WFZOWld3d1lRdV80UU80?oc=5"
+   },
+   {
+    "title": "Tardy China Stimulus Sets Up Second Quarter of Sub-Target Growth",
+    "source": "Bloomberg.com",
+    "date": "2026-10-16 16:09",
+    "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOakV4aDBPUjZLZXZQa2VySFVsVXE3bmR4OTZ4YVdzb3VCeHF5V2JxZkhMazk5LXpVN19FMHlkUnlCYnh3UEJpcktSOUljOV9tNHJlQXU2ZVJJQ2dLbHVUeFNsUm5zNHoyRmVuSVUwdmxVZ0FGemZsT2VLYndGZ1NReFZuOE5KNnZYZDJzSFNTY0MwMHh6UnJySko4aUJwSUwtM2t2TndQWVZPTkdudGFlQk5vSzJ5Zw?oc=5"
+   },
+   {
+    "title": "China's payback for late stimulus looms with sub-4.5% growth",
+    "source": "Yahoo Finance Singapore",
+    "date": "2026-10-16 09:46",
+    "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQcHh1b1dCRjNrclhUNS1CSzBPZlJaN3FOZzBHTElkb1F2aEFKaHNnR0xNY2NIUmtnLUo3a3pCdlplaHBOODNDT1hCNDNGd09xX0h3a21CT3lSNlh0MlUyR29yTG0wOWFHZVVjUDhpdHdMUGwwVWhjQ1VQNHpxNjhlSVl6N0VldUE5cEE?oc=5"
+   }
+  ]
+ },
+ "trends": [
+  {
+   "title": "julia louis-dreyfus",
+   "traffic": "2000+",
+   "source": "Playbill",
+   "date": "2026-10-18 21:50",
+   "macro": false
+  },
+  {
+   "title": "allison janney",
+   "traffic": "20000+",
+   "source": "Forbes",
+   "date": "2026-10-18 21:50",
+   "macro": false
+  },
+  {
+   "title": "bryan mbeumo",
+   "traffic": "200+",
+   "source": "BBC",
+   "date": "2026-10-18 21:50",
+   "macro": false
+  },
+  {
+   "title": "is marvin harrison jr starting",
+   "traffic": "200+",
+   "source": "Sports Illustrated",
+   "date": "2026-10-18 21:50",
+   "macro": false
+  },
+  {
+   "title": "cam skattebo",
+   "traffic": "2000+",
+   "source": "Yahoo Sports",
+   "date": "2026-10-18 21:40",
+   "macro": false
+  },
+  {
+   "title": "zimbabwe vs india",
+   "traffic": "500+",
+   "source": "Cricinfo",
+   "date": "2026-10-18 21:40",
+   "macro": false
+  },
+  {
+   "title": "jaguars game today",
+   "traffic": "200+",
+   "source": "Jacksonville Jaguars",
+   "date": "2026-10-18 21:40",
+   "macro": false
+  },
+  {
+   "title": "chiefs vs chargers",
+   "traffic": "1000+",
+   "source": "Kansas City Chiefs",
+   "date": "2026-10-18 21:40",
+   "macro": false
+  },
+  {
+   "title": "bbc sport",
+   "traffic": "200+",
+   "source": "RTE.ie",
+   "date": "2026-10-18 21:40",
+   "macro": false
+  },
+  {
+   "title": "why do the jaguars play in london so much",
+   "traffic": "200+",
+   "source": "ESPN",
+   "date": "2026-10-18 21:40",
+   "macro": false
+  }
+ ],
+ "eia": [
+  {
+   "feed": "Today in Energy",
+   "title": "U.S. small-scale solar generation has quadrupled in the last decade",
+   "date": "2026-10-16 22:00",
+   "link": "https://www.eia.gov/todayinenergy/detail.php?id=68324",
+   "summary": "We estimate that U.S. generation from small-scale or rooftop solar photovoltaic systems (smaller than 1 megawatt of capacity) has increased from 18,812 gigawatthours (GWh) to 92,979 GWh over the last decade. The four sta"
+  },
+  {
+   "feed": "Today in Energy",
+   "title": "PJM, ERCOT, and SWPP all set peak load records this summer",
+   "date": "2026-10-15 22:00",
+   "link": "https://www.eia.gov/todayinenergy/detail.php?id=68305",
+   "summary": "Three regional transmission organizations (RTOs) set records for peak hourly load this past summer, according to data reported on Form EIA-930 and presented in the Hourly Electric Grid Monitor."
+  },
+  {
+   "feed": "Today in Energy",
+   "title": "Monthly wind generation in ISO-NE is about 68% higher than last year",
+   "date": "2026-10-14 22:00",
+   "link": "https://www.eia.gov/todayinenergy/detail.php?id=68304",
+   "summary": "Monthly wind generation in the first nine months of 2026 was an average of 68% higher compared with the same period in 2025 in ISO New England (ISO-NE)."
+  }
+ ],
+ "linkedin": [
+  {
+   "keyword": "gold price",
+   "author": "World Economic Forum",
+   "date": "5d • Edited",
+   "age_days": 5,
+   "title": "The price of gold rose by 64% in 2025, reaching an all-time high in January 2026. What's behind the surge?",
+   "text": "The price of gold rose by 64% in 2025, reaching an all-time high in January 2026. What's behind the surge?\nJames Emmett, CEO of precious metals company MKS PAMP, says the key driver is uncertainty. Amid geopolitical and financial instability, central banks seek to boost their reserves of gold to protect against shocks. But why is #gold such a reliable ‘safe haven’ asset? Watch the video to find out.\nFrom geopolitical uncertainty to the energy and digital transitions, minerals and metals are becoming increasingly central to the future of the global economy. The World Economic Forum’s Mining and Metals community brings leaders together to help the sector navigate these changes, strengthen its resilience and advance a responsible transformation. Learn more: https://ow.ly/7Akj50ZX5tf",
+   "snippet": "The price of gold rose by 64% in 2025, reaching an all-time high in January 2026. What's behind the surge? James Emmett, CEO of precious metals company MKS PAMP, says the key driver is uncertainty. Amid geopolitical and ",
+   "reactions": 566,
+   "comments": 26,
+   "reposts": 123,
+   "engagements": 715,
+   "hashtags": [
+    "gold"
+   ],
+   "search_url": "https://www.linkedin.com/search/results/content/?keywords=gold%20price&datePosted=past-week&sortBy=relevance",
+   "keywords": [
+    "gold price"
+   ]
+  },
+  {
+   "keyword": "crude oil",
+   "author": "J.P. Morgan",
+   "date": "4d",
+   "age_days": 4,
+   "title": "Crude oil exports through the Straits of Hormuz are nearly back to normal, but the real story is in rising transport costs and supply constraints for the fuels we use. James Sullivan, co-head of Global Fundamental Research, breaks down the impacts in this week’s Minute on the Market. 📊",
+   "text": "Crude oil exports through the Straits of Hormuz are nearly back to normal, but the real story is in rising transport costs and supply constraints for the fuels we use. James Sullivan, co-head of Global Fundamental Research, breaks down the impacts in this week’s Minute on the Market. 📊",
+   "snippet": "Crude oil exports through the Straits of Hormuz are nearly back to normal, but the real story is in rising transport costs and supply constraints for the fuels we use. James Sullivan, co-head of Global Fundamental Resear",
+   "reactions": 349,
+   "comments": 14,
+   "reposts": 34,
+   "engagements": 397,
+   "hashtags": [],
+   "search_url": "https://www.linkedin.com/search/results/content/?keywords=crude%20oil&datePosted=past-week&sortBy=relevance",
+   "keywords": [
+    "crude oil"
+   ]
+  },
+  {
+   "keyword": "crude oil",
+   "author": "Petroleum Engineers Association",
+   "date": "3d",
+   "age_days": 3,
+   "title": "Crude oil distillation process 👇",
+   "text": "Crude oil distillation process 👇\nHow Is Crude Oil Transformed into Valuable Products?\nHere’s how it works, step by step:\n🔹 1. Crude Oil Preheating\nCrude oil is heated in a heat exchanger using hot refinery streams.\nThis improves energy efficiency and reduces fuel consumption.\n🔹 2. Desalting\nWater, dissolved salts, and suspended impurities are removed.\nThis helps prevent corrosion, fouling, and equipment damage.\n🔹 3. Furnace Heating\nDesalted crude oil is heated to approximately 340–370°C.\nA mixture of vapour and liquid enters the atmospheric distillation column.\n🔹 4. Atmospheric Distillation\nVapours rise through the column while liquids flow downward.\nTemperature decreases from the bottom to the top.\nHydrocarbons separate into different fractions based on their boiling ranges.\n🔹 5. Product Separation\nRefinery gases: LPG and other light hydrocarbons\nNaphtha: Gasoline blending and petrochemical feedstock\nKerosene: Jet fuel and other applications\nDiesel/gas oil: Diesel fuel and heating applications\nAtmospheric residue: Feedstock for further processing\n🔹 6. Vacuum Distillation\nAtmospheric residue is distilled under reduced pressure.\nThis allows heavier hydrocarbons to separate at lower temperatures, reducing thermal cracking.\n🔹 7. Further Refining\nProcesses such as catalytic cracking, hydrocracking, and hydrotreating improve product yield and quality.\nFinal products are blended to meet required specifications.\nCredit: petroleum.encyclopedia1 (Instagram)\n#CrudeOil #OilAndGas #PetroleumEngineering #OilRefining #ProcessEngineering #EnergyIndustry #pea",
+   "snippet": "Crude oil distillation process 👇 How Is Crude Oil Transformed into Valuable Products? Here’s how it works, step by step: 🔹 1. Crude Oil Preheating Crude oil is heated in a heat exchanger using hot refinery streams. This ",
+   "reactions": 272,
+   "comments": 4,
+   "reposts": 48,
+   "engagements": 324,
+   "hashtags": [
+    "CrudeOil",
+    "EnergyIndustry",
+    "OilAndGas",
+    "OilRefining",
+    "PetroleumEngineering",
+    "ProcessEngineering",
+    "pea"
+   ],
+   "search_url": "https://www.linkedin.com/search/results/content/?keywords=crude%20oil&datePosted=past-week&sortBy=relevance",
+   "keywords": [
+    "crude oil"
+   ]
+  }
+ ],
+ "suggestions": [
+  "通胀数据周：做一张“预期 vs 前值 vs 资产反应”卡片；从 GOR/黄金或长端利率切入。",
+  "GDP：区分名义/实际与赤字路径；长端利率比增速本身更有交易含义。",
+  "FOMC：预注册 scorecard；用二选一问题（鹰/鸽、点阵图/发布会）引导评论。",
+  "EIA 库存周：结合柴油裂解、Brent–WTI 价差与 Borrowed Oil 叙事。",
+  "Google News 热度集中在 **Oil**；用你的框架给反例/二阶影响，不要复述标题。",
+  "LinkedIn 高互动：The price of gold rose by 64% in 2025, reaching an all-time （715 互动）；可做数据拆解或反方观点。"
+ ]
+}

@@ -1,0 +1,45 @@
+name: Weekly Macro Radar
+
+on:
+  schedule:
+    - cron: '0 22 * * 0'  # Sunday 22:00 UTC = Monday 06:00 Beijing
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install python-dotenv
+
+      - name: Create .env
+        env:
+          FRED_KEY: ${{ secrets.FRED_API_KEY }}
+        run: echo "FRED_API_KEY=${FRED_KEY}" > .env
+
+      - name: Build radar
+        run: python scripts/macro_radar.py --latest
+
+      - name: Commit latest radar
+        run: |
+          git config user.name "Deep-Risk Bot"
+          git config user.email "bot@deep-risk.dev"
+          git add macro_radar_latest.json macro_radar_latest.md
+          if git diff --staged --quiet; then
+            echo "No radar change — nothing to commit."
+            exit 0
+          fi
+          git commit -m "Weekly macro radar [$(date -u +%F)]"
+          git pull --rebase origin main
+          git push
+
