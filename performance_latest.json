@@ -8,9 +8,9 @@
  },
  "contract6": {
   "baseline_start": "2026-10-16",
-  "published": 3,
+  "published": 4,
   "measured": 1,
-  "completeness_pct": 33.3,
+  "completeness_pct": 25.0,
   "within_24h": 1,
   "within_7d": 1,
   "overdue_24h": 0,
@@ -28,7 +28,7 @@
   "follower_rate_pct": 0.0
  },
  "totals": {
-  "published": 9,
+  "published": 10,
   "measured": 3,
   "impressions": 1341,
   "engagements": 2,
@@ -39,7 +39,7 @@
  },
  "by_platform": {
   "LinkedIn": {
-   "published": 3,
+   "published": 4,
    "measured": 3,
    "impressions": 1341,
    "engagements": 2,
@@ -74,11 +74,11 @@
    "id": "018-gor008-en-linkedin",
    "publish_date": "2026-10-19",
    "platform": "LinkedIn",
-   "title": "GOR Pulse #008 — the floor gives way (two worlds)",
+   "title": "GOR Pulse #008 — the floor gives way (longfeed)",
    "piece": "018",
    "language": "EN",
    "scope": "contract",
-   "status": "planned",
+   "status": "pending",
    "impressions": null,
    "engagements": null,
    "followers": null,
@@ -89,7 +89,7 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "计划 10/19 08:00–09:00 BJT；v2 钩子：Citi $150 vs JPM Hormuz 正常化"
+   "note": "已发布 2026-10-19 22:09 BJT；首发 3m 15 曝光 / 0 互动 / 0 涨粉；24h due 10/20 22:09；7d due 10/26 22:09"
   },
   {
    "id": "017-siphon-cn-xueqiu",
@@ -281,27 +281,5 @@
    "note": "LinkedIn 官方 XLSX 导出（2026-10-18）"
   }
  ],
- "planned": [
-  {
-   "id": "018-gor008-en-linkedin",
-   "publish_date": "2026-10-19",
-   "platform": "LinkedIn",
-   "title": "GOR Pulse #008 — the floor gives way (two worlds)",
-   "piece": "018",
-   "language": "EN",
-   "scope": "contract",
-   "status": "planned",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
-   "overdue_24h": false,
-   "overdue_7d": false,
-   "note": "计划 10/19 08:00–09:00 BJT；v2 钩子：Citi $150 vs JPM Hormuz 正常化"
-  }
- ]
+ "planned": []
 }
