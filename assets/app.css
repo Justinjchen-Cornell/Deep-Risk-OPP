@@ -10,6 +10,8 @@ a{color:var(--blue);text-decoration:none}
 .links a.on{color:var(--gold);background:rgba(240,192,64,.08);box-shadow:inset 0 0 0 1px rgba(240,192,64,.3)}
 .gor-badge{color:var(--green);background:#064e3b;border:1px solid rgba(110,231,183,.35);padding:5px 10px;border-radius:6px;font-weight:700;font-size:11px}
 .gor-badge.alert{color:var(--amber);background:#452a03;border-color:rgba(251,191,36,.4)}
+.sub-btn{color:#05070d!important;background:var(--gold);padding:5px 11px!important;border-radius:6px;font-weight:800;white-space:nowrap}
+.sub-btn:hover{color:#05070d!important;background:#ffd45e}
 .wrap{max-width:1180px;margin:0 auto;padding:26px 22px}
 .hero{position:relative;text-align:center;padding:30px 20px 24px;margin-bottom:14px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,rgba(13,17,23,.9),rgba(10,14,22,.9));overflow:hidden}
 .hero::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}

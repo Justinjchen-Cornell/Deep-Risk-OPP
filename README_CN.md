@@ -1,30 +1,46 @@
 # Deep-Risk-OPP
 
+> **金油比 = 一个数字，告诉你油什么时候在历史上便宜。**
+> 每日宏观决策卡 · 公开审计 · 可证伪合同。
+
 <p align="center">
-  <img src="logo.png" alt="Deep-Risk-OPP" width="600">
+  <b>👉 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">看今日卡片</a></b>
+  &nbsp;|&nbsp;
+  <b>📮 <a href="https://buttondown.com/chenjia2007">免费订阅</a></b>
+  &nbsp;|&nbsp;
+  <b>📈 <a href="docs/track-record.md">公开记录</a></b>
 </p>
+
+<p align="center">
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">
+    <img src="docs/assets/dashboard-preview.png" alt="今日 GOR 决策卡" width="900">
+  </a>
+</p>
+
+<p align="center">
+  <sub>2026 年 6 月起每日更新 · 30 篇内容 · 1.37 万 LinkedIn 曝光 · 公开审计 · 可证伪合同</sub>
+</p>
+
+**给谁看：** 宏观投资者、能源交易员、家族办公室、想要“一个数字”而不是信息流的经营者。
+
+**你会得到：** 每天一张卡——GOR 区间、仓位、硬止损、恐慌门槛、合同进度——加每周复盘和公开记录。没有黑箱；每个阈值都在 `config.py`。
+
+> **诚实审计（2026-09）：** GOR ≥ 45 是**极端标记，不是概率规律**。方向成立，但独立情境 ≈ 2–3 个；恐慌是必要条件。详见 [`frameworks/01-GOR方向框架.md`](frameworks/01-GOR方向框架.md) · [完整审计](https://github.com/Justinjchen-Cornell/Quant-Modeling-Dojo)。
 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.11+-blue?logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/license-Apache 2.0-green" alt="License">
-  <img src="https://img.shields.io/badge/data-FRED%20%7C%20akshare%20%7C%20yfinance-orange" alt="Data">
-  <img src="https://img.shields.io/badge/Claude%20Code-skill-6A46D1" alt="Claude Code">
-  <img src="https://img.shields.io/badge/回测-2020–2026-ffa500" alt="Backtest">
-  <img src="https://img.shields.io/github/actions/workflow/status/Justinjchen-Cornell/Deep-Risk-OPP/daily.yml?label=data%20pipeline&logo=githubactions" alt="Data Pipeline">
-  <img src="https://img.shields.io/github/actions/workflow/status/Justinjchen-Cornell/Deep-Risk-OPP/watchdog.yml?label=watchdog&logo=githubactions" alt="Watchdog">
+  <img src="https://img.shields.io/badge/license-Apache%202.0-green" alt="License">
+  <img src="https://img.shields.io/github/actions/workflow/status/Justinjchen-Cornell/Deep-Risk-OPP/daily.yml?label=daily%20pipeline&logo=githubactions" alt="Data Pipeline">
 </p>
 
-> **在表层移动之前，看见危机。在人群涌入之前，发现机会。**
->
-> *See the crisis before the surface moves. Find the opportunity before the crowd arrives.*
->
-> 鸣谢：本框架的金油比理论基础来自卢麒元先生的宏观分析体系。资本三流框架借鉴了多位分析师的流动性分析框架。六大师映射是作者对六位投资大师公开言论的归纳。硬止损规则、风险修正器、Python 自动化管道和 Claude Code 集成由作者独立构建。所有数据来自公开 API（FRED、akshare、yfinance）。
->
-> **诚实审计更新（2026-09）**：我们对「45」主张做了 56 年全样本压力审计。方向成立，但证据比听上去薄——独立宏观情境只有 **2–3 个**（"历史"主要是 2020 和当下），且最强月份彼此重叠（照片数 ≠ 事件数）。结论：GOR≥45 是**极端标记，不是概率规律**；**恐慌是必要条件**（历史统计：恐慌期 82.6% 均值回归 vs 平静期 47.8%）。现在用该信号配油气前，先过**机制筛选器**：拆腿 · 恐慌签名 · 油迫近 → 🟢加仓 / 🟡观察 / 🔴该逻辑下不新建仓（v2.3 已上线）。详见 [`frameworks/01-GOR方向框架.md`](frameworks/01-GOR方向框架.md) ｜ 完整审计：[Quant-Modeling-Dojo](https://github.com/Justinjchen-Cornell/Quant-Modeling-Dojo)
-
-```
-GOR地震仪 → 资本流断层扫描 → 12个框架 → 6位大师 → 1张决策卡
-```
+<p align="center">
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/">🌐 主站</a> ·
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/zh/">🇨🇳 中文版</a> ·
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/en/">English</a> ·
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">📡 看板</a> ·
+  <a href="docs/track-record.md">📈 公开记录</a> ·
+  <a href="https://buttondown.com/chenjia2007">📮 订阅</a>
+</p>
 
 ---
 

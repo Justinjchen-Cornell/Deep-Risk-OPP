@@ -1,34 +1,45 @@
 # Deep-Risk-OPP
 
+> **Gold ÷ Oil = one number that tells you when oil is historically cheap.**
+> Daily macro decision card · public audit · falsifiable contract.
+
 <p align="center">
-  <img src="logo.png" alt="Deep-Risk-OPP" width="600">
+  <b>👉 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">See today's card</a></b>
+  &nbsp;|&nbsp;
+  <b>📮 <a href="https://buttondown.com/chenjia2007">Subscribe free</a></b>
+  &nbsp;|&nbsp;
+  <b>📈 <a href="docs/track-record.md">Track record</a></b>
 </p>
+
+<p align="center">
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">
+    <img src="docs/assets/dashboard-preview.png" alt="Today's GOR decision card" width="900">
+  </a>
+</p>
+
+<p align="center">
+  <sub>Daily since Jun 2026 · 30 posts · 13.7k LinkedIn impressions · public audit · falsifiable contract</sub>
+</p>
+
+**Who it's for:** macro investors, energy traders, family offices, and operators who want one number instead of a feed.
+
+**What you get:** one daily card — GOR zone, allocation, hard stops, panic gate, contract progress — plus a weekly recap and a public track record. No black box; every threshold is in `config.py`.
+
+> **Honesty audit (Sep 2026):** GOR ≥ 45 is a **tail marker, not a probability law**. The direction survives, but independent episodes ≈ 2–3; panic is the necessary condition. Details: [`frameworks/01-GOR方向框架.md`](frameworks/01-GOR方向框架.md) · [full audit](https://github.com/Justinjchen-Cornell/Quant-Modeling-Dojo).
 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.11+-blue?logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/license-Apache%202.0-blue" alt="License">
-  <img src="https://img.shields.io/badge/data-FRED%20%7C%20akshare%20%7C%20yfinance-orange" alt="Data">
-  <img src="https://img.shields.io/badge/Claude%20Code-skill-6A46D1" alt="Claude Code">
-  <img src="https://img.shields.io/badge/live-dashboard-brightgreen" alt="Live Dashboard">
-  <img src="https://img.shields.io/github/actions/workflow/status/Justinjchen-Cornell/Deep-Risk-OPP/daily.yml?label=data%20pipeline&logo=githubactions" alt="Data Pipeline">
-  <img src="https://img.shields.io/github/actions/workflow/status/Justinjchen-Cornell/Deep-Risk-OPP/watchdog.yml?label=watchdog&logo=githubactions" alt="Watchdog">
+  <img src="https://img.shields.io/github/actions/workflow/status/Justinjchen-Cornell/Deep-Risk-OPP/daily.yml?label=daily%20pipeline&logo=githubactions" alt="Data Pipeline">
 </p>
 
-> **One number that tells you when oil is historically cheap.**
-> **GOR = Gold ÷ Oil. When it crosses 45, history says oil rallies 54-167% within 12-24 months.**
->
-> **Honesty audit update (Sep 2026):** we stress-audited this claim against 56 years of data. The direction survives; the evidence is thinner than it sounds — only **~2–3 independent macro episodes** (the "history" is mostly 2020 and today), and the strongest sample months overlap each other. Verdict: GOR ≥ 45 is a **tail marker, not a probability law** — and **panic is the necessary condition** (history: 82.6% mean-reversion when the market was in fear vs 47.8% when it was calm). Sizing on this signal now runs a **mechanism screener** first — leg decomposition · panic signature · oil distress → 🟢 sized / 🟡 observe / 🔴 no new oil on this logic (shipped in v2.3). Details: [`frameworks/01-GOR方向框架.md`](frameworks/01-GOR方向框架.md) ｜ full audit: [Quant-Modeling-Dojo](https://github.com/Justinjchen-Cornell/Quant-Modeling-Dojo)
-
 <p align="center">
-  <b>🌐 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/">Live Site</a></b>
-  &nbsp;|&nbsp;
-  <b>🇨🇳 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/zh/">中文版</a></b>
-  &nbsp;|&nbsp;
-  <b>🌐 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/en/">English</a></b>
-  &nbsp;|&nbsp;
-  <b>📡 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">Dashboard</a></b>
-  &nbsp;|&nbsp;
-  <b>📈 <a href="docs/track-record.md">Track Record</a></b>
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/">🌐 Live Site</a> ·
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/zh/">🇨🇳 中文版</a> ·
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/en/">English</a> ·
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">📡 Dashboard</a> ·
+  <a href="docs/track-record.md">📈 Track Record</a> ·
+  <a href="https://buttondown.com/chenjia2007">📮 Subscribe</a>
 </p>
 
 ---
@@ -37,8 +48,8 @@
 
 **Deep-Risk-OPP** turns one ratio into a daily macro decision. It watches the Gold/Oil Ratio (GOR) as a seismograph for systemic stress, maps global capital flows as fault-line scans, and runs 12 decision frameworks + 6 legendary-investor mindsets through a priority engine — producing a single allocation card every day, published automatically to a public website. Two diagnostic appendices (stage layer, crisis checklist) explain the card without ever changing it.
 
-- **The claim**: GOR ≥ 45 has never failed to precede oil gains of 54-167% over the following 12-24 months (1998, 2008, 2016, 2020). *(Audited Sep 2026: direction holds; independent episodes ≈ 2–3 — see the honesty audit note above.)*
-- **The state (Aug 2026)**: GOR(WTI) = 53.8 — its 13th consecutive month above 45, the longest stretch in recorded history. Gold $4,454/oz, WTI $82.75.
+- **The claim (audited Sep 2026)**: GOR ≥ 45 has historically preceded large oil rallies, but the independent evidence is thinner than it sounds — treat it as a **tail marker, not a probability law**.
+- **The state (Oct 2026)**: GOR(WTI) = 41.11 — below 45 after five weeks of crossings; WTI $101.84, Gold $4,186.5, VIX 19.99.
 - **The output**: a live bilingual website updated daily by GitHub Actions. Zero black-box AI. Every threshold is in `config.py`.
 
 Acknowledgments: The gold-to-oil ratio theory derives from Mr. Lu Qiyuan's macro analysis system. The "Three Capital Flows" framework draws on liquidity models by various analysts. The "Six Masters Mapping" is the author's synthesis of six investors' public statements. Hard stops, risk modifiers, automation, and Claude Code integration are original work. Data: FRED, akshare, yfinance.
