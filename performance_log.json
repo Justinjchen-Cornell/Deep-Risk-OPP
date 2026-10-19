@@ -200,7 +200,7 @@
    "followers": null,
    "clicks": null,
    "measured_at": null,
-   "note": "已发布 2026-10-19 22:09 BJT；3m 15 → 6m 41 曝光 / 0 互动 / 0 涨粉；24h due 10/20 22:09；7d due 10/26 22:09",
+   "note": "已发布 2026-10-19 22:09 BJT；首评已挂；3m 15 → 6m 41 → 43m 85 曝光 / 1 评论（首评）/ 48 触达；24h due 10/20 22:09；7d due 10/26 22:09",
    "published_at": "2026-10-19T22:09+08:00",
    "snapshots": [
     {
@@ -220,8 +220,20 @@
      "comments": 0,
      "shares": 0,
      "followers": 0
+    },
+    {
+     "at": "2026-10-19T22:53+08:00",
+     "window": "43m",
+     "impressions": 85,
+     "likes": 0,
+     "comments": 1,
+     "shares": 0,
+     "followers": 0,
+     "members_reached": 48,
+     "profile_viewers": 0
     }
-   ]
+   ],
+   "first_comment_at": "2026-10-19T22:53+08:00"
   }
  ]
 }
