@@ -4,7 +4,7 @@
 > 每日宏观决策卡 · 公开审计 · 可证伪合同。
 
 <p align="center">
-  <b>👉 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">看今日卡片</a></b>
+  <b>👉 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/card.html">看今日卡片</a></b>
   &nbsp;|&nbsp;
   <b>📮 <a href="https://buttondown.com/chenjia2007">免费订阅</a></b>
   &nbsp;|&nbsp;
@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/card.html">
     <img src="docs/assets/dashboard-preview.png" alt="今日 GOR 决策卡" width="900">
   </a>
 </p>

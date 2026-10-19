@@ -4,7 +4,7 @@
 > Daily macro decision card · public audit · falsifiable contract.
 
 <p align="center">
-  <b>👉 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">See today's card</a></b>
+  <b>👉 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/card.html">See today's card</a></b>
   &nbsp;|&nbsp;
   <b>📮 <a href="https://buttondown.com/chenjia2007">Subscribe free</a></b>
   &nbsp;|&nbsp;
@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/card.html">
     <img src="docs/assets/dashboard-preview.png" alt="Today's GOR decision card" width="900">
   </a>
 </p>
