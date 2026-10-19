@@ -6,7 +6,7 @@
 <p align="center">
   <b>👉 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/card.html">See today's card</a></b>
   &nbsp;|&nbsp;
-  <b>📮 <a href="https://buttondown.com/chenjia2007">Subscribe free</a></b>
+  <b>📮 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/subscribe.html?utm_source=github&utm_medium=readme&utm_campaign=week2">Subscribe free</a></b>
   &nbsp;|&nbsp;
   <b>📈 <a href="docs/track-record.md">Track record</a></b>
 </p>
@@ -25,6 +25,8 @@
 
 **What you get:** one daily card — GOR zone, allocation, hard stops, panic gate, contract progress — plus a weekly recap and a public track record. No black box; every threshold is in `config.py`.
 
+**Free starter:** [2026 Q4 Crisis Checklist](https://justinjchen-cornell.github.io/Deep-Risk-OPP/crisis-checklist.html?utm_source=github&utm_medium=readme&utm_campaign=week2) — 10 pre-registered signals.
+
 > **Honesty audit (Sep 2026):** GOR ≥ 45 is a **tail marker, not a probability law**. The direction survives, but independent episodes ≈ 2–3; panic is the necessary condition. Details: [`frameworks/01-GOR方向框架.md`](frameworks/01-GOR方向框架.md) · [full audit](https://github.com/Justinjchen-Cornell/Quant-Modeling-Dojo).
 
 <p align="center">
@@ -39,7 +41,7 @@
   <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/en/">English</a> ·
   <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">📡 Dashboard</a> ·
   <a href="docs/track-record.md">📈 Track Record</a> ·
-  <a href="https://buttondown.com/chenjia2007">📮 Subscribe</a>
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/subscribe.html?utm_source=github&utm_medium=readme&utm_campaign=week2">📮 Subscribe</a>
 </p>
 
 ---
@@ -225,7 +227,7 @@ Never check the site again — let the signal come to you:
 
 | Channel | How |
 |---|---|
-| 📮 **Email** | [buttondown.com/chenjia2007](https://buttondown.com/chenjia2007) — one email every morning |
+| 📮 **Email** | [buttondown.com/chenjia2007](https://justinjchen-cornell.github.io/Deep-Risk-OPP/subscribe.html?utm_source=github&utm_medium=readme&utm_campaign=week2) — one email every morning |
 | 🔔 **RSS to email** | [follow.it/deep-risk-opp](https://follow.it/deep-risk-opp?leanpub) |
 | 📡 **Raw RSS** | [feed.xml](https://justinjchen-cornell.github.io/Deep-Risk-OPP/feed.xml) — any reader |
 | 📱 **PWA** | open the site on your phone → "Add to Home Screen" |

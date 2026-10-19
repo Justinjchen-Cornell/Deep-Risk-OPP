@@ -6,7 +6,7 @@
 <p align="center">
   <b>👉 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/card.html">看今日卡片</a></b>
   &nbsp;|&nbsp;
-  <b>📮 <a href="https://buttondown.com/chenjia2007">免费订阅</a></b>
+  <b>📮 <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/subscribe.html?utm_source=github&utm_medium=readme&utm_campaign=week2">免费订阅</a></b>
   &nbsp;|&nbsp;
   <b>📈 <a href="docs/track-record.md">公开记录</a></b>
 </p>
@@ -25,6 +25,8 @@
 
 **你会得到：** 每天一张卡——GOR 区间、仓位、硬止损、恐慌门槛、合同进度——加每周复盘和公开记录。没有黑箱；每个阈值都在 `config.py`。
 
+**免费起点：** [2026 Q4 危机检查表](https://justinjchen-cornell.github.io/Deep-Risk-OPP/crisis-checklist.html?utm_source=github&utm_medium=readme&utm_campaign=week2) — 10 项预注册信号。
+
 > **诚实审计（2026-09）：** GOR ≥ 45 是**极端标记，不是概率规律**。方向成立，但独立情境 ≈ 2–3 个；恐慌是必要条件。详见 [`frameworks/01-GOR方向框架.md`](frameworks/01-GOR方向框架.md) · [完整审计](https://github.com/Justinjchen-Cornell/Quant-Modeling-Dojo)。
 
 <p align="center">
@@ -39,7 +41,7 @@
   <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/en/">English</a> ·
   <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/dashboard.html">📡 看板</a> ·
   <a href="docs/track-record.md">📈 公开记录</a> ·
-  <a href="https://buttondown.com/chenjia2007">📮 订阅</a>
+  <a href="https://justinjchen-cornell.github.io/Deep-Risk-OPP/subscribe.html?utm_source=github&utm_medium=readme&utm_campaign=week2">📮 订阅</a>
 </p>
 
 ---
@@ -90,7 +92,7 @@
 
 | 渠道 | 方式 |
 |---|---|
-| 📮 **邮件** | [buttondown.com/chenjia2007](https://buttondown.com/chenjia2007) — 每天一封 |
+| 📮 **邮件** | [buttondown.com/chenjia2007](https://justinjchen-cornell.github.io/Deep-Risk-OPP/subscribe.html?utm_source=github&utm_medium=readme&utm_campaign=week2) — 每天一封 |
 | 🔔 **RSS 转邮件** | [follow.it/deep-risk-opp](https://follow.it/deep-risk-opp?leanpub) |
 | 📡 **原始 RSS** | [feed.xml](https://justinjchen-cornell.github.io/Deep-Risk-OPP/feed.xml) |
 | 📱 **安装到手机** | 手机浏览器打开站点 → "添加到主屏幕"（PWA） |

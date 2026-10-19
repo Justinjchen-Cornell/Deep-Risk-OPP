@@ -1,5 +1,5 @@
 /* Deep-Risk-OPP Service Worker — 数据与页面网络优先，静态资源缓存优先 */
-const CACHE = 'dr-v17';
+const CACHE = 'dr-v18';
 const DATA_FILES = ['gor_latest.json', 'capital_flows_latest.json', 'feed.xml',
                     'model_portfolio.json', 'performance_latest.json',
                     'macro_radar_latest.json'];

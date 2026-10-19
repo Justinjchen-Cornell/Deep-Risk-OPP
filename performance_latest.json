@@ -1,5 +1,5 @@
 {
- "as_of": "2026-10-19 22:56",
+ "as_of": "2026-10-20 00:33",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -13,7 +13,7 @@
   "completeness_pct": 25.0,
   "within_24h": 1,
   "within_7d": 1,
-  "overdue_24h": 0,
+  "overdue_24h": 2,
   "overdue_7d": 0,
   "status": "at_risk"
  },
@@ -71,6 +71,48 @@
  },
  "entries": [
   {
+   "id": "020-treasury-who-breaks-li",
+   "publish_date": "2026-10-22",
+   "platform": "LinkedIn",
+   "title": "Treasury yields 24-year high: who breaks first?",
+   "piece": "020",
+   "language": "EN",
+   "scope": "contract",
+   "status": "planned",
+   "impressions": null,
+   "engagements": null,
+   "followers": null,
+   "clicks": null,
+   "measured": false,
+   "measured_at": null,
+   "within_24h": false,
+   "within_7d": false,
+   "overdue_24h": false,
+   "overdue_7d": false,
+   "note": "Week 2 CTA post；lead magnet = Q4 checklist；计划 10/22"
+  },
+  {
+   "id": "019-gold-wrong-number-li",
+   "publish_date": "2026-10-20",
+   "platform": "LinkedIn",
+   "title": "Gold +64% is the wrong number",
+   "piece": "019",
+   "language": "EN",
+   "scope": "contract",
+   "status": "planned",
+   "impressions": null,
+   "engagements": null,
+   "followers": null,
+   "clicks": null,
+   "measured": false,
+   "measured_at": null,
+   "within_24h": false,
+   "within_7d": false,
+   "overdue_24h": false,
+   "overdue_7d": false,
+   "note": "Week 2 CTA post；lead magnet = Q4 checklist；计划 10/20"
+  },
+  {
    "id": "018-gor008-en-linkedin",
    "publish_date": "2026-10-19",
    "platform": "LinkedIn",
@@ -108,7 +150,7 @@
    "measured_at": null,
    "within_24h": false,
    "within_7d": false,
-   "overdue_24h": false,
+   "overdue_24h": true,
    "overdue_7d": false,
    "note": "待回填；发布后 24h / 7d 各一次"
   },
@@ -129,7 +171,7 @@
    "measured_at": null,
    "within_24h": false,
    "within_7d": false,
-   "overdue_24h": false,
+   "overdue_24h": true,
    "overdue_7d": false,
    "note": "待回填；发布后 24h / 7d 各一次"
   },
@@ -281,5 +323,48 @@
    "note": "LinkedIn 官方 XLSX 导出（2026-10-18）"
   }
  ],
- "planned": []
+ "planned": [
+  {
+   "id": "019-gold-wrong-number-li",
+   "publish_date": "2026-10-20",
+   "platform": "LinkedIn",
+   "title": "Gold +64% is the wrong number",
+   "piece": "019",
+   "language": "EN",
+   "scope": "contract",
+   "status": "planned",
+   "impressions": null,
+   "engagements": null,
+   "followers": null,
+   "clicks": null,
+   "measured": false,
+   "measured_at": null,
+   "within_24h": false,
+   "within_7d": false,
+   "overdue_24h": false,
+   "overdue_7d": false,
+   "note": "Week 2 CTA post；lead magnet = Q4 checklist；计划 10/20"
+  },
+  {
+   "id": "020-treasury-who-breaks-li",
+   "publish_date": "2026-10-22",
+   "platform": "LinkedIn",
+   "title": "Treasury yields 24-year high: who breaks first?",
+   "piece": "020",
+   "language": "EN",
+   "scope": "contract",
+   "status": "planned",
+   "impressions": null,
+   "engagements": null,
+   "followers": null,
+   "clicks": null,
+   "measured": false,
+   "measured_at": null,
+   "within_24h": false,
+   "within_7d": false,
+   "overdue_24h": false,
+   "overdue_7d": false,
+   "note": "Week 2 CTA post；lead magnet = Q4 checklist；计划 10/22"
+  }
+ ]
 }

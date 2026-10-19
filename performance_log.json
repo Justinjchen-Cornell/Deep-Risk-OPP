@@ -234,6 +234,42 @@
     }
    ],
    "first_comment_at": "2026-10-19T22:53+08:00"
+  },
+  {
+   "id": "019-gold-wrong-number-li",
+   "publish_date": "2026-10-20",
+   "platform": "LinkedIn",
+   "title": "Gold +64% is the wrong number",
+   "piece": "019",
+   "language": "EN",
+   "url": "",
+   "status": "planned",
+   "impressions": null,
+   "likes": null,
+   "comments": null,
+   "shares": null,
+   "followers": null,
+   "clicks": null,
+   "measured_at": null,
+   "note": "Week 2 CTA post；lead magnet = Q4 checklist；计划 10/20"
+  },
+  {
+   "id": "020-treasury-who-breaks-li",
+   "publish_date": "2026-10-22",
+   "platform": "LinkedIn",
+   "title": "Treasury yields 24-year high: who breaks first?",
+   "piece": "020",
+   "language": "EN",
+   "url": "",
+   "status": "planned",
+   "impressions": null,
+   "likes": null,
+   "comments": null,
+   "shares": null,
+   "followers": null,
+   "clicks": null,
+   "measured_at": null,
+   "note": "Week 2 CTA post；lead magnet = Q4 checklist；计划 10/22"
   }
  ]
 }
