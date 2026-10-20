@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-20 08:20",
-  "gor_brent": 38.13,
-  "gor_wti": 42.39,
+  "updated": "2026-10-21 07:52",
+  "gor_brent": 37.8,
+  "gor_wti": 42.03,
   "brent_source": "yahoo",
-  "brent_asof": "2026-10-20T00:09:07+00:00",
+  "brent_asof": "2026-10-20T23:40:42+00:00",
   "regime": "修复周期",
   "final_position": 30,
   "allocation": {
@@ -16,59 +16,59 @@
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=101.93 > 99 强美元压制",
+      "title": "DXY=101.78 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
       "level": "warning",
-      "title": "10Y=5.09% > 4.3% 高利率压制",
+      "title": "10Y=5.15% > 4.3% 高利率压制",
       "detail": "仓位-10%"
     }
   ],
   "screener": {
-    "d_gold": 0.0245,
-    "d_oil": 0.4905,
+    "d_gold": 0.0185,
+    "d_oil": 0.4933,
     "leg": "油腿主导",
     "s1": true,
-    "vix": 18.44,
+    "vix": 17.31,
     "vix_thr": 22.46,
     "s2": false,
-    "oil": 98.09,
-    "oil_pctl": 0.933,
+    "oil": 98.36,
+    "oil_pctl": 0.942,
     "s3": false,
     "npass": 1,
     "verdict": "红",
     "oil_cap_factor": 0.0,
-    "ts": "2026-10-20 00:20",
+    "ts": "2026-10-20 23:52",
     "history_last": "fetched"
   },
   "data": {
     "黄金期货": {
-      "price": 4158.5,
+      "price": 4133.9,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 98.09,
+      "price": 98.36,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 109.07,
+      "price": 109.35,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 101.93,
+      "price": 101.78,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
-      "price": 5.09,
+      "price": 5.15,
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 18.44,
+      "price": 17.31,
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.575,
+      "price": 6.609,
       "change_pct": 0.0
     }
   },
@@ -76,10 +76,10 @@
     "total": "收缩",
     "direction": "向心坍缩",
     "speed": "放缓",
-    "dxy": 101.93,
-    "vix": 18.44,
-    "tenyear": 5.09,
-    "thirtyyear": 5.43,
+    "dxy": 101.78,
+    "vix": 17.31,
+    "tenyear": 5.15,
+    "thirtyyear": 5.48,
     "fed_balance": 6.76,
     "m2": 23.34,
     "fed_rate": 3.88,
