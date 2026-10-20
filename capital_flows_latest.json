@@ -1,12 +1,12 @@
 {
-  "updated": "2026-10-19 07:12",
-  "week_of": "2026-10-18",
+  "updated": "2026-10-20 08:20",
+  "week_of": "2026-10-20",
   "data_source": "FRED (DGS10/DGS30/DTWEXBGS/VIXCLS/DFF/WALCL/M2SL) + akshare (commodities)",
   "bonds": {
-    "us_10y": 5.1,
+    "us_10y": 5.09,
     "us_30y": 5.43,
-    "us_5y": 4.85,
-    "spread_30y_10y": 0.33,
+    "us_5y": 4.84,
+    "spread_30y_10y": 0.34,
     "yield_curve": "陡峭化",
     "seesaw": {
       "treasury_vs_stocks": "科技股抛售→资金涌入国债（避险）",
@@ -59,7 +59,7 @@
     }
   },
   "oil_flows": {
-    "wti_price": 98.14,
+    "wti_price": 98.09,
     "spr_level": "3.7亿桶",
     "producer_discipline": "OPEC+减产·伊朗和平恢复出口"
   },
@@ -67,13 +67,13 @@
     "trend": "铜受强美元+科技股抛售压制·AI基建中长期看涨"
   },
   "fx_rates": {
-    "usdjpy": 158.34,
-    "usdkrw": 1342.13,
-    "usdcnh": 6.692,
-    "usdeur": 1.119
+    "usdjpy": 158.0,
+    "usdkrw": 1334.03,
+    "usdcnh": 6.686,
+    "usdeur": 1.123
   },
   "currency_flows": {
     "dxy_signal": "DXY=101.9>101=向心坍缩加速",
-    "dxy": 101.92
+    "dxy": 101.93
   }
 }
