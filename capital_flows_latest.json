@@ -1,24 +1,24 @@
 {
-  "updated": "2026-10-22 08:00",
+  "updated": "2026-10-23 07:59",
   "week_of": "2026-10-22",
   "data_source": "FRED (DGS10/DGS30/DTWEXBGS/VIXCLS/DFF/WALCL/M2SL) + akshare (commodities)",
   "bonds": {
     "us_10y": 5.13,
-    "us_30y": null,
+    "us_30y": 5.42,
     "us_5y": 4.88,
-    "spread_30y_10y": null,
-    "yield_curve": "陡峭化预警",
+    "spread_30y_10y": 0.29,
+    "yield_curve": "陡峭化",
     "seesaw": {
-      "treasury_vs_stocks": "正常",
+      "treasury_vs_stocks": "科技股抛售→资金涌入国债（避险）",
       "treasury_vs_gold": "国债与黄金同跌·现金为王信号增强",
       "credit_spread_warning": "正常"
     }
   },
   "central_banks": {
     "fed": {
-      "balance_sheet": "$7.3万亿（估算）",
-      "trend": "QT收缩中·Warsh鹰派",
-      "rate": "3.50-3.75%",
+      "balance_sheet": "$6.8万亿",
+      "trend": "QT收缩中",
+      "rate": "3.88%",
       "next_meeting": "2026年7月FOMC",
       "gold_reserves": "8,133吨"
     },
@@ -42,11 +42,11 @@
     }
   },
   "macro_fred": {
-    "fed_balance_trillion": null,
-    "m2_trillion": null,
-    "fed_rate_pct": null,
-    "dgs30_pct": null,
-    "net_interest_trillion": null
+    "fed_balance_trillion": 6.75,
+    "m2_trillion": 23.34,
+    "fed_rate_pct": 3.88,
+    "dgs30_pct": 5.42,
+    "net_interest_trillion": 1.28
   },
   "gold_flows": {
     "central_bank_purchases": {
@@ -59,7 +59,7 @@
     }
   },
   "oil_flows": {
-    "wti_price": 98.01,
+    "wti_price": 99.4,
     "spr_level": "3.7亿桶",
     "producer_discipline": "OPEC+减产·伊朗和平恢复出口"
   },
@@ -67,13 +67,13 @@
     "trend": "铜受强美元+科技股抛售压制·AI基建中长期看涨"
   },
   "fx_rates": {
-    "usdjpy": null,
-    "usdkrw": null,
-    "usdcnh": null,
-    "usdeur": null
+    "usdjpy": 158.0,
+    "usdkrw": 1334.03,
+    "usdcnh": 6.686,
+    "usdeur": 1.123
   },
   "currency_flows": {
-    "dxy_signal": "DXY=101.7>101=向心坍缩加速",
-    "dxy": 101.67
+    "dxy_signal": "DXY=101.6>101=向心坍缩加速",
+    "dxy": 101.58
   }
 }
