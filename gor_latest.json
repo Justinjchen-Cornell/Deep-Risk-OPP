@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-21 07:52",
-  "gor_brent": 37.8,
-  "gor_wti": 42.03,
+  "updated": "2026-10-22 08:00",
+  "gor_brent": 37.66,
+  "gor_wti": 42.26,
   "brent_source": "yahoo",
-  "brent_asof": "2026-10-20T23:40:42+00:00",
+  "brent_asof": "2026-10-21T23:49:24+00:00",
   "regime": "修复周期",
   "final_position": 30,
   "allocation": {
@@ -16,74 +16,74 @@
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=101.78 > 99 强美元压制",
+      "title": "DXY=101.67 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
       "level": "warning",
-      "title": "10Y=5.15% > 4.3% 高利率压制",
+      "title": "10Y=5.13% > 4.3% 高利率压制",
       "detail": "仓位-10%"
     }
   ],
   "screener": {
-    "d_gold": 0.0185,
-    "d_oil": 0.4933,
-    "leg": "油腿主导",
-    "s1": true,
-    "vix": 17.31,
-    "vix_thr": 22.46,
-    "s2": false,
-    "oil": 98.36,
-    "oil_pctl": 0.942,
-    "s3": false,
-    "npass": 1,
-    "verdict": "红",
-    "oil_cap_factor": 0.0,
-    "ts": "2026-10-20 23:52",
+    "d_gold": null,
+    "d_oil": null,
+    "leg": null,
+    "s1": null,
+    "vix": 16.68,
+    "vix_thr": null,
+    "s2": null,
+    "oil": 98.01,
+    "oil_pctl": null,
+    "s3": null,
+    "npass": null,
+    "verdict": "数据不足",
+    "oil_cap_factor": null,
+    "ts": "2026-10-22 00:00",
     "history_last": "fetched"
   },
   "data": {
     "黄金期货": {
-      "price": 4133.9,
+      "price": 4142.2,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 98.36,
+      "price": 98.01,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 109.35,
+      "price": 109.98,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 101.78,
+      "price": 101.67,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
-      "price": 5.15,
+      "price": 5.13,
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 17.31,
+      "price": 16.68,
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.609,
+      "price": 6.545,
       "change_pct": 0.0
     }
   },
   "capital_three_flows": {
-    "total": "收缩",
+    "total": "数据缺失",
     "direction": "向心坍缩",
     "speed": "放缓",
-    "dxy": 101.78,
-    "vix": 17.31,
-    "tenyear": 5.15,
-    "thirtyyear": 5.48,
-    "fed_balance": 6.76,
-    "m2": 23.34,
-    "fed_rate": 3.88,
-    "warsh_alert": true
+    "dxy": 101.67,
+    "vix": 16.68,
+    "tenyear": 5.13,
+    "thirtyyear": null,
+    "fed_balance": null,
+    "m2": null,
+    "fed_rate": null,
+    "warsh_alert": null
   },
   "ashare_hedge": {
     "enabled": false,
@@ -91,19 +91,26 @@
     "trigger": "A股<10%无需对冲"
   },
   "data_quality": {
-    "ok": true,
-    "degraded_fields": [],
-    "fallbacks": {},
+    "ok": false,
+    "degraded_fields": [
+      "30Y美债收益率",
+      "联邦基金利率",
+      "美联储资产负债表",
+      "M2货币供应"
+    ],
+    "fallbacks": {
+      "10Y": "akshare"
+    },
     "sources": {
       "黄金": "akshare GC",
       "WTI": "akshare CL",
       "布伦特": "Yahoo BZ=F",
       "铜": "akshare HG",
-      "10Y": "FRED",
+      "10Y": "akshare",
       "DXY": "yfinance",
       "VIX": "cboe"
     },
     "warnings": [],
-    "note": "全部数据源正常"
+    "note": "部分数据源缺失或降级，相关判断可能不可靠"
   }
 }
