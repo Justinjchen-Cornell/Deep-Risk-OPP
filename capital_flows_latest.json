@@ -1,6 +1,6 @@
 {
-  "updated": "2026-10-24 07:52",
-  "week_of": "2026-10-23",
+  "updated": "2026-10-25 07:13",
+  "week_of": "2026-10-24",
   "data_source": "FRED (DGS10/DGS30/DTWEXBGS/VIXCLS/DFF/WALCL/M2SL) + akshare (commodities)",
   "bonds": {
     "us_10y": 4.96,
@@ -74,6 +74,6 @@
   },
   "currency_flows": {
     "dxy_signal": "DXY=101.8>101=向心坍缩加速",
-    "dxy": 101.75
+    "dxy": 101.81
   }
 }
