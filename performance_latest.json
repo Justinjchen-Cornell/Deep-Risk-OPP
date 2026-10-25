@@ -1,5 +1,5 @@
 {
- "as_of": "2026-10-25 07:13",
+ "as_of": "2026-10-26 07:17",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -14,8 +14,8 @@
   "within_24h": 1,
   "within_7d": 1,
   "overdue_24h": 3,
-  "overdue_7d": 0,
-  "status": "at_risk"
+  "overdue_7d": 2,
+  "status": "breach"
  },
  "backfill": {
   "published": 6,
@@ -151,7 +151,7 @@
    "within_24h": false,
    "within_7d": false,
    "overdue_24h": true,
-   "overdue_7d": false,
+   "overdue_7d": true,
    "note": "待回填；发布后 24h / 7d 各一次"
   },
   {
@@ -172,7 +172,7 @@
    "within_24h": false,
    "within_7d": false,
    "overdue_24h": true,
-   "overdue_7d": false,
+   "overdue_7d": true,
    "note": "待回填；发布后 24h / 7d 各一次"
   },
   {

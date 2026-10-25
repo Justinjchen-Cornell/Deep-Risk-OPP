@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-25 07:13",
-  "gor_brent": 35.9,
-  "gor_wti": 38.77,
+  "updated": "2026-10-26 07:16",
+  "gor_brent": 36.21,
+  "gor_wti": 39.21,
   "brent_source": "yahoo",
-  "brent_asof": "2026-10-23T20:59:19+00:00",
+  "brent_asof": "2026-10-25T23:06:33+00:00",
   "regime": "修复周期",
   "final_position": 30,
   "allocation": {
@@ -27,19 +27,19 @@
   ],
   "screener": {
     "d_gold": -0.012,
-    "d_oil": 0.5435,
+    "d_oil": 0.5322,
     "leg": "油腿主导",
     "s1": true,
     "vix": 19.45,
     "vix_thr": 22.46,
     "s2": false,
-    "oil": 103.43,
+    "oil": 102.27,
     "oil_pctl": 0.975,
     "s3": false,
     "npass": 1,
     "verdict": "红",
     "oil_cap_factor": 0.0,
-    "ts": "2026-10-24 23:13",
+    "ts": "2026-10-25 23:16",
     "history_last": "fetched"
   },
   "data": {
@@ -48,11 +48,11 @@
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 103.43,
+      "price": 102.27,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 111.7,
+      "price": 110.74,
       "change_pct": 0.0
     },
     "美元指数DXY": {
@@ -68,7 +68,7 @@
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.4975,
+      "price": 6.4945,
       "change_pct": 0.0
     }
   },
