@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Next Supercycle Is a Collateral Story｜Deep-Risk-OPP</title>
+<style>
+:root{
+  --navy:#0B1F33; --gold:#C9A227; --copper:#B87333; --teal:#1F6F78;
+  --red:#B23A2E; --gray:#8A8F98; --soft:#F6F3EC; --line:#E3DED2;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  font-size:9.5pt; line-height:1.60; color:#1A2433;
+}
+p{margin:0 0 2.5mm 0; text-align:justify}
+h1{font-family:Georgia,"Times New Roman",serif; font-size:21pt; line-height:1.25; margin:1mm 0 3.2mm 0; color:var(--navy); font-weight:700; letter-spacing:-0.3pt}
+h2{font-family:Georgia,"Times New Roman",serif; font-size:12.8pt; margin:5.0mm 0 2.0mm 0; color:var(--navy); border-left:3pt solid var(--gold); padding-left:3mm; page-break-after:avoid}
+h3{font-size:10.4pt; margin:3.5mm 0 1.1mm 0; color:var(--copper); page-break-after:avoid}
+h4{font-size:9.5pt; margin:0 0 1.6mm 0; color:var(--navy)}
+.lead{font-size:10.8pt; color:#3A4552; line-height:1.76}
+.section{page-break-before:always}
+.section.first{page-break-before:auto}
+.section-head{display:flex; align-items:flex-end; gap:5mm; border-bottom:1.2pt solid var(--navy); padding-bottom:2.6mm; margin-bottom:3.8mm}
+.section-num{font-family:Georgia,serif; font-size:29pt; font-weight:800; color:var(--gold); line-height:1; letter-spacing:-1pt}
+.kicker{font-size:7.4pt; letter-spacing:1.6pt; color:var(--gray); text-transform:uppercase}
+.kpi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; margin:4mm 0}
+.kpi{background:var(--soft); border-top:2pt solid var(--gold); padding:3.2mm 3.2mm 2.8mm}
+.kpi .v{font-family:Georgia,serif; font-size:14.5pt; font-weight:700; color:var(--navy); line-height:1.25}
+.kpi .l{font-size:7.6pt; color:var(--gray); margin-top:0.8mm}
+.callout{background:linear-gradient(90deg,#F6F3EC 0%,#FBF9F4 100%); border-left:3pt solid var(--gold); padding:3.4mm 4.2mm; margin:3.4mm 0; page-break-inside:avoid}
+.callout .t{font-size:7.4pt; letter-spacing:1pt; color:var(--copper); font-weight:700; margin-bottom:1.1mm; text-transform:uppercase}
+.callout p{margin:0; font-size:9.6pt}
+.callout.warn{border-left-color:var(--red); background:#FAF1EF}
+.callout.warn .t{color:var(--red)}
+figure{margin:3.0mm 0; page-break-inside:avoid}
+figure img{width:100%; display:block; border:0.5pt solid var(--line)}
+figcaption{font-size:7.6pt; color:var(--gray); margin-top:1.1mm; line-height:1.48}
+figcaption b{color:var(--navy)}
+table{width:100%; border-collapse:collapse; font-size:8.0pt; margin:2.8mm 0; page-break-inside:avoid; line-height:1.42}
+th{background:var(--navy); color:#fff; font-weight:600; text-align:left; padding:1.75mm 1.75mm}
+td{border-bottom:0.5pt solid var(--line); padding:1.75mm 1.75mm; vertical-align:top}
+tr:nth-child(even) td{background:#FAF8F2}
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:5mm; page-break-inside:avoid}
+.box{border:0.6pt solid var(--line); padding:3.6mm 4mm; background:#FCFBF7}
+.box h4{font-size:9.4pt; margin-bottom:1.4mm}
+ul{margin:1mm 0 2.8mm 0; padding-left:5mm}
+li{margin-bottom:1mm}
+.small{font-size:7.9pt; color:var(--gray)}
+.footer-note{font-size:7.5pt; color:var(--gray); border-top:0.5pt solid var(--line); padding-top:2mm; margin-top:4mm}
+.toc-list{margin:2mm 0 0 0; padding:0; list-style:none}
+.toc-list li{display:flex; align-items:baseline; gap:4mm; padding:2.2mm 0; border-bottom:0.5pt solid var(--line); font-size:10pt}
+.toc-list .n{font-family:Georgia,serif; font-size:13pt; font-weight:800; color:var(--gold); width:10mm}
+.toc-list .t{font-weight:600; color:var(--navy)}
+.toc-list .d{color:var(--gray); font-size:8.2pt; margin-left:auto; text-align:right}
+.quote{font-family:Georgia,serif; font-size:12pt; color:var(--navy); font-weight:600; line-height:1.65; border-left:3pt solid var(--copper); padding-left:4mm; margin:4mm 0}
+.center{text-align:center}
+.muted{color:var(--gray)}
+.visual{background:#FCFBF7; border:0.6pt solid var(--line); padding:3mm; margin:4mm 0; page-break-inside:avoid}
+.visual img{width:100%; display:block}
+.visual figcaption{font-size:7.8pt; color:var(--gray); margin-top:1.2mm; line-height:1.5}
+.visual figcaption b{color:var(--navy)}
+.visual-grid{display:grid; grid-template-columns:1fr; gap:4mm}
+.visual-grid .visual{margin:0}
+.visual-pair{page-break-inside:avoid; page-break-after:always; margin:0}
+.visual-pair .visual{margin:0 0 3mm 0}
+.visual-pair:last-child{page-break-after:auto}
+.visual-tag{display:inline-block; font-size:7pt; letter-spacing:1.2pt; color:var(--copper); border:0.5pt solid var(--copper); padding:0.5mm 1.8mm; margin-bottom:2mm; text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<!-- ================= EXEC SUMMARY ================= -->
+<section class="section first">
+  <div class="kicker">DEEP-RISK-OPP · SPECIAL REPORT · 2026-10-25</div>
+  <h1 style="margin-top:3mm">The next supercycle is a collateral story</h1>
+  <p class="lead">The next commodity supercycle is not a demand forecast. It is a collateral story. AI capex is creating a new credit cycle, and its collateral is physical: power, data centers, copper, and the grid. The US is re-anchoring its credit system from <strong>“Treasuries + oil”</strong> to <strong>“Treasuries + energy + compute.”</strong> That is not a dollar reset. It is a collateral shift — slower, messier, and more investable.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi"><div class="v">38.77</div><div class="l">GOR (WTI) · 2026-10-25</div></div>
+    <div class="kpi"><div class="v">$103.43</div><div class="l">WTI · $/bbl</div></div>
+    <div class="kpi"><div class="v">$4,009.5</div><div class="l">Gold · $/oz</div></div>
+    <div class="kpi"><div class="v">$14,473</div><div class="l">Copper · $/t (Sep 2026)</div></div>
+  </div>
+
+  <h2>Five things to know</h2>
+  <ul>
+    <li><strong>Three clocks, three speeds.</strong> Productivity runs in years, credit in quarters, supply in decades. A supercycle happens when they overlap — not when one looks exciting.</li>
+    <li><strong>The US physical bottleneck is real.</strong> US data-center electricity was 176 TWh in 2023 (4.4% of US power) and is projected at 325–580 TWh by 2028 (LBNL). Retail electricity prices are up ~45% since 2020 (FRED APU000072610: 13.5¢ → 19.6¢/kWh). About 2,600 GW sits in US interconnection queues (LBNL).</li>
+    <li><strong>Energy is tight in liquids, loose in gas.</strong> EIA inventories: crude 5th percentile, distillate 7th, gasoline 1st, SPR 0th, Cushing 64th. Natural-gas storage is 89th percentile — the constraint is turbines, transformers, and interconnection, not molecules.</li>
+    <li><strong>The US credit layer is already pricing it.</strong> Data-center project finance is $106B YTD vs $37B in all of 2025. AI HY spreads are 360bp; CCC is 1,340bp; data-center HY bonds have fallen from 101 to ~95.</li>
+    <li><strong>The trade can be right; the regime is not confirmed.</strong> The card is 30% invested, 58% cash. Watch data-center cash flow, copper TC/RC, and credit spreads — not the headline.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="t">What this report is — and is not</div>
+    <p>It is a falsifiable map of the US AI–power–copper–credit chain. It is <strong>not</strong> a price target, a China macro report, or a prediction of a dollar collapse. China appears only as a contrast: a state-led version of the same physical buildout, smaller and narrower than its property boom.</p>
+  </div>
+
+  <div class="two-col" style="margin-top:4mm">
+    <div class="box"><h4>The chain</h4><p class="small">AI capex → data centers → power → copper → credit → collateral. The bottleneck moves from chips to electrons to permits.</p></div>
+    <div class="box"><h4>The falsifier</h4><p class="small">If AI HY &gt;450bp and data-center cash flow disappoints, the collateral story breaks — regardless of the long-term copper story.</p></div>
+  </div>
+
+  <p class="small" style="margin-top:5mm"><strong>Contents:</strong> 01 Three clocks · 02 The US physical bottleneck · 03 The US credit layer · 04 China, briefly · 05 Scenarios · 06 The dashboard · A Data and sources</p>
+</section>
+
+<!-- ================= VISUAL SUMMARY ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">00</div>
+    <div><div class="kicker">VISUAL SUMMARY</div><h1>Commodity supercycle &amp; collateral re-anchoring</h1></div>
+  </div>
+  <span class="visual-tag">Visual summary · not a data chart</span>
+  <figure class="visual">
+    <img src="{{FIG:visual_02.jpg}}" alt="Commodity supercycle and collateral re-anchoring">
+    <figcaption><b>Visual summary.</b> Gold, WTI, and copper prices; the US market-led model (energy + compute collateral, data-center cash flow, public/private credit) versus China’s state-led model (state assets, SOE assets, policy finance). Data as of 2026-10-25.</figcaption>
+  </figure>
+  <div class="two-col" style="margin-top:5mm">
+    <div class="box"><h4>Read this as</h4><p class="small">A one-page map of the report: the physical prices on top, the two collateral models below. The rest of the report tests whether the cash flows behind the US model are real.</p></div>
+    <div class="box"><h4>Do not read this as</h4><p class="small">A forecast. The prices are snapshots; the models are scenarios. The falsifiable tests are in Sections 05–06 and the appendix.</p></div>
+  </div>
+
+  <h2 style="margin-top:6mm">Report map</h2>
+  <table>
+    <thead><tr><th style="width:12%">Section</th><th style="width:44%">Question it answers</th><th>Key output</th></tr></thead>
+    <tbody>
+      <tr><td><strong>01</strong></td><td>Why now? What are the three cycles?</td><td>Three clocks: productivity, credit, supply</td></tr>
+      <tr><td><strong>02</strong></td><td>Where is the US physical bottleneck?</td><td>Power, energy inventories, copper</td></tr>
+      <tr><td><strong>03</strong></td><td>Who finances it, and at what price?</td><td>Data-center finance, credit spreads, Treasury</td></tr>
+      <tr><td><strong>04</strong></td><td>What is China’s role?</td><td>A state-led contrast, not the main story</td></tr>
+      <tr><td><strong>05–06</strong></td><td>What are the scenarios and triggers?</td><td>Copper/gold/credit map; falsifiable dashboard</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= 01 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">01</div>
+    <div><div class="kicker">THE SETUP</div><h1>Three clocks, three speeds</h1></div>
+  </div>
+
+  <p class="lead">The last commodity supercycle was built on China’s WTO integration: factories, ports, housing, steel. The next one, if it comes, is being built on AI infrastructure: power, data centers, copper. The common thread is not “demand” — it is <strong>demand growing faster than supply can respond, for long enough to matter.</strong></p>
+
+  <h2>1.1 The last supercycle: demand outran supply</h2>
+  <p>China’s 2001 WTO entry did not create a sudden comparative advantage; it reduced the uncertainty around trade rules, which made global companies more willing to build factories and supply chains in China. Manufacturing reallocated, emerging consumers got cheaper goods, and China had to build factories, ports, roads, grids, and housing. Those activities require steel, copper, aluminum, and energy.</p>
+  <p>Demand rose within a few years. Supply could not. Mines and energy projects take years to permit and build. When prices were high, miners invested; when those mines came online around 2011, China’s property and infrastructure demand was slowing. The result was a classic cobweb cycle: investment at the top, supply at the bottom. S&amp;P Global data show the global nonferrous exploration budget fell from ~$21.5B in 2012 as the industry retrenched.</p>
+
+  <h2>1.2 AI: capex first, productivity later</h2>
+  <p>AI is not WTO. WTO reallocated labor and manufacturing; AI automates information processing and changes workflows. But the timing has a familiar shape: <strong>the capex arrives before the productivity.</strong> Before AI shows up in aggregate growth, companies must build servers, data centers, power generation, and transmission. The IEA expects global data-center electricity use to rise from ~415 TWh in 2024 to ~945 TWh in 2030.</p>
+  <p>That capex is financeable. Data centers produce recurring cash flow — rent, cloud services, long-term contracts — and that cash flow can support asset values and debt. The mechanism is closer to infrastructure than to a dot-com story, provided the cash flow is real. That “provided” is the whole report.</p>
+
+  <div class="callout">
+    <div class="t">Key judgment</div>
+    <p>AI demand is <strong>narrower</strong> than China’s WTO/property boom. It pulls power, copper, cooling, chips, and grid equipment — not steel, cement, appliances, local services, and broad consumer demand. This is a <strong>narrow supercycle</strong>, not a repeat of 2001–2011.</p>
+  </div>
+
+  <h2>1.3 Three clocks, three speeds</h2>
+  <p>Productivity runs in years. Credit runs in quarters. Supply runs in decades. Financial markets can reprice risk in weeks; AI adoption may take years; a large mine can take 10–17 years. A supercycle requires the three to overlap.</p>
+
+  <span class="visual-tag">Visual summary · not a data chart</span>
+  <figure class="visual">
+    <img src="{{FIG:visual_03.jpg}}" alt="Three cycles, three speeds">
+    <figcaption><b>Figure 1｜Three cycles, three speeds.</b> Mining supply 10–17 years, AI productivity 3–7 years, data-center credit 1–3 years. A supercycle happens when they overlap; the timing mismatch is the source of volatility.</figcaption>
+  </figure>
+
+  <table>
+    <thead><tr><th style="width:16%">Clock</th><th style="width:12%">Speed</th><th style="width:34%">Bottleneck</th><th>What to watch</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Productivity</strong><br><span class="small">AI adoption</span></td><td>3–7 yrs</td><td>Workflow change, job displacement, demand diffusion; productivity gains must become revenue and wages</td><td>Data-center occupancy, PPAs, actual power demand, enterprise AI revenue/cost savings, capex follow-through</td></tr>
+      <tr><td><strong>Credit</strong><br><span class="small">Data-center finance</span></td><td>1–3 yrs</td><td>Can data centers finance themselves with operating cash flow, not future expectations? ABS/project-finance spreads</td><td>Data-center ABS/project finance, AI HY, CCC/HY, bank credit, refinancing windows</td></tr>
+      <tr><td><strong>Physical supply</strong><br><span class="small">Mining</span></td><td>10–17 yrs</td><td>Copper grade decline, permitting, capex discipline, smelter/concentrate mismatch</td><td>Copper TC/RCs, exchange inventories, mine approvals, exploration budgets, project ramp-ups</td></tr>
+    </tbody>
+  </table>
+
+  <h2>1.4 Supply: the slowest clock</h2>
+  <p>Copper is the cleanest example. The IEA estimates that average copper mine grade has fallen ~40% since 1991, and a new mine takes ~17 years from discovery to production. S&amp;P Global data show 2026 copper exploration budgets up 32% to ~$4.3B — the highest since 2012. The industry is responding to price, but exploration is not production; the lag is the point.</p>
+  <p>One nuance: low copper TC/RCs reflect tightness between mined concentrate and smelter capacity. That is not the same as an equally tight refined-copper market. The real test is inventories, TC/RCs, and the mine ramp-up curve — not a single price or spread.</p>
+
+  <div class="callout warn">
+    <div class="t">Do not confuse “long-term right” with “short-term safe”</div>
+    <p>If AI financing contracts, leverage unwinds, or real demand weakens, commodities can fall sharply even with long-term supply constraints. <strong>Long-term supply does not protect against a short-term credit hit.</strong></p>
+  </div>
+</section>
+
+<!-- ================= 02 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">02</div>
+    <div><div class="kicker">THE PHYSICAL BOTTLENECK</div><h1>The US is short of electrons and copper</h1></div>
+  </div>
+
+  <p class="lead">The US is not running out of ideas. It is running out of electrons, copper, and patience with permitting. AI capex is colliding with a grid that was built for a flatter demand world — and with a copper supply chain that takes decades to respond.</p>
+
+  <h2>2.1 Power: the binding constraint</h2>
+  <p>US data centers consumed about <strong>176 TWh in 2023</strong>, or 4.4% of US electricity. The Lawrence Berkeley National Laboratory (LBNL) projects <strong>325–580 TWh by 2028</strong>, or 6.7–12% of US power. That is a 2–3x increase in five years, in a system where load growth had been roughly flat for two decades.</p>
+  <p>The price signal is already visible. The BLS average US retail electricity price (FRED: <strong>APU000072610</strong>) rose from 13.5¢/kWh in 2020 to <strong>19.6¢/kWh</strong> in September 2026 — a ~45% increase. The bottleneck is not just generation: LBNL estimates about <strong>2,600 GW</strong> of generation and storage sits in US interconnection queues, roughly twice the installed US fleet. Turbines, transformers, transmission, and permits are the slow variables.</p>
+  <p>Natural gas is not the constraint. EIA storage (series <strong>NW2_EPG0_SWO_R48_BCF</strong>) is <strong>3,644 Bcf</strong>, in the <strong>89th percentile</strong> of the last five years. Henry Hub (FRED: <strong>DHHNGSP</strong>) averaged about $3.47/MMBtu in 2026. The molecules are there; the infrastructure to turn them into delivered power is not.</p>
+
+  <figure>
+    <img src="{{FIG:en_us_dc_power.png}}" alt="US data-center electricity">
+    <figcaption><b>Figure 2｜US data-center electricity: 176 TWh (2023) → 325–580 TWh (2028E).</b> LBNL’s low/high case; midpoint ~453 TWh. This is the single most important physical number in the AI trade.</figcaption>
+  </figure>
+
+  <div class="kpi-grid" style="margin-top:3mm">
+    <div class="kpi"><div class="v">2–3x</div><div class="l">US data-center electricity, 2023→2028E</div></div>
+    <div class="kpi"><div class="v">2,600 GW</div><div class="l">US interconnection queue</div></div>
+    <div class="kpi"><div class="v">89th pct</div><div class="l">Natural-gas storage</div></div>
+    <div class="kpi"><div class="v">19.6¢</div><div class="l">US retail power, Sep 2026</div></div>
+  </div>
+
+  <figure>
+    <img src="{{FIG:en_us_power_prices.png}}" alt="US power prices and natural gas">
+    <figcaption><b>Figure 3｜Power prices are rising; gas molecules are not scarce.</b> Left: BLS average US retail electricity price, 13.5¢ (2020) → 19.6¢/kWh (Sep 2026), +45% (FRED APU000072610). Right: Henry Hub monthly average, ~$3.47/MMBtu in 2026 (FRED DHHNGSP); EIA gas storage is 89th percentile.</figcaption>
+  </figure>
+
+  <h2>2.2 Energy: tight in liquids, loose in gas</h2>
+  <p>The EIA weekly data tell a split story. Commercial crude inventories are <strong>412.5 million barrels</strong>, the <strong>5th percentile</strong> of the last five years (series WCESTUS1). Distillate is <strong>104.3 million</strong> (7th, WDISTUS1); gasoline is <strong>205.3 million</strong> (1st, WGTSTUS1); the Strategic Petroleum Reserve is <strong>282.7 million</strong> (0th, WCSSTUS1). Cushing is the exception at <strong>27.6 million</strong> (64th, W_EPC0_SAX_YCUOK_MBBL).</p>
+  <p>US crude production is <strong>13.27 million b/d</strong> (WCRFPUS2), exports are <strong>3.44 million b/d</strong> (WCREXUS2), and refinery utilization is <strong>93.4%</strong> (WPULEUS3). The physical market is tight in the products that matter for transportation and industry — but not uniformly tight. The EIA STEO (October 2026) has Brent at <strong>$111</strong> in October 2026, <strong>$90</strong> by April 2027, and <strong>$72</strong> by December 2027, a reminder that “tight” is not the same as “$150.”</p>
+
+  <figure>
+    <img src="{{FIG:en_eia_seasonal.png}}" alt="EIA seasonal inventories">
+    <figcaption><b>Figure 4｜US energy inventories: tight in liquids, loose in gas.</b> EIA weekly data, week ending 2026-10-16; gray lines 2021–2025, orange 2026. Crude 5th percentile, distillate 7th, gasoline 1st, natural gas 89th. Units: million barrels (liquids), Bcf (gas).</figcaption>
+  </figure>
+
+  <table>
+    <thead><tr><th style="width:30%">EIA weekly metric</th><th style="width:20%">Latest</th><th style="width:16%">5-yr percentile</th><th>Series ID</th></tr></thead>
+    <tbody>
+      <tr><td>Commercial crude stocks</td><td><strong>412.5 mn bbl</strong></td><td>5.0%</td><td>WCESTUS1</td></tr>
+      <tr><td>Distillate stocks</td><td><strong>104.3 mn bbl</strong></td><td>6.9%</td><td>WDISTUS1</td></tr>
+      <tr><td>Gasoline stocks</td><td><strong>205.3 mn bbl</strong></td><td>1.1%</td><td>WGTSTUS1</td></tr>
+      <tr><td>Strategic Petroleum Reserve</td><td><strong>282.7 mn bbl</strong></td><td>0.0%</td><td>WCSSTUS1</td></tr>
+      <tr><td>Cushing stocks</td><td><strong>27.6 mn bbl</strong></td><td>63.6%</td><td>W_EPC0_SAX_YCUOK_MBBL</td></tr>
+      <tr><td>Crude production</td><td><strong>13.27 mn b/d</strong></td><td>53.3%</td><td>WCRFPUS2</td></tr>
+      <tr><td>Crude exports</td><td><strong>3.44 mn b/d</strong></td><td>26.1%</td><td>WCREXUS2</td></tr>
+      <tr><td>Refinery utilization</td><td><strong>93.4%</strong></td><td>72.4%</td><td>WPULEUS3</td></tr>
+      <tr><td>Natural-gas storage (48 states)</td><td><strong>3,644 Bcf</strong></td><td>88.9%</td><td>NW2_EPG0_SWO_R48_BCF</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2.3 Copper: the supply chain cannot hurry</h2>
+  <p>Copper is the purest “narrow supercycle” metal. The IEA estimates average mine grade has fallen ~40% since 1991; a new mine takes ~17 years from discovery to production. S&amp;P Global data show 2026 copper exploration budgets up 32% to ~$4.3B, the highest since 2012 — but exploration is not production.</p>
+  <p>FRED’s monthly global copper price (<strong>PCOPPUSDM</strong>) rose from ~$12,987/t in January 2026 to <strong>$14,473/t</strong> in September 2026 (+11.4%). The US is structurally short: it imports roughly half of its copper (USGS), and a new US mine can take a decade or more to permit. Low TC/RCs reflect concentrate tightness, not necessarily an equally tight refined market — watch inventories and the mine ramp-up curve.</p>
+
+  <figure>
+    <img src="{{FIG:en_copper.png}}" alt="Copper price">
+    <figcaption><b>Figure 5｜Copper: prices are rising; supply takes 17 years.</b> FRED PCOPPUSDM, monthly global copper price. Supply facts: IEA (grade −40% since 1991; ~17 years from discovery to production); S&amp;P Global (2026 copper exploration +32% to ~$4.3B).</figcaption>
+  </figure>
+
+  <div class="callout">
+    <div class="t">The US bottleneck in one line</div>
+    <p><strong>Power is the new land.</strong> The US has gas, capital, and demand. What it lacks is delivered electricity, copper, transformers, transmission, and permits. That is why the AI trade is a physical trade — and why it cannot be measured by chip shipments alone.</p>
+  </div>
+</section>
+
+<!-- ================= 03 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">03</div>
+    <div><div class="kicker">THE US CREDIT LAYER</div><h1>America is trying to collateralize compute</h1></div>
+  </div>
+
+  <p class="lead">The US is not replacing the dollar. It is trying to collateralize the next credit cycle with power and compute. The fiscal backdrop makes that urgent; the data-center financing market makes it possible; the credit market is already voting on whether it is real.</p>
+
+  <h2>3.1 The fiscal backdrop: debt needs a new story</h2>
+  <p>Federal debt was about <strong>$39.5 trillion</strong> in 2026Q2 (FRED: <strong>GFDEBTN</strong>). Federal interest outlays were about <strong>$970 billion</strong> in FY2025 (FRED: <strong>FYOINT</strong>), and the CBO projects publicly held debt/GDP rising from <strong>101% in FY2026 to 120% in FY2036</strong>, with the deficit widening from 5.8% to 6.7% of GDP. The US needs persistent foreign capital. The old story was “Treasuries + oil.” The new story is “Treasuries + energy + compute.”</p>
+  <p>The rates market is the scorekeeper. The 10-year yield is <strong>4.96%</strong> (FRED: DGS10), the 30-year is <strong>5.29%</strong> (DGS30), the 5-year is <strong>4.78%</strong> (DGS5), and the 2s10s curve is <strong>+31bp</strong> (T10Y2Y). The 10-year real yield is <strong>2.64%</strong> (DFII10) and the 10-year breakeven is <strong>2.34%</strong> (T10YIE). Real yields at 2.6% are a high bar for any long-duration asset — including data centers.</p>
+
+  <figure>
+    <img src="{{FIG:en_debt.png}}" alt="Federal debt and interest">
+    <figcaption><b>Figure 6｜Federal debt and interest.</b> Left: federal debt ~$39.5T in 2026Q2 (FRED GFDEBTN). Right: federal interest outlays ~$970B in FY2025 (FRED FYOINT). The fiscal path is the reason the US needs a new collateral story.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="{{FIG:en_rates.png}}" alt="US rates">
+    <figcaption><b>Figure 7｜Rates: 10Y at 4.96%, real yield 2.64%, breakeven 2.34%.</b> FRED DGS10 / DFII10 / T10YIE, through 2026-10-22/23. Real yields at 2.6% are a high hurdle for long-duration capex.</figcaption>
+  </figure>
+
+  <h2>3.2 Data-center finance: the new credit asset</h2>
+  <p>Data centers are becoming financeable assets. Data-center project finance is <strong>$106 billion year-to-date</strong>, versus ~$37 billion in all of 2025. AI-related credit issuance is ~<strong>$466 billion</strong> YTD. S&amp;P Global counts <strong>32 rated North American data-center infrastructure deals</strong> with ~<strong>$105 billion</strong> of related debt. This is not yet a 2007-style housing market, but the mechanism is familiar: recurring cash flow supports asset value, asset value supports financing, and financing builds more capacity.</p>
+  <p>The credit market is also starting to differentiate. AI HY spreads are about <strong>360bp</strong>; the broad HY index is <strong>340bp</strong> (FRED: BAMLH0A0HYM2); CCC is <strong>1,340bp</strong> (BAMLH0A3HYC); IG is <strong>89bp</strong> (BAMLC0A0CM). Data-center HY bonds have fallen from above 101 in June to ~95. The index looks calm; the tail is cracking.</p>
+
+  <figure>
+    <img src="{{FIG:en_credit.png}}" alt="Credit spreads and data-center finance">
+    <figcaption><b>Figure 8｜The credit tail is cracking while the index looks calm.</b> Left: IG/HY/CCC option-adjusted spreads, 2024–2026 (FRED BAMLC0A0CM / BAMLH0A0HYM2 / BAMLH0A3HYC, 2026-10-22). Right: data-center project finance, ~$37B in 2025 vs >$106B YTD in 2026.</figcaption>
+  </figure>
+
+  <table>
+    <thead><tr><th style="width:34%">Rates &amp; credit metric</th><th style="width:18%">Latest</th><th style="width:16%">Date</th><th>FRED series</th></tr></thead>
+    <tbody>
+      <tr><td>10-year Treasury</td><td><strong>4.96%</strong></td><td>2026-10-22</td><td>DGS10</td></tr>
+      <tr><td>2s10s curve</td><td><strong>+31bp</strong></td><td>2026-10-23</td><td>T10Y2Y</td></tr>
+      <tr><td>10-year real yield</td><td><strong>2.64%</strong></td><td>2026-10-22</td><td>DFII10</td></tr>
+      <tr><td>10-year breakeven</td><td><strong>2.34%</strong></td><td>2026-10-23</td><td>T10YIE</td></tr>
+      <tr><td>IG OAS</td><td><strong>89bp</strong></td><td>2026-10-22</td><td>BAMLC0A0CM</td></tr>
+      <tr><td>HY OAS</td><td><strong>340bp</strong></td><td>2026-10-22</td><td>BAMLH0A0HYM2</td></tr>
+      <tr><td>CCC OAS</td><td><strong>1,340bp</strong></td><td>2026-10-22</td><td>BAMLH0A3HYC</td></tr>
+      <tr><td>Broad dollar index</td><td><strong>121.4</strong></td><td>2026-10-16</td><td>DTWEXBGS</td></tr>
+      <tr><td>VIX</td><td><strong>19.03</strong></td><td>2026-10-22</td><td>VIXCLS</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3.3 The collateral re-anchor</h2>
+  <p>The dollar’s real anchor is still the Treasury market. What is changing is the <strong>collateral</strong> behind the next credit cycle: power, data centers, and the cash flows they produce. If those cash flows are real, the US has a new, investable asset class that can absorb capital and support the dollar’s asset appeal. If they are not, the credit market will reprice the collateral — and the capex will stop.</p>
+  <p>The dollar’s reserve share is a slow variable, not a cliff. IMF COFER data show the USD share falling from <strong>71.2% in 1999Q1 to 56.7% in 2026Q2</strong>; USD reserve holdings are <strong>$7.495 trillion</strong>, below the 2021Q3 peak of <strong>$7.677 trillion</strong>, while total reserves are <strong>$13.217 trillion</strong>. This is a migration, not a collapse — and it is not the main driver of the next 12 months.</p>
+
+  <figure>
+    <img src="{{FIG:en_cofer.png}}" alt="IMF COFER">
+    <figcaption><b>Figure 9｜The dollar’s reserve share: a slow migration, not a cliff.</b> IMF COFER, 2026Q2. USD share 71.2% (1999Q1) → 56.7% (2026Q2); USD holdings $7.495T; total reserves $13.217T.</figcaption>
+  </figure>
+
+  <div class="callout warn">
+    <div class="t">The US risk in one line</div>
+    <p><strong>Compute is an asset, not an anchor.</strong> If AI returns disappoint, data-center cash flow will not cover the capex, credit spreads will widen before equity prices reflect it, and the “energy + compute” collateral story will fade. The 2027–2028 refinancing wall is the timer, not 2026.</p>
+  </div>
+</section>
+
+<!-- ================= 04 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">04</div>
+    <div><div class="kicker">THE CONTRAST</div><h1>China: a contrast, not the main story</h1></div>
+  </div>
+
+  <p class="lead">China is running a state-led version of the same physical buildout. It is a real source of copper, power-equipment, and grid demand. It is smaller, narrower, and not a 1:1 replacement for its property boom — but the <strong>credit-expansion mechanism rhymes</strong>. For US investors, China is a demand contrast, not the driver of the US credit story.</p>
+
+  <span class="visual-tag">Visual summary · not a data chart</span>
+  <figure class="visual">
+    <img src="{{FIG:visual_04.jpg}}" alt="Two collateral re-anchoring models">
+    <figcaption><b>Figure 10｜Two collateral re-anchoring models.</b> US: market-led, energy + compute collateral, public/private credit, priced by spreads. China: state-led, state assets + physical capacity, bank/policy finance, priced by policy. US risk = insufficient cash flow; China risk = insufficient utilization.</figcaption>
+  </figure>
+
+  <h2>4.1 The old engine is fading</h2>
+  <p>China’s property sector was the collateral engine of its credit system: household mortgages, land and property pledges, and local-government land revenue reinforced each other. That engine is now contracting. Real-estate development investment fell from ~<strong>14.8 trillion RMB in 2021</strong> to ~<strong>10.0 trillion RMB in 2024</strong> (−32%); local land-sale revenue fell from ~<strong>8.7 trillion</strong> to ~<strong>4.9 trillion RMB</strong> (−44%). The credit impulse that replaced it will not be the same size or shape.</p>
+
+  <h2>4.2 The new engine is state-led compute</h2>
+  <p>Beijing’s response is a state-led buildout of computing infrastructure: <strong>8 national computing hubs and 10 data-center clusters</strong>, with <strong>400+ billion RMB</strong> of planned investment. Data-center electricity is projected to rise from ~<strong>170 TWh in 2025</strong> to <strong>800 TWh in 2030</strong>; the 15th Five-Year Plan calls for <strong>5+ trillion RMB</strong> of grid investment. This is real physical demand — but it is policy-driven, bank-financed, and more prone to “build first, find demand later.”</p>
+
+  <h2>4.3 Why it matters to US readers</h2>
+  <ul>
+    <li><strong>It adds a demand floor, not a new price regime.</strong> Chinese grid, copper, and power-equipment demand can tighten global markets, but it does not change the US credit cycle or the dollar’s anchor.</li>
+    <li><strong>It is narrower than property.</strong> Property pulled steel, cement, appliances, and local services; compute pulls power, copper, cooling, and chips. The commodity impact is concentrated, not broad.</li>
+    <li><strong>It is smaller.</strong> China’s “East Data West Compute” planned investment is ~3% of its 2021 property investment peak. Even if private capex doubles the total, it remains a single-digit percentage of the property boom.</li>
+    <li><strong>It is a different pricing mechanism.</strong> The US prices data-center collateral in credit spreads and ABS; China prices it through state banks and policy. That is why the same physical theme can have very different risk profiles.</li>
+  </ul>
+
+  <div class="callout">
+    <div class="t">The nuance: same mechanism, different asset</div>
+    <p>Computing power is <strong>not the new real estate</strong> — but the credit-expansion mechanism is analogous. A data center can be pledged as collateral, financed with debt, and used by local governments or SOEs to create investment, just as property once was. The differences are scale (~3% of the property peak), demand breadth (power and copper, not steel, cement, and appliances), and asset life (3–7 years vs 20–30 years). <strong>Not the same asset; the same credit logic.</strong></p>
+  </div>
+
+  <h3>China watchlist</h3>
+  <table>
+    <thead><tr><th style="width:34%">What to watch</th><th style="width:24%">Latest / target</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td>Property investment</td><td>~10.0T RMB (2024)</td><td>The old collateral engine is still contracting</td></tr>
+      <tr><td>Data-center electricity</td><td>170 → 800 TWh (2025–30E)</td><td>The physical size of the new compute buildout</td></tr>
+      <tr><td>Grid investment</td><td>5T RMB+ (“15th FYP”)</td><td>Power is the binding constraint, not chips</td></tr>
+      <tr><td>Compute utilization</td><td>Uneven; some projects low</td><td>The “vacancy rate” of the new credit channel</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="t">Bottom line on China</div>
+    <p>China is a <strong>demand contrast</strong>, not the main story. It can tighten copper and power-equipment markets, but it cannot fill the US credit gap or replace the dollar’s Treasury anchor. For a US audience, the investable signal is in US power, US data-center cash flow, and US credit spreads — with China as a secondary physical-demand cross-check.</p>
+  </div>
+</section>
+
+<!-- ================= 05 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">05</div>
+    <div><div class="kicker">SCENARIOS</div><h1>Three scenarios for US investors</h1></div>
+  </div>
+
+  <p class="lead">These are conditional scenarios, not forecasts. The difference is not whether AI is “good.” It is whether AI’s returns can become durable cash flow and credit expansion — and whether the physical supply chain can respond before the credit cycle turns.</p>
+
+  <h2>5.1 Scenario 1: AI works — cash flow before the credit window closes</h2>
+  <p>AI drives real productivity gains, enterprise revenue rises, data centers generate stable cash flow, and project finance remains open. Copper, aluminum, power, and grid equipment enter a multi-year demand cycle. Gold lags as real yields and risk appetite normalize; credit spreads tighten. <strong>Watch:</strong> data-center occupancy, PPA signings, actual power demand, ABS/project-finance spreads, and AI HY falling below 250bp.</p>
+
+  <h2>5.2 Scenario 2: AI disappoints — the credit cycle turns first</h2>
+  <p>AI capex is cut, projects are delayed, and data-center cash flow does not cover the cost of capital. Credit spreads widen, AI HY and CCC lead, and the refinancing window closes. Gold and high-quality duration benefit as real yields fall; industrial metals lag because real demand weakens. <strong>Watch:</strong> AI capex guidance, project delays, AI HY above 450bp, CCC above 1,500bp, and data-center HY bonds below 90.</p>
+
+  <h2>5.3 Scenario 3: AI is real, but not enough — the base case</h2>
+  <p>AI is real but insufficient to solve the debt problem. Growth and debt adjustment coexist. Copper is supported by grid and infrastructure spending plus supply constraints; gold is supported by real rates, credit risk, and reserve demand; silver gets both, with higher volatility. This is the scenario we spend most time on — the “narrow supercycle.” <strong>Watch:</strong> copper TC/RCs, inventories, mine ramp-ups, COFER, central-bank gold reserves, and real yields.</p>
+
+  <table>
+    <thead><tr><th style="width:17%">Scenario</th><th style="width:30%">Trigger</th><th style="width:18%">Copper / aluminum</th><th style="width:15%">Gold</th><th>Credit</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1. AI works</strong></td><td>Data-center cash flow real; occupancy/PPAs rise; ABS spreads tighten; AI HY &lt;250bp</td><td>Demand cycle, stronger</td><td>Lags (higher real yields, better risk appetite)</td><td>Spreads tighten; issuance grows</td></tr>
+      <tr><td><strong>2. AI disappoints</strong></td><td>Capex cuts; project delays; AI HY/CCC widen; real yields fall</td><td>Real demand weak, lower</td><td>Monetary demand, stronger</td><td>Spreads widen; refinancing window closes</td></tr>
+      <tr><td><strong>3. Both</strong><br><span class="small">Base case</span></td><td>AI real but not enough; grid/power spending continues; supply constraints persist</td><td>Infrastructure + supply, structurally stronger</td><td>Real rates/credit/reserves, structurally stronger</td><td>Range-bound, with a widening tail</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5.4 Near-term risk: survive the credit contraction first</h2>
+  <p>Long-term supply constraints do not protect against a short-term credit hit. If AI financing contracts or leverage unwinds, commodities can fall sharply even as the supply story remains intact. The credit market is already flashing: AI HY 360bp, CCC 1,340bp, data-center HY bonds from 101 to ~95, and a 2027–2028 refinancing wall.</p>
+  <p>That is why the card is 30% invested and 58% cash. It is not a bearish call on copper or gold. It is a recognition that the credit cycle can turn before the physical cycle does. <strong>Survive the credit contraction first; then talk about the supercycle.</strong></p>
+
+  <div class="callout warn">
+    <div class="t">The time-scale mismatch</div>
+    <p>Markets can reprice risk in weeks; AI adoption takes years; a large mine takes a decade or more. When the clocks overlap, you get a supercycle. When they do not, you get a price drawdown and a broken narrative. <strong>Do not use long-term supply as a substitute for a stop-loss.</strong></p>
+  </div>
+
+  <h2>5.5 A simple positioning map</h2>
+  <table>
+    <thead><tr><th style="width:22%">If you believe</th><th style="width:42%">Own</th><th>Avoid / underweight</th></tr></thead>
+    <tbody>
+      <tr><td><strong>AI works</strong></td><td>Copper, aluminum, power generation, grid equipment</td><td>Long-duration gold; low-quality credit</td></tr>
+      <tr><td><strong>AI disappoints</strong></td><td>Gold, high-quality duration, cash</td><td>Industrial metals; data-center HY; leverage</td></tr>
+      <tr><td><strong>Both</strong><br><span class="small">Base case</span></td><td>Copper + gold + silver, with a cash buffer</td><td>Concentrated single-factor bets; leverage</td></tr>
+    </tbody>
+  </table>
+  <p class="small">This is a framework map, not a recommendation. Position sizing should reflect the card, liquidity, and your own risk budget.</p>
+
+  <h2>5.6 Monthly checklist</h2>
+  <table>
+    <thead><tr><th style="width:24%">What</th><th style="width:22%">Latest</th><th style="width:26%">Threshold</th><th>Why it matters</th></tr></thead>
+    <tbody>
+      <tr><td><strong>AI HY OAS</strong></td><td>360bp</td><td>&lt;250bp / &gt;450bp</td><td>Credit cycle leads the physical cycle</td></tr>
+      <tr><td><strong>CCC OAS</strong></td><td>1,340bp</td><td>&lt;900bp / &gt;1,500bp</td><td>Tail risk and refinancing stress</td></tr>
+      <tr><td><strong>Data-center project finance</strong></td><td>&gt;$106B YTD</td><td>Issuance and spreads</td><td>The new collateral market</td></tr>
+      <tr><td><strong>Copper TC/RC</strong></td><td>Low</td><td>Recovery / inventory build</td><td>Concentrate vs refined tightness</td></tr>
+      <tr><td><strong>US data-center electricity</strong></td><td>176 → 325–580 TWh</td><td>Actual power demand</td><td>The physical bottleneck</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5.7 Watch order: credit → physical → monetary</h2>
+  <div class="two-col">
+    <div class="box"><h4>1. Credit (weeks–quarters)</h4><p class="small">AI HY, CCC, data-center ABS, refinancing windows. Credit usually cracks before prices do.</p></div>
+    <div class="box"><h4>2. Physical (months–quarters)</h4><p class="small">Copper TC/RCs, inventories, EIA stocks, actual power demand. Physical tightness is the real-demand test.</p></div>
+    <div class="box"><h4>3. Monetary (quarters–years)</h4><p class="small">COFER, central-bank gold reserves, real yields, DXY. The slow variable that sets the regime.</p></div>
+    <div class="box"><h4>4. Price (weeks)</h4><p class="small">GOR, WTI, gold, copper. Price is the result, not the cause.</p></div>
+  </div>
+</section>
+
+<!-- ================= 06 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">06</div>
+    <div><div class="kicker">THE DASHBOARD</div><h1>What to watch, and when to change our mind</h1></div>
+  </div>
+
+  <p class="lead">This report does not offer price targets. It offers a falsifiable dashboard. Each metric is public or comes from the project’s own daily card. If two or three turn together, the scenario changes.</p>
+
+  <h2>6.1 Physical and energy dashboard</h2>
+  <table>
+    <thead><tr><th style="width:27%">Metric</th><th style="width:25%">Latest</th><th style="width:32%">Read / threshold</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td><strong>GOR (WTI / Brent)</strong></td><td>38.77 / 35.9</td><td>40 is the prior floor; below watch 35 / 30</td><td>Deep-Risk-OPP card</td></tr>
+      <tr><td><strong>WTI / Brent</strong></td><td>$103.43 / $111.70</td><td>Brent-WTI $8.27; physical premium separate</td><td>Card; EIA</td></tr>
+      <tr><td><strong>EIA crude stocks</strong></td><td>412.5 mn bbl · 5th pct</td><td>&lt;10th percentile = tight</td><td>EIA WCESTUS1</td></tr>
+      <tr><td><strong>EIA distillate / gasoline / SPR</strong></td><td>104.3 / 205.3 / 282.7 mn bbl</td><td>7th / 1st / 0th percentile</td><td>EIA WDISTUS1 / WGTSTUS1 / WCSSTUS1</td></tr>
+      <tr><td><strong>EIA Cushing / natural gas</strong></td><td>27.6 mn bbl · 64th; 3,644 Bcf · 89th</td><td>Cushing and gas are not tight</td><td>EIA; NW2_EPG0_SWO_R48_BCF</td></tr>
+      <tr><td><strong>Brent spot vs futures</strong></td><td>125.59 vs 111.66</td><td>Physical premium ~$13.9; not a simultaneous arb</td><td>EIA; card</td></tr>
+      <tr><td><strong>Copper price / TC-RC</strong></td><td>$14,473/t; TC/RC low</td><td>Concentrate tight ≠ refined tight; watch inventories</td><td>FRED PCOPPUSDM</td></tr>
+      <tr><td><strong>Data-center project finance</strong></td><td>2026 YTD &gt;$106B; 2025 ~$37B</td><td>Growth is real; watch spreads and issuance</td><td>Credit review</td></tr>
+      <tr><td><strong>US data-center electricity</strong></td><td>176 TWh (2023) → 325–580 TWh (2028E)</td><td>Watch actual power demand, not capex announcements</td><td>LBNL 2024</td></tr>
+      <tr><td><strong>US retail electricity / gas storage</strong></td><td>19.6¢/kWh; gas 89th pct</td><td>Power prices rising; molecules are not scarce</td><td>FRED APU000072610; EIA</td></tr>
+    </tbody>
+  </table>
+
+  <h2>6.2 Rates and credit dashboard</h2>
+  <table>
+    <thead><tr><th style="width:27%">Metric</th><th style="width:25%">Latest</th><th style="width:32%">Read / threshold</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td><strong>AI HY / HY / IG / CCC</strong></td><td>360 / 340 / 89 / 1,340bp</td><td>AI HY &lt;250, HY &lt;280, CCC &lt;900 = easing</td><td>FRED; credit review</td></tr>
+      <tr><td><strong>10Y / 30Y / real / breakeven</strong></td><td>4.96% / 5.29% / 2.64% / 2.34%</td><td>Real yield 2.6% is a high hurdle for capex</td><td>FRED DGS10 / DGS30 / DFII10 / T10YIE</td></tr>
+      <tr><td><strong>2s10s / DXY / VIX</strong></td><td>+31bp / 121.4 / 19.03</td><td>VIX &gt;22.5 = panic gate; DXY strong = tighter conditions</td><td>FRED T10Y2Y / DTWEXBGS / VIXCLS</td></tr>
+      <tr><td><strong>Fed balance sheet / RRP</strong></td><td>$6.75T / $0.2B</td><td>QT continues; RRP drained = less liquidity buffer</td><td>FRED WALCL / RRPONTSYD</td></tr>
+      <tr><td><strong>COFER USD share</strong></td><td>56.7%; USD holdings $7.495T</td><td>Slow migration; 55% is psychological, not a cliff</td><td>IMF COFER 2026Q2</td></tr>
+      <tr><td><strong>Card position</strong></td><td>30% invested; 58% cash</td><td>No capitulation; no chase</td><td>Deep-Risk-OPP card</td></tr>
+    </tbody>
+  </table>
+
+  <h2>6.3 What would change our mind</h2>
+  <div class="two-col">
+    <div class="box">
+      <h4>Upgrade the supercycle case</h4>
+      <ul class="small">
+        <li>Data-center occupancy, revenue, and PPAs beat expectations; actual power demand accelerates.</li>
+        <li>Data-center ABS/project-finance spreads tighten; AI HY falls below 250bp.</li>
+        <li>Copper TC/RCs stay low while inventories do not build; mine ramp-ups delay.</li>
+        <li>COFER USD share keeps falling; central banks keep buying gold.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>Downgrade the supercycle case</h4>
+      <ul class="small">
+        <li>AI capex is cut; data-center projects are delayed; utilization falls.</li>
+        <li>AI HY &gt;450bp, CCC &gt;1,500bp, data-center HY bonds below 90.</li>
+        <li>Copper inventories build sharply; TC/RCs recover; mine supply accelerates.</li>
+        <li>The dollar stabilizes/strengthens; real yields rise; gold-reserve demand fades.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>6.4 Conclusion</h2>
+  <p>The next commodity supercycle is not a simple “AI demand” story, and not a “dollar collapse, gold to the moon” story. It is a <strong>collateral re-anchor</strong>: the US is trying to collateralize the next credit cycle with power and compute. That is where the investable signals are.</p>
+  <p>We hold two judgments: <strong>long-term conditions are forming; the short-term regime is not confirmed.</strong> Copper’s supply constraints and power’s physical bottleneck are real, but AI financing contraction and wider credit spreads can arrive first. The trade can be right; the regime is not confirmed.</p>
+
+  <div class="quote">“The next supercycle won’t be announced by a demand forecast. It will show up in a data-center cash flow, a copper TC/RC, and a credit spread.”</div>
+
+  <div class="callout">
+    <div class="t">One-line summary</div>
+    <p><strong>Long-term conditions are forming; the short-term regime is not confirmed.</strong> The card is 30% invested, 58% cash. Watch data-center cash flow, copper TC/RC, and credit spreads.</p>
+  </div>
+</section>
+
+<!-- ================= APPENDIX ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">A</div>
+    <div><div class="kicker">APPENDIX</div><h1>Data, methodology, and sources</h1></div>
+  </div>
+
+  <h2>A.1 Data definitions</h2>
+  <ul class="small">
+    <li><strong>GOR</strong> = gold price ÷ WTI price; GOR (Brent) uses Brent. Contract baseline WTI $69.87 (2026-06-19), target $107.60.</li>
+    <li><strong>EIA percentiles</strong>: weekly stocks, trailing 261 weeks; 0% = five-year low. Crude/distillate/gasoline/SPR/Cushing in thousand barrels; production/exports in thousand b/d; utilization in %.</li>
+    <li><strong>Oil/gold</strong> = WTI ÷ gold; indexed to 2026-06-19 = 100 for relative performance only.</li>
+    <li><strong>COFER</strong>: IMF quarterly allocated reserves; 2026Q2 latest; USD holdings $7.495T; total reserves $13.217T.</li>
+    <li><strong>US data-center electricity</strong>: LBNL 2024 report; 176 TWh (2023) → 325–580 TWh (2028E); 4.4% → 6.7–12% of US electricity.</li>
+    <li><strong>US electricity price</strong>: BLS average retail price (FRED APU000072610); 2020 average 13.5¢/kWh; Sep 2026 19.6¢/kWh.</li>
+    <li><strong>China data</strong>: property investment and land revenue from NBS/MOF; data-center electricity from the National Energy Administration / China Electricity Council; “East Data West Compute” from NDRC/public reports. China is a contrast, not the main dataset.</li>
+  </ul>
+
+  <h2>A.2 FRED and EIA series used</h2>
+  <table>
+    <thead><tr><th style="width:28%">Series</th><th style="width:32%">What it measures</th><th>Latest</th></tr></thead>
+    <tbody>
+      <tr><td>FRED DGS10 / DGS30 / DGS5</td><td>US Treasury yields</td><td>4.96% / 5.29% / 4.78%</td></tr>
+      <tr><td>FRED T10Y2Y</td><td>2s10s curve</td><td>+31bp</td></tr>
+      <tr><td>FRED DFII10 / T10YIE</td><td>10Y real yield / breakeven</td><td>2.64% / 2.34%</td></tr>
+      <tr><td>FRED BAMLC0A0CM / BAMLH0A0HYM2 / BAMLH0A1HYBB / BAMLH0A2HYB / BAMLH0A3HYC</td><td>IG / HY / BB / B / CCC OAS</td><td>89 / 340 / 210 / 346 / 1,340bp</td></tr>
+      <tr><td>FRED DTWEXBGS / VIXCLS</td><td>Broad dollar / VIX</td><td>121.4 / 19.03</td></tr>
+      <tr><td>FRED WALCL / RRPONTSYD</td><td>Fed balance sheet / overnight reverse repo</td><td>$6.75T / $0.2B</td></tr>
+      <tr><td>FRED GFDEBTN / FYOINT</td><td>Federal debt / interest outlays</td><td>$39.5T / $970B FY2025</td></tr>
+      <tr><td>FRED PCOPPUSDM</td><td>Global copper price, monthly</td><td>$14,473/t (Sep 2026)</td></tr>
+      <tr><td>FRED APU000072610 / DHHNGSP</td><td>US retail electricity / Henry Hub</td><td>19.6¢/kWh / ~$3.47 avg</td></tr>
+      <tr><td>EIA WCESTUS1 / WDISTUS1 / WGTSTUS1 / WCSSTUS1</td><td>Crude / distillate / gasoline / SPR stocks</td><td>412.5 / 104.3 / 205.3 / 282.7 mn bbl</td></tr>
+      <tr><td>EIA W_EPC0_SAX_YCUOK_MBBL / WCRFPUS2 / WCREXUS2 / WPULEUS3</td><td>Cushing / production / exports / utilization</td><td>27.6 mn bbl / 13.27 mn b/d / 3.44 mn b/d / 93.4%</td></tr>
+      <tr><td>EIA NW2_EPG0_SWO_R48_BCF</td><td>Natural-gas storage, 48 states</td><td>3,644 Bcf (89th pct)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>A.3 Other sources</h2>
+  <ul class="small">
+    <li>IEA, <em>Energy and AI</em> (2025-04): global data-center electricity ~415 TWh (2024) → ~945 TWh (2030); ~20% of planned projects may be delayed by grid bottlenecks; copper grade −40% since 1991; ~17 years from discovery to production.</li>
+    <li>S&amp;P Global (2026-10-23): 32 rated North American data-center infrastructure deals, ~$105B of related debt; 2026 copper exploration +32% to ~$4.3B.</li>
+    <li>CBO, <em>Budget and Economic Outlook: 2026 to 2036</em> (2026-02): publicly held debt/GDP 101% (FY2026) → 120% (FY2036); deficit 5.8% → 6.7% of GDP.</li>
+    <li>IMF COFER (2026Q2): USD share 56.7%; USD holdings $7.495T; total reserves $13.217T.</li>
+    <li>LBNL, <em>2024 United States Data Center Energy Usage Report</em>: 176 TWh (2023) → 325–580 TWh (2028E); ~2,600 GW in interconnection queues.</li>
+    <li>USGS: US imports roughly half of its copper.</li>
+    <li>Credit review (2026-10-17): AI credit issuance ~$466B YTD; data-center project finance ~$37B in 2025 vs >$106B YTD 2026; AI HY 360bp; data-center HY bond prices from above 101 to ~95.</li>
+  </ul>
+
+  <h2>A.4 Methodology and limitations</h2>
+  <p class="small">This is a scenario analysis, not a forecast. Scenario probabilities are not quantified because the key variables — AI productivity, data-center cash flow, policy response — lack a sufficient historical sample. “Base case” means where we spend the most research time, not a probability. China’s data have definitional differences (compute scale, racks, electricity, investment); we prioritize cross-checkable electricity and planned-investment data. US data-center finance figures come from a credit review and may differ from public-market statistics. All data are as of 2026-10-25 unless otherwise noted.</p>
+
+  <h2>A.5 Update schedule</h2>
+  <table>
+    <thead><tr><th style="width:18%">Frequency</th><th style="width:48%">What updates</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Daily</strong></td><td>GOR, WTI, Brent, gold, copper, VIX, 10Y, DXY, card position</td><td>Deep-Risk-OPP card</td></tr>
+      <tr><td><strong>Weekly</strong></td><td>EIA petroleum and natural-gas inventories; HY/IG/CCC spreads</td><td>EIA; FRED</td></tr>
+      <tr><td><strong>Monthly</strong></td><td>Copper price, US electricity price, Henry Hub, federal debt</td><td>FRED</td></tr>
+      <tr><td><strong>Quarterly</strong></td><td>COFER reserve shares; data-center project finance</td><td>IMF; credit review</td></tr>
+    </tbody>
+  </table>
+
+  <h2>A.6 AI visual boards (source)</h2>
+  <p class="small">These AI-generated concept boards were used as drafting aids for the report. Some labels contain generation artifacts; the authoritative data and wording are in the main report and figures. They are included for transparency, not as data sources.</p>
+  <div class="visual-pair">
+    <figure class="visual"><img src="{{FIG:visual_01.jpg}}" alt="Data-center credit expansion loop"><figcaption><b>Board 1｜Data centers: the new credit expansion cycle.</b> Concept loop: AI adoption → compute demand → new capacity → financing → cash flow.</figcaption></figure>
+    <figure class="visual"><img src="{{FIG:visual_05.jpg}}" alt="Physical evidence dashboard board"><figcaption><b>Board 2｜Physical evidence dashboard.</b> Concept board; exact axes and values are in Figures 2–5 and the EIA table.</figcaption></figure>
+  </div>
+  <div class="visual-pair">
+    <figure class="visual"><img src="{{FIG:visual_06.jpg}}" alt="Three scenario board"><figcaption><b>Board 3｜Three scenarios.</b> Concept board; authoritative scenario table is in Section 05.</figcaption></figure>
+    <figure class="visual"><img src="{{FIG:visual_07.jpg}}" alt="Falsifiable dashboard board"><figcaption><b>Board 4｜Falsifiable dashboard.</b> Concept board; authoritative dashboard is in Section 06.</figcaption></figure>
+  </div>
+  <div class="visual-pair" style="page-break-after:auto">
+    <figure class="visual"><img src="{{FIG:visual_08.jpg}}" alt="Computing power vs real estate board"><figcaption><b>Board 5｜Computing power is not the new real estate — but the credit-expansion mechanism rhymes.</b> Collateral, debt, and local investment are analogous; scale, demand breadth, and asset life are not. Concept board; the full comparison is in Section 04.</figcaption></figure>
+  </div>
+
+  <div class="two-col" style="margin-top:4mm">
+    <div class="box"><h4>Daily public card</h4><p class="small">justinjchen-cornell.github.io/Deep-Risk-OPP/card.html</p></div>
+    <div class="box"><h4>Free Q4 crisis checklist</h4><p class="small">justinjchen-cornell.github.io/Deep-Risk-OPP/crisis-checklist.html</p></div>
+  </div>
+
+  <div class="footer-note">
+    <strong>Disclaimer:</strong> This report is a research framework, not investment advice, an offer, or a solicitation. Data are as of 2026-10-25 and may change. Readers should verify data, make independent judgments, and bear all investment risk.<br>
+    Deep-Risk-OPP · Research framework, not investment advice. Card public, updated daily.
+  </div>
+</section>
+
+</body>
+</html>
+</body>
+</html>

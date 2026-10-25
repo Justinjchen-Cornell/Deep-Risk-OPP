@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>下一轮超级周期，是抵押品的故事｜Deep-Risk-OPP</title>
+<style>
+:root{
+  --navy:#0B1F33; --gold:#C9A227; --copper:#B87333; --teal:#1F6F78;
+  --red:#B23A2E; --gray:#8A8F98; --soft:#F6F3EC; --line:#E3DED2;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif;
+  font-size:9.9pt; line-height:1.68; color:#1A2433;
+}
+p{margin:0 0 2.8mm 0; text-align:justify}
+h1{font-size:21pt; line-height:1.28; margin:1mm 0 3.2mm 0; color:var(--navy); font-weight:700; letter-spacing:-0.3pt}
+h2{font-size:13pt; margin:5.6mm 0 2.2mm 0; color:var(--navy); border-left:3pt solid var(--gold); padding-left:3mm; page-break-after:avoid}
+h3{font-size:10.6pt; margin:4mm 0 1.2mm 0; color:var(--copper); page-break-after:avoid}
+h4{font-size:9.5pt; margin:0 0 1.6mm 0; color:var(--navy)}
+.lead{font-size:10.8pt; color:#3A4552; line-height:1.78}
+.section{page-break-before:always}
+.section.first{page-break-before:auto}
+.section-head{display:flex; align-items:flex-end; gap:5mm; border-bottom:1.2pt solid var(--navy); padding-bottom:2.6mm; margin-bottom:3.8mm}
+.section-num{font-size:29pt; font-weight:800; color:var(--gold); line-height:1; letter-spacing:-1pt}
+.kicker{font-size:7.6pt; letter-spacing:1.6pt; color:var(--gray); text-transform:uppercase}
+.kpi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:3mm; margin:4.5mm 0}
+.kpi{background:var(--soft); border-top:2pt solid var(--gold); padding:3.2mm 3.2mm 2.8mm}
+.kpi .v{font-size:14.5pt; font-weight:700; color:var(--navy); line-height:1.25}
+.kpi .l{font-size:7.8pt; color:var(--gray); margin-top:0.8mm}
+.callout{background:linear-gradient(90deg,#F6F3EC 0%,#FBF9F4 100%); border-left:3pt solid var(--gold); padding:3.4mm 4.2mm; margin:3.4mm 0; page-break-inside:avoid}
+.callout .t{font-size:7.5pt; letter-spacing:1pt; color:var(--copper); font-weight:700; margin-bottom:1.1mm}
+.callout p{margin:0; font-size:9.6pt}
+.callout.warn{border-left-color:var(--red); background:#FAF1EF}
+.callout.warn .t{color:var(--red)}
+figure{margin:3.6mm 0; page-break-inside:avoid}
+figure img{width:100%; display:block; border:0.5pt solid var(--line)}
+figcaption{font-size:7.9pt; color:var(--gray); margin-top:1.2mm; line-height:1.5}
+figcaption b{color:var(--navy)}
+table{width:100%; border-collapse:collapse; font-size:8.4pt; margin:3.2mm 0; page-break-inside:avoid; line-height:1.5}
+th{background:var(--navy); color:#fff; font-weight:600; text-align:left; padding:1.9mm 1.9mm}
+td{border-bottom:0.5pt solid var(--line); padding:1.9mm 1.9mm; vertical-align:top}
+tr:nth-child(even) td{background:#FAF8F2}
+.tag{display:inline-block; font-size:7.2pt; padding:0.4mm 1.8mm; border-radius:2mm; background:var(--soft); color:var(--copper); white-space:nowrap}
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:5.5mm; page-break-inside:avoid}
+.box{border:0.6pt solid var(--line); padding:3.8mm 4mm; background:#FCFBF7}
+.box h4{font-size:9.4pt; margin-bottom:1.6mm}
+ul{margin:1mm 0 3mm 0; padding-left:5mm}
+li{margin-bottom:1.1mm}
+.small{font-size:8pt; color:var(--gray)}
+.footer-note{font-size:7.6pt; color:var(--gray); border-top:0.5pt solid var(--line); padding-top:2mm; margin-top:4mm}
+.toc-list{margin:3mm 0 0 0; padding:0; list-style:none}
+.toc-list li{display:flex; align-items:baseline; gap:4mm; padding:2.6mm 0; border-bottom:0.5pt solid var(--line); font-size:10.5pt}
+.toc-list .n{font-size:14pt; font-weight:800; color:var(--gold); width:12mm}
+.toc-list .t{font-weight:600; color:var(--navy)}
+.toc-list .d{color:var(--gray); font-size:8.5pt; margin-left:auto; text-align:right}
+.quote{font-size:12pt; color:var(--navy); font-weight:600; line-height:1.7; border-left:3pt solid var(--copper); padding-left:4mm; margin:4mm 0}
+.center{text-align:center}
+.muted{color:var(--gray)}
+</style>
+</head>
+<body>
+
+<!-- ================= TOC ================= -->
+<section class="section first">
+  <div class="kicker">DEEP-RISK-OPP · SPECIAL REPORT · 2026-10-25</div>
+  <h1 style="margin-top:3mm">目录与阅读提示</h1>
+  <p class="lead">这份报告不预测某一种商品的价格。它试图回答一个更结构性的问题：如果下一轮大宗商品超级周期真的在酝酿，它的燃料是什么？答案不是“AI 会用更多金属”，而是“下一轮信用周期拿什么做抵押”。</p>
+
+  <ul class="toc-list">
+    <li><span class="n">01</span><span class="t">三个周期，三种速度</span><span class="d">生产率 / 信用 / 供给</span></li>
+    <li><span class="n">02</span><span class="t">实物证据：金、油、铜</span><span class="d">GOR、EIA 库存、铜矿供给</span></li>
+    <li><span class="n">03</span><span class="t">货币层：两种抵押品换锚</span><span class="d">美国能源+算力 / 中国国资+实物</span></li>
+    <li><span class="n">04</span><span class="t">中国算力中心：房地产的类比与差异</span><span class="d">规模、广度、折旧、现金流</span></li>
+    <li><span class="n">05</span><span class="t">三种情景与近期风险</span><span class="d">铜 / 金 / 银的条件句</span></li>
+    <li><span class="n">06</span><span class="t">可证伪仪表盘与结论</span><span class="d">看什么、什么时候改判</span></li>
+    <li><span class="n">A</span><span class="t">附录：数据、方法与来源</span><span class="d">口径、假设、免责声明</span></li>
+  </ul>
+
+  <div class="callout" style="margin-top:7mm">
+    <div class="t">阅读提示 / HOW TO READ</div>
+    <p>本报告把“换锚”定义为<strong>抵押品换锚</strong>，不是正式货币锚变化。正式货币锚不可观察，也不该由一篇报告断言；但“信用体系拿什么做抵押、谁提供资金、瓶颈在哪”是可观察的。所有情景都是条件句，不是预测；所有数字都标注了口径与日期。</p>
+  </div>
+
+  <div class="kpi-grid" style="margin-top:8mm">
+    <div class="kpi"><div class="v">38.77 / 35.9</div><div class="l">GOR（WTI / Brent）· 2026-10-25</div></div>
+    <div class="kpi"><div class="v">$103.43</div><div class="l">WTI · 美元/桶</div></div>
+    <div class="kpi"><div class="v">$4,009.5</div><div class="l">黄金 · 美元/盎司</div></div>
+    <div class="kpi"><div class="v">$14,473</div><div class="l">铜 · 美元/吨（2026-09）</div></div>
+  </div>
+
+  <p class="small" style="margin-top:6mm">数据截至 2026-10-25 的 Deep-Risk-OPP 日卡与公开数据；本报告为研究框架，不构成投资建议。</p>
+</section>
+
+<!-- ================= 01 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">01</div>
+    <div><div class="kicker">THE FRAMEWORK</div><h1>三个周期，三种速度</h1></div>
+  </div>
+
+  <p class="lead">上一轮大宗商品超级周期，通常被概括为“中国需求”。更准确的表述是：中国入世后的制造分工、城镇化和房地产，创造了一轮<strong>需求增长速度超过供给响应速度</strong>的周期。超级周期不是“需求很大”，而是“需求增长快于供给响应，而且持续了足够久”。</p>
+
+  <h2>1.1 上一轮：需求跑在供给前面</h2>
+  <p>2001 年中国加入 WTO，并不是世界突然发现中国劳动力便宜。在此之前，中国已经通过改革开放建立了劳动力、制造业配套和基础设施的比较优势；入世降低的是长期贸易规则的不确定性，让全球企业更愿意把生产设施和资本投入中国。制造环节重新分工，欧美消费者获得更便宜的商品，资源出口国获得新市场，中国则必须建设工厂、港口、道路、电网和住宅。</p>
+  <p>这些活动都需要钢铁、铜、铝和能源。需求端在几年内快速抬升，供给端的矿山和能源项目却需要多年才能投产。价格高时，矿企增加勘探和资本开支；但一座矿山从决定开发到实际投产往往需要多年，而金融周期和需求周期的变化快得多。2011 年前后，许多商品再次处于高位，前期高景气时投资建设的矿山开始释放产能，中国房地产、基建和重工业的需求增速却逐渐放缓——典型的供需错位。</p>
+  <p>随后是漫长的出清：矿企削减资本开支、收缩勘探、优先修复资产负债表。标普全球数据显示，全球非铁金属勘探预算从 2012 年的约 215 亿美元大幅回落。这就是矿业“蛛网周期”：价格高时投资，供给多年后释放；价格低时削减投资，供给的影响同样要多年后才体现。</p>
+
+  <h2>1.2 AI：先资本开支，后生产率</h2>
+  <p>AI 与 WTO 有可比之处：两者都通过重新配置生产要素提高效率。但机制不同。WTO 时代，全球通过劳动力和制造业的重新分工提高效率；AI 更可能通过自动化降低信息处理成本、改变企业工作流程。企业使用 AI 的动力，可能不只是“获得额外利润”，而是“避免在竞争中被淘汰”。</p>
+  <p>关键在于时间差：<strong>生产率收益兑现慢于资本开支。</strong> 在 AI 的生产率收益全面体现之前，企业必须提前建设服务器、数据中心、发电设施和输电网络。也就是说，AI 可能先形成一轮资本密集型投资周期，然后才逐渐体现出更广泛的生产率收益。这正是“三个周期”里最快与最慢的两端。</p>
+
+  <div class="callout">
+    <div class="t">核心判断 / KEY JUDGMENT</div>
+    <p>AI 的实物需求比中国 WTO/房地产时代<strong>窄</strong>：它集中在电力、铜、冷却、芯片和基础设施，不会像房地产那样同时拉动钢铁、水泥、家电、地方服务和广义消费。这决定了下一轮更可能是“窄超级周期”，而不是 2001–2011 的全面重估。</p>
+  </div>
+
+  <h2>1.3 三个周期，三种速度</h2>
+  <p>把超级周期拆成三个周期，时间尺度立刻变得清楚：生产率周期以“年”计，信用周期以“季度”计，供给周期以“十年”计。金融市场可以在几周内完成一次剧烈的风险重估，AI 改变企业生产方式可能需要数年，而一座大型矿山从发现到形成产量可能需要十年以上。三者叠加，才可能形成超出普通经济波动的大宗商品周期。</p>
+
+  <figure>
+    <img src="{{FIG:fig_three_clocks.png}}" alt="三个周期，三种速度">
+    <figcaption><b>图 1｜三个周期，三种速度。</b> AI 采用 3–7 年、数据中心信用 1–3 年为研究假设；新矿 17 年来自 IEA。超级周期发生在三者重叠的时候，而不是某一个周期很热的时候。</figcaption>
+  </figure>
+
+  <table>
+    <thead><tr><th style="width:17%">周期</th><th style="width:13%">速度</th><th style="width:32%">瓶颈</th><th>可观察指标</th></tr></thead>
+    <tbody>
+      <tr><td><strong>生产率</strong><br><span class="small">AI adoption</span></td><td>3–7 年</td><td>企业流程改造、岗位替代、需求扩散；生产率收益能否转化为收入和消费</td><td>数据中心出租率、PPA、真实用电、企业 AI 收入/成本节约、资本开支兑现率</td></tr>
+      <tr><td><strong>信用</strong><br><span class="small">Data-center credit</span></td><td>1–3 年</td><td>数据中心能否用经营现金流（而非未来预期）支撑融资；ABS/项目融资利差</td><td>数据中心 ABS/项目融资发行与利差、AI HY、CCC/HY、银行信贷、再融资窗口</td></tr>
+      <tr><td><strong>实物供给</strong><br><span class="small">Mining supply</span></td><td>10–17 年</td><td>铜矿品位下降、审批、资本开支纪律、冶炼产能与精矿错配</td><td>铜 TC/RC、交易所库存、矿山审批、勘探预算、投产曲线</td></tr>
+    </tbody>
+  </table>
+
+  <h2>1.4 供给：最难加速的那一端</h2>
+  <p>以铜为例，国际能源署指出，全球铜矿平均品位自 1991 年以来下降了约 40%；新铜矿从发现到正式投产平均需要约 17 年。这意味着即使铜价上涨、矿企决定增加投资，也不代表短期内能够获得大量新增产量。标普全球的最新数据显示，2026 年铜勘探预算同比增长 32%，达到约 43 亿美元，创下 2012 年以来的最高水平——行业已经开始响应高价格，但勘探预算增加与新增产量形成是两个完全不同的时间尺度。</p>
+  <p>另一个容易误读的指标是铜精矿加工费（TC/RC）。TC/RC 处于低位，反映的是矿山精矿供应与冶炼产能之间的紧张关系，但不能直接等同于全球精炼铜已经出现同等程度的短缺。真正要判断超级周期，最终仍要回到实际需求、产量、库存和供需平衡，而不是单一价格或单一价差。</p>
+
+  <div class="callout warn">
+    <div class="t">不要把“长期正确”当成“短期安全”</div>
+    <p>如果市场首先经历的是 AI 融资收缩、杠杆资金退出，或全球实际需求明显走弱，那么即使矿业长期供给存在约束，大宗商品价格也可能先经历一轮明显调整。<strong>长期供给约束不能消除短期信用收缩对价格的冲击。</strong></p>
+  </div>
+</section>
+
+<!-- ================= 02 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">02</div>
+    <div><div class="kicker">THE PHYSICAL EVIDENCE</div><h1>实物证据：金、油、铜</h1></div>
+  </div>
+
+  <p class="lead">“金转油”已经发生，但不是所有腿都成立。把价格、库存和利差放在一起看，会得到一个更诚实的结论：<strong>实物市场是紧的，但紧得很集中。</strong> 这恰好是“窄超级周期”的证据，而不是全面通胀的证据。</p>
+
+  <h2>2.1 金油比：油接过了接力棒</h2>
+  <p>2026 年 6 月 19 日到 10 月 25 日，GOR（WTI）从 <strong>55.26 降到 38.77</strong>，跌幅约 29.8%。同期 WTI 从 $75.73 涨到 $103.43（+36.6%），黄金从 $4,184.5 跌到 $4,009.5（−4.2%）。以黄金计价的油价上涨 <strong>42.5%</strong>，比美元计价涨得更多——这与“战争掩盖美元贬值、以黄金计价的油价涨幅更小”的流行叙事正好相反。</p>
+  <p>但这不是“美元崩了”的证据。真正的证据链只支持一件事：<strong>黄金不再领涨，油接过了接力棒。</strong> “空股”腿没有确认——S&P 500 仍在高位附近，VIX 19.45，A 股在 10/23 盘中下跌后收涨，呈现 V 型而不是系统性破位；“美元崩”也没有确认——DXY 仍在 101.8，10Y 4.96%。这就是为什么卡片仍是 30% 仓位，而不是追涨或恐慌。</p>
+
+  <figure>
+    <img src="{{FIG:fig_gor_contract.png}}" alt="金油比与契约完成度">
+    <figcaption><b>图 2｜金油比与契约完成度。</b> 金油比从 6/19 的 55.26 降至 10/25 的 38.77；WTI 契约完成度从 6 月的约 17% 升至 88.9%。10/15 前后是这轮相对再定价最集中的窗口。</figcaption>
+  </figure>
+
+  <figure>
+    <img src="{{FIG:fig_oil_gold.png}}" alt="以黄金计价的油价">
+    <figcaption><b>图 3｜“尺子”没有掩盖油价。</b> 2026-06-19 = 100。WTI 美元计价 +36.6%，黄金 −4.2%，油/金 +42.5%。以黄金计价的油价涨得更快，说明这轮是“油跑赢金”的相对再定价，而不是“美元购买力崩塌”的单向叙事。</figcaption>
+  </figure>
+
+  <h2>2.2 能源：紧，但不均匀</h2>
+  <p>EIA 2026-10-16 周度数据给出了一组“紧”的组合：商业原油库存 4.125 亿桶，过去五年 <strong>5.0 分位</strong>；馏分油 1.043 亿桶，<strong>6.9 分位</strong>；汽油 2.053 亿桶，<strong>1.1 分位</strong>；战略储备（SPR）2.827 亿桶，<strong>0 分位</strong>。同时，美国原油产量 1,327 万桶/日，出口 344 万桶/日，炼厂开工率 93.4%。</p>
+  <p>但 Cushing 库存 2,759 万桶，处于 <strong>63.6 分位</strong>，并不是全面短缺。这说明“紧”主要集中在原油、馏分油、汽油和 SPR，而不是所有环节。另一个信号是价差：EIA 周度 Brent 现货 125.59 美元/桶，而卡片 Brent 期货 111.66 美元/桶，现货对期货溢价约 <strong>13.9 美元</strong>。这不是一个同时点的套利信号（现货是 10/16 周度，期货是 10/23 收盘），但它说明实物市场愿意为“现在拿到桶”付溢价。</p>
+
+  <figure>
+    <img src="{{FIG:fig_eia_percentiles.png}}" alt="EIA 库存分位">
+    <figcaption><b>图 4｜库存分位：四个品种在 7% 以下，Cushing 是例外。</b> 数据为 2026-10-16 周度值，分位按过去 261 周滚动计算。SPR 0.0%、汽油 1.1%、商业原油 5.0%、馏分油 6.9%、Cushing 63.6%。</figcaption>
+  </figure>
+
+  <h2>2.3 铜：价格在涨，供给的回答要 17 年</h2>
+  <p>铜是“窄超级周期”里最典型的品种：需求端有 AI 电力、电网和数据中心，供给端却被品位、审批和资本开支纪律锁住。FRED 全球铜价从 2026 年 1 月的约 <strong>12,987 美元/吨</strong>升至 9 月的 <strong>14,473 美元/吨</strong>（+11.4%）；COMEX 铜在 10 月下旬约 6.50 美元/磅，折合约 14,300 美元/吨。</p>
+  <p>供给端的三组数字更关键：铜矿平均品位自 1991 年以来下降约 40%；新矿从发现到投产平均约 17 年；2026 年铜勘探预算同比增长 32% 至约 43 亿美元，创 2012 年以来最高。勘探预算的上升说明行业在响应价格，但它离“新增产量”还有很长的路。TC/RC 处于低位，反映的是精矿与冶炼产能的紧张，不能直接外推为精炼铜同等短缺；真正的验证仍在库存、TC/RC 和矿山投产曲线。</p>
+
+  <figure>
+    <img src="{{FIG:fig_copper.png}}" alt="铜价与供给约束">
+    <figcaption><b>图 5｜铜：价格在涨，但供给的回答要 17 年。</b> 数据为 FRED PCOPPUSDM 月度全球铜价；供给事实来自 IEA 与 S&P Global。价格是结果，品位、审批和投产曲线才是机制。</figcaption>
+  </figure>
+
+  <h3>实物仪表盘</h3>
+  <table>
+    <thead><tr><th style="width:30%">指标</th><th style="width:20%">最新</th><th style="width:18%">日期</th><th>读法</th></tr></thead>
+    <tbody>
+      <tr><td>金油比 GOR（WTI）</td><td><strong>38.77</strong></td><td>2026-10-25</td><td>下方关注 35 / 30；40 是前一道地板</td></tr>
+      <tr><td>WTI / Brent</td><td><strong>$103.43 / $111.70</strong></td><td>2026-10-25</td><td>Brent-WTI 价差约 $8.27</td></tr>
+      <tr><td>黄金</td><td><strong>$4,009.5</strong></td><td>2026-10-25</td><td>较 9/10 高点 $4,461.8 下跌约 10.1%</td></tr>
+      <tr><td>铜</td><td><strong>$14,473/t</strong></td><td>2026-09</td><td>2026 年 1 月约 $12,987/t，+11.4%</td></tr>
+      <tr><td>商业原油库存</td><td><strong>412.5 百万桶</strong></td><td>2026-10-16</td><td>5.0 分位（261 周）</td></tr>
+      <tr><td>馏分油 / 汽油 / SPR</td><td><strong>104.3 / 205.3 / 282.7</strong></td><td>2026-10-16</td><td>6.9 / 1.1 / 0.0 分位</td></tr>
+      <tr><td>Cushing</td><td><strong>27.6 百万桶</strong></td><td>2026-10-16</td><td>63.6 分位，不是全面短缺</td></tr>
+  </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="t">这一节的结论</div>
+    <p>金转油成立，空股和美元崩不成立；实物紧成立，但紧在原油、馏分油、汽油和 SPR，Cushing 是例外。<strong>价格是结果，库存和利差才是机制。</strong> 下一节把机制推到信用层：谁在为这些实物资产提供抵押品？</p>
+  </div>
+</section>
+
+<!-- ================= 03 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">03</div>
+    <div><div class="kicker">THE MONETARY LAYER</div><h1>货币层：两种抵押品换锚</h1></div>
+  </div>
+
+  <p class="lead">“美元换锚”“人民币换锚”是流行的说法，但正式货币锚的变化不可观察，也不该由一篇报告断言。更可观察、也更有投资含义的是：<strong>信用体系拿什么做抵押。</strong> 美国在把抵押品从“美债+石油”扩展到“能源+算力”；中国在把抵押品从“房地产+外汇占款”转向“国资+实物产能”。这不是货币换锚，是抵押品换锚。</p>
+
+  <h2>3.1 美国：市场主导的“能源+算力”抵押品</h2>
+  <p>美国的约束是债务。联邦债务约 <strong>40 万亿美元</strong>，年利息约 <strong>1.2 万亿美元</strong>；CBO 基准预测显示，公众持有债务/GDP 将从 2026 财年的 101% 升至 2036 财年的 120%，赤字/GDP 从 5.8% 升至 6.7%。这意味着美国需要持续的外部资本。旧的抵押品故事是“美债+石油”：美债提供无风险资产，石油提供全球结算需求。新的故事是“美债+能源+算力”：美债仍是锚，能源、电力和 AI 盈利提供新的资产吸引力。</p>
+  <p>信用市场已经在为这个故事定价。数据中心项目融资 2026 年至今超过 <strong>1,060 亿美元</strong>，而 2025 年全年只有约 370 亿美元；AI 相关信用发行年内约 <strong>4,660 亿美元</strong>；S&amp;P Global 统计的 32 笔北美数据中心基础设施交易涉及约 <strong>1,050 亿美元</strong>相关债务。但价格也在发出警告：AI HY 利差约 <strong>360bp</strong>，CCC 已到 <strong>1,340bp</strong>，数据中心 HY 债券均价从 6 月的 101 以上跌到约 95。</p>
+  <p>机制与房地产相似：数据中心产生租金/服务现金流，现金流支持资产估值，资产估值支持融资，融资再建设新的数据中心。如果现金流是真的，这是基础设施；如果只是未来预期，这是泡沫。关键的区别在于：房地产依赖地价上涨扩大融资能力，数据中心理论上可以更多依赖长期合同和经营现金流——但前提是合同真的存在、利用率真的够高。</p>
+
+  <div class="callout">
+    <div class="t">美国的风险点</div>
+    <p><strong>算力是资产，不是锚。</strong> 如果 AI 回报不及预期，数据中心现金流无法覆盖资本开支，信用利差会先于股价反映出问题；届时“能源+算力”的抵押品故事会迅速退潮。2027–2028 是低评级债务的再融资窗口，计时器不是 2026。</p>
+  </div>
+
+  <h2>3.2 中国：国家主导的“国资+实物”抵押品</h2>
+  <p>中国的约束是旧信用引擎的退潮。房地产曾是人民币信用扩张中最重要的抵押品之一：居民按揭、企业以土地和物业抵押融资、地方财政与土地收入相互强化。随着房地产需求走弱，这套模式面临调整。房地产开发投资从 2021 年的约 <strong>14.8 万亿元</strong>降至 2024 年的约 <strong>10.0 万亿元</strong>（−32%）；地方政府土地出让收入从 2021 年的约 <strong>8.7 万亿元</strong>降至 2024 年的约 <strong>4.9 万亿元</strong>（−44%）。</p>
+  <p>替代方向是国家主导的“国资+实物产能”：国有资产、战略资源储备、制造业能力，以及以“东数西算”为代表的算力基础设施。全国规划了 <strong>8 个国家算力枢纽、10 个国家数据中心集群</strong>，累计规划投资 <strong>4,000 亿元以上</strong>；2025 年全国数据中心用电约 <strong>1,700 亿千瓦时</strong>，2030 年算力用电预计达到 <strong>8,000 亿千瓦时</strong>；“十五五”期间全国电网固定资产投资预计 <strong>5 万亿元以上</strong>，较“十四五”同期增长超过 80%。</p>
+  <p>这条路径的定价机制与美国不同：美国靠公开市场价格（ABS、项目融资、信用利差）给抵押品定价；中国靠国家信用和银行体系（更慢、更可控，但也更容易出现“先建设、后找需求”的过剩）。这就是为什么中国的算力建设看起来更像“新基建”，而不是“新房地产”：规模更小、需求更窄、技术折旧更快，但政策动员能力更强。</p>
+
+  <figure>
+    <img src="{{FIG:fig_cofer.png}}" alt="IMF COFER 美元份额">
+    <figcaption><b>图 6｜美元份额：27 年 −14.5pt，是慢迁移，不是断崖。</b> 美元占全球已分配储备从 1999Q1 的 71.2% 降至 2026Q2 的 56.7%；2026Q2 美元储备 7.495 万亿美元，总储备 13.217 万亿美元。美元持仓峰值在 2021Q3 的 7.677 万亿美元。</figcaption>
+  </figure>
+
+  <figure>
+    <img src="{{FIG:fig_credit_tail.png}}" alt="信用尾部与数据中心项目融资">
+    <figcaption><b>图 7｜信用尾部：指数平静，CCC 已 1,340bp。</b> 左：IG 89bp、HY 340bp、AI HY 360bp、CCC 1,340bp（2026-10-22）。右：数据中心项目融资从 2025 年约 370 亿美元升至 2026 年至今超过 1,060 亿美元。指数是平均数，尾部才是信号。</figcaption>
+  </figure>
+
+  <div class="callout">
+    <div class="t">一句话对照 / ONE LINE</div>
+    <p>美国的抵押品是<strong>现金流</strong>，定价在利差；中国的抵押品是<strong>国家信用</strong>，定价在政策。美国的风险是“现金流不够”，中国的风险是“利用率不够”。</p>
+  </div>
+
+  <figure>
+    <img src="{{FIG:fig_china_power.png}}" alt="中国数据中心用电">
+    <figcaption><b>图 8｜中国数据中心用电：2025 年 1,700 亿 kWh → 2030E 8,000 亿 kWh。</b> 数据来自国家能源局援引中电联《中国电力行业年度发展报告 2026》。这是“算力—电力—铜”链条里最硬的物理约束之一。</figcaption>
+  </figure>
+
+  <h2>3.3 两种抵押品换锚的对照</h2>
+  <table>
+    <thead><tr><th style="width:18%">维度</th><th style="width:41%">美国</th><th>中国</th></tr></thead>
+    <tbody>
+      <tr><td><strong>主导者</strong></td><td>市场： hyperscaler、项目融资、ABS、信用市场</td><td>国家：地方政府、央企/国企、国有银行</td></tr>
+      <tr><td><strong>新抵押品</strong></td><td>数据中心现金流、电力资产、AI 盈利</td><td>国有资产、战略储备、制造业产能、算力基础设施</td></tr>
+      <tr><td><strong>资金来源</strong></td><td>公开信用市场 + 私募信贷 + 项目融资</td><td>银行信贷 + 专项债 + 政策性金融 + 国企资产负债表</td></tr>
+      <tr><td><strong>定价方式</strong></td><td>利差、ABS 价格、股价；快，但容易过度反应</td><td>政策利率、银行定价、行政协调；慢，但容易积累过剩</td></tr>
+      <tr><td><strong>瓶颈</strong></td><td>电力、并网、变压器、许可；AI 回报</td><td>电力、并网、利用率和地方财政；技术折旧</td></tr>
+      <tr><td><strong>风险</strong></td><td>AI 融资收缩、再融资墙、信用利差走阔</td><td>算力中心空置、地方债务、PUE 与电价、重复建设</td></tr>
+      <tr><td><strong>可观察</strong></td><td>AI HY、CCC、数据中心 ABS、项目融资发行</td><td>数据中心用电、机架利用率、电网投资、地方债利差</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="t">这一节的结论</div>
+    <p>美国是<strong>市场主导</strong>的抵押品换锚，中国是<strong>国家主导</strong>的抵押品换锚。共同点是实物：电力、铜、黄金、战略储备；不同点是定价机制：一个用利差，一个用政策。理解这一点，就不会把“美元崩”或“人民币换锚”当成单向叙事，也不会把两国的算力建设当成同一种资产。</p>
+  </div>
+</section>
+
+<!-- ================= 04 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">04</div>
+    <div><div class="kicker">CHINA'S COMPUTE BOOM</div><h1>中国算力中心：房地产的类比与差异</h1></div>
+  </div>
+
+  <p class="lead">“算力中心是新时代的房地产”这句话，对了一半。相同的是<strong>抵押品逻辑</strong>：资本密集、长周期、债务融资、地方政府竞争、以资产和现金流做抵押。不同的是<strong>规模和广度</strong>：算力投资只有房地产峰值的约 3%，需求更窄，技术折旧更快。它是“新基建”，不是“新房地产”。</p>
+
+  <h2>4.1 为什么类比成立</h2>
+  <div class="two-col">
+    <div class="box">
+      <h4>① 资本密集、长周期、债务融资</h4>
+      <p class="small">房地产项目从拿地到销售需要数年；数据中心从拿地、报建、接电到上架也需要数年。两者都依赖外部融资，且资产久期长。</p>
+    </div>
+    <div class="box">
+      <h4>② 地方政府竞争</h4>
+      <p class="small">土地、电价、税收、补贴、GDP 和税收基础——地方政府有强动力推动项目落地。数据中心像房地产一样，成为地方投资的抓手。</p>
+    </div>
+    <div class="box">
+      <h4>③ 抵押品逻辑</h4>
+      <p class="small">房地产用土地和物业做抵押；数据中心用资产和长期现金流做抵押。ABS、项目融资、REITs 等工具，让“未来现金流”可以提前变成今天的融资。</p>
+    </div>
+    <div class="box">
+      <h4>④ 需求预测可能错</h4>
+      <p class="small">房地产的“刚需”叙事曾经掩盖了区域供需错配；数据中心的“AI 刚需”叙事，也可能掩盖上架率、利用率和客户集中度的问题。</p>
+    </div>
+  </div>
+
+  <h2>4.2 为什么不能 1:1 替代</h2>
+  <p><strong>第一，规模。</strong> 房地产开发投资 2021 年峰值约 14.8 万亿元；“东数西算”累计规划投资 4,000 亿元以上，只有前者的约 <strong>3%</strong>。如果算上运营商、互联网公司和民间资本，算力总投资会高于 4,000 亿元；但即便翻倍，仍是房地产峰值的个位数百分比。即使算力投资继续加码，它也无法在量级上填补房地产留下的信用缺口。房地产是一个全国性、全产业链的信用引擎；算力是一个更窄、更集中的资本开支周期。</p>
+  <p><strong>第二，需求广度。</strong> 房地产拉动钢铁、水泥、玻璃、家电、家具、装修、地方服务和广义消费；数据中心拉动电力、铜、冷却、芯片、服务器和网络设备。前者是“宽”的，后者是“窄”的。AI 需求可能很强，但它不会让所有商品一起涨。</p>
+  <p><strong>第三，技术折旧。</strong> 建筑的经济寿命通常以几十年计；服务器和芯片的迭代周期可能只有 3–5 年。数据中心的“资产”贬值更快，再融资窗口更短，对现金流的要求更高。房地产可以“捂盘”，数据中心不能“捂算力”——上架率不足，现金流就会立刻恶化。</p>
+  <p><strong>第四，位置与利用率。</strong> 房地产的需求是本地化的；数据中心可以建在西部（“东数西算”），但需求在东部的客户、网络时延和光纤连接才是关键。西部电价便宜，不代表客户会来；上架率和利用率才是现金流的来源。行业调研显示，部分智算中心利用率偏低（口径不一），这是“空置率”的算力版本。</p>
+
+  <figure>
+    <img src="{{FIG:fig_property_vs_dc.png}}" alt="房地产与算力投资规模对比">
+    <figcaption><b>图 9｜“新房地产”不是旧房地产。</b> 房地产峰值年投资约 14.8 万亿元（2021）；东数西算累计规划投资 4,000 亿元以上（2022–2025）。两者口径不同（年度 vs 累计、开发投资 vs 规划投资），仅作量级对比：算力投资约为房地产峰值的 3%。</figcaption>
+  </figure>
+
+  <h2>4.3 算力中心的“房地产式”风险</h2>
+  <table>
+    <thead><tr><th style="width:22%">风险</th><th style="width:39%">房地产版本</th><th>算力中心版本</th></tr></thead>
+    <tbody>
+      <tr><td><strong>过度建设</strong></td><td>区域供大于求，库存高企，价格战</td><td>机架上架率不足，算力价格战，项目回报低于资本成本</td></tr>
+      <tr><td><strong>抵押品贬值</strong></td><td>地价/房价下跌，抵押物价值缩水，银行收紧</td><td>芯片/服务器技术迭代，资产残值下降，ABS/项目融资再定价</td></tr>
+      <tr><td><strong>地方财政</strong></td><td>土地收入下降，地方平台承压</td><td>专项债/国企投资回报不足，地方平台现金流承压</td></tr>
+      <tr><td><strong>期限错配</strong></td><td>短债长投，销售回款放缓</td><td>项目融资久期长，但客户合同短、算力价格下行</td></tr>
+      <tr><td><strong>政策依赖</strong></td><td>限购/限贷/土地政策</td><td>电价、能耗指标、算力补贴、数据跨境政策</td></tr>
+    </tbody>
+  </table>
+
+  <p>但也要看到不同：房地产的抵押品是“土地”，其价值高度依赖地段和信贷周期；数据中心的抵押品是“现金流”，其价值取决于客户合同、利用率和电价。理论上，数据中心可以更接近基础设施资产——长期合同、稳定现金流、可再融资；现实中，它更容易受技术迭代和算力价格下行的冲击。<strong>“基础设施化”是可能的方向，但不是自动的结果。</strong></p>
+
+  <div class="callout warn">
+    <div class="t">这一节的结论</div>
+    <p>算力中心可以创造一个新的、较小的信用周期，并支撑电力、铜、冷却和电网设备的需求；但它不能填补房地产留下的信用缺口。把它当成“新房地产”，会高估它的宏观信用脉冲；把它当成“纯题材”，会低估它的物理需求。<strong>正确的定位是：窄超级周期里的“新基建”，不是全面重估里的“新房地产”。</strong></p>
+  </div>
+</section>
+
+<!-- ================= 05 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">05</div>
+    <div><div class="kicker">SCENARIOS</div><h1>三种情景与近期风险</h1></div>
+  </div>
+
+  <p class="lead">以下三种情景不是三个预测，而是三个条件句。它们的区别不在“AI 好不好”，而在<strong>AI 的收益能否转化为可持续的现金流和信用扩张</strong>。每种情景都给出资产含义和可观察的验证点；如果验证点不成立，情景就要降级。</p>
+
+  <h2>5.1 情景一：AI 生产率兑现 + 数据中心现金流成立</h2>
+  <p>AI 真正推动生产率持续增长，企业获得更高收入，投资需求扩大，数据中心逐渐形成稳定现金流和长期融资能力。新增需求持续超过矿业供给增长，铜、铝等工业金属进入较长的需求周期；黄金相对落后，因为实际利率和风险偏好都不利于避险资产。</p>
+  <p><strong>验证点：</strong> 数据中心出租率/收入上升，PPA 签约增加，真实用电量加速，数据中心 ABS/项目融资利差收窄，AI HY 从 360bp 回落至 250bp 以下。若这些同时发生，铜铝的多头逻辑从“叙事”变成“现金流”。</p>
+
+  <h2>5.2 情景二：AI 生产率不足 + 高债务持续</h2>
+  <p>AI 的生产率兑现不足，全球经济仍受高债务和疲弱需求约束。政府更依赖金融抑制，或通过通胀调整债务的实际负担。黄金的货币属性变得更重要；工业金属不一定同步受益，因为它们仍然需要真实经济需求。这个情景下，现金和黄金是相对赢家，铜铝可能继续区间震荡。</p>
+  <p><strong>验证点：</strong> AI 资本开支下修、数据中心项目延期、AI HY/CCC 继续走阔、实际利率下行、COFER 美元份额继续下降、央行黄金储备增加。若信用利差和 AI 资本开支同时恶化，这个情景的概率上升。</p>
+
+  <h2>5.3 情景三：AI 是真的，但不足以解决债务（基准情景）</h2>
+  <p>AI 确实推动生产力提高，但增长不足以让全球高债务问题迅速消失。真实经济增长与债务负担调整同时发生：工业金属受基础设施投资与供给约束支撑，黄金受实际利率、货币信用和储备需求影响，白银兼具工业与金融属性，价格波动更大。这是我们花最多时间研究的情景，也是“窄超级周期”的核心。</p>
+  <p><strong>验证点：</strong> 铜 TC/RC 低位但库存不崩、电网投资持续、数据中心用电增长、黄金与实际利率同向/背离交替、COFER 缓慢下降。只要“实物需求 + 供给约束”同时成立，铜的结构性逻辑就在；只要“债务 + 信用风险”同时成立，黄金的结构性逻辑就在。</p>
+
+  <table>
+    <thead><tr><th style="width:16%">情景</th><th style="width:27%">触发条件</th><th style="width:20%">铜 / 铝</th><th style="width:15%">黄金</th><th>白银</th></tr></thead>
+    <tbody>
+      <tr><td><strong>① AI 兑现</strong></td><td>数据中心现金流真实、PPA/出租率上升、ABS 利差收窄、AI HY &lt;250bp</td><td>需求周期，偏强</td><td>相对落后（实际利率/风险偏好不利）</td><td>工业属性主导，偏强但波动</td></tr>
+      <tr><td><strong>② AI 失望</strong></td><td>资本开支下修、项目延期、AI HY/CCC 走阔、实际利率下行</td><td>真实需求弱，偏弱</td><td>货币属性，偏强</td><td>金融属性主导，波动大</td></tr>
+      <tr><td><strong>③ 两者并存</strong><br><span class="small">基准</span></td><td>AI 真实但不足以解决债务；电网/电力投资持续；供给约束仍在</td><td>基建+供给支撑，结构性偏强</td><td>实际利率/信用/储备支撑，结构性偏强</td><td>两者都沾，波动最大</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5.4 近期风险：先活过信用收缩</h2>
+  <p>长期供给约束不能消除短期信用收缩对价格的冲击。如果市场首先经历的是 AI 融资收缩、杠杆资金退出，或全球实际需求明显走弱，那么即使矿业长期供给存在约束，大宗商品价格也可能先经历一轮明显调整。当前信用市场的信号已经在闪：AI HY 360bp、CCC 1,340bp、数据中心 HY 债券均价从 101 以上跌到约 95；2027–2028 是低评级债务的再融资窗口。</p>
+  <p>这就是为什么“长期看多铜/金”不等于“现在满仓”。卡片仍是 30% 仓位、58% 现金，不是因为不看好长期逻辑，而是因为短期信用收缩和价格重估可能先到。<strong>先活过信用收缩，再谈超级周期。</strong></p>
+
+  <div class="callout warn">
+    <div class="t">时间尺度错配</div>
+    <p>金融市场可以在几周内完成一次剧烈的风险重估；AI 改变企业生产方式可能需要数年；一座大型矿山从发现到形成产量可能需要十年以上。三者叠加才可能形成超级周期，但三者错配时，价格可以先跌、叙事可以先破。<strong>不要把长期供给约束当成短期止损的替代品。</strong></p>
+  </div>
+
+  <h2>5.5 观察顺序：先信用，再实物，最后货币</h2>
+  <p>三个周期不是同时说话。信用市场的反应最快，实物市场的库存和价差次之，货币层的储备和实际利率最慢。顺序错了，就会把“信用收缩”误读成“超级周期起点”。</p>
+  <div class="two-col">
+    <div class="box"><h4>① 信用（周–季度）</h4><p class="small">AI HY、CCC、数据中心 ABS/项目融资利差、再融资窗口。信用先裂，价格后跌。</p></div>
+    <div class="box"><h4>② 实物（月–季度）</h4><p class="small">铜 TC/RC、交易所库存、EIA 库存分位、Brent 现货溢价。实物紧，才是真需求。</p></div>
+    <div class="box"><h4>③ 货币（季度–年）</h4><p class="small">COFER 美元份额、央行黄金储备、实际利率、DXY。货币层最慢，但决定大方向。</p></div>
+    <div class="box"><h4>④ 价格（周）</h4><p class="small">GOR、WTI、黄金、铜价。价格是结果，不是原因；先看机制，再看价格。</p></div>
+  </div>
+
+  <h3>5.6 时间表：2026Q4 → 2028</h3>
+  <table>
+    <thead><tr><th style="width:16%">时间</th><th style="width:44%">看什么</th><th>意味着什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>2026Q4</strong></td><td>AI HY/CCC、数据中心 ABS、项目融资发行</td><td>信用先裂还是先稳；决定短期商品是否先跌</td></tr>
+      <tr><td><strong>2027</strong></td><td>数据中心出租率/PPA/真实用电；铜 TC/RC、库存</td><td>AI 需求是否变成现金流；铜是否进入真实短缺</td></tr>
+      <tr><td><strong>2028</strong></td><td>低评级再融资墙；矿山投产曲线</td><td>信用周期与供给周期的交汇点；超级周期的“成人礼”</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= 06 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">06</div>
+    <div><div class="kicker">FALSIFIABLE DASHBOARD</div><h1>可证伪仪表盘与结论</h1></div>
+  </div>
+
+  <p class="lead">这份报告不提供价格目标，只提供一张“什么时候改判”的仪表盘。以下指标要么是公开数据，要么是项目自己的日卡；每个指标都给出当前值和读法。只要其中 2–3 个同时转向，情景就要降级。</p>
+
+  <h2>6.1 仪表盘</h2>
+  <table>
+    <thead><tr><th style="width:24%">指标</th><th style="width:21%">当前</th><th style="width:31%">读法 / 阈值</th><th>来源</th></tr></thead>
+    <tbody>
+      <tr><td><strong>GOR（WTI / Brent）</strong></td><td>38.77 / 35.9</td><td>40 是前一道地板；下方看 35 / 30</td><td>Deep-Risk-OPP 日卡</td></tr>
+      <tr><td><strong>WTI 契约完成度</strong></td><td>88.9%</td><td>目标 $107.60；完成度不等于触发</td><td>日卡/历史</td></tr>
+      <tr><td><strong>WTI / Brent</strong></td><td>$103.43 / $111.70</td><td>Brent-WTI 价差 $8.27；现货溢价另看 EIA</td><td>日卡</td></tr>
+      <tr><td><strong>EIA 库存分位</strong></td><td>原油 5.0%、馏分油 6.9%、汽油 1.1%、SPR 0.0%、Cushing 63.6%</td><td>四个品种 &lt;7% 为紧；Cushing 是例外</td><td>EIA 2026-10-16</td></tr>
+      <tr><td><strong>Brent 现货 vs 期货</strong></td><td>125.59 vs 111.66</td><td>现货溢价约 $13.9；不是同时点套利</td><td>EIA 10/16；日卡 10/23</td></tr>
+      <tr><td><strong>铜价 / TC-RC</strong></td><td>$14,473/t；TC/RC 低位</td><td>精矿紧 ≠ 精炼铜短缺；看库存与投产</td><td>FRED；行业报告</td></tr>
+      <tr><td><strong>数据中心项目融资</strong></td><td>2026 YTD &gt;$106B；2025 全年 ~$37B</td><td>增速快；看利差与发行是否持续</td><td>信用展望汇总</td></tr>
+      <tr><td><strong>AI HY / HY / IG / CCC</strong></td><td>360 / 340 / 89 / 1,340bp</td><td>AI HY &lt;250、HY &lt;280、CCC &lt;900 才算缓解</td><td>FRED 10/22；信用报告</td></tr>
+      <tr><td><strong>COFER 美元份额</strong></td><td>56.7%；美元储备 $7.495T</td><td>慢迁移；55% 是心理关口，不是断崖</td><td>IMF 2026Q2</td></tr>
+      <tr><td><strong>10Y / DXY / VIX</strong></td><td>4.96% / 101.81 / 19.45</td><td>VIX &gt;22.5 才是恐慌门槛；当前无 capitulation</td><td>日卡</td></tr>
+      <tr><td><strong>中国数据中心用电</strong></td><td>2025 约 1,700 亿 kWh；2030E 8,000 亿 kWh</td><td>看真实用电与上架率，不只看规划</td><td>国家能源局/中电联</td></tr>
+      <tr><td><strong>算力中心利用率 / PUE</strong></td><td>部分项目 &lt;30%（行业调研）；平均 PUE ~1.4，新建大型 &lt;1.25</td><td>利用率是“空置率”的算力版本；PUE 是成本线</td><td>公开报道/政策</td></tr>
+    </tbody>
+  </table>
+
+  <h2>6.2 什么会让我们改判</h2>
+  <div class="two-col">
+    <div class="box">
+      <h4>向上确认（超级周期更强）</h4>
+      <ul class="small">
+        <li>数据中心出租率/收入/PPA 超预期，真实用电加速；</li>
+        <li>数据中心 ABS/项目融资利差收窄，AI HY 回落至 &lt;250bp；</li>
+        <li>铜 TC/RC 低位但库存不升，矿山投产延迟；</li>
+        <li>中国算力中心利用率提升，电网投资兑现；</li>
+        <li>COFER 美元份额继续下降，央行黄金储备增加。</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>向下确认（超级周期延后/证伪）</h4>
+      <ul class="small">
+        <li>AI 资本开支下修、数据中心项目延期、利用率下降；</li>
+        <li>AI HY &gt;450bp、CCC &gt;1,500bp、DC HY 价格继续跌；</li>
+        <li>铜库存大幅累积、TC/RC 回升、矿投产加速；</li>
+        <li>中国地方债务/算力中心现金流恶化；</li>
+        <li>美元份额企稳/回升，实际利率上行，黄金储备需求减弱。</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>6.3 结论</h2>
+  <p>下一轮大宗商品超级周期，不是单纯的“AI 需求”故事，也不是“美元崩、黄金上天”的单向叙事。它更像一次<strong>抵押品换锚</strong>：美国用能源和算力重锚信用，中国用国资和实物产能重锚信用；两条路都指向电力、铜、黄金和战略储备，但规模和广度都比房地产时代窄。</p>
+  <p>因此，我们同时保留两个判断：<strong>长期条件在形成，短期 regime 未确认。</strong> 长期看，铜的供给约束、电力的物理瓶颈、黄金的信用对冲价值都真实存在；短期看，AI 融资收缩、信用利差走阔、价格重估可以先到。交易可以对，regime 还没确认。</p>
+
+  <div class="quote">“下一轮超级周期不会由需求预测宣布。它会先出现在一份数据中心的现金流、一个铜 TC/RC、一家央行的黄金储备里。”</div>
+
+  <h2>6.4 三个必须盯住的信号</h2>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="v">Cash flow</div><div class="l">数据中心出租率 / PPA / ABS 利差<br>项目融资 2026 YTD &gt;$106B</div></div>
+    <div class="kpi"><div class="v">Cu TC/RC</div><div class="l">精矿紧张 ≠ 精炼铜短缺<br>铜价 $14,473/t；库存与投产才是验证</div></div>
+    <div class="kpi"><div class="v">COFER</div><div class="l">美元份额 56.7%<br>央行黄金储备 / 实际利率</div></div>
+    <div class="kpi"><div class="v">GOR</div><div class="l">38.77；40 是前一道地板<br>下方看 35 / 30</div></div>
+  </div>
+
+  <div class="callout" style="margin-top:5.5mm">
+    <div class="t">一页纸总结 / ONE-PAGE SUMMARY</div>
+    <p><strong>长期：</strong>铜、电力、黄金的结构性逻辑成立；这是“窄超级周期”，不是全面重估。<br>
+    <strong>短期：</strong>信用收缩和价格重估可能先到；卡片 30% 仓位、58% 现金，不追涨、不恐慌。<br>
+    <strong>触发：</strong>数据中心现金流、铜 TC/RC、央行黄金储备——三者至少两个转向，才改判。</p>
+  </div>
+
+  <p class="small">研究框架，不是投资建议。卡片公开，每日更新；所有情景都是条件句，不是预测。</p>
+</section>
+
+<!-- ================= APPENDIX ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">A</div>
+    <div><div class="kicker">APPENDIX</div><h1>数据、方法与来源</h1></div>
+  </div>
+
+  <h2>A.1 数据口径</h2>
+  <ul class="small">
+    <li><strong>GOR</strong>：黄金价格 ÷ WTI 价格；日卡 GOR(WTI) 与 GOR(Brent) 分别计算。契约基线 WTI $69.87（2026-06-19），目标 $107.60。</li>
+    <li><strong>库存分位</strong>：EIA 周度库存，过去 261 周滚动分位；0% = 五年最低。库存单位千桶；产量/出口单位千桶/日；炼厂开工率 %。</li>
+    <li><strong>油/金</strong>：WTI ÷ 黄金；指数化以 2026-06-19 = 100，仅用于比较相对涨幅。</li>
+    <li><strong>COFER</strong>：IMF 季度已分配储备份额；2026Q2 为最新；美元持仓 7.495 万亿美元，总储备 13.217 万亿美元。</li>
+    <li><strong>铜价</strong>：FRED PCOPPUSDM 月度全球铜价；COMEX 现货/期货用于当前对照。TC/RC 为行业报价，非交易所官方数据。</li>
+    <li><strong>中国数据中心用电</strong>：国家能源局援引中电联《中国电力行业年度发展报告 2026》；2025 约 1,700 亿 kWh，2030E 8,000 亿 kWh。</li>
+    <li><strong>中国算力投资</strong>：国家发改委“东数西算”8 枢纽 10 集群；累计规划投资 4,000 亿元以上（公开报道）。与房地产年度投资口径不同，仅作量级对比。</li>
+    <li><strong>算力中心利用率/PUE</strong>：行业调研与公开政策；口径不一，本报告只用“部分项目偏低”“平均约 1.4、新建大型 &lt;1.25”等方向性表述，不作为精确统计。</li>
+  </ul>
+
+  <h2>A.2 主要来源</h2>
+  <table>
+    <thead><tr><th style="width:30%">来源</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td>Deep-Risk-OPP 日卡/历史（2026-10-25）</td><td>GOR、WTI、Brent、黄金、铜、VIX、10Y、DXY、仓位、契约完成度</td></tr>
+      <tr><td>EIA Weekly Petroleum Status Report（2026-10-16）</td><td>商业原油/馏分油/汽油/SPR/Cushing 库存、产量、出口、炼厂开工率</td></tr>
+      <tr><td>FRED（DGS10、BAMLH0A0HYM2、BAMLH0A3HYC、BAMLC0A0CM、PCOPPUSDM）</td><td>10Y、HY/CCC/IG 利差、铜价</td></tr>
+      <tr><td>IMF COFER（2026Q2）</td><td>美元/欧元/人民币储备份额、美元持仓</td></tr>
+      <tr><td>CBO, Budget and Economic Outlook: 2026 to 2036（2026-02）</td><td>美国债务/GDP、赤字/GDP 路径</td></tr>
+      <tr><td>IEA, Energy and AI（2025-04）</td><td>全球数据中心用电 415→945 TWh；约 20% 项目可能因电网延迟；铜矿品位/17 年</td></tr>
+      <tr><td>S&amp;P Global（2026-10-23；2026 铜勘探数据）</td><td>32 笔北美数据中心交易/约 1,050 亿美元相关债务；铜勘探预算 +32% 至约 43 亿美元</td></tr>
+      <tr><td>国家能源局/中电联《中国电力行业年度发展报告 2026》</td><td>中国数据中心用电 1,700 亿→8,000 亿 kWh；“十五五”电网投资 5 万亿元以上</td></tr>
+      <tr><td>国家发改委“东数西算”公开资料</td><td>8 个国家算力枢纽、10 个国家数据中心集群、4,000 亿元以上规划投资</td></tr>
+      <tr><td>国家统计局/财政部公开数据</td><td>房地产开发投资 2021 约 14.8 万亿元、2024 约 10.0 万亿元；土地出让收入 8.7→4.9 万亿元</td></tr>
+      <tr><td>信用展望汇总（2026-10-17，内部）</td><td>AI 信用发行 4,660 亿美元；数据中心项目融资 2025 年 370 亿/2026 YTD 1,060 亿美元；AI HY 360bp；数据中心 HY 债券价格 101→95</td></tr>
+    </tbody>
+  </table>
+
+  <h2>A.3 方法与限制</h2>
+  <p class="small">本报告是情景分析，不是预测。情景概率没有量化，因为关键变量（AI 生产率、数据中心现金流、政策反应）没有足够的历史样本。所有“基准情景”只是研究时间分配，不是概率判断。中国算力数据存在口径差异（算力规模、机架、用电、投资），本报告优先使用可交叉验证的用电和规划投资数据，对利用率/PUE 只用方向性表述。美国数据中心融资数据来自内部信用汇总，可能与公开市场统计有差异。</p>
+
+  <h2>A.4 版本与订阅</h2>
+  <div class="two-col">
+    <div class="box">
+      <h4>版本</h4>
+      <p class="small">v1.0 · 2026-10-25。数据更新频率：每日卡片；周度 EIA；季度 COFER；月度铜价与信用利差。下一版将在 2026-11 中旬，重点更新 EIA 10/23 周数据、AI 信用发行与数据中心利用率。</p>
+    </div>
+    <div class="box">
+      <h4>订阅 / 公开卡片</h4>
+      <p class="small">每日 GOR 卡片：<br>justinjchen-cornell.github.io/Deep-Risk-OPP/card.html<br><br>免费 Q4 危机清单（10 条预注册信号）：<br>justinjchen-cornell.github.io/Deep-Risk-OPP/crisis-checklist.html</p>
+    </div>
+  </div>
+
+  <h2>A.5 关键日期</h2>
+  <table>
+    <thead><tr><th style="width:24%">日期（预计）</th><th style="width:30%">事件</th><th>看什么</th></tr></thead>
+    <tbody>
+      <tr><td>2026-10-28 22:30 BJT</td><td>EIA 周度（截至 10/23）</td><td>原油/馏分油/汽油/SPR 库存、产量、出口、开工率</td></tr>
+      <tr><td>2026-10-29 02:00 BJT</td><td>FOMC 决议</td><td>利率、声明、风险偏好；对 10Y/DXY/黄金的影响</td></tr>
+      <tr><td>2026-11-10 前后</td><td>EIA 短期能源展望（11 月）</td><td>Brent 供需与价格预测；是否上调/下调 2027 年</td></tr>
+      <tr><td>2026-12 月底</td><td>IMF COFER 2026Q3</td><td>美元份额、美元储备持仓、人民币份额</td></tr>
+      <tr><td>2027-01-14</td><td>90 天证伪线</td><td>契约、内容、付费 pilot 的 go/no-go</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer-note">
+    <strong>免责声明：</strong>本报告为研究框架，不构成投资建议、要约或招揽。所有数据截至 2026-10-25，可能随后续数据更新而变化。读者应自行核数、独立判断，并承担投资决策的全部风险。<br>
+    Deep-Risk-OPP · Research framework, not investment advice. Card public, updated daily.
+  </div>
+</section>
+
+</body>
+</html>
+</body>
+</html>
