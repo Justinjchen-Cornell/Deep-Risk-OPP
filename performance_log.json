@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-18",
+ "updated": "2026-10-25",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -238,6 +238,7 @@
   {
    "id": "019-gold-wrong-number-li",
    "publish_date": "2026-10-20",
+   "planned_date": "2026-10-20",
    "platform": "LinkedIn",
    "title": "Gold +64% is the wrong number",
    "piece": "019",
@@ -251,14 +252,32 @@
    "followers": null,
    "clicks": null,
    "measured_at": null,
-   "note": "Week 2 CTA post；lead magnet = Q4 checklist；计划 10/20"
+   "note": "未发；原计划 10/20，待排期；lead magnet = Q4 checklist"
   },
   {
    "id": "020-treasury-who-breaks-li",
-   "publish_date": "2026-10-22",
+   "publish_date": "2026-10-21",
    "platform": "LinkedIn",
    "title": "Treasury yields 24-year high: who breaks first?",
    "piece": "020",
+   "language": "EN",
+   "url": "",
+   "status": "pending",
+   "impressions": null,
+   "likes": null,
+   "comments": null,
+   "shares": null,
+   "followers": null,
+   "clicks": null,
+   "measured_at": null,
+   "note": "已发布 2026-10-21；22h 157 曝光 / 3 互动；24h due 10/22，7d due 10/28；待 LinkedIn 导出回填"
+  },
+  {
+   "id": "021-gor008-followup-li",
+   "publish_date": "2026-10-26",
+   "platform": "LinkedIn",
+   "title": "GOR #008 follow-up: 40 broke, crisis not confirmed",
+   "piece": "018 follow-up",
    "language": "EN",
    "url": "",
    "status": "planned",
@@ -269,7 +288,25 @@
    "followers": null,
    "clicks": null,
    "measured_at": null,
-   "note": "Week 2 CTA post；lead magnet = Q4 checklist；计划 10/22"
+   "note": "计划 10/26 21:00–22:00 BJT；CTA = Q4 checklist；重点：交易对 ≠ 危机确认"
+  },
+  {
+   "id": "022-eia-physical-li",
+   "publish_date": "2026-10-27",
+   "platform": "LinkedIn",
+   "title": "Brent $117 headline vs EIA physical $125",
+   "piece": "022",
+   "language": "EN",
+   "url": "",
+   "status": "planned",
+   "impressions": null,
+   "likes": null,
+   "comments": null,
+   "shares": null,
+   "followers": null,
+   "clicks": null,
+   "measured_at": null,
+   "note": "计划 10/27 21:00–22:00 BJT；EIA 物理数据 vs 战争风险溢价；CTA = Q4 checklist"
   }
  ]
 }
