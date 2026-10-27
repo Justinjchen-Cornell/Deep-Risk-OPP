@@ -1,5 +1,5 @@
 {
- "as_of": "2026-10-26 07:17",
+ "as_of": "2026-10-27 08:26",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -14,7 +14,7 @@
   "within_24h": 1,
   "within_7d": 1,
   "overdue_24h": 3,
-  "overdue_7d": 2,
+  "overdue_7d": 3,
   "status": "breach"
  },
  "backfill": {
@@ -130,7 +130,7 @@
    "within_24h": false,
    "within_7d": false,
    "overdue_24h": true,
-   "overdue_7d": false,
+   "overdue_7d": true,
    "note": "已发布 2026-10-19 22:09 BJT；首评已挂；3m 15 → 6m 41 → 43m 85 曝光 / 1 评论（首评）/ 48 触达；24h due 10/20 22:09；7d due 10/26 22:09"
   },
   {
