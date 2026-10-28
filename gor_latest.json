@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-27 08:25",
-  "gor_brent": 36.61,
-  "gor_wti": 39.84,
+  "updated": "2026-10-28 08:32",
+  "gor_brent": 37.07,
+  "gor_wti": 40.47,
   "brent_source": "yahoo",
-  "brent_asof": "2026-10-27T00:15:28+00:00",
+  "brent_asof": "2026-10-28T00:21:01+00:00",
   "regime": "修复周期",
   "final_position": 30,
   "allocation": {
@@ -16,7 +16,7 @@
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=101.99 > 99 强美元压制",
+      "title": "DXY=102.34 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
@@ -26,37 +26,37 @@
     }
   ],
   "screener": {
-    "d_gold": -0.0071,
-    "d_oil": 0.5209,
+    "d_gold": 0.0043,
+    "d_oil": 0.5169,
     "leg": "油腿主导",
     "s1": true,
-    "vix": 18.39,
+    "vix": 17.52,
     "vix_thr": 22.46,
     "s2": false,
-    "oil": 101.12,
+    "oil": 100.71,
     "oil_pctl": 0.95,
     "s3": false,
     "npass": 1,
     "verdict": "红",
     "oil_cap_factor": 0.0,
-    "ts": "2026-10-27 00:25",
+    "ts": "2026-10-28 00:32",
     "history_last": "fetched"
   },
   "data": {
     "黄金期货": {
-      "price": 4029.1,
+      "price": 4075.6,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 101.12,
+      "price": 100.71,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 110.06,
+      "price": 109.94,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 101.99,
+      "price": 102.34,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
@@ -64,11 +64,11 @@
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 18.39,
+      "price": 17.52,
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.5675,
+      "price": 6.657,
       "change_pct": 0.0
     }
   },
@@ -76,12 +76,12 @@
     "total": "收缩",
     "direction": "向心坍缩",
     "speed": "放缓",
-    "dxy": 101.99,
-    "vix": 18.39,
+    "dxy": 102.34,
+    "vix": 17.52,
     "tenyear": 5.0,
-    "thirtyyear": 5.33,
+    "thirtyyear": 5.31,
     "fed_balance": 6.75,
-    "m2": 23.34,
+    "m2": 23.41,
     "fed_rate": 3.88,
     "warsh_alert": true
   },
