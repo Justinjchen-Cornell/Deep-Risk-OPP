@@ -1,16 +1,16 @@
 {
- "score": 0.311,
+ "score": 0.283,
  "zone": "mild_ease",
- "trend_3m": -0.05,
- "trend_6m": -0.14,
+ "trend_3m": -0.07,
+ "trend_6m": -0.16,
  "components": {
   "cpi_gap": {
    "raw": -2.023,
    "z": -0.36
   },
   "core6_gap": {
-   "raw": -0.726,
-   "z": 0.05
+   "raw": -0.902,
+   "z": -0.08
   },
   "unemp_rise": {
    "raw": -0.1,
