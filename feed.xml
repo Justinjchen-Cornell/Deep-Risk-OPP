@@ -5,20 +5,14 @@
   <link href="https://justinjchen-cornell.github.io/feed.xml" rel="self"/>
   <link href="https://justinjchen-cornell.github.io/"/>
   <id>tag:justinjchen-cornell.github.io,2026:feed</id>
-  <updated>2026-10-31T00:48:07Z</updated>
+  <updated>2026-11-01T00:07:48Z</updated>
   <author><name>Justinjchen</name></author>
   <entry>
-    <title>GOR 47.0 · 极端区</title>
-    <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
-    <id>tag:justinjchen-cornell.github.io,2026-09-30:signal</id>
-    <updated>2026-09-30T00:00:00Z</updated>
-    <content type="html"><p><b>GOR(WTI) 47.0</b> (Brent 44.3) — 极端区</p><p>黄金 $4,209.0 · WTI $89.6 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 16.1</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
-  </entry>  <entry>
     <title>GOR 46.8 · 极端区</title>
     <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
     <id>tag:justinjchen-cornell.github.io,2026-10-01:signal</id>
     <updated>2026-10-01T00:00:00Z</updated>
-    <content type="html"><p><b>GOR(WTI) 46.8</b> (Brent 42.9) — 极端区</p><p>黄金 $4,193.7 · WTI $89.5 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 16.0</p><p>昨日验证：前日 GOR 47.0（极端区）→ 今日 WTI -0.0% ⚠️ 验证中/未验证</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
+    <content type="html"><p><b>GOR(WTI) 46.8</b> (Brent 42.9) — 极端区</p><p>黄金 $4,193.7 · WTI $89.5 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 16.0</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
   </entry>  <entry>
     <title>GOR 45.4 · 极端区</title>
     <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
@@ -182,10 +176,16 @@
     <updated>2026-10-31T00:00:00Z</updated>
     <content type="html"><p><b>GOR(WTI) 37.7</b> (Brent 34.6) — 修复区</p><p>黄金 $3,884.4 · WTI $102.9 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 19.4</p><p>昨日验证：前日 GOR 39.2（修复区）→ 今日 WTI +0.2% ⚠️ 验证中/未验证</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
   </entry>  <entry>
+    <title>GOR 37.7 · 修复区</title>
+    <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
+    <id>tag:justinjchen-cornell.github.io,2026-11-01:signal</id>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <content type="html"><p><b>GOR(WTI) 37.7</b> (Brent 34.2) — 修复区</p><p>黄金 $3,884.4 · WTI $102.9 · 布伦特 $N/A · DXY N/A · 10Y N/A% · VIX 19.4</p><p>昨日验证：前日 GOR 37.7（修复区）→ 今日 WTI +0.0% ⚠️ 验证中/未验证</p><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
+  </entry>  <entry>
     <title>GOR 37.7 · 修复周期 · 仓位 30%</title>
     <link href="https://justinjchen-cornell.github.io/dashboard.html"/>
-    <id>tag:justinjchen-cornell.github.io,2026-10-31:signal</id>
-    <updated>2026-10-31T00:00:00Z</updated>
-    <content type="html"><p><b>GOR(WTI) 37.7</b> (Brent 34.6) — 修复周期</p><p>黄金 $3,884.4 · WTI $102.9 · 布伦特 $112.3 · DXY 102.0 · 10Y 5.0% · VIX 19.4</p><p>仓位 30%：油气 20% · 黄金 15% · 现金 58% · A股 7%</p><p>三流：总量收缩 · 方向向心坍缩 · 流速放缓</p><p>昨日验证：前日 GOR 37.7（修复区）→ 今日 WTI +0.0% ⚠️ 验证中/未验证</p><ul><li>[warning] DXY=101.96 > 99 强美元压制 — 仓位-10%</li><li>[warning] 10Y=4.98% > 4.3% 高利率压制 — 仓位-10%</li></ul><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
+    <id>tag:justinjchen-cornell.github.io,2026-11-01:signal</id>
+    <updated>2026-11-01T00:00:00Z</updated>
+    <content type="html"><p><b>GOR(WTI) 37.7</b> (Brent 34.2) — 修复周期</p><p>黄金 $3,884.4 · WTI $102.9 · 布伦特 $113.4 · DXY 101.9 · 10Y 5.0% · VIX 19.4</p><p>仓位 30%：油气 20% · 黄金 15% · 现金 58% · A股 7%</p><p>三流：总量收缩 · 方向向心坍缩 · 流速放缓</p><p>昨日验证：前日 GOR 37.7（修复区）→ 今日 WTI +0.0% ⚠️ 验证中/未验证</p><ul><li>[warning] DXY=101.88 > 99 强美元压制 — 仓位-10%</li><li>[warning] 10Y=4.98% > 4.3% 高利率压制 — 仓位-10%</li></ul><p><a href='https://justinjchen-cornell.github.io/'>完整看板 →</a> · 研究框架，不构成投资建议</p></content>
   </entry>
 </feed>
