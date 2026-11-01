@@ -377,6 +377,24 @@
    "clicks": null,
    "measured_at": null,
    "note": "已发 2026-11-01；VIX 盘中 23.93 / 收盘 19.42；黄金 -3.63%；首评 checklist；24h due 11/02，7d due 11/08；待补 URL/URN 与数据"
+  },
+  {
+   "id": "026-us-liquidity-narrative-li",
+   "publish_date": "2026-11-02",
+   "platform": "LinkedIn",
+   "title": "The US is not draining liquidity on purpose. The mechanism is real anyway.",
+   "piece": "026",
+   "language": "EN",
+   "url": "",
+   "status": "planned",
+   "impressions": null,
+   "likes": null,
+   "comments": null,
+   "shares": null,
+   "followers": null,
+   "clicks": null,
+   "measured_at": null,
+   "note": "draft ready；建议 11/2 21:00–22:00 BJT；配图 narrative_vs_tape.png"
   }
  ]
 }
