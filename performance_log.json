@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29",
+ "updated": "2026-11-01",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -345,6 +345,28 @@
    "title": "The Fed is boxed in. Google is the first crack.",
    "piece": "024",
    "language": "EN",
+   "url": "https://www.linkedin.com/posts/justin-chen-b28b5838_macro-credit-ai-share-7521581115434991617-2t9a",
+   "status": "measured",
+   "impressions": 522,
+   "likes": 0,
+   "comments": 1,
+   "shares": 0,
+   "followers": 0,
+   "clicks": 0,
+   "measured_at": "2026-11-01T12:10+08:00",
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-01）；522 曝光 / 166 触达 / 1 评论 / 0 反应；触达率 31.8%（最高）",
+   "linkedin_urn": "7521581116454113280",
+   "engagements": 1,
+   "members_reached": 166,
+   "profile_viewers": 0
+  },
+  {
+   "id": "025-vix-gold-flush-li",
+   "publish_date": "2026-11-01",
+   "platform": "LinkedIn",
+   "title": "Gold Didn't Break. It Got Sold. (VIX touched 24, closed 19)",
+   "piece": "025",
+   "language": "EN",
    "url": "",
    "status": "pending",
    "impressions": null,
@@ -354,7 +376,7 @@
    "followers": null,
    "clicks": null,
    "measured_at": null,
-   "note": "已发 2026-10-29；Google -12% / AI capex 裂缝 + Fed boxed-in 宏观框架；首评 checklist；24h due 10/30，7d due 11/05；待补 URL/URN 与数据"
+   "note": "已发 2026-11-01；VIX 盘中 23.93 / 收盘 19.42；黄金 -3.63%；首评 checklist；24h due 11/02，7d due 11/08；待补 URL/URN 与数据"
   }
  ]
 }
