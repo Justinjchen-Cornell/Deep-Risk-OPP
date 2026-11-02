@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-02 20:49",
+ "as_of": "2026-11-02 21:07",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -8,9 +8,9 @@
  },
  "contract6": {
   "baseline_start": "2026-10-16",
-  "published": 8,
+  "published": 9,
   "measured": 6,
-  "completeness_pct": 75.0,
+  "completeness_pct": 66.7,
   "within_24h": 2,
   "within_7d": 4,
   "overdue_24h": 2,
@@ -28,7 +28,7 @@
   "follower_rate_pct": 0.0
  },
  "totals": {
-  "published": 14,
+  "published": 15,
   "measured": 8,
   "impressions": 4183,
   "engagements": 9,
@@ -39,7 +39,7 @@
  },
  "by_platform": {
   "LinkedIn": {
-   "published": 8,
+   "published": 9,
    "measured": 8,
    "impressions": 4183,
    "engagements": 9,
@@ -78,7 +78,7 @@
    "piece": "026",
    "language": "EN",
    "scope": "contract",
-   "status": "planned",
+   "status": "pending",
    "impressions": null,
    "engagements": null,
    "followers": null,
@@ -89,7 +89,7 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "draft ready；建议 11/2 21:00–22:00 BJT；配图 narrative_vs_tape.png"
+   "note": "已发 2026-11-02 21:00 左右 BJT；配图 narrative_vs_tape.png；24h due 11/03、7d due 11/09；待 URL/URN 与曝光/互动数据"
   },
   {
    "id": "025-vix-gold-flush-li",
@@ -512,27 +512,6 @@
    "overdue_24h": false,
    "overdue_7d": false,
    "note": "计划 10/27 21:00–22:00 BJT；EIA 物理数据 vs 战争风险溢价；CTA = Q4 checklist"
-  },
-  {
-   "id": "026-us-liquidity-narrative-li",
-   "publish_date": "2026-11-02",
-   "platform": "LinkedIn",
-   "title": "The US is not draining liquidity on purpose. The mechanism is real anyway.",
-   "piece": "026",
-   "language": "EN",
-   "scope": "contract",
-   "status": "planned",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
-   "overdue_24h": false,
-   "overdue_7d": false,
-   "note": "draft ready；建议 11/2 21:00–22:00 BJT；配图 narrative_vs_tape.png"
   }
  ]
 }
