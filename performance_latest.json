@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-02 20:40",
+ "as_of": "2026-11-02 20:49",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -9,10 +9,10 @@
  "contract6": {
   "baseline_start": "2026-10-16",
   "published": 8,
-  "measured": 5,
-  "completeness_pct": 62.5,
-  "within_24h": 1,
-  "within_7d": 3,
+  "measured": 6,
+  "completeness_pct": 75.0,
+  "within_24h": 2,
+  "within_7d": 4,
   "overdue_24h": 2,
   "overdue_7d": 2,
   "status": "breach"
@@ -29,23 +29,23 @@
  },
  "totals": {
   "published": 14,
-  "measured": 7,
-  "impressions": 3970,
+  "measured": 8,
+  "impressions": 4183,
   "engagements": 9,
   "followers": 0,
   "clicks": 0,
-  "engagement_rate_pct": 0.23,
+  "engagement_rate_pct": 0.22,
   "follower_rate_pct": 0.0
  },
  "by_platform": {
   "LinkedIn": {
    "published": 8,
-   "measured": 7,
-   "impressions": 3970,
+   "measured": 8,
+   "impressions": 4183,
    "engagements": 9,
    "followers": 0,
    "clicks": 0,
-   "engagement_rate_pct": 0.23,
+   "engagement_rate_pct": 0.22,
    "follower_rate_pct": 0.0
   },
   "知乎": {
@@ -95,22 +95,22 @@
    "id": "025-vix-gold-flush-li",
    "publish_date": "2026-11-01",
    "platform": "LinkedIn",
-   "title": "Gold Didn't Break. It Got Sold. (VIX touched 24, closed 19)",
+   "title": "INTC -28.6%: The Second Crack in the AI Capex Boom",
    "piece": "025",
    "language": "EN",
    "scope": "contract",
-   "status": "pending",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
+   "status": "measured",
+   "impressions": 213,
+   "engagements": 0,
+   "followers": 0,
+   "clicks": 0,
+   "measured": true,
+   "measured_at": "2026-11-02T20:49+08:00",
+   "within_24h": true,
+   "within_7d": true,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "已发 2026-11-01；VIX 盘中 23.93 / 收盘 19.42；黄金 -3.63%；首评 checklist；24h due 11/02，7d due 11/08；待补 URL/URN 与数据"
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-02，发布后约 32h）；213 曝光 / 48 触达 / 0 互动 / 0 涨粉 / 1 主页浏览；触达率 22.5%；受众 Senior 35%、Financial Services 35%、10,001+ 21%；7d 复查 11/08"
   },
   {
    "id": "024-google-fed-boxed-in-li",
