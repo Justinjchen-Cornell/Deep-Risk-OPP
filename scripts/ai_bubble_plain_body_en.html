@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The AI Bubble: Risks, the Path, and Second-/Third-Order Opportunities</title>
+<style>
+:root{--navy:#0B1F33;--gold:#C9A227;--copper:#B87333;--teal:#1F6F78;--red:#B23A2E;--gray:#8A8F98;--soft:#F6F3EC;--line:#E3DED2}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;font-size:10.4pt;line-height:1.62;color:#1A2433}
+p{margin:0 0 3mm 0;text-align:justify}
+h1{font-size:21pt;line-height:1.22;margin:1mm 0 3.2mm 0;color:var(--navy);font-weight:800;letter-spacing:-0.3pt}
+h2{font-size:13pt;margin:5.6mm 0 2.2mm 0;color:var(--navy);border-left:3pt solid var(--gold);padding-left:3mm;page-break-after:avoid}
+h3{font-size:10.8pt;margin:4mm 0 1.2mm 0;color:var(--copper);page-break-after:avoid}
+.lead{font-size:11.3pt;color:#3A4552;line-height:1.72}
+.section{page-break-before:always}
+.section.first{page-break-before:auto}
+.section-head{display:flex;align-items:flex-end;gap:5mm;border-bottom:1.2pt solid var(--navy);padding-bottom:2.6mm;margin-bottom:3.8mm}
+.section-num{font-size:30pt;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-1pt}
+.kicker{font-size:7.4pt;letter-spacing:1.6pt;color:var(--gray);text-transform:uppercase}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin:4mm 0}
+.kpi{background:var(--soft);border-top:2pt solid var(--gold);padding:3.2mm}
+.kpi .v{font-size:15pt;font-weight:700;color:var(--navy);line-height:1.25}
+.kpi .l{font-size:7.6pt;color:var(--gray);margin-top:0.8mm}
+.callout{background:linear-gradient(90deg,#F6F3EC 0%,#FBF9F4 100%);border-left:3pt solid var(--gold);padding:3.6mm 4.4mm;margin:3.6mm 0;page-break-inside:avoid}
+.callout .t{font-size:7.4pt;letter-spacing:1pt;color:var(--copper);font-weight:700;margin-bottom:1.1mm;text-transform:uppercase}
+.callout p{margin:0;font-size:10pt}
+.callout.warn{border-left-color:var(--red);background:#FAF1EF}
+.callout.warn .t{color:var(--red)}
+figure{margin:3.8mm 0;page-break-inside:avoid}
+figure img{width:100%;display:block;border:0.5pt solid var(--line)}
+figcaption{font-size:7.9pt;color:var(--gray);margin-top:1.2mm;line-height:1.5}
+figcaption b{color:var(--navy)}
+table{width:100%;border-collapse:collapse;font-size:8.6pt;margin:3mm 0;page-break-inside:avoid;line-height:1.5}
+th{background:var(--navy);color:#fff;font-weight:600;text-align:left;padding:1.9mm}
+td{border-bottom:0.5pt solid var(--line);padding:1.9mm;vertical-align:top}
+tr:nth-child(even) td{background:#FAF8F2}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:5mm;page-break-inside:avoid}
+.box{border:0.6pt solid var(--line);padding:3.8mm 4mm;background:#FCFBF7}
+.box h4{font-size:9.6pt;margin:0 0 1.5mm 0;color:var(--navy)}
+ul{margin:1mm 0 3mm 0;padding-left:5mm}
+li{margin-bottom:1.1mm}
+.small{font-size:8pt;color:var(--gray)}
+.quote{font-size:12pt;color:var(--navy);font-weight:600;line-height:1.6;border-left:3pt solid var(--copper);padding-left:4mm;margin:4mm 0}
+.footer-note{font-size:7.6pt;color:var(--gray);border-top:0.5pt solid var(--line);padding-top:2mm;margin-top:4mm}
+</style>
+</head>
+<body>
+
+<!-- ================= 01 ONE SENTENCE ================= -->
+<section class="section first">
+  <div class="kicker">DEEP-RISK-OPP · PLAIN-LANGUAGE RESEARCH FRAMEWORK · ENGLISH EDITION · 2026-11-03</div>
+  <h1 style="margin-top:3mm">The AI Bubble: Risks, the Path, and Second-/Third-Order Opportunities</h1>
+  <p class="lead">Put simply, the AI bubble is not &ldquo;AI doesn't work.&rdquo; It is <strong>&ldquo;too much compute was built with borrowed money &mdash; more than we can use today.&rdquo;</strong> The technology is real. The hyperscalers' profits are real. The problem is that capex is outrunning revenue, and the financing chain is more fragile than the cash flows behind it.</p>
+
+  <div class="kpi-grid">
+    <div class="kpi"><div class="v">41x</div><div class="l">S&amp;P CAPE (source estimate)</div></div>
+    <div class="kpi"><div class="v">337bp</div><div class="l">AI HY spread (+55bp in a week)</div></div>
+    <div class="kpi"><div class="v">1,340bp</div><div class="l">CCC OAS (the tail has cracked)</div></div>
+    <div class="kpi"><div class="v">23 vs &lt;2</div><div class="l">Compute supply GW vs Anthropic usage</div></div>
+  </div>
+
+  <h2>Three mismatches are the root</h2>
+  <table>
+    <thead><tr><th style="width:22%">Mismatch</th><th>In plain terms</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Time</strong></td><td>Capex is decided today; revenue arrives in 3&ndash;5 years. Financing bridges the gap.</td></tr>
+      <tr><td><strong>Liquidity</strong></td><td>Short-term debt and project finance against long-lived assets and slow cash flow. If the refinancing window closes, projects starve.</td></tr>
+      <tr><td><strong>Collateral</strong></td><td>GPUs depreciate in 3&ndash;5 years, data centers in 10&ndash;20. When rents fall, the collateral loses value.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="t">One line to remember</div>
+    <p><strong>Technology stays; the financing chain breaks.</strong> This looks more like 19th-century railways than tulips: when the railway bubble burst, the tracks remained; when tulips burst, nothing remained.</p>
+  </div>
+</section>
+
+<!-- ================= 02 HOW IT FORMED ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">01</div>
+    <div><div class="kicker">HOW IT FORMED</div><h1>How this bubble formed</h1></div>
+  </div>
+  <p class="lead">Think of AI as a concert everyone is sure will sell out. Tickets sell fast, venues get built at full speed &mdash; but whether the seats fill is only known on opening night.</p>
+
+  <h2>Six steps, one at a time</h2>
+  <ul>
+    <li><strong>The story is real, and so is the box office.</strong> Hyperscalers trade at ~28x earnings with ~25% net margins &mdash; not the pure storytelling of 2000. People believe AI is the future, and they pay a premium for it.</li>
+    <li><strong>The arms race begins.</strong> Microsoft, Google, Amazon and Meta dare not brake first &mdash; whoever cuts capex first is seen as blinking. Rational individually, overinvestment in aggregate.</li>
+    <li><strong>The shovel-sellers get rich first.</strong> Nvidia, memory, power, cooling and data-center orders surge. Memory price scales with demand/capacity to the 3.5 power: demand 35% above capacity can lift prices 184%. The three memory makers post record profits.</li>
+    <li><strong>The financing chain lengthens.</strong> Once funded from operating cash flow; now project finance, ABS, private credit, supplier finance. Meta's quarterly free cash flow turned negative while it issued non-voting Class C stock &mdash; a signal that capex has outgrown operating cash flow.</li>
+    <li><strong>Efficiency gains suppress demand.</strong> Anthropic's revenue-per-compute rose from 0.4 to 2.0: the same revenue needs less compute. Nvidia shipments imply ~23GW of global compute, while Anthropic actually uses under 2GW &mdash; <strong>a compute shortage and idle compute exist at the same time.</strong></li>
+    <li><strong>Credit markets start pricing it.</strong> AI HY spreads +55bp in a week; CCC yields 15.85%; AI-related CDS weekly volume rose from $2B to $9B; data-center HY bonds fell from 101 to 95.</li>
+  </ul>
+
+  <figure>
+    <img src="{{FIG:plain_chain.png}}" alt="One chain: valuation, demand, supply, credit">
+    <figcaption><b>Figure 1 | One chain: valuation &rarr; demand &rarr; supply &rarr; credit.</b> First whether it is expensive, then whether anyone uses it, then how fragile the price is, and finally who cracks first.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="{{FIG:ab_capex_breakeven.png}}" alt="Capex break-even model">
+    <figcaption><b>Figure 2 | $400B of capex a year &mdash; how much AI revenue is needed to earn it back?</b> At a 12% cost of capital, 5&ndash;10 year life and 30&ndash;50% margins, you need $142&ndash;370B of AI revenue a year. This is the quantified version of &ldquo;capex is outrunning revenue.&rdquo;</figcaption>
+  </figure>
+  <p>The point of these numbers: <strong>capex is not the problem &mdash; revenue is.</strong> You can treat $400B as a bill: it demands $142&ndash;370B of AI revenue every year to pay interest and depreciation. If revenue growth stalls, the bill does not disappear; it becomes an impairment.</p>
+
+  <figure>
+    <img src="{{FIG:ab_nvidia_gw.png}}" alt="Compute supply vs usage">
+    <figcaption><b>Figure 3 | Compute supply 23GW vs top tenant &lt;2GW.</b> Supply is derived from Nvidia shipments; Anthropic's actual usage is under 2GW. Idle capacity is not an accident; it is arithmetic.</figcaption>
+  </figure>
+  <p><strong>The gap between supply and usage is idle capacity.</strong> 23GW is compute sold to the whole market; &lt;2GW is what one of the largest tenants actually uses. The rest is either rented out at lower prices or sits idle. Falling rents hit data-center cash flow directly.</p>
+</section>
+
+<!-- ================= 03 WHERE THE RISK IS ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">02</div>
+    <div><div class="kicker">WHERE THE RISK IS</div><h1>Where the risk actually sits</h1></div>
+  </div>
+  <p class="lead"><strong>Not on Microsoft's or Google's balance sheet &mdash; downstream first.</strong> The giants have cash flow and get hurt last. The first to die are leveraged suppliers, project finance, the memory cycle, and highly levered data-center developers.</p>
+
+  <table>
+    <thead><tr><th style="width:16%">Layer</th><th style="width:38%">Who is most exposed</th><th>Signals visible now</th></tr></thead>
+    <tbody>
+      <tr><td><strong>First</strong></td><td>Leveraged suppliers: second-tier firms that build data centers, buy GPUs, and supply power to the giants</td><td>Inventory and receivables rising; supplier finance tightening</td></tr>
+      <tr><td><strong>Second</strong></td><td>Project finance / ABS / private credit: highly levered data-center developers</td><td>Data-center HY bonds 101&rarr;95; $106B of project finance</td></tr>
+      <tr><td><strong>Third</strong></td><td>Memory / HBM: Micron, Samsung, SK Hynix</td><td>3.5-power: demand/capacity 1.35&rarr;1.10; prices could fall 51%</td></tr>
+      <tr><td><strong>Fourth</strong></td><td>Hyperscalers: Microsoft / Google / Amazon / Meta</td><td>Strong cash flow, hurt last; but share prices react early</td></tr>
+      <tr><td><strong>Fifth</strong></td><td>Macro: high yield, private credit, BDCs</td><td>Credit contraction &rarr; wealth effect &rarr; real economy</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <div class="t">The hardest signal is credit, not the share price</div>
+    <p>AI HY at 337bp, CCC at 1,340bp, CDS volume at 4.5x, data-center HY at 95 &mdash; real money is pricing default probability. Equities still tell a long-term story; bonds have started calculating whether you can pay.</p>
+  </div>
+
+  <figure>
+    <img src="{{FIG:ab_credit_vix.png}}" alt="Credit spreads and VIX">
+    <figcaption><b>Figure 4 | Credit cracks first; equities are still calm.</b> CCC is already at 1,340bp while VIX sits at 17&ndash;19. The equity&ndash;credit divergence is the combination to watch.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="{{FIG:ab_memory_sensitivity.png}}" alt="Memory price elasticity">
+    <figcaption><b>Figure 5 | Memory: fat profits on the way up, disaster on the way down.</b> Demand/capacity 1.35&rarr;1.10, prices could fall 51%. Memory is the steepest and most fragile link in the chain.</figcaption>
+  </figure>
+  <p><strong>Memory is the most cyclical link in this chain.</strong> Prices spike when demand is tight and halve when it loosens. The 3.5-power relationship means profits are very fat on the way up and vanish quickly on the way down. That is why record profits at memory makers may be a sign of a cycle top &mdash; not evidence that &ldquo;AI is forever strong.&rdquo;</p>
+
+  <div class="two-col" style="margin-top:5mm">
+    <div class="box"><h4>Hardest signals</h4><p class="small">AI HY, CCC, CDS volume, data-center HY bond prices &mdash; real money pricing default probability.</p></div>
+    <div class="box"><h4>Softest signals</h4><p class="small">&ldquo;Idle compute&rdquo; rumors; MIT's 95% of pilots showing no return &mdash; direction is useful, but sample and definitions are disputed. Not evidence on their own.</p></div>
+  </div>
+
+  <h3>Two memory scenarios</h3>
+  <table>
+    <thead><tr><th style="width:18%">Scenario</th><th style="width:22%">Demand/capacity</th><th style="width:20%">Memory price</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Tight</strong></td><td>1.35x</td><td><strong>+184%</strong></td><td>Profit peak; record profits at the three memory makers</td></tr>
+      <tr><td><strong>Loose</strong></td><td>1.10x</td><td><strong>&minus;51%</strong></td><td>Profits disappear; equities and credit both under pressure</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="t">How to track memory</div>
+    <p>Three numbers: <strong>contract price</strong> (trend), <strong>inventory days</strong> (supply/demand), <strong>HBM mix</strong> (structure). Two to three consecutive months of falling contract prices plus rising inventory days is an early cycle-reversal signal; don't wait for reported profits to fall.</p>
+  </div>
+</section>
+
+<!-- ================= 04 HOW IT UNFOLDS ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">03</div>
+    <div><div class="kicker">HOW IT UNFOLDS</div><h1>How it unfolds</h1></div>
+  </div>
+  <p class="lead">It will not be &ldquo;the whole market collapses on one day.&rdquo; It is a chain: <strong>capex growth peaks &rarr; suppliers deteriorate &rarr; credit cracks first &rarr; hyperscalers cut capex &rarr; equities de-rate &rarr; credit contraction &rarr; policy response.</strong></p>
+
+  <figure>
+    <img src="{{FIG:ab_transmission.png}}" alt="AI bubble transmission chain">
+    <figcaption><b>Figure 6 | Transmission chain: from capex to credit clearing.</b> Risk blows up from the bottom; the first to die are leveraged suppliers, not Microsoft or Google.</figcaption>
+  </figure>
+
+  <table>
+    <thead><tr><th style="width:8%">Stage</th><th style="width:36%">What happens</th><th style="width:30%">What to watch</th><th>Who gets hurt first</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1</strong></td><td>Capex growth slows from +50% to +20%; order growth revised down</td><td>Hyperscaler capex guidance, Nvidia orders</td><td>High-multiple suppliers</td></tr>
+      <tr><td><strong>2</strong></td><td>Inventory and receivables rise; supplier finance tightens</td><td>Inventory days, receivables, supplier finance</td><td>Second-tier suppliers</td></tr>
+      <tr><td><strong>3</strong></td><td>Credit cracks first: AI HY/CCC widen, CDS volume jumps</td><td>OAS, CDS volume, DC HY prices</td><td>Highly levered projects / weak credits</td></tr>
+      <tr><td><strong>4</strong></td><td>Hyperscalers cut capex; Nvidia/memory revenue turns negative</td><td>Nvidia data-center revenue, memory contract prices</td><td>Chips / memory / equipment</td></tr>
+      <tr><td><strong>5</strong></td><td>Equities de-rate; wealth effect and credit contraction</td><td>S&amp;P, HY default rate, BDC redemptions</td><td>Risk assets broadly</td></tr>
+      <tr><td><strong>6</strong></td><td>Fed cuts / liquidity; those with cash flow survive</td><td>Fed balance sheet, spreads</td><td>Leverage and circular deals clear</td></tr>
+    </tbody>
+  </table>
+
+  <figure>
+    <img src="{{FIG:ab_gpu_rental.png}}" alt="GPU rental prices">
+    <figcaption><b>Figure 7 | GPU rents: from $9/hour in 2023 to $1&ndash;2/hour by 2028E.</b> GPUs are the fastest-depreciating collateral: rents down &rarr; project cash flow deteriorates &rarr; collateral impaired &rarr; refinancing gets harder.</figcaption>
+  </figure>
+  <p><strong>GPU rent is the most direct price of data-center cash flow.</strong> Falling rents mean lower project revenue, lower collateral value, and harder refinancing; this hits credit earlier than falling share prices do. Watch GPU rents, not the &ldquo;AI story,&rdquo; if you want to be close to the truth.</p>
+
+  <div class="callout">
+    <div class="t">How to think about timing</div>
+    <p><strong>2026&ndash;2027 is the vulnerability build-up; 2028&ndash;2030 is the maturity wall.</strong> Not &ldquo;one day in 2026&rdquo; but a window. You don't need to guess the day; watch the fuel: capex growth, AI revenue, GPU rents, AI HY/CCC, CDS, utilization.</p>
+  </div>
+
+  <table>
+    <thead><tr><th style="width:14%">When</th><th style="width:46%">What to watch</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td><strong>2026Q4</strong></td><td>AI HY/CCC, CDS, GPU rents</td><td>Credit cracks first, or stabilizes first</td></tr>
+      <tr><td><strong>2027</strong></td><td>Data-center utilization, revenue/compute</td><td>Whether AI demand is disproven</td></tr>
+      <tr><td><strong>2028</strong></td><td>Refinancing wall, memory contract prices</td><td>Soft landing, or credit clearing</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Three paths</h3>
+  <table>
+    <thead><tr><th style="width:16%">Path</th><th style="width:40%">Trigger</th><th>Outcome</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Soft landing</strong></td><td>Capex growth slows to 10&ndash;20%, AI revenue catches up, credit stabilizes</td><td>Leaders keep compounding; suppliers de-rate</td></tr>
+      <tr><td><strong>Bubble clears</strong></td><td>Capex cut, AI HY &gt;450bp, CCC &gt;1,500bp, DC HY &lt;90</td><td>Equities &minus;20% to &minus;40%, credit defaults, Fed pivots</td></tr>
+      <tr><td><strong>Melt-up continues</strong></td><td>Productivity beats expectations, capex accelerates, inflation/rates rise</td><td>Melt-up first, bigger constraint later, bigger clearing eventually</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= 05 SECOND-ORDER ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">04</div>
+    <div><div class="kicker">SECOND-ORDER</div><h1>Second order: buy contracted bottlenecks, not the hottest chip</h1></div>
+  </div>
+  <p class="lead">First order is AI chips, models and cloud &mdash; everyone knows it, and it is the most crowded. Second order is AI's utilities: power, copper, cooling, memory, data centers. The key is not &ldquo;AI exposure&rdquo; but <strong>orders, contracts, and cash flow</strong>.</p>
+
+  <table>
+    <thead><tr><th style="width:16%">Opportunity</th><th style="width:32%">Why</th><th style="width:30%">How to select</th><th>What to avoid</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Power / grid</strong></td><td>Power is the hardest constraint on AI data centers; transformers, switchgear, transmission, gas turbines and nuclear all benefit</td><td>Orders, contracts, delivery track record; high service/aftermarket mix</td><td>Companies with &ldquo;AI concept&rdquo; but no orders</td></tr>
+      <tr><td><strong>Copper / critical minerals</strong></td><td>Copper mines take 17 years to permit and build; supply is rigid. Even if AI slows, grids and electrification continue</td><td>Low cost, owned mines, production, reserves</td><td>High leverage, single mine, unstable politics</td></tr>
+      <tr><td><strong>Data-center &ldquo;landlord&rdquo; assets</strong></td><td>Data centers with long-term contracts behave like infrastructure; cash flow is predictable</td><td>Quality tenants, long contracts, low leverage, low PUE</td><td>Highly levered developers, single tenant, short contracts</td></tr>
+      <tr><td><strong>Memory / HBM cycle</strong></td><td>3.5-power elasticity: fat profits when demand is tight, prices halve when it loosens</td><td>Only when demand/capacity is tight and prices rise; watch contract prices and inventory</td><td>Holding on as demand/capacity rolls over</td></tr>
+      <tr><td><strong>Picks and shovels</strong></td><td>Cooling, power management, testing, certification, fiber &mdash; needed whichever model wins</td><td>Aftermarket/consumables/service revenue; diversified customers</td><td>Pure project business, high receivables</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <div class="t">The second-order trap</div>
+    <p>You think you are buying AI; you are actually buying a <strong>cycle</strong>. Inventory, receivables and customer concentration matter more than the &ldquo;AI story.&rdquo; When AI capex growth rolls over, second-order earnings get cut far faster than the giants'.</p>
+  </div>
+
+  <div class="two-col">
+    <div class="box"><h4>When to buy</h4><p class="small">Credit spreads stabilize, capex guidance is not cut, GPU rents stop falling, data-center utilization rises &mdash; at least two of these four improving.</p></div>
+    <div class="box"><h4>When to avoid</h4><p class="small">AI HY widens quickly, DC HY breaks below 90, capex guidance is cut, GPU rents break below $1.5 &mdash; two of these four deteriorating.</p></div>
+  </div>
+</section>
+
+<!-- ================= 06 THIRD-ORDER ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">05</div>
+    <div><div class="kicker">THIRD-ORDER</div><h1>Third order: after the bubble breaks, buy real assets at a discount</h1></div>
+  </div>
+  <p class="lead">Third order is not &ldquo;find another AI concept.&rdquo; It is <strong>who ends up with the real assets, cash flow and new demand after the first and second order break.</strong> When the railway bubble burst, the tracks remained; compute and power contracts are the tracks.</p>
+
+  <table>
+    <thead><tr><th style="width:18%">Opportunity</th><th style="width:38%">Why</th><th>How to participate</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Distressed assets / stressed debt</strong></td><td>Data centers, GPUs and power contracts get bought at discounts; bargains only appear after the bubble breaks</td><td>Distressed debt funds, special situations, strategic buyers; requires professional diligence</td></tr>
+      <tr><td><strong>Infrastructure-ization</strong></td><td>Data centers shift from &ldquo;tech assets&rdquo; to &ldquo;infrastructure assets&rdquo;; the lowest cost of capital wins</td><td>Infrastructure funds, REITs, power/utilities; focus on long contracts and cash flow</td></tr>
+      <tr><td><strong>AI implementation services</strong></td><td>95% of pilots show no return; the opportunity is not the model but implementation, integration, compliance, security and training</td><td>Service firms, consulting/integration/security; watch renewals, collections, retention</td></tr>
+      <tr><td><strong>Risk transfer / insurance</strong></td><td>Demand rises for construction completion insurance, AI liability, cyber and credit hedges</td><td>Insurance/reinsurance, credit protection; requires underwriting capacity</td></tr>
+      <tr><td><strong>Sovereign AI / energy security</strong></td><td>Sovereign compute, defense AI and strategic resources are backed by policy and budgets</td><td>Policy-driven, project-based; watch budgets and delivery, not stories</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="t">The key to third order</div>
+    <p><strong>Not buying at the top, but buying after credit clears, when assets are discounted.</strong> It requires cash, patience and expertise. Most people chase first order at the top and dare not buy third order at the bottom &mdash; that is precisely where the opportunity is.</p>
+  </div>
+</section>
+
+<!-- ================= 07 CHECKLIST ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">06</div>
+    <div><div class="kicker">CHECKLIST</div><h1>A plain-language checklist</h1></div>
+  </div>
+  <p class="lead">No need to predict the crash date. Just watch these eight numbers every quarter: <strong>when two or three turn at the same time, the bubble enters its second half.</strong></p>
+
+  <table>
+    <thead><tr><th style="width:34%">Indicator</th><th style="width:26%">Now</th><th>Alarm line</th></tr></thead>
+    <tbody>
+      <tr><td>AI HY spread</td><td><strong>~337bp</strong></td><td><strong>&gt;450bp</strong></td></tr>
+      <tr><td>CCC spread</td><td><strong>~1,340bp</strong></td><td><strong>&gt;1,500bp</strong></td></tr>
+      <tr><td>Data-center HY bonds</td><td><strong>~95</strong></td><td><strong>&lt;90</strong></td></tr>
+      <tr><td>H100 rental</td><td><strong>$1.5&ndash;2.5/hour</strong></td><td><strong>&lt;$1.5</strong></td></tr>
+      <tr><td>Data-center utilization</td><td>Mixed</td><td><strong>&lt;60%</strong></td></tr>
+      <tr><td>Revenue / compute</td><td><strong>0.4&rarr;2.0</strong></td><td><strong>&gt;2.5</strong> (efficiency eating demand)</td></tr>
+      <tr><td>Memory contract price</td><td>Record high</td><td><strong>&minus;30%</strong></td></tr>
+      <tr><td>Hyperscaler capex guidance</td><td>Raised</td><td><strong>Cut</strong></td></tr>
+    </tbody>
+  </table>
+
+  <figure>
+    <img src="{{FIG:ab_fragility_score.png}}" alt="AI bubble fragility score">
+    <figcaption><b>Figure 8 | AI bubble fragility score 73/100.</b> Fragile, not broken. The score is a framework judgment, not a probability; weights are adjustable.</figcaption>
+  </figure>
+
+  <div class="callout warn">
+    <div class="t">How to use this table</div>
+    <p>Don't conclude from a single indicator. Look at the <strong>combination</strong>: credit widening + GPU rents falling + capex guidance cut is the most dangerous mix; credit stabilizing + utilization rising + rents bottoming is the safest.</p>
+  </div>
+</section>
+
+<!-- ================= 08 CONCLUSION ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">07</div>
+    <div><div class="kicker">CONCLUSION</div><h1>Conclusion: technology stays, the financing chain breaks</h1></div>
+  </div>
+  <p class="lead">AI is not tulips; it is closer to railways. When the railway bubble burst, the tracks remained; when the AI bubble bursts, compute and technology remain. But if you own the leveraged supplier that built the railway, the tracks may remain while you do not.</p>
+
+  <h2>Seven plain-language conclusions</h2>
+  <ul>
+    <li><strong>Don't short the giants just because valuation is high.</strong> They have cash flow and die last; share prices react early, but fundamentals do not.</li>
+    <li><strong>Watch credit before equities.</strong> AI HY/CCC/CDS are leading indicators; equities are late.</li>
+    <li><strong>Second order: buy contracted bottlenecks.</strong> Power, copper, grids, cooling &mdash; not companies with a story and no orders.</li>
+    <li><strong>Third order: buy real assets at a discount.</strong> Distressed debt, infrastructure, implementation services &mdash; after credit clears.</li>
+    <li><strong>Cash is ammunition.</strong> A bubble can last longer than you can stay solvent; don't use leverage to bet on timing.</li>
+    <li><strong>Watch the fuel, not the spark.</strong> The spark can be any headline; the fuel is capex, revenue, rents, spreads, utilization.</li>
+    <li><strong>Enjoy the technology dividend, but don't become its cost.</strong> A bubble is society's tuition for a technological revolution; don't be the one paying it.</li>
+  </ul>
+
+  <div class="quote">&ldquo;Don't guess the spark; watch the fuel. The spark can be any headline; the fuel is capex growth, AI revenue growth, GPU rents, AI HY/CCC spreads, CDS volume, data-center utilization, and the 2028&ndash;2030 maturity wall.&rdquo;</div>
+
+  <div class="callout">
+    <div class="t">One last line</div>
+    <p><strong>The risk of the AI bubble is not &ldquo;whether AI fails,&rdquo; but &ldquo;at what price, with what money, and over what horizon you choose to believe in it.&rdquo;</strong> The technology stays; the financing chain gets repriced. Only those who survive the repricing get to talk about the next round.</p>
+  </div>
+</section>
+
+<!-- ================= APPENDIX ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">A</div>
+    <div><div class="kicker">APPENDIX</div><h1>Data and definitions</h1></div>
+  </div>
+  <h2>A.1 Sources</h2>
+  <ul class="small">
+    <li>Four source materials: hyperscaler valuation and bubble assessment; Anthropic S-1 and idle compute; memory bottleneck and compound AI; AI credit markets and credit risk.</li>
+    <li>FRED: BAMLC0A0CM / BAMLH0A0HYM2 / BAMLH0A3HYC / VIXCLS / DGS10.</li>
+    <li>Credit outlook compilation (2026-10-17): AI HY 360bp, data-center project finance $106B, AI credit issuance $466B.</li>
+    <li>MIT NANDA (2025): 95% of enterprise AI pilots show no measurable return (methodology disputed).</li>
+    <li>GPU prices: public cloud quotes and channel checks; not official list prices.</li>
+  </ul>
+
+  <h2>A.2 Definitions and limits</h2>
+  <p class="small">Capex break-even model: C=$400B/yr, 12% cost of capital, 5/7/10-year lives, 30%/50% margins; a stress test only. Memory elasticity: P &prop; (D/C)^3.5; the 3.5 exponent is a source estimate, not a physical law. Default probability: PD &asymp; spread/(1&minus;recovery), a rough calculation. GPU prices: ranges from public channels/contracts, affected by volume, warranty, networking and delivery timing; 2026&ndash;2028 are scenario forecasts. Fragility score: a framework judgment, not a probability.</p>
+
+  <div class="footer-note">
+    <strong>Disclaimer:</strong> This report is a research framework, not investment advice, an offer or a solicitation. Data as of 2026-10-28 and subject to revision. Readers should verify the numbers, form independent judgments, and bear all risks of their investment decisions.<br>
+    Deep-Risk-OPP · Research framework, not investment advice.
+  </div>
+</section>
+
+</body>
+</html>
