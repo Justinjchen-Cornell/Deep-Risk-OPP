@@ -1,7 +1,7 @@
 {
-  "saved": "2026-10-31T00:48:11.609463+00:00",
+  "saved": "2026-11-02T00:44:55.153451+00:00",
   "state": {
-    "updated": "2026-10-31 08:48",
+    "updated": "2026-11-02 08:44",
     "regime": "修复周期",
     "position": 30.0,
     "verdict": "红",
@@ -11,16 +11,16 @@
     "oil_pctl": 0.975,
     "s2": false,
     "s3": false,
-    "gor_wti": 37.73,
-    "gor_brent": 34.58,
-    "wti": 102.94,
-    "gold": 3884.4,
+    "gor_wti": 38.11,
+    "gor_brent": 34.93,
+    "wti": 102.44,
+    "gold": 3904.1,
     "hard_stop": false,
-    "hard_stop_thr": 80.52,
-    "contract_completion": 0.876,
+    "hard_stop_thr": 81.04,
+    "contract_completion": 0.863,
     "contract_target_hit": false,
     "source": "daily-card",
-    "quote_time": "2026-10-31 08:48",
+    "quote_time": "2026-11-02 08:44",
     "mode": "daily"
   }
 }
