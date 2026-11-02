@@ -1,10 +1,30 @@
 {
- "date": "2026-10-26",
- "generated_at": "2026-10-26 07:45",
+ "date": "2026-11-02",
+ "generated_at": "2026-11-02 09:12",
  "days": 14,
  "news_days": 7,
  "geo": "US",
  "calendar": [
+  {
+   "date": "2026-11-10",
+   "weekday": "Tue",
+   "bjt": "21:30",
+   "et": "11-10 08:30",
+   "event": "CPI",
+   "importance": "★★★",
+   "source": "FRED",
+   "note": "时间按惯例，以官方为准"
+  },
+  {
+   "date": "2026-11-13",
+   "weekday": "Fri",
+   "bjt": "21:30",
+   "et": "11-13 08:30",
+   "event": "PPI",
+   "importance": "★★",
+   "source": "FRED",
+   "note": "时间按惯例，以官方为准"
+  },
   {
    "date": "2026-11-06",
    "weekday": "Fri",
@@ -14,46 +34,6 @@
    "importance": "★★★",
    "source": "FRED",
    "note": "时间按惯例，以官方为准"
-  },
-  {
-   "date": "2026-10-29",
-   "weekday": "Thu",
-   "bjt": "20:30",
-   "et": "10-29 08:30",
-   "event": "GDP",
-   "importance": "★★★",
-   "source": "FRED",
-   "note": "时间按惯例，以官方为准"
-  },
-  {
-   "date": "2026-10-29",
-   "weekday": "Thu",
-   "bjt": "20:30",
-   "et": "10-29 08:30",
-   "event": "PCE",
-   "importance": "★★★",
-   "source": "FRED",
-   "note": "时间按惯例，以官方为准"
-  },
-  {
-   "date": "2026-10-28",
-   "weekday": "Wed",
-   "bjt": "22:30",
-   "et": "10-28 10:30",
-   "event": "EIA Weekly Petroleum Status Report",
-   "importance": "★★★",
-   "source": "EIA",
-   "note": "库存/产量/炼化；能源腿核心"
-  },
-  {
-   "date": "2026-10-29",
-   "weekday": "Thu",
-   "bjt": "22:30",
-   "et": "10-29 10:30",
-   "event": "EIA Natural Gas Storage Report",
-   "importance": "★★",
-   "source": "EIA",
-   "note": "天然气库存"
   },
   {
    "date": "2026-11-04",
@@ -76,296 +56,306 @@
    "note": "天然气库存"
   },
   {
-   "date": "2026-10-29",
-   "weekday": "Thu",
-   "bjt": "02:00",
-   "et": "10-28 14:00",
-   "event": "FOMC 决议 + 发布会",
+   "date": "2026-11-11",
+   "weekday": "Wed",
+   "bjt": "23:30",
+   "et": "11-11 10:30",
+   "event": "EIA Weekly Petroleum Status Report",
    "importance": "★★★",
-   "source": "Fed",
-   "note": "决议 14:00 ET，发布会 14:30 ET"
+   "source": "EIA",
+   "note": "库存/产量/炼化；能源腿核心"
+  },
+  {
+   "date": "2026-11-12",
+   "weekday": "Thu",
+   "bjt": "23:30",
+   "et": "11-12 10:30",
+   "event": "EIA Natural Gas Storage Report",
+   "importance": "★★",
+   "source": "EIA",
+   "note": "天然气库存"
   }
  ],
  "news": {
   "Oil": [
    {
-    "title": "Oil shocks no longer hit the US economy as they used to",
-    "source": "CEPR",
-    "date": "2026-10-25 07:54",
-    "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQODlwNDROdzU0WG1keDFQQzNPM050V3FMcDlWX3RIYW9rWFBQYm5PeXdzSDRheTBJVWVPamwtWjd1NklTYlEzamY3em91dVV1WklCY0FkWEh5dnVIUGE4V1lUTUpJNTRFMlIzU2FuTUJCWjEtVU9WUW9hR0hPLV9oNkd3?oc=5"
+    "title": "Oil Prices Rise as Middle East, Ukraine-Russia Conflict Fuel Supply Worries",
+    "source": "WSJ",
+    "date": "2026-11-02 08:59",
+    "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPUnhpZVZHQUliUnJIQUJWb3JmbVl6VV9GZ3NJN0M3X0EzZU9pa2N4SEcybGNlakZkcmxyeVNqV0E5LWRxTU1VZUM4Uk9TdGZTS0RJLU1CZ1JVVFBlM0pTcWFPd2U0b1RFTkVyV2oxSzNwZzYzMjBwVmRtbUFvWUowS1RPSEQ3eE1Qa2ZQQVJ5SExsbzVXQTQtNlZYRC1Bbnh2YmpnZ2VGaHZLQlJDRWJRZEZOU2VCZ1hPcENQcTUtYw?oc=5"
    },
    {
-    "title": "Record Tanker Rates Cripple U.S. Crude Oil Flows to Asia",
+    "title": "Oil Prices No Longer Follow Headlines",
     "source": "Crude Oil Prices Today | OilPrice.com",
-    "date": "2026-10-25 07:00",
-    "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxORUF5TG56V3NCLUlWZDEwR1d1Z3J4bEtUSFh2eThCWW9QOTREd3pqX21CN3p1cGNwZTNWVDU5NW52NU1XdkNSNWVBbVo4N2dOZUZGM1o3M0FUUWNNelg2ekNySlVtMHJPVkxTd1lEQ0hxc0RyaFV4NjFBUFpuZ3U1cXBlbkowclJsNkRmVEtGcTNjR3lfZTB0U1FlU0Vsd9IBowFBVV95cUxNdDZ3cW15VlNTc1lKcW5UTi0weUFWMFdESWN0Z3IzR3hJbnBGWFlpM09YZ20wT0NFUkJROWJjTG1aVnJvZV9ZY1kzRzc5WTdwWk9yREljeE9wX0wxSzRwajQ4bUN3NUdaSThzLTBTSzNaZmVNcHljRlB2eFhkcFhBMFlVc2ZKWHBEbE01Z3lOX1ZqNkZsTDZiQnFRSEZKVGlVa3pZ?oc=5"
+    "date": "2026-11-02 08:00",
+    "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQcnBYdGk0c2JHbjN5T2ZDSWI3c2ZiTUdUcEZEMGFYZWE0TVBma3hzX3JqQlpPeWhFVzRTOHhXekhrelN5Zk10bmhJVFFpbFRSWEhzTEVmYjd0ampPTllHUUluT29mRHpmVEJPWmJyVHY5T2pmczFXU3FDamsxQ3JqX1I4WUZtWXJM0gGOAUFVX3lxTE9MSjlnZExoYkdXSTZjOUEyWHUxWDdZdnBBWmlSaEdrSXZfRnJfeWJnT2g3eU05b2ZtYUV2OTJOX3FaZnBBcTZjMzBzRXJfYzRQUmY1aEd1aUhNSkx5RV91NHdYZDJSSWlqOW03bkt2Vk1hTkdJc1l3ZlpYYXAxTVVMYzBXeGJEODljcnlTOUE?oc=5"
    },
    {
-    "title": "Fuel Oil Becomes Asia's Next Cost Shock",
+    "title": "Massive AI Data Center Sparks Backlash Despite Clean Energy Promises",
     "source": "Crude Oil Prices Today | OilPrice.com",
-    "date": "2026-10-25 05:00",
-    "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQanFVcGU2U2VGclJsa2VSUTlKUFJFalpNTy11QTd5a0pwT1hrX3dhbHZDRVIwaTRrc2sxYTd6Rk5DR3hWOURCZXJmTU16aTBPbUFnZHlKbk5VYjVWc2FmbUFMaHFWOHlhMmRySC1nX1hINS03MEhQZWsxeEFYNkpqM0JoNWkyb1FW0gGOAUFVX3lxTE0zaEoxQm5iMl9qa2RMZ0JSQlQwSVctZkVVblk2SFpTdF8yR0xoN2d2cEdmcVZqSzViMTdORGFoOVc4TjdFbk1Ec2dxempPZEt3ZUk1bmVEd1cyNGVObkx4SXlQakROUTdJZ2FVUWNQcWMtQ2p6R1VxT0wzLUZVbmNtUW8zeTVKLTRHNDFTTXc?oc=5"
+    "date": "2026-11-02 04:00",
+    "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOUXhIaEdRaEdnT3VYNUhWZGw2VXUzY21ETTJjaFRjT19xMVoyaF9yTmtfYjVjUXZQU1FmVl9aSmhNN3YyQW03U2gxVmxXWTNWZVNCdGVFamk0Nk5DdUlPbUdZX0dYS1NpS0dqV0ZqVGhmY3piVjRlWTE3QWRjcG1ZSmkzZzYwZ1B1eDBneWxob3VPZk1laVNMRU9uNEVQQXZEN1pCc2dHV3BxbFRlcVd0V0x1Q2tlOW_SAbwBQVVfeXFMUG1tTFAxbWZyRG5EbGJQYmRDSUZwV1RleVAwVHlaTGhtcVlhZEM3djNUTHFmcDhSOENtcEtfZW41WUc1VjNiTGJTdkNZeHdER284ZVh1QmVhWmVvY1ZQSHA1cnFWRnBEX1YyTlZFb0JvWWlvSHVqWWZrTlVpcVA1VW16S2hqVFpsdy1OQnJZWll4d1lHR1VFWm1zUS14Y2tpSGh6M1RmSXZXbmJycVJ4UVRwZXBZZm5uUHdyMVA?oc=5"
    },
    {
-    "title": "Oil prices jump $3 on Houthi attacks, oil spill, highest settlement since April",
-    "source": "Reuters",
-    "date": "2026-10-24 06:33",
-    "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPR2dZUC10TmJYRUk2RmM5WWpxaUx2XzBPZ0ZTV3hIR3BkaGFvZ3B2T1hhd0xEcXZOWk5LdXhLLUF5QU9XdTRQdnRyTk9jcmVNMEZvZlZBRW8xcG1TVW1fTkY2UnFrcXlVWlUwbDhRYk9pcW1fdEdzMVNRR2ZhYVl2T0RZa09uZTktZGFWRVRWSEpGeFhYVXVPR09zNDVaTVdiNDdRRHg3VFNyZWNNWVBmdkxGMWFOa05yN2NBRnRVZjF3eF9i?oc=5"
-   },
-   {
-    "title": "U.S. Dips Into Strategic Oil Reserve Again Amid Supply Disruptions",
+    "title": "U.S. Labs Look to New Materials to Close China's Nuclear Lead",
     "source": "Crude Oil Prices Today | OilPrice.com",
-    "date": "2026-10-24 06:30",
-    "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQclU0Y1VkczdDOXdMQXdoNDRidnBsR3B3SWdVUi1NS2k5V21oUEMyQm9ndnRLb2Y5c0s2ZUZLWl93NVhQSk1MOVpDQTM1c2c5Nm80SVBxdlpNblBhOWpFajMzZHNPSnNvWk5wVHE1SEZ3MUYyNU8yRGpqcEpqamVPbW83YS1aU2N2eVlRY1JGU21NSUlreDdBdHl4c2dKV0Z4RzY0MWZhVGtwT215MEh4cHVNcUg4ZUVaVnEyZNIBwgFBVV95cUxPc2t1eE9SeWpTeVBWTVlwdFdZbUM2V09NaUs0N0U4eUNXalFqX2k2RGxjakEwMHpaTmdiQ013eEdhdFRMUTNBd1dmc2RpNmZYTGFJU1huOVFRelgxbWxsVVQzcGkwbUZ1cnFGZEdub1VVRTN2WWI4aGFoYms5Nks1V2Y4Z3NJdElUTTh1dnNRQnRIejdURDRMTEc0SEpGWGZuZ0ZNNWE4ZWhsNlc1SlhIRXppWFB0c2NVcnk1QktiVWlnZw?oc=5"
+    "date": "2026-11-02 02:00",
+    "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQYmRpR25GTmhRVFA4WHhzdWxnWWFQbUswZlpHVTF0LUU3alJGZmhyQ1hsbEtFa0RLaW1FWTRybHM5OG9ra2hrNmxFLWxFWTFhd3NCdUFUV3FKc2k1V1dOdHVGQUd3ZkRVNkdTWldkb3JTQ2szRkFSWXVLYXpmUFNlTFhualQ0UVJ0OXNteXhzQ0ZSbnJIY28tV1ljVUdmMmpfVzRDZ0hRV1FIUdIBrwFBVV95cUxQZUFUNXhSYmNaNW12YzhXV2pjVmVhYjBLYVl3UmlKRUN5S2NPU2REcW1zY2ZuQ2xFczNKSkZtVHBRYjdta1BFQWIzRDNfN0NyT3BQMkpyUTIzZ0U1SkttVjA4ellhN1ZmMzJoZU1rRXFsQjR3X1UtbUlWcmNEc3hBbXhVWUpSNEdfZVFpVFd1WUM4RXl1cWF5UnNFQWN4OFRxOUFHdFVFQ2p6SXBjdjFN?oc=5"
+   },
+   {
+    "title": "Chevron Raises Exploration Spending By 50%",
+    "source": "Crude Oil Prices Today | OilPrice.com",
+    "date": "2026-11-01 07:00",
+    "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOYzNzSVVBcThGeXRadDdkOVFiWTFHaXJpaTh0RzRUcmp4RDIyYUJwdDROQkZZNm5xWm5iQlg1QkFlZzlLV3hxSXBPZ0xjUmxYNjFfcHp0WWdiU0FCb0h0RFZwbVZuUEgtT21VTHhSMnJCV09RRFZUdnlra0h0WFJWR3JIdno5VDVTUDJuaNIBkgFBVV95cUxQR1puSlFFWlBteDEwU3NBMGZSTmQ1cVN4aU0tR09KWjVtWkg0YVVHZGJiM0h4UGhzc04wWHp5RWRYMVRER2diYlpJUDhoaHQxSnpOa2VuNGJHejlQQjdRZVRvdkd0Z1RickpQUUdwc0s0TmFfNXpDUW1ucDR2eVFjaVQxVXlBX29MMkRSaDRXN1ZoUQ?oc=5"
    }
   ],
   "Gold": [
    {
-    "title": "Will gold hit $5,000 again? What experts expect for 2027",
-    "source": "USA Today",
-    "date": "2026-10-26 07:21",
-    "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQRmNuRGNna3E1QVlPNDRRZjZhMDdpMUJVeXRfVHVyVXk3Z0xDc0M2b25hSVVkTjVwbWIwdG5xdlEybDRqdjBUMnhURnFTc2ZFdkQ4RWZFMG5OV3VOOVJOTDZnSmZZR3dUVVY2N3NRSnkyTkRHT1RoVDYxRGZOdFlSYXhaSzd3UndJTTBLMURNYXRZbmlycGJzdFFvMA?oc=5"
+    "title": "Gold rebounds to near $3,900 despite inflation worries",
+    "source": "FXStreet",
+    "date": "2026-11-02 08:45",
+    "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPSHBFTXFaaDRMZWt5VEVYeC1PZU9zQ0E3OU1TV3lhZDJZelBJSUswZkxTblFSMHVRaVl3WnZtSmJvR3djRkttaVd1S3NBRk9VT1J6OVVEQTVqWDhKVDRxNkF0akxXOVYwcWhLNDhVRUhmRWtYcG1KWEQxcnJxM0M0NXFNd2k4QTh0NUdqZzFIcENOUlpiQTJqLWUyVTQ?oc=5"
    },
    {
-    "title": "Gold Price October 26 2026",
-    "source": "Robinhood",
-    "date": "2026-10-26 05:30",
-    "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPa3FkSmtDdzg2aldueXo1UExDdV9Lb1B6SU4zaUpGQlNlc2Y3VFhXZldSYXlqSVk3TE5haF9pTkNGLTY2bWNHS1I5TmJGdnBrVC1fd09LZFJhVkYtWEZ3TG52MGZvdFptdVNPWWtfZVc2R1BERVZKSVJxbGpuc1oyQjJMVmJkWU9rQWJGZWpqbW96WmFLMWg3WmpOQVcwRldWOGc?oc=5"
+    "title": "DOREX WEEKLY GOLD MARKET UPDATE – w/e 30.10.26: Gold Faces Selling Pressure as Global Markets Seek Liquidity",
+    "source": "Press Release Distribution Australia",
+    "date": "2026-11-02 08:03",
+    "link": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNcGxRRG5HWmZNVGlPQmIyMElUd3JodmNUNEVKekNjWlVxZGxoT2Nkdlg4c0lONVl5T01EVU8yZEkyWGMwT3FHdTQ4WjJZdm5OYjZETFhWdjFNVzZGbVZ0bFlFaUZJcW9zbnpoX2JOUjgzWGFicUMtWS1CbEhlR1l5OG1mUXlzZmJWTGhmbDFnOG5LTDduV2lJa0dXTHNCZy1qQk1RV0Eyb213d0hEdldvc216NUFiRll5dm1pUGJqQldHTmJFNGV0Nlpwa25LM2h3eTk3TkVxWGk2Rk50MEhZc2lXby1yQVBqUmFsRVc4OWtJN3lyZWc?oc=5"
    },
    {
-    "title": "The US has the largest gold reserve. But repricing it to $1 trillion 'would backfire in a big way'",
-    "source": "Fortune",
-    "date": "2026-10-26 02:57",
-    "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNbHBxNUF1SHZxTzlxSEpoUE5wUXJKbXNLdlI3M3pSeUpMenhqTEEwUTN2QngyNXhLM3FXVEhVanNBUlBGWnFoRlQyYTBoZlRBTVA4aVlZYWNkU1hsWkxQcFdNSzE2dEc4RDgyUHNEUHQ3NkVtZXF6QkdFZHlrSkJDLUNaOWlpdDJjai01U1lmTVJocHBzWW9rbDZ3dGZaQnNnbzNPZ0Y2WE5HTEJr?oc=5"
+    "title": "Gold SMC ,BOS,CHoch Supply & Demand Explained for TVC:GOLD by Forex_visionary_Academy",
+    "source": "TradingView",
+    "date": "2026-11-02 06:50",
+    "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOQkpYTklRY2MtZ3UwRENvQjdsdklqd0dRSm41MlA3TnJQd3BxOEJ5akZXZDU0blV0a19lNzNndV9NNmFPVE1RT1NRMW9SR25BUDU4LTQ1ZDNVbGRIeVJvcHVGSkhOVHhUdDREMXhkUXhvV1pLTGhXT1JWa3dMczBUY2ZwZUpmY19UVkw2SnU3emFCaXlMX2c?oc=5"
    },
    {
-    "title": "Gold Price Outlook as US Bond Yields Rise Ahead of FOMC Decision",
-    "source": "Benzinga",
-    "date": "2026-10-25 23:15",
-    "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQWTV2U3h4MGhEYTdwN09jMG9zTlRjdHBOb1JIOEJZMEdrMmF3bVg1UjRQVGdaZkxYY2lRdEZ2SkpjUTdXcG1GaHIwQ3V5TElEU1J2c1ZVX0wybHZtUGw0bEZabDM0SW1wV1VlNHptcXhqSHVUNjVXdHNPSkpmYjl0c1FDRl9GTERkQVJvdmExM2kxTE9HTFpQSGdrLXFnbFVMS0syNHVFU3V2d1ZjekV4YXpfNk1LQUE2akYwSVkwM3NhUQ?oc=5"
+    "title": "Gold price prediction: Gold rate continues to fall or will bear movement end after US midterm elections re",
+    "source": "The Economic Times",
+    "date": "2026-11-02 06:39",
+    "link": "https://news.google.com/rss/articles/CBMisgJBVV95cUxOZm0wUUlYbHJqTGVZZEFqcVN3MWVPYzNST21JTGdubW42eWF1cFBxM2FpUW5LbUZNVmUyNGJkdUpKcEpuYjZOS2o5eGpqMzVic2txUlBaYmdIQXMzUjZyRFh1dlZGbHkzQV9QZ283Y3NPUktHNHpPUFJvU0R3OF96cEZfM3ZjMmxxdTVWNkkwSFNUTTk5WEFnUDBHLWdLdUJwaTA5ckdyOHhmQmZ5b2hUei1QRkdtT1I5eW1qcE1ZMGhvekhIZGY4QjE3akoxNGcweVV6SjNyNFlRaVlOR01IOHkyVTlMX3BtTHNiM3NaTzJpcHRSTXhKd0dGYjVRVU41V2RZMlp0eDgtdEtlQ3hqMVZLMkhrWHN3MkxSWDJGMDdpQXJ0Smc2bF8tUG5RTWFCY2fSAbcCQVVfeXFMUEt5YjYyRkwtVV9aV2Z2emY0dDNIMV9WZ0g2VlNRTVNXdHNjc2g4TFpiZVZfNHVqX1ZYbEFFbE52SWN5dllHT0REQWY1V24wRzl6dGMwUlNjTHQ5OUliNWs4a1ZPcGl6aEtFdFlRZ09pbS1WbGRjVTc5cTBDQXVCRmxMSXBHRGtWc040ZFZtRV9tQlpRSmR0azZ4U3ByRUlPM21Rc2xMaUQ1U1kyMDFqSGp0RUVCd21QVDJaeVFPdUxydW9YSEJiUlZHaFdfWkxISGVYYWlSNlhUVFRKeHRrdGhsRVVkRzl1Z0ViUXJWQjM2MFBublN6SklIaldnSTJKa2Z2Y0tJRVB4QXg5NDU2UXc0RXliUlRDOXJZUWVUZ0RXcE9SdW40V3VxVWFEM192YThhU08zQU0?oc=5"
    },
    {
-    "title": "Gold market and central banks: Russia, Kazakhstan sell as Poland, China buy",
-    "source": "Yahoo Finance UK",
-    "date": "2026-10-25 14:58",
-    "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNMHItSFJobjRyTUNZSVJTS3JvaHRNQzJORFpEb0x3MUJLQ1VIS1RCZW10Vm15TFNoSlpfTE5zRkdIU212VE16a0F0TzBqWEQwX2c2S1l4T244REkwZ2c3NVhfZTdRRjNFcWlVMm8wQmFVQ0x3NGp0Zm9TRXI1c0x1ajUzdU44YmJ3?oc=5"
+    "title": "Gold Price Forecast: XAU/USD Faces Critical November Test as Dollar and Treasury Yields Drive Selling",
+    "source": "FXLeaders",
+    "date": "2026-11-02 06:20",
+    "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNYlI5anV6ektiQjhXaFZOek1ZdEpPMS1HblZNdkJQenRFWHdqOU15bUdlN3hMdE5IUDNJZ1Z0VFFOR3lZZEZLZ0syeTR0X2czTzB0UTB5blpwWjBMNHl0Tjd4TUxqMmlGMGZyd24yal9EcXNkQzJzel9MUXRIVEMwTDBsS3lqUmtJakpwclRkTXNMTVBsbjdIQXl6NGVVU0oxM2VlZmt4V0pMMW9aLVV2d0NHVWI5RmI0dnBJR1pzSzA3QzFkaHN1b0hiZGFHMDR3NFNwQnYyb0thQk0?oc=5"
    }
   ],
   "Fed/Rates": [
    {
-    "title": "Will gold hit $5,000 again? What experts expect for 2027",
-    "source": "USA Today",
-    "date": "2026-10-26 07:21",
-    "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQRmNuRGNna3E1QVlPNDRRZjZhMDdpMUJVeXRfVHVyVXk3Z0xDc0M2b25hSVVkTjVwbWIwdG5xdlEybDRqdjBUMnhURnFTc2ZFdkQ4RWZFMG5OV3VOOVJOTDZnSmZZR3dUVVY2N3NRSnkyTkRHT1RoVDYxRGZOdFlSYXhaSzd3UndJTTBLMURNYXRZbmlycGJzdFFvMA?oc=5"
+    "title": "Federal Reserve Releases Interest Rate Decision",
+    "source": "The Presidential Prayer Team",
+    "date": "2026-10-31 16:30",
+    "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPbUVDM0hOS2pBZ2owQWFjektBYWFUUS0tY1NKVkhlN0xVaXlhR0tfOXhEc2JyeFA5ZlpycGpnTFQ0VzdCZFhDUTZYbklNMlNFYVBJZGY3TEE3TzZpVEU5NXY4Qjg3dEhPM19uZlZiUjFaY3NXSmtJQ1o1NlRoTTdBaDIwLTI2dGU3ak10SkVMUVpMazVOUlVXNktQMlhET3M?oc=5"
    },
    {
-    "title": "The Fed thinks it’s fighting inflation. It’s starving the cure",
-    "source": "Washington Examiner",
-    "date": "2026-10-26 01:00",
-    "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPY1RVQzhCY3dfS0dqb0VnaTFaN01KNkx1aTVlOTV2RWVXUTN1QmVLajFiWmhqR040QXIxQWhVaUhBakI2eVFpSFpOQ0lDVEZvUUhPbzU4RWlyaFV1cFdnREpNX1JJY0tpNTlLcEc4SEk1QktfVnFCN0JUakRHbGRQQlZqTnI5WDM2VnI3cVJ2dUxCRl92R2o3U3dpUjlCWEk?oc=5"
+    "title": "Don't let this economy give you a fright",
+    "source": "www.marketplace.org",
+    "date": "2026-10-31 06:44",
+    "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQaF9DUkRwNkltX183R0ZjYk9rSENOekRkdzdOTURqQ3dmN2oxVHFRN0FLYV9RQUc5YUk0Vk5ORF9uZGZJOVZtaEU1c2lBaURjM1FjeTh3ZUJzOUlERjJkVWhHZ3FNQXdlQzhZakFUaHhyeGJsMXBZUl9CSnNLSTRJd0xpbVRKTXpucE9GZUJkUnNoNkVHQzRtTVJvTmVZN2JsWmZQUW1wd1lxUQ?oc=5"
    },
    {
-    "title": "Fed to lead trio in hawkish rate pause",
-    "source": "Taipei Times",
-    "date": "2026-10-26 00:00",
-    "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5EUHdVMnVfV25ZWllYaGwtdW5vUk1ZNE1PazVNRXotdHB4TTJFbUZBbERSczZRZnBfWTd0el9mWFhhb3laWUdHYk5tcVM1WFFHN0NaZEJhTE03UmlNVU9IU1hCZnBaY2FPSFdldUxPWWFhVnpFamc?oc=5"
+    "title": "Fed officials make case for rate hikes amid ongoing inflation concerns",
+    "source": "Reuters",
+    "date": "2026-10-31 04:03",
+    "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxObTlSSnpPaC0yUGM0aTNCb3h0cUVRejBTRjg0SXVnT0MwSXNMSzBVS1NFSEpUaGxtOUpzSkZmQlRKWjFWQ2UtNEp2RUgzcWwyMEN3clpKaU1acDlRUGFhS21BTEpWQjdSVURWZjRJd19Tc19pbVVHeWYwUEZLdUlka0x6M1p5WDRMVkVjRmlLTWU?oc=5"
    },
    {
-    "title": "Federal Reserve Interest Rate Predictions Next Week: October 27–28, 2026",
-    "source": "Norada Real Estate Investments",
-    "date": "2026-10-25 23:31",
-    "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPaUpDZXNBYUVfN1paZGJuNHd4RkMtVW0zdHpXQ2ZTaU0tc3dVbTRHSnlHMmk5UXM1cHZmbzUtamNjdDQ3aW1rZFlsQjhaMXdDNm1VZDk3VHlnMXRuOGJkazNXREx3anVtZnk4RUpVSEhteXJ0d09HYmloUndES3luWnF5UDJBaWhZVzI3MWxnNGFVanBULU41dXhYVTZRRXl3T296YjJuZTgyTHh2Wmc?oc=5"
+    "title": "Fed's Musalem and Logan signal more interest rate hikes",
+    "source": "Quartz",
+    "date": "2026-10-31 02:20",
+    "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBVZ1h6QUkxV1hSSjhaRzFIbTZEWld0Z1FFY01HWEtsS2FMU2I3RTFhS3NveXpmeEhYSzVnZzQwWjZuaFpoWExMXzcxbktwZWdzellDWmJ1TjI0VE91akVtMEh6aGdVbW9kY0JObE1EZktnaTJUUkE?oc=5"
    },
    {
-    "title": "Can the Federal Reserve Keep Rates High Without Breaking Something?",
-    "source": "CryptoPotato",
-    "date": "2026-10-25 22:49",
-    "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPcG1oYmtBUGg5eDZJanJfRHhZQmswR2QxY3JYVVhJMi1JMHA4YnZHWVd1OUpfczR0MjNEdFBaenV4YTg5OS1oNGw5RXMwZzlzV0pTc3UtU0pLVjdhZmRhd0RoelZ5SjRlcjdpZWppZ2FMNTZ4aVFrLVlRRlZESUlCU1pNUUl3RjBJanJqS2JhdUxsdG16TDhn?oc=5"
+    "title": "Fed needs at least two more rate hikes, Logan says",
+    "source": "Reuters",
+    "date": "2026-10-31 01:35",
+    "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPN0l1dXR6NGI2OV9OZGVkZHRFdzNqcVBnSGRFamxWZlNaZTNsQmdIbXRHVXc5VE9FZzcyWUI4YU5hai1VZlVtY2ZsQTh0VDgxYmtJT1V3X0NvUEZvRjBDT2VaQUdaeDdIWkZ5MlhraUdTVHJYSlM3RFVzU3lVNjctTzU2eFMzNk5kbDBIWlR2RWJ0NkQ2Znc?oc=5"
    }
   ],
   "Treasury": [
    {
-    "title": "The US has the largest gold reserve. But repricing it to $1 trillion 'would backfire in a big way'",
-    "source": "Fortune",
-    "date": "2026-10-26 02:57",
-    "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNbHBxNUF1SHZxTzlxSEpoUE5wUXJKbXNLdlI3M3pSeUpMenhqTEEwUTN2QngyNXhLM3FXVEhVanNBUlBGWnFoRlQyYTBoZlRBTVA4aVlZYWNkU1hsWkxQcFdNSzE2dEc4RDgyUHNEUHQ3NkVtZXF6QkdFZHlrSkJDLUNaOWlpdDJjai01U1lmTVJocHBzWW9rbDZ3dGZaQnNnbzNPZ0Y2WE5HTEJr?oc=5"
+    "title": "Big money pours in, drawn by high yields... KODEX US 10-Year Treasury Active tops 200 billion won in net assets",
+    "source": "파이낸셜뉴스",
+    "date": "2026-11-02 08:31",
+    "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE04SkU2NUhQU3g1T05RM3ZTWmtvVWRPeGdPU2YzM0VaTWVFTHlxNEhsc1NtTmlOMWdmcGVjd0Ntazd1cmJPa0VCaGtQcno2OWF5TGNKR052VG8?oc=5"
    },
    {
-    "title": "Treasury Yields Snapshot: October 23, 2026",
-    "source": "Seeking Alpha",
-    "date": "2026-10-24 11:00",
-    "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPd2NFYVFqNEQ2SG9lUFBCRm02aksybEI1ZjMtOGk1X0FxMWxHZm5pSEVuMm14ODZuc0VEWnJaMUt6ZHo1Um5wZUx2am9LaDFVTk9aWTJZRjBrcHJBTWd2UzN1QjVTTjg4T2hsck9haWRsRzlsT3diYTZNWlBiR2lQMDNjNGVvZE92QnB0TGljbm1pNkNraXhQVnhZXzNIY2F6SE1FSnpMZ2ZaZw?oc=5"
+    "title": "SG Bonds – Week 45 : SGS yields moved lower WoW",
+    "source": "StocksBNB",
+    "date": "2026-11-02 06:43",
+    "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQY0VDU0Z3RmtQem5heWV3ams2VGhkdFl4cTNaSUFfUmRET3lwVTJBS2pWTFpJTkFBUWJyR2JxdzM3X0JQSjN6ZF85bXBuWGU1SF8wUklqLU4tX2ZmVEtjOXh6OWE5NXJwY0x0LUktbzJ4WVVrNW1CdHZBWURTLWFXaGtFcnM?oc=5"
    },
    {
-    "title": "Stocktwits Weekly Spread: What Shaped Treasury Yields And The Dollar This Week",
-    "source": "TradingView",
-    "date": "2026-10-24 09:00",
-    "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPT290YlQ1WkhKZTc5bmZmTjRUWk9PQ0hiRjNzRXNkRzF6eW0xVjdTMjZQbzdiaXBEakxXZ3VjdXZDNmxsRXlMdFNiOTVPR0xVN3Bqb09sYXV0V1Y5eXIxRVNac1B0amlkQ2dLTm43c09YQURkNkw4U1U5c3lkTWVxUjZickRIMWFVdVhMOVdPQUQ0VlN2cGxzbm9CdTVGaXJmdkZkU2FQTUlERER0bzZnWHoxaGg2UFdXRVM2Wmt4WllUdEhEYXdJRUU4VC1XTTFWNmxLSw?oc=5"
+    "title": "Gold Price Forecast: XAU/USD Faces Critical November Test as Dollar and Treasury Yields Drive Selling",
+    "source": "FXLeaders",
+    "date": "2026-11-02 06:20",
+    "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNYlI5anV6ektiQjhXaFZOek1ZdEpPMS1HblZNdkJQenRFWHdqOU15bUdlN3hMdE5IUDNJZ1Z0VFFOR3lZZEZLZ0syeTR0X2czTzB0UTB5blpwWjBMNHl0Tjd4TUxqMmlGMGZyd24yal9EcXNkQzJzel9MUXRIVEMwTDBsS3lqUmtJakpwclRkTXNMTVBsbjdIQXl6NGVVU0oxM2VlZmt4V0pMMW9aLVV2d0NHVWI5RmI0dnBJR1pzSzA3QzFkaHN1b0hiZGFHMDR3NFNwQnYyb0thQk0?oc=5"
    },
    {
-    "title": "Treasury yields, tech stocks, and consumer sentiment all took a slide this week",
-    "source": "Marketplace.org",
-    "date": "2026-10-24 06:40",
-    "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQLTlNRFpFeEdjYVJjdGtGTFBPN3dNaWU0N01RdVZHVk5PWC1YeFBTRGdDNHhoblBXU2tUamhyY0ZEXzg2dzNRXzROTVo1YS1fWE9TTEpKMHNuSHAtODZxaWhOVDVyNjZBaDRxaWZlUUd4aDFBTjNZeEVadXR2WXI0cTVreXFpdFU3clVJY3FORWw2MVVudU01SHBFVjVXbXVGRmU5RnFRMFpQZkx0MlFmejNNa3lpYjVSelkxRGw0NA?oc=5"
+    "title": "Wall Street Braces for Biggest Treasury Sales Overhaul in Years",
+    "source": "Livemint",
+    "date": "2026-11-02 04:28",
+    "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPVy1yUl9BOVF0QlE4WUhPNEg0cUV5QjhwZWtmYWJpcEVrczhtajVRMGdUVWlVZXNGUmZvQzF6Z3RqZnp0WWRLZ1c1YWtzeTZQQV9KSjJlV2JMNGhTblhCcXpwTnYtT3JoWU9odjlCdU1qSm5QUmFtR21nYXJVTHhzVWo4SVZqUUdSU1Z0N2czaWNhODN0b3E3MHZ2MW9lNVRnREVkRUVBUHhUOXE2cmpCa1dwZXBDZ9IBuwFBVV95cUxNNnRPaWU2RmwxVlMyYXhQQnRQT0llOVg3dlJ5aVVqSVE5TVlPWFlGQjlCS2U2VFpUQlNNdDU5aVBoSkMybmxtQmpZaUk2N2h1X2FFaHRVdUpwOUZIUWo0NHRselcxb3AtWWNQQWt3dXF6SWtkNGhwQnBDOVhoaTJUSnFVUjhvTU9wSVh5cWEtMzQyYm1HWkhGaENSTTlxMXlhMzBQcjkxTjVwZG14X0tUUER5aVF5STg4Umow?oc=5"
    },
    {
-    "title": "Did Falling Treasury Yields Just Shift Lennar's (LEN) Stock Narrative?",
-    "source": "Yahoo Finance",
-    "date": "2026-10-24 06:07",
-    "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQWFZWWnJxRFp2d1VhOGxBZEpOdFpJNHNwcC01ZWJwbDVRSmZ0UHdST0ZNcmlkajlBQWQ3NmF6MWlrY2JxaXVmajJOZnFIVE1YR1Bac1RuN2dibWxnc181cldJOU43RGRFX2dtMTZZQXpURVR2UllvLVVvUW54LS1WXzU1bW5mWUlCaGF1WHNXcHltVEgyajZaT0NfRmFYQQ?oc=5"
+    "title": "Oklo and NuScale sink 15% in a week as bond yields punish nuclear stocks",
+    "source": "Startup Fortune",
+    "date": "2026-11-02 03:39",
+    "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOcnk4SlBFbF9tWTNoaFhTbUVDRVJoakhHMVVrSU1ORlZ2aXRsWFFKQkpyYWt0ZmRjaDJISnpSTng4VUxZcW9JMTdpQkQwS3ZyUWFaUi10LVlNTlJnR0luLVpSdnkyTC1PenBFYnMwN0U0MVFPSnZ5V0d6VjNOdGVrOXh2UTVNYThmcml0QXVUYl8yaWJRalpuM0g1TTZmYmJh?oc=5"
    }
   ],
   "Inflation": [
    {
-    "title": "Australian Dollar Outlook: AUD/USD Screams Sentiment Extreme Into Fed, CPI",
-    "source": "StoneX",
-    "date": "2026-10-26 04:20",
-    "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOcG15OXo5WUNmc1B1VDVxSElmd3RUY0VUNWtQbHEzSUZoN3lpcTRFNDc5Mmh4NkM3OW9TTC1NMERuc2xOTUYxVGdsTy1MUTU1M1VJOW13VTUxSlA1OXdsYnBnS25mNjNhZmx4RVpuNFZVc0xhQmRSLUt4Z0tBX2wwLTF0c2RxVjYzTnFvWjdlbm14OEZDOVpKOGh5NVhzY0RFU1VDUHN6Z3ZYeFRxa0dieVJEbU12OGQwTmZuU25ra2tYUk1KaTlOX1E5dw?oc=5"
+    "title": "Bitcoin Traders Get October CPI Ahead of the Fed’s Final 2026 Meeting",
+    "source": "TOKENPOST",
+    "date": "2026-11-01 11:22",
+    "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE95TUpjT0wxeDVwMXNBM1d2VzN2NWdqaWpVLUtwamRKcXZYUTRuaTRvNG9lbWhpOV9lRDZuZlJBTDVPMjdEM3E4YUUxSDNzR2c5N3JhckhrRXFRUQ?oc=5"
    },
    {
-    "title": "Australian Dollar Outlook: AUD/USD Screams Sentiment Extreme Into Fed, CPI",
-    "source": "FOREX.com",
-    "date": "2026-10-26 03:36",
-    "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPcWlTbGt6M1N1WHFJV1F0elNlSWNiS0VrTHZER1Q1MzRZOUdUWXMwT05PQm84Z3NUR3c2azBjaU5oUU9rU280SlZGSFk1cHU5VlNUMEU5ZXFIb013QTI5bzlfaHUyeHJfWVczZ3RQdFZzWEk3Wndfa19vbDFHSmUwX0hORmQ4QTBGZGFmYXl4REFTaXdBdkgxNEhkZEhqSmZpcjdUcjlqd0JXY29OWUpvcHRmSFM5alhfR21HZjZnRUhVQkg3SU1V0gHHAUFVX3lxTE9xaVNsa3ozU3VYcUlXUXR6U2VJY2JLRWtMdkRHVDUzNFk5R1RZczBPTk9Cbzhnc1RHdzZrMGNpTmhRT2tTbzRKVkZIWTVwdTlWU1QwRTllcUhvTXdBMjlvOV9odTJ4cl9ZVzNndFB0VnNYSTdad19rX29sMUdKZTBfSE5GZDhBMEZkYWZheXhEQVNpd0F2SDE0SGRkSGpKZmlyN1RyOWp3Qldjb05ZSm9wdGZIUzlqWF9HbUdmNmdFSFVCSDdJTVU?oc=5"
+    "title": "US Inflation and the Fed: Bitcoin Before November 10",
+    "source": "CryptoTicker.io",
+    "date": "2026-11-01 11:15",
+    "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE10Rnc1MzM4Rl9oamxZckNwNDRfQ2xNRlNDMjNkSUFVT2lvX1lPcHlxY20tbVk2UjVIRTFwSU9HUy1NOXRVTFcwUmZ5N2oxcVQ3RDBQWTFuOENBaE1kTFRxdXVkMmx0SkhJTDE4cXFJQ0E?oc=5"
    },
    {
-    "title": "Japan Week Ahead: BOJ Set to Leave Rate at 1.25% as Mission Shifts from Normalizing Super-Low Rates to Keeping Inflation from Overshooting 2% Target",
-    "source": "TradingView",
-    "date": "2026-10-26 02:27",
-    "link": "https://news.google.com/rss/articles/CBMirAJBVV95cUxPZFJsdDhJcEt3WHNGZEdpZDItcEY4TDFUWWR1TXJIbGF2dTZUblVBRlVDMXhTWEwxMVdoQkg0ell2UFBuam1FVmVqV2FfR3pfUVVMbFFzX1gtVDFpMUZ1dkhDR3ZoY3loSlBLSzdhcEJRaEEtdFpBQVFfWFB5YjVydmlYVWhyZnVvMlpHc3JmMGRhM3VzVlhzamxEMENOcENyUzZHR2JMSnhkM2hwMG5CWmVRT084Wk8xbW1CdE1zLTVmRndJdmpOZjRXUnZ2TUU5bG5YR1hkaVFjOWpRaks3Q3dYcksxVDZOekV6emxheE0yWTlxQnp3ZXkwdHAwaGtnZ2p6b19KbjRzS2NmaTItWEdxYVpPcjZseHJxbGFRbFMzcXBaejFhanVkX1c?oc=5"
+    "title": "Why ABS inflation data may be unnecessarily driving interest rates higher",
+    "source": "AFR",
+    "date": "2026-11-01 09:00",
+    "link": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQVzhMWXZ6MGpKcHVTekQxeVB0WkpYR2k0bGZOWHFjaTFycWdpMUZrRUFLaHYwYVJya2FpM0JuRzMxbUFMbkFOYXUzaFVVaEtpaGdCbjVTUkhrMnZmNmVaZXlYZzBoV3Z5S19yVkF5VWpYQ1JsTGtrYVNSYlhMdnk4ZVpoRl95ZDh6dVFCcTRQSGZTWklBenppZUtTMzNXZUJqdHUtNHZFdjZJaDBTem5vQVF0bEU0Sk9MNU5ZZ1ZOcl9JY09R?oc=5"
    },
    {
-    "title": "Petrol and Diesel Fuel Inflation",
-    "source": "NIESR",
-    "date": "2026-10-24 04:45",
-    "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1WdVFFWWpaTHVlaDNVRUdkV1RDRmtGbXRnVG94ZnpSTDJJWEJIbGNCODJxUmJwR2RQTVJaazJQd08zMEx2MVJYcmcwNkE4cEFqNTJrb1FwdDF3U1o0aUE5UjA5NTV2NFZzb2Zkc0FRN1NnS28?oc=5"
+    "title": "Australia CPI explained: why 2 inflation readings land today and which one the RBA watches",
+    "source": "Forex Factory",
+    "date": "2026-11-01 06:40",
+    "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOcGtXTkQyUlE1cnlnREhTTG1EczBkZDFBUndCWG1SZEprWkpsZzllNk9zUmp2MGxJRlI5VWh6dzFKUElFal83N0hLMGNReWpRYmFyZVdxN2JVUzR1d2lyZmZtZDhoMFJBT0NGb2xfd2tJYV92OHVRTFVpeS1kTVZTOF9JUHFMT05VZWV2TUN3OHAwM292M1NZTUxNWdIBoAFBVV95cUxNcHFBSUY2Y0ZhZUNuSkQ3NXdCNGhjd3dRX2c3N3E1NElzS2NxNDhDUG5Mc19WNHlpTFFVc2xZbGJYelVLam5iU2hTT0I3QmJYNVZBR1ZDd19uTTc4Z0JLRzlvTjJRVFFGUlhKcHFFOFNaSk5DV1V4V3VQWUVwZzJyOGM1dXFkZi0yMkRhVWtUQnR0YUVuQWZ2a2dva3BrSjUx?oc=5"
    },
    {
-    "title": "US FX WRAP: DXY rises; hawkish Japan CPI report/BoJ sources; EUR hit on weak PMI data",
-    "source": "Newsquawk",
-    "date": "2026-10-24 03:32",
-    "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPMElBbnNKTG9Oald2eWJZMm84MjBfeFRsb3BQWlY0TVBvNXIwcWxCMlFLQVpkZWd4bXZmNTdBOVlCenJ5YnBfYWZ0TW1yQVNsaGlWZ0VmRGVpMlVuUmpTQmZTa2diMVJsRmpTNjQ2c1FDSHlpTWVRazdCelJ6V1A5eUw0a0N3bUpKVzdhOU1UczBiNEx1YjB4MS15WmxjRHRTVnJDV3lyZ2VfeGtwcVlXcDZTOFFBR2pw?oc=5"
+    "title": "Tokyo inflation exceeds BOJ’s 2% target before rate decision",
+    "source": "The Japan Times",
+    "date": "2026-10-31 12:33",
+    "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxONmpaSU1oaXkwbU5zOXhVdGdhN0xVTEsxc0tDaG9MY0tZejNOTHphOUFtNzljSThpaFZoVk51clNVRWRSNlFmQnBzVFdOTF9GX2o4dUJ1RVozb2V4WTloclpQbkRUTWcwdFpXUzhwenVRVWxWZFBQTlBIQmJfMEdIOA?oc=5"
    }
   ],
   "China": [
    {
-    "title": "Chinese equities face prolonged downturn as earnings forecasts tumble",
+    "title": "China’s banks, regulators to meet on measures to arrest stock slide",
+    "source": "South China Morning Post",
+    "date": "2026-11-01 19:15",
+    "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQSXlEckdqYlg2MWtmc3dIYVY3TWN3TFJDXzlsbXpOMkFlMFU2dFBva2E4WmgxcUJ1Wm05R3ZzZ2RlcjBBekpIWnNhYktRQXdpejdZVmpZZ24yejliTnZlV3NsRDJya0dZRzRMU2hQYjBkckFuR3NKT2d2eUFpd05OMTB5c0MwaFpBSXhWNi1VOHJ3ZHNIV2pESzBkVnJndlBBMkpiQnplN2IxdVlzTGhnX015LW1lTlJVZ2hVWWpnSzYzTXhsSFIwbmd0OGRzd0pOWWU0VVJvNUMtaWNSUDUwVkZ2RVJrUVE?oc=5"
+   },
+   {
+    "title": "Why China’s stimulus keeps missing the mark",
+    "source": "Awani International",
+    "date": "2026-11-01 11:44",
+    "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNMHdCbTRKR0h3MllXWS1JUVdaT09wNHJ5S3Z4Rm9QSjFYMzFyczJzbGZTeGM1QjczcVdBYkVkWmJRVlRfeWM4SUJIRFBmbGx4SXJURGQzVmxMNDlxWS1mZzdXTXdHajdNcE9LUWVtT1piTFZQZHZVSUVjQW1aVGtRXzdXY1BEZXpadmRoQ2szdzc5a3c?oc=5"
+   },
+   {
+    "title": "Billions in Bailouts Can’t Fix China’s Broken Economy",
+    "source": "Chiang Rai Times",
+    "date": "2026-11-01 09:05",
+    "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE9vcUZLY3ZRdUFTWk11RkxpN2ZINmpsOUxUd1BZeUQ0MV8zSlNfT0EwbVlOZHpJMTFPNHdVQXJWdXd3a2ItWi1LN1V1dmY5aXhQNnNKZ3oyYXUzRllfYjJBZHNjVlI4N25lWmxMcXJkUGdodw?oc=5"
+   },
+   {
+    "title": "China factory activity eases into decline as growth wobbles",
+    "source": "The Business Times",
+    "date": "2026-10-31 16:15",
+    "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPMmhDYmNQc0o4VkQ1RHZmYW9kRk5RbHlnQjFTbkNjSWRRNVRiSWtmUU52YU4zaVZNMDdKWWlpMnpmUVh6YmhyX1BSOU0xUkhsd3BLVFI5Z19iQzR0Smg4QXNyRWpVT05TM1A5Q2ZXa1g3WXVRNXFaNEQ5WWR1STh5ZFlCNTFWdDRHRDZfbTFlNXhiSzNVbWxFQ2JvQmVxTmc?oc=5"
+   },
+   {
+    "title": "China factory activity contracts in October as economic recovery falters",
     "source": "Yahoo Finance",
-    "date": "2026-10-25 10:07",
-    "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQMVR3UVYzUUZHN2hzNkpEaW1XRGlJdFRuRzRXWXFnekdBelkyeDczS3htT0NRUkFYWVFDNjNkTERuc0JUZjhOQ054aENuaXk1cEZYQnNGTG1iU2RBemVXMkZpMlkyZnUya0JSZ0NrWlNNZUJ6TXk0OVNYZ0oxZjlRSGlVQTBEMjV4bjRDaTZ0YTM0ZkxwVzhhbk0xalo4N05pNm01bzBBeHc?oc=5"
-   },
-   {
-    "title": "Sinking Profits Turn China’s $3.5 Trillion Stock Rout Into Trap",
-    "source": "Bloomberg.com",
-    "date": "2026-10-25 08:00",
-    "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxObEthY2hVTFl0LTd4dlNRQjJWTF9OdnNWb2NCQUNFTE4xNkR2d0NPUUROdFRRSEREMXBiMUd5aDRlNVY0SWZRUm5OTXdCV3JYNnA2OGdBTGxIRTZCcFV5OUoyUEV4SUNlREh0SHNCQ3hudGZaUDZ4aGNSaC1wd2lDcjlGR0hjVWNWVU9nX21QSVZQSGlXZVBqZHRMV3NUTGF4dTkteWloRmdkd2JRWUUyaUJFWQ?oc=5"
-   },
-   {
-    "title": "China Barely Eased Austerity Just Before Shift to Stimulus Mode",
-    "source": "Bloomberg.com",
-    "date": "2026-10-24 09:30",
-    "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNMzNVNE5TMkFBWS1ReFFlbEgwZGJTMmY2YmJibmZpWE9EVmI0R2dMV0hkZkNBcVJNMnU0Mml5R055bkE3emxEb01SbTYyMjYxdFA2S0tjcEhEdkxLVjlMQl9ELXFQa3l6Skx3U3dZMmxXMGswc0NJYTQ2QzlWXzNHNjhwV0xTNHBzN1VaeGpXRUZ2WGpiT1NHYndhUW1vTEx2MzFLVXJtQkM5OU5oV1lQZHM2RzE?oc=5"
-   },
-   {
-    "title": "China Barely Eased Austerity Just Before Shift to Stimulus Mode",
-    "source": "Yahoo! Finance Canada",
-    "date": "2026-10-23 15:34",
-    "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPYTNBNHNQejItTmJYZGlSYVFWRHZFMXhKQXEzblVkYkp6emRNQndDV0lLd2VGWkVOZVpCWkRaUVBpd09NY29lV1JlbWpLMXJNZXFUa2NlaEFCcG9YSmtrY3hGdWExNy05cHcxa25GdWtZYnBOcWZaYzhHQVJRRXktRF94Q05IbE8yWnc?oc=5"
-   },
-   {
-    "title": "REALITY CHECK | China Stocks Slide Toward Bear Market as AI Sell-Off and Fading Stimulus Hopes Weigh",
-    "source": "BitKE",
-    "date": "2026-10-22 23:00",
-    "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBnbjdZTWswdzlMalZpcjlCcTdUOFN2RV9rVmZVMEZZTjNocGUtd3ZBdlhMdWVfTzRYcDAwSklCcElTZzVVLUhZV2kyU3BuekIza2F2S2FQeC1Lcl9HeExxTTY5QTRUZUJBYVQ0VkdrX3V6NHJKZ2c?oc=5"
+    "date": "2026-10-31 11:56",
+    "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQT0tDX0MwTXk1Z09sR29DZkJ5N3Z2Y3d4dkowVkZ6RGx1d0t2bWo1UGdhMVFHQjdrZnRvTkVZR2dOdi1DNnNsbkotT2FaQkE0cU0zT2Nha3h0WG5GVElwODVCUEdUVTI0S1luU1ltdG1ZcDAtVU80S3c1RnRtaG5fLUttSHVOR0dYUk1NSW5yRVJWTUJOZDJEZGxiZ096V1Y5UUZQdnRSbFg?oc=5"
    }
   ]
  },
  "trends": [
   {
-   "title": "nfc north standings",
-   "traffic": "2000+",
-   "source": "The New York Times",
-   "date": "2026-10-26 07:30",
-   "macro": false
-  },
-  {
-   "title": "luka dončić",
-   "traffic": "2000+",
-   "source": "Yahoo Sports",
-   "date": "2026-10-26 07:30",
-   "macro": false
-  },
-  {
-   "title": "nba league pass",
-   "traffic": "2000+",
-   "source": "CBS Sports",
-   "date": "2026-10-26 07:30",
-   "macro": false
-  },
-  {
-   "title": "vj edgecombe",
-   "traffic": "1000+",
-   "source": "Liberty Ballers",
-   "date": "2026-10-26 07:30",
-   "macro": false
-  },
-  {
-   "title": "collin sexton",
-   "traffic": "1000+",
-   "source": "Lakers Nation",
-   "date": "2026-10-26 07:30",
-   "macro": false
-  },
-  {
-   "title": "chiefs depth chart",
+   "title": "minnesota vs lafc",
    "traffic": "500+",
-   "source": "NBC Sports",
-   "date": "2026-10-26 07:30",
+   "source": "Angels on Parade",
+   "date": "2026-11-02 08:50",
    "macro": false
   },
   {
-   "title": "dazn timberwolves",
+   "title": "santos laguna",
+   "traffic": "1000+",
+   "source": "Santos Laguna",
+   "date": "2026-11-02 08:50",
+   "macro": false
+  },
+  {
+   "title": "eagles injury report",
    "traffic": "500+",
-   "source": "Canis Hoopus",
-   "date": "2026-10-26 07:30",
+   "source": "PhillyVoice",
+   "date": "2026-11-02 08:50",
    "macro": false
   },
   {
-   "title": "tina peters",
+   "title": "chiefs record",
+   "traffic": "500+",
+   "source": "ESPN",
+   "date": "2026-11-02 08:50",
+   "macro": false
+  },
+  {
+   "title": "60 minutes",
+   "traffic": "500+",
+   "source": "Paramount Press Express",
+   "date": "2026-11-02 08:50",
+   "macro": false
+  },
+  {
+   "title": "jayden daniels stats",
    "traffic": "2000+",
+   "source": "NFL.com",
+   "date": "2026-11-02 08:40",
+   "macro": false
+  },
+  {
+   "title": "old farmer's almanac",
+   "traffic": "1000+",
+   "source": "SnowBrains",
+   "date": "2026-11-02 08:40",
+   "macro": false
+  },
+  {
+   "title": "villa vie odyssey cruise ship",
+   "traffic": "5000+",
    "source": "CBS News",
-   "date": "2026-10-26 07:20",
+   "date": "2026-11-02 08:40",
    "macro": false
   },
   {
-   "title": "mn timberwolves",
+   "title": "tradingview",
    "traffic": "1000+",
-   "source": "NBA.com",
-   "date": "2026-10-26 07:20",
+   "source": "TradingView",
+   "date": "2026-11-02 08:40",
    "macro": false
   },
   {
-   "title": "moritz wagner",
+   "title": "nvda fiscal 2027 third quarter",
    "traffic": "500+",
-   "source": "CBS Sports",
-   "date": "2026-10-26 07:20",
+   "source": "Yahoo Finance",
+   "date": "2026-11-02 08:40",
    "macro": false
   }
  ],
  "eia": [
   {
    "feed": "Today in Energy",
-   "title": "U.S. refineries have been running at very high rates in 2026",
-   "date": "2026-10-22 22:00",
-   "link": "https://www.eia.gov/todayinenergy/detail.php?id=68344",
-   "summary": "The U.S. refinery fleet has run at higher-than-normal rates this year, with refinery utilization averaging more than 95% of capacity between May and September, the highest for those months since 1998. Tight global produc"
+   "title": "The share of solar generation with co-located battery storage is increasing",
+   "date": "2026-10-30 22:00",
+   "link": "https://www.eia.gov/todayinenergy/detail.php?id=68384",
+   "summary": "Utility-scale solar developers are increasingly co-locating battery storage with new solar photovoltaic capacity. As of September 2026, over 16% of new utility-scale solar capacity added this year is co-located with oper"
   },
   {
    "feed": "Today in Energy",
-   "title": "Hybrid sales rise while battery electric sales remain lower after tax credit expiration",
-   "date": "2026-10-19 22:00",
-   "link": "https://www.eia.gov/todayinenergy/detail.php?id=68325",
-   "summary": "In the third quarter of 2026 (3Q26), 23% of new light-duty vehicles sold in the United States were hybrid electric, battery electric, or plug-in hybrid electric vehicles, down slightly from 24% in 3Q25. Between 3Q25 and "
+   "title": "LNG imports make up increasing share of Colombia's natural gas supply",
+   "date": "2026-10-29 22:00",
+   "link": "https://www.eia.gov/todayinenergy/detail.php?id=68364",
+   "summary": "Colombia is importing more liquefied natural gas (LNG) as domestic production continues to fall. A potential drought this fall and winter could limit the availability of hydroelectric generation and boost the country's d"
   }
  ],
  "linkedin": [],
@@ -373,44 +363,16 @@
   {
    "priority": "P0",
    "timing": "10/19 08:00–09:00 BJT（若未发）",
-   "title": "GOR 39.21：45 线破了，40 是下一层地板吗？",
+   "title": "GOR 38.11：45 线破了，40 是下一层地板吗？",
    "hook": "五周拉锯后，45 线终于破了——但机器仍然不动。",
    "format": "1 个数字 + 3 条证据 + 二选一问题",
    "evidence": [
-    "GOR(WTI) 39.21 / GOR(Brent) 36.21",
-    "合同完成度 85.9%，缺口 $5.33",
-    "VIX 19.45 vs 门槛 22.5；仓位 30%"
+    "GOR(WTI) 38.11 / GOR(Brent) 34.93",
+    "合同完成度 86.3%，缺口 $5.16",
+    "VIX 19.42 vs 门槛 22.5；仓位 30%"
    ],
    "cta": "40 成为下一层地板，还是 45 线重新压回？",
    "why": "GOR/Gold 是你互动率最高的类型（0.00%）；用固定格式承接 #008。"
-  },
-  {
-   "priority": "P0",
-   "timing": "10/28–29（决议 10/29 02:00 BJT）",
-   "title": "FOMC 前夜：这次“暂停”比“加息”更难交易",
-   "hook": "市场在赌 10 月暂停、12 月重启；真正的变量是发布会和点阵图。",
-   "format": "预注册 scorecard：3 个鹰派信号 vs 3 个鸽派信号 + 二选一",
-   "evidence": [
-    "Will gold hit $5,000 again? What experts expect for 2027",
-    "The Fed thinks it’s fighting inflation. It’s starving the cure",
-    "长端收益率 24 年新高；热通胀未退（CPI 3.7%）"
-   ],
-   "cta": "暂停 = 鸽，还是“暂停但保留 12 月” = 鹰？",
-   "why": "FOMC 记分卡有差异化，但过去互动偏低；这次必须给一个可投票的问题。"
-  },
-  {
-   "priority": "P0",
-   "timing": "10/29 20:30 BJT",
-   "title": "GDP + PCE 同日：增长和通胀的错位",
-   "hook": "同一天两份数据，市场只会选一个交易。",
-   "format": "数据卡片：预期 vs 前值 vs 资产反应；二选一",
-   "evidence": [
-    "Australian Dollar Outlook: AUD/USD Screams Sentiment Extreme Into Fed, CPI",
-    "Australian Dollar Outlook: AUD/USD Screams Sentiment Extreme Into Fed, CPI",
-    "GDP/PCE 同日发布"
-   ],
-   "cta": "增长下修 + 通胀粘性，先交易衰退还是先交易利率？",
-   "why": "你的 Rates/Treasury 类型平均曝光 606、互动率 0.41%，是“曝光×互动”最平衡的题材。"
   },
   {
    "priority": "P1",
@@ -419,8 +381,8 @@
    "hook": "原油库存是头条，柴油和价差才是信号。",
    "format": "一个对象，四种价格（WTI/Brent/柴油/黄金）",
    "evidence": [
-    "Oil shocks no longer hit the US economy as they used to",
-    "Record Tanker Rates Cripple U.S. Crude Oil Flows to Asia",
+    "Oil Prices Rise as Middle East, Ukraine-Russia Conflict Fuel Supply Worries",
+    "Oil Prices No Longer Follow Headlines",
     "自己的 Brent–WTI 帖：773 曝光 / 87 触达"
    ],
    "cta": "如果库存下降但柴油裂解不涨，是需求还是补库？",
@@ -433,8 +395,8 @@
    "hook": "Citi 说 $150，JPM 说出口已恢复——同一个海峡，两个叙事。",
    "format": "两种情景 + 一个被低估的变量（柴油/价差）",
    "evidence": [
-    "Oil shocks no longer hit the US economy as they used to",
-    "Record Tanker Rates Cripple U.S. Crude Oil Flows to Asia",
+    "Oil Prices Rise as Middle East, Ukraine-Russia Conflict Fuel Supply Worries",
+    "Oil Prices No Longer Follow Headlines",
     "J.P. Morgan：Hormuz 出口接近恢复（397 互动）"
    ],
    "cta": "你交易正常化，还是尾部？",
@@ -444,12 +406,12 @@
    "priority": "P1",
    "timing": "本周（Gold 热点）",
    "title": "Gold +64% 之后：GOR 现在告诉你什么",
-   "hook": "WEF 的 +64% 是过去；GOR 39.21 是现在。",
+   "hook": "WEF 的 +64% 是过去；GOR 38.11 是现在。",
    "format": "一个数字 + 三条反例 + 二选一",
    "evidence": [
     "WEF：Gold +64%（715 互动）",
-    "Will gold hit $5,000 again? What experts expect for 2027",
-    "GOR(WTI) 39.21；合同完成度 85.9%"
+    "Gold rebounds to near $3,900 despite inflation worries",
+    "GOR(WTI) 38.11；合同完成度 86.3%"
    ],
    "cta": "金价再涨 20%，油要涨多少才能让 GOR 回到 30？",
    "why": "Gold/GOR 是 LinkedIn 互动最高的主题；WEF 已经把钩子做热。"
@@ -461,8 +423,8 @@
    "hook": "收益率新高不是“机会”，是一个压力测试。",
    "format": "机制图：利率 → 美元 → 黄金/油；三个受害者",
    "evidence": [
-    "The US has the largest gold reserve. But repricing it to $1 trillion 'would backfire in a big way'",
-    "Treasury Yields Snapshot: October 23, 2026",
+    "Big money pours in, drawn by high yields... KODEX US 10-Year Treasury Active tops 200 billion won in net assets",
+    "SG Bonds – Week 45 : SGS yields moved lower WoW",
     "CPI 3.7%；热通胀 + AI 交易裂缝"
    ],
    "cta": "先崩的是估值、信用，还是美元？",
@@ -475,8 +437,8 @@
    "hook": "IMF 喊刺激、信贷收缩、增长低于 4.5%——但交易在美元和长端。",
    "format": "二阶思维：中国 → 商品 → 美元/利率",
    "evidence": [
-    "Chinese equities face prolonged downturn as earnings forecasts tumble",
-    "Sinking Profits Turn China’s $3.5 Trillion Stock Rout Into Trap",
+    "China’s banks, regulators to meet on measures to arrest stock slide",
+    "Why China’s stimulus keeps missing the mark",
     "China/Currency 历史：0 互动、0 涨粉"
    ],
    "cta": "中国刺激会先推高铜/油，还是先压美元？",
@@ -486,8 +448,6 @@
  "suggestions": [
   "通胀数据周：做一张“预期 vs 前值 vs 资产反应”卡片；从 GOR/黄金或长端利率切入。",
   "就业数据：用“强/弱就业 → 利率 → 美元 → 金/油”的链条，而不是只报数字。",
-  "GDP：区分名义/实际与赤字路径；长端利率比增速本身更有交易含义。",
-  "FOMC：预注册 scorecard；用二选一问题（鹰/鸽、点阵图/发布会）引导评论。",
   "EIA 库存周：结合柴油裂解、Brent–WTI 价差与 Borrowed Oil 叙事。",
   "Google News 热度集中在 **Oil**；用你的框架给反例/二阶影响，不要复述标题。"
  ]
