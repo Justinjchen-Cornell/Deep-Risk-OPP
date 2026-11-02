@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>AI 泡沫：不是技术，是融资链条｜Deep-Risk-OPP</title>
+<style>
+:root{--navy:#0B1F33;--gold:#C9A227;--copper:#B87333;--teal:#1F6F78;--red:#B23A2E;--gray:#8A8F98;--soft:#F6F3EC;--line:#E3DED2}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif;font-size:9.9pt;line-height:1.68;color:#1A2433}
+p{margin:0 0 2.8mm 0;text-align:justify}
+h1{font-size:21pt;line-height:1.28;margin:1mm 0 3.2mm 0;color:var(--navy);font-weight:700;letter-spacing:-0.3pt}
+h2{font-size:13pt;margin:5.6mm 0 2.2mm 0;color:var(--navy);border-left:3pt solid var(--gold);padding-left:3mm;page-break-after:avoid}
+h3{font-size:10.6pt;margin:4mm 0 1.2mm 0;color:var(--copper);page-break-after:avoid}
+.lead{font-size:10.8pt;color:#3A4552;line-height:1.78}
+.section{page-break-before:always}
+.section.first{page-break-before:auto}
+.section-head{display:flex;align-items:flex-end;gap:5mm;border-bottom:1.2pt solid var(--navy);padding-bottom:2.6mm;margin-bottom:3.8mm}
+.section-num{font-size:29pt;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-1pt}
+.kicker{font-size:7.4pt;letter-spacing:1.6pt;color:var(--gray);text-transform:uppercase}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3mm;margin:4mm 0}
+.kpi{background:var(--soft);border-top:2pt solid var(--gold);padding:3.2mm 3.2mm 2.8mm}
+.kpi .v{font-size:14.5pt;font-weight:700;color:var(--navy);line-height:1.25}
+.kpi .l{font-size:7.4pt;color:var(--gray);margin-top:0.8mm}
+.callout{background:linear-gradient(90deg,#F6F3EC 0%,#FBF9F4 100%);border-left:3pt solid var(--gold);padding:3.4mm 4.2mm;margin:3.4mm 0;page-break-inside:avoid}
+.callout .t{font-size:7.4pt;letter-spacing:1pt;color:var(--copper);font-weight:700;margin-bottom:1.1mm;text-transform:uppercase}
+.callout p{margin:0;font-size:9.6pt}
+.callout.warn{border-left-color:var(--red);background:#FAF1EF}
+.callout.warn .t{color:var(--red)}
+figure{margin:3.6mm 0;page-break-inside:avoid}
+figure img{width:100%;display:block;border:0.5pt solid var(--line)}
+figcaption{font-size:7.8pt;color:var(--gray);margin-top:1.2mm;line-height:1.5}
+figcaption b{color:var(--navy)}
+table{width:100%;border-collapse:collapse;font-size:8.2pt;margin:3mm 0;page-break-inside:avoid;line-height:1.45}
+th{background:var(--navy);color:#fff;font-weight:600;text-align:left;padding:1.9mm 1.9mm}
+td{border-bottom:0.5pt solid var(--line);padding:1.9mm 1.9mm;vertical-align:top}
+tr:nth-child(even) td{background:#FAF8F2}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:5mm;page-break-inside:avoid}
+.box{border:0.6pt solid var(--line);padding:3.6mm 4mm;background:#FCFBF7}
+.box h4{font-size:9.4pt;margin:0 0 1.4mm 0;color:var(--navy)}
+ul{margin:1mm 0 2.8mm 0;padding-left:5mm}
+li{margin-bottom:1mm}
+.small{font-size:7.9pt;color:var(--gray)}
+.quote{font-size:12pt;color:var(--navy);font-weight:600;line-height:1.65;border-left:3pt solid var(--copper);padding-left:4mm;margin:4mm 0}
+.formula{background:#0B1F33;color:#fff;padding:4mm 5mm;margin:4mm 0;border-radius:2mm;font-size:10pt;line-height:1.8}
+.formula b{color:#C9A227}
+.footer-note{font-size:7.5pt;color:var(--gray);border-top:0.5pt solid var(--line);padding-top:2mm;margin-top:4mm}
+</style>
+</head>
+<body>
+
+<!-- ================= 执行摘要 ================= -->
+<section class="section first">
+  <div class="kicker">DEEP-RISK-OPP · SPECIAL REPORT · 2026-10-28</div>
+  <h1 style="margin-top:3mm">AI 泡沫：不是技术，是融资链条</h1>
+  <p class="lead">四份材料放在一起，不是四篇独立的观点，而是一条因果链的四层：<strong>估值层 → 需求层 → 供给层 → 信用层</strong>。AI 技术是真的，巨头盈利也是真的；但“资本开支—融资—信用”这条链条上，正在长出一个局部泡沫。</p>
+
+  <div class="kpi-grid">
+    <div class="kpi"><div class="v">41x</div><div class="l">标普 CAPE（材料口径）</div></div>
+    <div class="kpi"><div class="v">337bp</div><div class="l">AI HY 利差（材料称 3377bp，应为转写错误）</div></div>
+    <div class="kpi"><div class="v">1,340bp</div><div class="l">CCC OAS</div></div>
+    <div class="kpi"><div class="v">23GW vs &lt;2GW</div><div class="l">算力供给 vs Anthropic 占用</div></div>
+  </div>
+
+  <h2>五句话结论</h2>
+  <ul>
+    <li><strong>估值告诉你赔率，不告诉你时机。</strong> 巨头 PE 约 28 倍、净利率 25%，不是 2000 年的纯故事；但 CAPE 约 41 倍，未来十年年化回报趋近于零。</li>
+    <li><strong>资本开支是核心矛盾。</strong> 每年约 4,000 亿美元 AI capex，按 12% 资金成本、5–10 年寿命、30–50% 利润率，需要每年 1,420–3,700 亿美元 AI 收入才能覆盖。</li>
+    <li><strong>算力供给快于真实需求。</strong> 英伟达出货对应全球约 23GW 算力；Anthropic 实际占用不到 2GW；收入/算力比从 0.4 升到 2.0，效率提升反而压低单位收入所需算力。</li>
+    <li><strong>内存是利润最陡、最脆弱的一环。</strong> 需求/产能 1.35 倍对应价格 +184%；一旦回到 1.10 倍，价格可能 −51%。</li>
+    <li><strong>信用是最可能先裂的一层。</strong> AI HY 一周 +55bp、CDS 成交 4.5 倍、数据中心 HY 债券 101→95；风险从下往上爆，先死的是杠杆供应商，不是微软/谷歌。</li>
+  </ul>
+
+  <div class="formula">
+    <b>统一公式：</b> C（资本开支）→ R* = C / 年金因子 / 利润率 → D = R / E（收入/算力效率）→ 闲置 = S − D → 内存价格 P ∝ (D/C)^3.5 → 信用利差 s → 违约概率 PD ≈ s / (1 − 回收率）→ 股票重估
+  </div>
+
+  <div class="callout">
+    <div class="t">一句话</div>
+    <p><strong>技术留下，融资链条断掉。</strong> 这更像 19 世纪的铁路，而不是郁金香：铁路泡沫破了，铁轨留下来；郁金香破了，什么都没有。</p>
+  </div>
+
+  <div class="callout">
+    <div class="t">阅读路径</div>
+    <p>01 因果链 → 02 定量模型（含 GPU 价格） → 03 风险征兆 → 04 传导链条 → 05 情景与仪表盘 → 06 纠错 → 07 结论。时间紧的读者，可直接看 02.2（capex 回本）、02.7（GPU 价格）、05（仪表盘）。</p>
+  </div>
+</section>
+
+<!-- ================= 01 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">01</div>
+    <div><div class="kicker">THE UNIFIED ARGUMENT</div><h1>四份材料，是一条链的四层</h1></div>
+  </div>
+  <p class="lead">四份材料不是并列关系，而是同一枚硬币的四层：<strong>估值层</strong>告诉你赔率，<strong>需求层</strong>告诉你算力有没有人用，<strong>供给层</strong>告诉你价格弹性有多脆，<strong>信用层</strong>告诉你什么时候会裂。</p>
+
+  <figure>
+    <img src="{{FIG:ab_report_logic.png}}" alt="四份材料是一条链">
+    <figcaption><b>图 1｜四份材料是一条因果链。</b> 材料 1 估值层 → 材料 2 需求层 → 材料 3 供给层 → 材料 4 信用层。四层共同决定“泡沫的赔率、时机与触发器”。</figcaption>
+  </figure>
+
+  <table>
+    <thead><tr><th style="width:16%">材料</th><th style="width:18%">层级</th><th style="width:32%">回答的问题</th><th>关键读数</th></tr></thead>
+    <tbody>
+      <tr><td><strong>材料 1</strong></td><td>估值层</td><td>贵不贵？赔率如何？</td><td>PE 28x、CAPE 41x、净利率 25%；估值不告诉你时机</td></tr>
+      <tr><td><strong>材料 2</strong></td><td>需求层</td><td>算力有没有人用？</td><td>供给 23GW、Anthropic &lt;2GW、收入/算力 0.4→2.0</td></tr>
+      <tr><td><strong>材料 3</strong></td><td>供给层</td><td>价格弹性有多脆？</td><td>内存 3.5 次方；需求/产能 1.35→1.10，价格 −51%</td></tr>
+      <tr><td><strong>材料 4</strong></td><td>信用层</td><td>什么时候裂？</td><td>AI HY +55bp/周、CDS 4.5x、2028–30 到期墙</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="t">统一命题</div>
+    <p><strong>AI 泡沫不是“AI 有没有用”，而是“今天投下去的算力，未来能不能赚回覆盖资金成本的钱”。</strong> 四份材料分别测量了四个缺口：估值缺口、需求缺口、供给弹性缺口、融资缺口。四个缺口同时扩大，脆弱性上升；信用利差开始定价这个缺口，泡沫进入下半场。</p>
+  </div>
+
+  <h2>与“超级周期”报告的关系</h2>
+  <p>如果把此前的大宗商品超级周期报告看作“AI capex 如何变成电力、铜、信用的抵押品故事”，那么这篇报告就是它的<strong>压力测试</strong>：如果抵押品现金流不及预期，风险会怎么传？答案不是“AI 崩了”，而是“融资链条先断，实物需求后降”。</p>
+  <p>两篇报告的分工：超级周期报告回答“为什么 AI 资本开支会拉动实物资产”；AI 泡沫报告回答“这条资本开支链在哪里最脆弱、什么时候会断”。</p>
+
+  <h2>1.1 统一论证的五个问题</h2>
+  <table>
+    <thead><tr><th style="width:22%">问题</th><th style="width:18%">对应材料</th><th style="width:30%">定量指标</th><th>当前结论</th></tr></thead>
+    <tbody>
+      <tr><td><strong>贵不贵？</strong></td><td>材料 1</td><td>PE 28x / CAPE 41x / ERP −1.4pp</td><td>贵，但不是 2000 年；赔率差，时机不确定</td></tr>
+      <tr><td><strong>有没有人用？</strong></td><td>材料 2</td><td>算力供给 23GW / Anthropic &lt;2GW；收入/算力 0.4→2.0</td><td>供给快于真实需求；效率提升压低单位算力需求</td></tr>
+      <tr><td><strong>价格弹性？</strong></td><td>材料 3</td><td>需求/产能 1.35→1.10；3.5 次方</td><td>上行暴利，下行灾难；内存最脆</td></tr>
+      <tr><td><strong>谁先裂？</strong></td><td>材料 4</td><td>AI HY 337bp；CCC 1,340bp；CDS 4.5x</td><td>信用尾部先裂；风险从下往上爆</td></tr>
+      <tr><td><strong>什么时候？</strong></td><td>四者合成</td><td>脆弱性评分 73/100</td><td>脆弱，未破；2028–30 是到期墙</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="t">统一论证的结论</div>
+    <p>五个问题指向同一个答案：<strong>AI 的长期逻辑没有证伪，但资本开支—融资—信用的短期错配已经出现。</strong> 这不是“要不要相信 AI”的问题，而是“以什么价格、用什么资金、在多长时间内相信”的问题。</p>
+  </div>
+
+  <div class="two-col" style="margin-top:5mm">
+    <div class="box"><h4>对股票</h4><p class="small">估值是赔率，信用是时机。不要用 CAPE 定时，用 AI HY/CCC 定时。</p></div>
+    <div class="box"><h4>对信用</h4><p class="small">看三件事：AI HY 是否 &gt;450bp、CCC 是否 &gt;1,500bp、DC HY 是否 &lt;90。</p></div>
+    <div class="box"><h4>对实物</h4><p class="small">看两个价格：GPU 租金、数据中心利用率。它们决定项目现金流。</p></div>
+    <div class="box"><h4>对宏观</h4><p class="small">2028–30 到期墙 + Fed 反应，决定是软着陆还是信用出清。</p></div>
+  </div>
+
+  <div class="two-col" style="margin-top:5mm">
+    <div class="box"><h4>本报告做</h4><p class="small">拆解四层因果链、给出定量阈值、把“泡沫”变成可证伪的仪表盘。</p></div>
+    <div class="box"><h4>本报告不做</h4><p class="small">不预测崩盘日期、不推荐做空、不把“AI 技术”与“AI 融资”混为一谈。</p></div>
+  </div>
+</section>
+
+<!-- ================= 02 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">02</div>
+    <div><div class="kicker">QUANTITATIVE MODELS</div><h1>五个定量模型，把“泡沫”拆开</h1></div>
+  </div>
+  <p class="lead">“泡沫”不是一个情绪词，它可以被拆成五个可计算的缺口：估值缺口、资本开支/收入缺口、算力供需缺口、内存价格弹性、信用违约缺口。下面每个模型都给出假设、公式和当前读数。</p>
+
+  <h2>2.1 估值：贵，但不是 2000 年</h2>
+  <p>材料 1 给出了三个硬区别：2000 年思科 PE 约 130 倍，现在巨头平均约 <strong>28 倍</strong>；当年很多互联网公司没有收入，现在七巨头净利率约 <strong>25%</strong>，市场平均约 13%；巨头 PE 还在压缩，因为盈利涨得比股价快。所以这不是“纯故事”的泡沫。</p>
+  <p>但估值仍然贵。标普 CAPE 约 <strong>41 倍</strong>，历史 145 年数据中只有 1999 年更高；CAPE 盈利收益率约 <strong>2.4%</strong>。用巨头 PE 28 倍算，盈利收益率约 <strong>3.6%</strong>；10Y 美债 <strong>4.96%</strong>，股权风险补偿为 <strong>−1.4 个百分点</strong>。这就是“无风险跑赢风险”。</p>
+  <div class="callout">
+    <div class="t">估值层的结论</div>
+    <p><strong>估值告诉你赔率，不告诉你时机。</strong> 高估值可以靠盈利增长消化，也可以靠利率上行压垮；它不是定时器，是赔率表。</p>
+  </div>
+
+  <h2>2.2 资本开支/收入缺口：每年 $400B 需要多少 AI 收入？</h2>
+  <p>设一年 AI 资本开支为 C，资产寿命 N 年，资金成本 12%，则每年需要的 EBITDA 为：</p>
+  <div class="formula"><b>EBITDA = C / [ (1 − (1+12%)<sup>−N</sup>) / 12% ]</b><br>所需收入 = EBITDA / 利润率</div>
+  <p>以 <strong>C = 4,000 亿美元/年</strong> 为例：5 年寿命、50% 利润率需要 <strong>2,220 亿美元</strong>收入；30% 利润率需要 <strong>3,700 亿美元</strong>；10 年寿命、50% 利润率需要 <strong>1,420 亿美元</strong>。芯片/服务器寿命短、数据中心/电力寿命长，混合 7 年大约需要 <strong>1,750 亿美元</strong>（50% 利润率）。</p>
+
+  <figure>
+    <img src="{{FIG:ab_capex_breakeven.png}}" alt="资本开支回本模型">
+    <figcaption><b>图 2｜每年 $400B AI capex 需要多少 AI 收入？</b> 假设 12% 资金成本、年金法折算；30%/50% EBITDA margin。仅为压力测试，不是预测。</figcaption>
+  </figure>
+
+  <table>
+    <thead><tr><th style="width:24%">资产寿命</th><th style="width:26%">50% 利润率所需收入</th><th style="width:26%">30% 利润率所需收入</th><th>读法</th></tr></thead>
+    <tbody>
+      <tr><td>5 年（芯片/服务器）</td><td><strong>2,220 亿美元</strong></td><td><strong>3,700 亿美元</strong></td><td>最激进的折旧假设，回本压力最大</td></tr>
+      <tr><td>7 年（混合）</td><td><strong>1,750 亿美元</strong></td><td><strong>2,920 亿美元</strong></td><td>较合理的混合口径</td></tr>
+      <tr><td>10 年（数据中心/电力）</td><td><strong>1,420 亿美元</strong></td><td><strong>2,360 亿美元</strong></td><td>最宽松的假设，仍需要千亿美元级收入</td></tr>
+    </tbody>
+  </table>
+  <p class="small">注：C 每增加/减少 1,000 亿美元，所需收入按比例线性变化；利润率越低，所需收入越高。</p>
+
+  <h2>2.3 算力供需：23GW 供给 vs &lt;2GW 头部租户</h2>
+  <p>材料 2 估算，英伟达 2024–2027 年 GPU 出货量约 <strong>370 万 / 500 万+ / 800 万+ / 1,000 万+</strong> 颗，对应等效算力约 <strong>5.8 / 9.7 / 16 / 23GW</strong>。而 Anthropic 2026 上半年收入 163 亿美元、算力支出约 90 亿美元；按 1GW 年租赁价约 100 亿美元折算，实际占用不到 <strong>2GW</strong>。</p>
+  <p>更关键的是效率：Anthropic 的收入/算力比从两年前的 <strong>0.4</strong> 升到 2026Q2 的 <strong>2.0</strong>。同样的收入，需要的算力越来越少；如果收入增速再走平，算力需求就会先于收入掉下来。这就是“美国算力中心闲置”传闻的量化基础。</p>
+
+  <figure>
+    <img src="{{FIG:ab_nvidia_gw.png}}" alt="算力供给与Anthropic占用">
+    <figcaption><b>图 3｜算力供给 23GW vs 头部租户 &lt;2GW。</b> 英伟达出货量按等效功率折算；Anthropic 按 S-1 算力支出与租赁价折算。均为材料 2 的发言人口径，非官方统计。</figcaption>
+  </figure>
+
+  <h2>2.4 内存：3.5 次方，上行暴利、下行灾难</h2>
+  <p>材料 3 认为，内存价格与需求/产能比呈约 <strong>3.5 次方</strong>关系：需求超产能 10% → 价格 +40%；20% → +89%；35% → +184%。反过来，需求从 1.35 倍回到 1.10 倍，价格可能 <strong>−51%</strong>。美光、三星、海力士当前的历史最高利润，正是“需求超产能 30%+”的结果。</p>
+  <p>“复合 AI”（多个专业小模型组合、私有化部署）是需求侧的下行风险：它可能大幅降低对内存和算力的需求。如果需求/产能从 1.35 降到 1.10，内存价格腰斩，三家内存厂的利润和股价会同时承压。</p>
+
+  <figure>
+    <img src="{{FIG:ab_memory_sensitivity.png}}" alt="内存价格弹性">
+    <figcaption><b>图 4｜内存价格对需求/产能比的弹性。</b> 模型 P ∝ (需求/产能)^3.5；指数 3.5 为材料 3 的估算，不是物理定律。实际价格还受合约/现货、HBM 结构、产能投放影响。</figcaption>
+  </figure>
+
+  <h2>2.5 信用：利差、CDS 与违约概率</h2>
+  <p>材料 4 称，AI 高收益债利差一周飙升 <strong>55bp</strong>；原文“3377bp”大概率是 <strong>337bp</strong> 的转写错误（3,377bp 已是违约危机级别，与“无一家 AI 企业违约”矛盾）。CCC 收益率 <strong>15.85%</strong>；AI 相关 CDS 周成交从 20 亿→90 亿美元，四个月 <strong>4.5 倍</strong>。</p>
+  <p>用“违约概率 ≈ 利差 / (1 − 回收率)”粗算：337bp、40% 回收率 → 年化 PD 约 <strong>5.6%</strong>；1,340bp → 约 <strong>22%</strong>；15.85% 收益率 → 约 <strong>26%</strong>。这就是为什么“指数还平静，尾部已经在裂”。</p>
+
+  <figure>
+    <img src="{{FIG:ab_credit_vix.png}}" alt="信用利差与VIX">
+    <figcaption><b>图 5｜信用市场先裂，股票市场还平静。</b> 上：IG/HY/CCC OAS（FRED，2024–2026）；下：VIX。CCC 已到 1,340bp，VIX 仍在 17–19 区间。</figcaption>
+  </figure>
+
+  <table>
+    <thead><tr><th style="width:30%">信用指标</th><th style="width:22%">当前</th><th>读法</th></tr></thead>
+    <tbody>
+      <tr><td>AI HY OAS</td><td><strong>~337bp</strong></td><td>一周 +55bp；绝对水平尚未危机，但速度异常</td></tr>
+      <tr><td>CCC OAS / 收益率</td><td><strong>1,340bp / 15.85%</strong></td><td>尾部已按高违约定价</td></tr>
+      <tr><td>AI 相关 CDS 周成交</td><td><strong>20 亿→90 亿美元</strong></td><td>机构买保险，不卖债；4.5 倍</td></tr>
+      <tr><td>数据中心 HY 债券价格</td><td><strong>101→95</strong></td><td>项目融资市场开始重新定价</td></tr>
+      <tr><td>数据中心项目融资</td><td><strong>$106B YTD vs $37B 2025</strong></td><td>融资量爆发，但利差/价格恶化</td></tr>
+      <tr><td>到期墙</td><td><strong>2028–2030</strong></td><td>计时器不是 2026</td></tr>
+    </tbody>
+  </table>
+
+  <h2>2.6 脆弱性评分：73/100</h2>
+  <p>把五个缺口合成一个可比的分数（0 = 无压力，100 = 危机）：估值 80、Capex/收入缺口 70、算力利用率 65、内存周期 80、信用 75；按 15%/25%/20%/15%/25% 加权，综合 <strong>73/100</strong>。读法是“<strong>脆弱，未破</strong>”：不是明天就崩，而是缓冲很薄。</p>
+
+  <figure>
+    <img src="{{FIG:ab_fragility_score.png}}" alt="AI泡沫脆弱性评分">
+    <figcaption><b>图 6｜AI 泡沫脆弱性评分 73/100。</b> 评分是框架判断，不是概率；权重可调。估值 15%、Capex/收入缺口 25%、算力利用率 20%、内存周期 15%、信用 25%。</figcaption>
+  </figure>
+
+  <h2>2.7 GPU 购买与租赁价格：回顾与 18 个月预测</h2>
+  <p>GPU 是 AI 资本开支链里最市场化、也最容易被抵押的一类资产。它的价格有两个维度：<strong>买断价</strong>（单卡/整机/整柜）和<strong>租赁价</strong>（美元/卡/小时）。买断价决定资本开支和折旧，租赁价决定数据中心收入和项目融资现金流。两者一起，才是“算力抵押品”的真实价格。</p>
+
+  <h3>回顾：H100 的“过山车”</h3>
+  <p>2023 年 H100 供不应求，渠道价约 <strong>$25k–40k/卡</strong>，租赁价一度到 <strong>$8–10/卡/小时</strong>。2024 年供应放量，租赁价跌到 <strong>$3–5</strong>；2025 年 <strong>$2–3</strong>；2026 年 <strong>$1.5–2.5</strong>。同一张卡，三年内租赁价格跌了约 <strong>70–80%</strong>。这不是“AI 需求消失”，而是“供给增加 + 效率提升 + 竞争”共同作用的结果。</p>
+  <p>新一代卡维持溢价：H200 约 <strong>$30k–40k</strong>；B200 约 <strong>$35k–50k</strong>；GB200 整柜（NVL72）约 <strong>$2.5M–3.5M</strong>，折合单卡 <strong>$35k–50k</strong>；GB300 约 <strong>$45k–60k</strong>；Rubin（2027–28）估算 <strong>$55k–75k</strong>。租赁价：B200 从 2025 年的 <strong>$5/小时</strong>降到 2026 年的 <strong>$4</strong>，2027E <strong>$3</strong>，2028E <strong>$2.6</strong>；Rubin 2027E <strong>$6</strong>，2028E <strong>$5</strong>。</p>
+
+  <figure>
+    <img src="{{FIG:ab_gpu_purchase.png}}" alt="GPU购买价格区间">
+    <figcaption><b>图 7｜GPU 购买价：新代溢价，旧代折旧。</b> 单卡渠道/合同价区间；受采购量、保修、网络、交付时间影响；Rubin 为 2027–28 估算。不是官方报价。</figcaption>
+  </figure>
+
+  <figure>
+    <img src="{{FIG:ab_gpu_rental.png}}" alt="GPU租赁价格">
+    <figcaption><b>图 8｜GPU 租赁价：从 2023 年的 $9/小时，到 2028E 的 $1–2/小时。</b> 公开云报价/渠道调研的中位区间；2026–2028 为情景预测（阴影区）。实际价格受合同期限、批量、网络、电力、利用率影响。</figcaption>
+  </figure>
+
+  <h3>未来 18 个月：三种情景</h3>
+  <table>
+    <thead><tr><th style="width:26%">资产</th><th style="width:18%">2026-10</th><th style="width:20%">基准 2028-04</th><th style="width:18%">熊市</th><th>牛市</th></tr></thead>
+    <tbody>
+      <tr><td><strong>H100 租赁</strong>（$/卡/小时）</td><td>$1.5–2.5</td><td><strong>$1.2–2.0</strong></td><td>$1.0–1.5</td><td>$2.5–3.5</td></tr>
+      <tr><td><strong>B200 租赁</strong></td><td>$3–5</td><td><strong>$2.2–3.5</strong></td><td>$1.8–2.8</td><td>$4–6</td></tr>
+      <tr><td><strong>Rubin 租赁</strong></td><td>$5–7</td><td><strong>$4–6</strong></td><td>$3–4.5</td><td>$6–8</td></tr>
+      <tr><td><strong>H100 买断</strong>（二手）</td><td>$15k–20k</td><td><strong>$10k–14k</strong></td><td>$7k–10k</td><td>$15k–20k</td></tr>
+      <tr><td><strong>B200 买断</strong></td><td>$35k–50k</td><td><strong>$25k–35k</strong></td><td>$18k–25k</td><td>$35k–50k</td></tr>
+      <tr><td><strong>Rubin 买断</strong></td><td>$55k–75k</td><td><strong>$50k–70k</strong></td><td>$40k–55k</td><td>$60k–80k</td></tr>
+    </tbody>
+  </table>
+  <p class="small">基准 = 供给继续放量、AI 需求增速放缓但不崩；熊市 = capex 下修、利用率下降、二手卡抛售；牛市 =  sovereign AI/推理需求超预期、先进封装/ HBM 供给受限。价格为区间，不是点预测。</p>
+
+  <h3>驱动因素：为什么租赁价大概率继续下行</h3>
+  <ul>
+    <li><strong>供给：</strong> CoWoS、HBM 产能释放；新代卡 18–24 个月一迭代，旧代卡供给持续增加。</li>
+    <li><strong>效率：</strong>  tokens/$ 每年提升 2–3 倍；模型压缩、推理优化、复合 AI 都在降低单位收入所需算力。</li>
+    <li><strong>竞争：</strong> AMD MI 系列、云厂商自研 ASIC、国产芯片分流需求。</li>
+    <li><strong>利用率：</strong> 数据中心上架率分化，闲置算力会以“低价租”形式进入市场。</li>
+    <li><strong>电力：</strong> 电价/并网成本上升，租赁价里包含的电力成本上升，进一步压缩运营商毛利。</li>
+  </ul>
+
+  <div class="callout warn">
+    <div class="t">对泡沫的含义：GPU 是折旧最快的抵押品</div>
+    <p>如果 GPU 租赁价继续下行、二手买断价加速折旧，数据中心项目融资的<strong>抵押品价值</strong>会同步缩水：LTV 上升、再融资变难、项目现金流低于承销假设。这比“股价跌”更早、更硬。<strong>GPU 价格是 AI 信用链的抵押品价格，不只是硬件价格。</strong></p>
+  </div>
+
+  <h3>GPU 价格观察清单</h3>
+  <table>
+    <thead><tr><th style="width:30%">观察项</th><th style="width:22%">当前</th><th style="width:24%">阈值</th><th>含义</th></tr></thead>
+    <tbody>
+      <tr><td>H100 租赁价</td><td>$1.5–2.5/小时</td><td>&lt;$1.5</td><td>项目现金流承压</td></tr>
+      <tr><td>B200 租赁价</td><td>$3–5/小时</td><td>&lt;$2.5</td><td>新代溢价消失</td></tr>
+      <tr><td>H100 二手买断</td><td>$15k–20k</td><td>&lt;$10k</td><td>抵押品减值</td></tr>
+      <tr><td>GPU 云利用率</td><td>分化</td><td>&lt;60%</td><td>过剩确认</td></tr>
+      <tr><td>合同期限</td><td>缩短</td><td>&lt;12 个月</td><td>客户不愿锁长期</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ================= 03 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">03</div>
+    <div><div class="kicker">RISK SYMPTOMS</div><h1>已经出现的五个征兆</h1></div>
+  </div>
+  <p class="lead">泡沫不是“价格涨”本身，而是“价格、盈利、融资、信用”之间出现不一致。现在最明显的不一致是：<strong>股票还在讲长期故事，信用市场已经开始算违约概率。</strong></p>
+
+  <table>
+    <thead><tr><th style="width:16%">层级</th><th style="width:34%">已出现的信号</th><th style="width:28%">数据</th><th>读法</th></tr></thead>
+    <tbody>
+      <tr><td><strong>信用</strong></td><td>AI HY 利差单周走阔、CDS 放量、数据中心 HY 债券下跌</td><td>+55bp/周至 ~337bp；CDS 20→90 亿美元/周；DC HY 101→95</td><td>最硬的领先信号；尾部先裂</td></tr>
+      <tr><td><strong>盈利/效率</strong></td><td>Anthropic 收入增速走平；收入/算力比上升；MIT 95% 试点无回报</td><td>收入/算力 0.4→2.0；H1 收入 163 亿美元</td><td>同样收入需要更少算力，算力需求可能被高估</td></tr>
+      <tr><td><strong>资本开支/融资</strong></td><td>Meta 自由现金流转负、靠外部融资；capex 指引上调；供应商融资</td><td>Q3 FCF −21.2 亿美元；Class C 股票；capex 指引大幅上调</td><td>巨头也开始“破例”，融资链变长</td></tr>
+      <tr><td><strong>实物/利用率</strong></td><td>电力/并网瓶颈；数据中心上架率分化；“算力荒”与“闲置”并存</td><td>供给 23GW vs 头部租户 &lt;2GW</td><td>瓶颈是真的，过剩也是真的</td></tr>
+      <tr><td><strong>市场结构</strong></td><td>CAPE 41x、集中度高、VIX 低、信用利差走阔</td><td>CAPE ~41x；VIX ~17.5；CCC 1,340bp</td><td>股债背离，风险定价不同步</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3.1 信用层：最硬的信号</h2>
+  <p>AI HY 利差一周 +55bp、CCC 收益率 15.85%、CDS 成交 4.5 倍——这三件事同时发生，说明“聪明钱”不是在卖债，而是在<strong>买保险</strong>。债券现货流动性差、买卖价差大，机构用 CDS 对冲更灵活；这通常是信用周期拐点的早期信号。</p>
+  <p>更关键的是分化：指数还平静，但数据中心 HY 债券从 101 跌到 95，AI 相关项目融资的利差在走阔。风险不是“一起崩”，而是“强的继续便宜借钱，弱的突然借不到钱”。</p>
+
+  <h2>3.2 盈利/效率层：算力需求可能被高估</h2>
+  <p>Anthropic 的收入/算力比从 0.4 升到 2.0：同样的收入，需要的算力越来越少。如果收入增速再走平，算力需求会先于收入掉下来。MIT 研究称 95% 的企业 AI 试点没有可衡量回报（方法论有争议，但方向值得重视）；一线反馈的美国算力中心闲置，与这个推演一致。</p>
+
+  <h2>3.3 资本开支/融资层：巨头也开始“破例”</h2>
+  <p>Meta 2026 资本开支指引大幅上调，Q3 自由现金流 −21.2 亿美元（材料称自 2012 年上市以来首次单季转负），并设立无投票权 C 类股融资。一家经营现金流超千亿美元、账上几百亿现金的公司，开始靠外部融资扩张——这是“资本开支超过经营现金流”的信号。</p>
+  <p>微软、谷歌、亚马逊、甲骨文都在同一条跑道上：谁先踩刹车，谁先被市场定价为“怂了”。合成谬误是：每家单独看都理性，加总起来就是投资级债市被海量新债淹没。</p>
+
+  <h2>3.4 实物/利用率层：瓶颈与过剩并存</h2>
+  <p>电力、并网、变压器、铜是硬约束；但数据中心上架率/利用率分化，部分项目偏低。“算力荒”和“算力闲置”同时存在——这本身就是泡沫早期的典型结构：瓶颈在局部，过剩在整体。</p>
+
+  <h2>3.5 市场结构层：股债背离</h2>
+  <p>标普 CAPE 约 41 倍，接近 1999；VIX 约 17.5，股市平静；信用利差和 CDS 却在走阔。股票还在讲长期故事，债券已经开始算违约概率——这是最值得警惕的组合。</p>
+
+  <div class="callout warn">
+    <div class="t">这一节的结论</div>
+    <p><strong>信用是最硬的信号。</strong> 不是“AI 股会不会跌”，而是“AI 债还能不能发、发多贵”。如果 AI HY/CCC/CDS 继续走阔，股票的重估只是时间问题。</p>
+  </div>
+
+  <h2>3.6 五个征兆的优先级</h2>
+  <table>
+    <thead><tr><th style="width:10%">优先级</th><th style="width:26%">征兆</th><th style="width:40%">为什么重要</th><th>观察频率</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1</strong></td><td>AI HY / CCC / CDS</td><td>信用先于股票定价；CDS 放量是“买保险”的聪明钱</td><td>日 / 周</td></tr>
+      <tr><td><strong>2</strong></td><td>数据中心利用率 / GPU 租金</td><td>直接决定项目现金流和抵押品价值</td><td>周 / 月</td></tr>
+      <tr><td><strong>3</strong></td><td>收入 / 算力比</td><td>效率提升会压低单位收入所需算力</td><td>季</td></tr>
+      <tr><td><strong>4</strong></td><td>内存合约价</td><td>3.5 次方弹性，利润最陡也最脆</td><td>月</td></tr>
+      <tr><td><strong>5</strong></td><td>CAPE / 集中度</td><td>赔率指标，不是时机指标</td><td>月</td></tr>
+    </tbody>
+  </table>
+
+  <div class="two-col" style="margin-top:5mm">
+    <div class="box"><h4>最强的信号</h4><p class="small">信用利差、CDS 成交、数据中心 HY 债券价格——真金白银定价，领先股票。</p></div>
+    <div class="box"><h4>最弱的信号</h4><p class="small">“算力闲置”传闻、MIT 95% 试点无回报——方向有价值，但样本/口径有争议，不能单独当证据。</p></div>
+  </div>
+</section>
+
+<!-- ================= 04 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">04</div>
+    <div><div class="kicker">TRANSMISSION</div><h1>风险怎么传：从资本开支到信用出清</h1></div>
+  </div>
+  <p class="lead">泡沫破裂不是“某一天全市场同时崩”，而是一条链：资本开支增速见顶 → 供应商恶化 → 信用先裂 → 巨头削减 capex → 股票杀估值 → 信用收缩 → 政策响应。<strong>风险从下往上爆，先死的是杠杆供应商，不是微软/谷歌。</strong></p>
+
+  <figure>
+    <img src="{{FIG:ab_transmission.png}}" alt="AI泡沫传导链条">
+    <figcaption><b>图 9｜传导链条：从资本开支到信用出清。</b> 六个阶段，时间尺度从季度到数年；信用通常先于股票定价。</figcaption>
+  </figure>
+
+  <h2>4.1 六个阶段</h2>
+  <table>
+    <thead><tr><th style="width:10%">阶段</th><th style="width:30%">发生什么</th><th style="width:30%">观察指标</th><th>谁先受伤</th></tr></thead>
+    <tbody>
+      <tr><td><strong>①</strong></td><td>capex 增速从 +50% 降到 +20%，订单增速下修</td><td>hyperscaler capex 指引、Nvidia 订单</td><td>高估值供应商</td></tr>
+      <tr><td><strong>②</strong></td><td>库存/应收上升，供应商融资收紧</td><td>存货天数、应收、供应商融资</td><td>二线供应商</td></tr>
+      <tr><td><strong>③</strong></td><td>信用先裂：AI HY/CCC 走阔，CDS 放量</td><td>OAS、CDS 成交、DC HY 价格</td><td>高杠杆项目/弱资质</td></tr>
+      <tr><td><strong>④</strong></td><td>巨头削减 capex，Nvidia/内存收入转负</td><td>Nvidia 数据中心收入、内存合约价</td><td>芯片/内存/设备</td></tr>
+      <tr><td><strong>⑤</strong></td><td>股票杀估值，财富效应/信用收缩</td><td>S&P、HY 违约率、BDC 赎回</td><td>广义风险资产</td></tr>
+      <tr><td><strong>⑥</strong></td><td>Fed 降息/流动性，有现金流者存活</td><td>Fed 资产负债表、利差</td><td>杠杆/循环交易出清</td></tr>
+    </tbody>
+  </table>
+
+  <h2>4.2 历史类比：铁路、光纤、CDS</h2>
+  <p><strong>1996–2002 光纤/电信：</strong> 技术是真的，光纤留下来了；Lucent 给客户提供 80 亿美元+ 的融资和贷款担保，泡沫破了以后全成坏账。今天的供应商融资、项目融资、ABS，是同一个机制。</p>
+  <p><strong>2007 次贷：</strong> CDS 先放量，债券现货后爆。今天 AI 相关 CDS 周成交从 20 亿→90 亿美元，是同一个“买保险”的动作。</p>
+  <p><strong>19 世纪铁路：</strong> 铁路泡沫破了，铁轨留下来了；郁金香破了，什么都没有。AI 更像铁路：技术留下，融资链条断掉。</p>
+
+  <table>
+    <thead><tr><th style="width:16%">维度</th><th style="width:28%">1996–2002 电信</th><th style="width:28%">2007 次贷</th><th>2026 AI</th></tr></thead>
+    <tbody>
+      <tr><td><strong>技术</strong></td><td>光纤是真的</td><td>住房是真的</td><td>AI 是真的</td></tr>
+      <tr><td><strong>融资</strong></td><td>供应商融资、高收益债</td><td>CDS、证券化</td><td>项目融资、ABS、私募信贷</td></tr>
+      <tr><td><strong>先裂</strong></td><td>债券/供应商</td><td>CDS/次级债</td><td>AI HY/CCC/CDS</td></tr>
+      <tr><td><strong>留下</strong></td><td>光纤</td><td>房子</td><td>算力/技术</td></tr>
+      <tr><td><strong>死掉</strong></td><td>杠杆电信商</td><td>杠杆借款人</td><td>杠杆供应商</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="t">共同规律</div>
+    <p>技术留下，融资链条断掉；先裂的是债/供应商，不是巨头；风险从下往上爆，时间由再融资窗口决定。<strong>这三条，比任何单点预测都更可靠。</strong></p>
+  </div>
+
+  <div class="two-col" style="margin-top:5mm">
+    <div class="box"><h4>供应商融资 → 项目融资</h4><p class="small">Lucent 给客户借钱买设备；今天的数据中心项目融资/ABS 是同一逻辑，只是更分散。</p></div>
+    <div class="box"><h4>CDS 先放量 → AI CDS 4.5x</h4><p class="small">2007 年 CDS 先动，今天 AI CDS 周成交从 20→90 亿美元，是同一个“买保险”的动作。</p></div>
+    <div class="box"><h4>光纤留下 → 算力留下</h4><p class="small">技术会留下；死掉的是杠杆运营商和供应商，不是技术本身。</p></div>
+    <div class="box"><h4>时间由再融资决定</h4><p class="small">2028–30 到期墙是计时器；不是 2026 年某一天。</p></div>
+  </div>
+
+  <div class="callout">
+    <div class="t">一句话</div>
+    <p><strong>不要猜火花，盯燃料。</strong> 火花可能是任何一条新闻；燃料是 capex 增速、AI 收入增速、内存价格、AI HY/CCC 利差、CDS 成交、数据中心利用率、2028–2030 到期墙。</p>
+  </div>
+</section>
+
+<!-- ================= 05 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">05</div>
+    <div><div class="kicker">SCENARIOS &amp; DASHBOARD</div><h1>三种情景与可证伪仪表盘</h1></div>
+  </div>
+  <p class="lead">三种情景不是预测，是条件句。区别不在“AI 好不好”，而在“资本开支增速能否在信用窗口关闭之前，转化成可持续的收入和现金流”。</p>
+
+  <table>
+    <thead><tr><th style="width:16%">情景</th><th style="width:30%">触发</th><th style="width:18%">AI 股</th><th style="width:18%">信用</th><th>实物资产</th></tr></thead>
+    <tbody>
+      <tr><td><strong>① 软着陆</strong></td><td>capex 增速降到 10–20%，AI 收入逐步追上；AI HY &lt;250bp</td><td>龙头继续复利，供应商杀估值</td><td>利差企稳</td><td>电力/铜有支撑</td></tr>
+      <tr><td><strong>② 泡沫出清</strong></td><td>capex 下修、AI HY &gt;450bp、CCC &gt;1,500bp、DC HY &lt;90</td><td><strong>−20% 到 −40%</strong></td><td>违约周期，Fed 转向</td><td>黄金/高质量久期先赢，铜先跌后稳</td></tr>
+      <tr><td><strong>③ 继续熔涨</strong></td><td>生产率超预期、capex 加速、通胀/利率上行</td><td>先熔涨，后更大约束</td><td>短期收窄</td><td>通胀交易，最终更大出清</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5.1 可证伪仪表盘</h2>
+  <table>
+    <thead><tr><th style="width:30%">指标</th><th style="width:22%">当前</th><th>阈值 / 读法</th></tr></thead>
+    <tbody>
+      <tr><td>AI HY OAS</td><td><strong>~337–360bp</strong></td><td><strong>&gt;450bp</strong> = 信用事件</td></tr>
+      <tr><td>CCC OAS</td><td><strong>~1,340bp</strong></td><td><strong>&gt;1,500bp</strong> = 尾部失控</td></tr>
+      <tr><td>数据中心 HY 债券价格</td><td><strong>~95</strong></td><td><strong>&lt;90</strong> = 项目融资断裂</td></tr>
+      <tr><td>数据中心项目融资</td><td><strong>$106B YTD</strong></td><td>发行放缓/利差走阔 = 融资窗口关闭</td></tr>
+      <tr><td>英伟达数据中心收入增速</td><td>高增长</td><td><strong>&lt;20%</strong> = capex 周期见顶</td></tr>
+      <tr><td>Anthropic/OpenAI 收入增速</td><td>走平</td><td><strong>&lt;30%</strong> = 算力需求证伪</td></tr>
+      <tr><td>收入/算力比</td><td><strong>0.4→2.0</strong></td><td>继续上升 = 效率吞噬算力需求</td></tr>
+      <tr><td>内存合约价</td><td>历史高位</td><td><strong>−30%</strong> = 内存周期反转</td></tr>
+      <tr><td>数据中心利用率</td><td>分化</td><td>空置率上升 = 过剩确认</td></tr>
+      <tr><td>标普 CAPE / VIX</td><td><strong>~41x / ~17.5</strong></td><td>CAPE 是赔率；VIX &gt;22.5 + 信用走阔 = 风险确认</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5.2 什么会让我们改判</h2>
+  <div class="two-col">
+    <div class="box"><h4>向上确认（软着陆/继续熔涨）</h4><ul class="small">
+      <li>AI 收入增速持续 &gt; capex 增速；</li>
+      <li>AI HY &lt;250bp、CCC &lt;900bp；</li>
+      <li>数据中心利用率上升、PPA 签约加速；</li>
+      <li>内存合约价维持高位但不失控；</li>
+      <li>Nvidia 数据中心收入增速 &gt;30%。</li>
+    </ul></div>
+    <div class="box"><h4>向下确认（泡沫出清）</h4><ul class="small">
+      <li>hyperscaler capex 指引下修；</li>
+      <li>AI HY &gt;450bp、CCC &gt;1,500bp；</li>
+      <li>数据中心 HY &lt;90、项目融资发行停摆；</li>
+      <li>Anthropic/OpenAI 收入增速 &lt;30%；</li>
+      <li>内存合约价 −30%、算力利用率下降。</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- ================= 06 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">06</div>
+    <div><div class="kicker">DATA HYGIENE</div><h1>对四份材料的纠错与降权</h1></div>
+  </div>
+  <p class="lead">四份材料的方向是对的，但有几处数字/口径需要降权，否则会被反方抓住。下面是最重要的八条。</p>
+
+  <table>
+    <thead><tr><th style="width:30%">材料说法</th><th style="width:38%">问题</th><th>处理</th></tr></thead>
+    <tbody>
+      <tr><td>“AI HY 利差 3377bp”</td><td>大概率是 <strong>337bp</strong> 的转写错误；3,377bp 与“无违约、HY 340bp”矛盾</td><td>用 337bp，并注明口误</td></tr>
+      <tr><td>“英伟达 90% 收入来自一个客户群”</td><td>90% 是 <strong>数据中心业务占比</strong>，不是单一客户群</td><td>改为“数据中心占收入约 90%，客户集中度高”</td></tr>
+      <tr><td>“Meta capex 350 亿–1450 亿美元”</td><td>数字明显被音频转写打乱</td><td>用官方指引，不引用这个区间</td></tr>
+      <tr><td>“Anthropic 上半年收入 163 亿美元”</td><td>需核对 S-1 原文；算力/租赁换算也有假设</td><td>标为“发言人读数”，不作为硬数据</td></tr>
+      <tr><td>“内存 3.5 次方”</td><td>是模型假设，不是定律</td><td>用作情景弹性，不当精确预测</td></tr>
+      <tr><td>“MIT 95% 试点无回报”</td><td>研究方法有争议（样本、口径、试点阶段）</td><td>引用但加“方法论有争议”</td></tr>
+      <tr><td>“BIS/英央行把 AI 融资列为顶级风险”</td><td>两家确实警告过 AI 集中度/估值/融资风险；“顶级”是编辑性表述</td><td>改为“已明确警示”</td></tr>
+      <tr><td>“标普 CAPE 41 倍”</td><td>需注明是 CAPE/周期调整口径，不是 forward PE</td><td>标注口径</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="t">为什么要纠错</div>
+    <p>泡沫论最容易被反方用“数字错了”一票否决。把口误、口径、估算和事实分开，论证才站得住。<strong>方向可以激进，数字必须保守。</strong></p>
+  </div>
+</section>
+
+<!-- ================= 07 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">07</div>
+    <div><div class="kicker">CONCLUSION</div><h1>技术留下，融资链条断掉</h1></div>
+  </div>
+  <p class="lead">把四份材料合起来，结论不是“AI 是骗局”，也不是“AI 永远涨”，而是：<strong>AI 技术会留下，巨头会留下；死掉的是靠杠杆、循环交易、期限错配撑着的融资链条。</strong></p>
+
+  <h2>7.1 泡沫在哪一层？</h2>
+  <ul>
+    <li><strong>技术层：</strong>真的。AI 会留下，像铁路一样。</li>
+    <li><strong>盈利层：</strong>巨头是真的。28 倍 PE、25% 净利率，不是 2000 年的纯故事。</li>
+    <li><strong>资本开支层：</strong>增速太高，回本需要非常高的未来收入。</li>
+    <li><strong>信用层：</strong>最脆弱。AI HY/CCC/CDS/项目融资/供应商融资，是泡沫最可能先裂的地方。</li>
+    <li><strong>传导层：</strong>风险从下往上爆——先死的是杠杆供应商，不是微软/谷歌。</li>
+  </ul>
+
+  <h2>7.2 投资含义（不是建议）</h2>
+  <ul>
+    <li>不要因为估值高就空巨头；它们有现金流。</li>
+    <li>先看信用，再看股票；AI HY/CCC/CDS 是领先指标。</li>
+    <li>回避“杠杆 + 供应商融资 + 单一客户”的下游公司。</li>
+    <li>保留现金弹药；泡沫可以比你保持偿付能力的时间更长。</li>
+    <li>技术红利要享受，但不要让自己成为那笔“社会全体居民为技术革命支付的成本”。</li>
+  </ul>
+
+  <div class="quote">“不要猜火花，盯燃料。火花可能是任何一条新闻；燃料是 capex 增速、AI 收入增速、内存价格、AI HY/CCC 利差、CDS 成交、数据中心利用率、2028–2030 到期墙。”</div>
+
+  <div class="callout">
+    <div class="t">最后一句话</div>
+    <p><strong>AI 不是郁金香，更像铁路。</strong> 铁路泡沫破了，铁轨留下来；AI 泡沫破了，算力和技术留下来。但如果你持有的是“修铁路的杠杆供应商”，铁轨留下来，你不一定留得下来。</p>
+  </div>
+</section>
+
+<!-- ================= 附录 ================= -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-num">A</div>
+    <div><div class="kicker">APPENDIX</div><h1>数据、方法与来源</h1></div>
+  </div>
+
+  <h2>A.1 数据口径</h2>
+  <ul class="small">
+    <li><strong>AI HY / CCC / IG OAS</strong>：FRED BAMLH0A0HYM2 / BAMLH0A3HYC / BAMLC0A0CM；AI HY 360bp 来自信用展望汇总，材料 4 的 337bp 为同口径近似。</li>
+    <li><strong>CAPE 41x / PE 28x</strong>：材料 1 口径；CAPE 为周期调整市盈率，PE 为巨头平均；两者不可直接比较。</li>
+    <li><strong>资本开支回本模型</strong>：C=$400B/年；资金成本 12%；年金法；利润率 30%/50%；寿命 5/7/10 年。仅为压力测试。</li>
+    <li><strong>算力/GW</strong>：材料 2 对英伟达出货量与等效功率的估算；Anthropic 按 S-1 算力支出与租赁价折算；非官方统计。</li>
+    <li><strong>内存弹性</strong>：P ∝ (D/C)^3.5；指数 3.5 为材料 3 的估算，不是物理定律。</li>
+    <li><strong>违约概率</strong>：PD ≈ 利差 / (1 − 回收率)；粗算，未考虑期限、票息、流动性。</li>
+    <li><strong>脆弱性评分</strong>：估值 80、Capex/收入 70、利用率 65、内存 80、信用 75；权重 15/25/20/15/25；框架判断，不是概率。</li>
+  </ul>
+
+  <h2>A.2 主要来源</h2>
+  <table>
+    <thead><tr><th style="width:34%">来源</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td>材料 1：AI 巨头估值与泡沫判断</td><td>PE 28x、净利率 25%、CAPE 41x、估值与时机</td></tr>
+      <tr><td>材料 2：Anthropic 招股书与算力闲置</td><td>GPU 出货、23GW、Anthropic &lt;2GW、收入/算力 0.4→2.0</td></tr>
+      <tr><td>材料 3：内存瓶颈与复合 AI</td><td>内存 3.5 次方、需求/产能、价格弹性</td></tr>
+      <tr><td>材料 4：AI 债市与信用风险</td><td>AI HY +55bp、CCC 15.85%、CDS 20→90 亿、2028–30 到期墙</td></tr>
+      <tr><td>FRED：BAMLC0A0CM / BAMLH0A0HYM2 / BAMLH0A3HYC / VIXCLS / DGS10</td><td>IG/HY/CCC OAS、VIX、10Y</td></tr>
+      <tr><td>信用展望汇总（2026-10-17）</td><td>AI HY 360bp、数据中心项目融资 $106B、AI 信用发行 $466B</td></tr>
+      <tr><td>MIT NANDA（2025）</td><td>95% 企业 AI 试点无可衡量回报（方法论有争议）</td></tr>
+      <tr><td>BIS / 英格兰银行公开警告</td><td>AI 集中度、估值与融资风险</td></tr>
+    </tbody>
+  </table>
+
+  <h2>A.3 方法与限制</h2>
+  <p class="small">本报告是情景分析，不是预测。资本开支回本模型对 C、寿命、利润率、资金成本高度敏感；内存弹性是指数假设；违约概率是粗算；脆弱性评分是框架判断，不是概率。材料中的部分数字来自音频转写，已标注并纠错；引用前请回原始 S-1/财报/FRED 核对。</p>
+
+  <div class="footer-note">
+    <strong>免责声明：</strong>本报告为研究框架，不构成投资建议、要约或招揽。数据截至 2026-10-28，可能随后续数据更新。读者应自行核数、独立判断，并承担投资决策的全部风险。<br>
+    Deep-Risk-OPP · Research framework, not investment advice.
+  </div>
+</section>
+
+</body>
+</html>
+</body>
+</html>
