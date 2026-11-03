@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-03 10:56",
+ "as_of": "2026-11-03 21:56",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -8,9 +8,9 @@
  },
  "contract6": {
   "baseline_start": "2026-10-16",
-  "published": 9,
+  "published": 10,
   "measured": 6,
-  "completeness_pct": 66.7,
+  "completeness_pct": 60.0,
   "within_24h": 2,
   "within_7d": 4,
   "overdue_24h": 2,
@@ -28,7 +28,7 @@
   "follower_rate_pct": 0.0
  },
  "totals": {
-  "published": 15,
+  "published": 16,
   "measured": 8,
   "impressions": 4183,
   "engagements": 9,
@@ -39,7 +39,7 @@
  },
  "by_platform": {
   "LinkedIn": {
-   "published": 9,
+   "published": 10,
    "measured": 8,
    "impressions": 4183,
    "engagements": 9,
@@ -78,7 +78,7 @@
    "piece": "027",
    "language": "EN",
    "scope": "contract",
-   "status": "planned",
+   "status": "pending",
    "impressions": null,
    "engagements": null,
    "followers": null,
@@ -89,7 +89,7 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "Document post（14 页英文 PDF）；计划 11/3 21:00–22:00 BJT；发后回填 24h/7d"
+   "note": "已发 2026-11-03 约 22:00 BJT（Document post，14 页英文 PDF）；24h due 11/04、7d due 11/10；待 URL/URN 与曝光/互动数据"
   },
   {
    "id": "026-us-liquidity-narrative-li",
@@ -533,27 +533,6 @@
    "overdue_24h": false,
    "overdue_7d": false,
    "note": "计划 10/27 21:00–22:00 BJT；EIA 物理数据 vs 战争风险溢价；CTA = Q4 checklist"
-  },
-  {
-   "id": "027-ai-bubble-doc-en-li",
-   "publish_date": "2026-11-03",
-   "platform": "LinkedIn",
-   "title": "The AI Bubble: Risks, the Path, and Second-/Third-Order Opportunities",
-   "piece": "027",
-   "language": "EN",
-   "scope": "contract",
-   "status": "planned",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
-   "overdue_24h": false,
-   "overdue_7d": false,
-   "note": "Document post（14 页英文 PDF）；计划 11/3 21:00–22:00 BJT；发后回填 24h/7d"
   }
  ]
 }
