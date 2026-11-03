@@ -63,7 +63,7 @@ boxes = [
     (0.2, "Valuation layer", ["Is it expensive?", "P/E 28x / CAPE 41x", "Poor odds, uncertain timing"], GOLD),
     (3.08, "Demand layer", ["Is anyone using it?", "23GW vs <2GW", "Revenue/compute 0.4 to 2.0"], TEAL),
     (5.96, "Supply layer", ["How fragile is price?", "Memory 3.5-power", "1.35 to 1.10 = -51%"], COPPER),
-    (8.84, "Credit layer", ["When does it crack?", "AI HY 337bp", "CCC 1,340bp / CDS 4.5x"], RED),
+    (8.84, "Credit layer", ["When does it crack?", "HY OAS 344bp", "CCC 1,327bp / CDS 4.5x"], RED),
 ]
 for x, title, lines, color in boxes:
     ax.add_patch(FancyBboxPatch((x, 1.55), 2.9, 2.3, boxstyle="round,pad=0.05,rounding_size=0.08",
@@ -120,7 +120,7 @@ hy = fred(CACHE/"fred_BAMLH0A0HYM2.csv")
 ccc = fred(CACHE/"fred_BAMLH0A3HYC.csv")
 ig = fred(CACHE/"fred_BAMLC0A0CM.csv")
 vix = fred(CACHE/"fred_VIXCLS.csv")
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10.2, 5.6), sharex=True, gridspec_kw={"height_ratios":[1.5,1]})
+fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10.2, 4.9), sharex=True, gridspec_kw={"height_ratios":[1.5,1]})
 for df, c, lab in [(ig, GRAY, "IG"), (hy, GOLD, "HY"), (ccc, RED, "CCC")]:
     d = df[df["date"] >= "2024-01-01"]
     ax1.plot(d["date"], d["value"]*100, color=c, lw=1.6 if lab!="CCC" else 2.0, label=lab)
@@ -134,9 +134,11 @@ d = vix[vix["date"] >= "2024-01-01"]
 ax2.plot(d["date"], d["value"], color=TEAL, lw=1.5)
 ax2.annotate(f"{d['value'].iloc[-1]:.1f}", (d["date"].iloc[-1], d["value"].iloc[-1]),
              textcoords="offset points", xytext=(-6,6), ha="right", fontsize=8.5, color=TEAL, fontweight="bold")
+ax2.axhline(22.5, color=RED, lw=0.9, ls=":")
+ax2.text(d["date"].iloc[-1], 26.6, "22.5 alarm line", fontsize=7.5, color=RED, ha="right")
 ax2.set_ylabel("VIX", fontsize=9)
 style(ax2); ax2.xaxis.set_major_locator(mdates.MonthLocator(interval=6)); ax2.xaxis.set_major_formatter(mdates.DateFormatter("%b %y"))
-fig.text(0.01, -0.03, "Data: FRED BAMLC0A0CM / BAMLH0A0HYM2 / BAMLH0A3HYC / VIXCLS, through 2026-10-22/23.", fontsize=7.5, color=MID)
+fig.text(0.01, -0.03, "Data: FRED BAMLC0A0CM / BAMLH0A0HYM2 / BAMLH0A3HYC / VIXCLS, through 2026-10-30.", fontsize=7.5, color=MID)
 save(fig, "ab_credit_vix.png")
 
 # 5. Nvidia shipments vs Anthropic usage
@@ -156,7 +158,7 @@ fig.text(0.01, -0.04, "Source: shipment and equivalent-power estimates from sour
 save(fig, "ab_nvidia_gw.png")
 
 # 6. transmission chain
-fig, ax = plt.subplots(figsize=(11, 6.2))
+fig, ax = plt.subplots(figsize=(11, 5.5))
 ax.set_xlim(0, 11); ax.set_ylim(0, 7); ax.axis("off")
 steps = [
     ("1. Capex growth peaks", "capex +50% -> +20%; orders revised down first", GOLD),
@@ -243,9 +245,9 @@ cover_pdf = OUT / "_abe_cover.pdf"
 body_pdf = OUT / "_abe_body.pdf"
 final_pdf = OUT / "The-AI-Bubble-Plain-Language-2026-11-03.pdf"
 
-header = """<div style="width:100%;font-family:'Segoe UI',Arial,sans-serif;font-size:7pt;color:#8A8F98;padding:0 18mm;display:flex;justify-content:space-between;">
-<span>Deep-Risk-OPP · The AI Bubble: Risks, the Path, and Second-/Third-Order Opportunities</span><span>2026-11-03</span></div>"""
-footer = """<div style="width:100%;font-family:'Segoe UI',Arial,sans-serif;font-size:7pt;color:#8A8F98;padding:0 18mm;display:flex;justify-content:space-between;">
+header = """<div style="width:100%;font-family:'Segoe UI',Arial,sans-serif;font-size:6.8pt;color:#8A8F98;padding:0 18mm;display:flex;justify-content:space-between;letter-spacing:0.3pt;border-bottom:0.5pt solid #E3DED2;padding-bottom:2mm;">
+<span>DEEP-RISK-OPP &middot; THE AI BUBBLE &middot; SECOND-/THIRD-ORDER</span><span>2026-11-03</span></div>"""
+footer = """<div style="width:100%;font-family:'Segoe UI',Arial,sans-serif;font-size:6.8pt;color:#8A8F98;padding:2mm 18mm 0;display:flex;justify-content:space-between;border-top:0.5pt solid #E3DED2;">
 <span>Research framework, not investment advice.</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>"""
 
 with sync_playwright() as p:
