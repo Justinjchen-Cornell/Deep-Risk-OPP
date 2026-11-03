@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-03 21:56",
+ "as_of": "2026-11-03 22:03",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -9,10 +9,10 @@
  "contract6": {
   "baseline_start": "2026-10-16",
   "published": 10,
-  "measured": 6,
-  "completeness_pct": 60.0,
-  "within_24h": 2,
-  "within_7d": 4,
+  "measured": 7,
+  "completeness_pct": 70.0,
+  "within_24h": 3,
+  "within_7d": 5,
   "overdue_24h": 2,
   "overdue_7d": 2,
   "status": "breach"
@@ -29,9 +29,9 @@
  },
  "totals": {
   "published": 16,
-  "measured": 8,
-  "impressions": 4183,
-  "engagements": 9,
+  "measured": 9,
+  "impressions": 4515,
+  "engagements": 10,
   "followers": 0,
   "clicks": 0,
   "engagement_rate_pct": 0.22,
@@ -40,9 +40,9 @@
  "by_platform": {
   "LinkedIn": {
    "published": 10,
-   "measured": 8,
-   "impressions": 4183,
-   "engagements": 9,
+   "measured": 9,
+   "impressions": 4515,
+   "engagements": 10,
    "followers": 0,
    "clicks": 0,
    "engagement_rate_pct": 0.22,
@@ -99,18 +99,18 @@
    "piece": "026",
    "language": "EN",
    "scope": "contract",
-   "status": "pending",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
+   "status": "measured",
+   "impressions": 332,
+   "engagements": 1,
+   "followers": 0,
+   "clicks": 0,
+   "measured": true,
+   "measured_at": "2026-11-03T22:00+08:00",
+   "within_24h": true,
+   "within_7d": true,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "已发 2026-11-02 21:00 左右 BJT；配图 narrative_vs_tape.png；24h due 11/03、7d due 11/09；待 URL/URN 与曝光/互动数据"
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-03，发布后约 25h）；332 曝光 / 114 触达（34.3%）/ 1 评论 / 0 反应 / 0 涨粉 / 1 主页浏览；受众：MD、London + NYC + Ithaca、Financial Services/IM/IB；7d 复查 11/08"
   },
   {
    "id": "025-vix-gold-flush-li",
