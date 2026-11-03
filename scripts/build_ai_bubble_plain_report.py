@@ -24,12 +24,12 @@ cover_html.write_text(cover_tpl, encoding="utf-8")
 
 cover_pdf = OUT / "_abp_cover.pdf"
 body_pdf = OUT / "_abp_body.pdf"
-final_pdf = OUT / "AI泡沫-人话版-风险-推演与二阶三阶机会-2026-10-28.pdf"
+final_pdf = OUT / "AI泡沫-人话版-风险-推演与二阶三阶机会-2026-11-03.pdf"
 
-header = """<div style="width:100%;font-family:'Microsoft YaHei';font-size:7pt;color:#8A8F98;padding:0 18mm;display:flex;justify-content:space-between;">
-<span>Deep-Risk-OPP · AI 泡沫：风险、推演与二阶/三阶机会</span><span>2026-10-28</span></div>"""
-footer = """<div style="width:100%;font-family:'Microsoft YaHei';font-size:7pt;color:#8A8F98;padding:0 18mm;display:flex;justify-content:space-between;">
-<span>Research framework, not investment advice.</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>"""
+header = """<div style="width:100%;font-family:'Microsoft YaHei';font-size:6.8pt;color:#8A8F98;padding:0 18mm 2mm;display:flex;justify-content:space-between;letter-spacing:0.3pt;border-bottom:0.5pt solid #E3DED2;">
+<span>DEEP-RISK-OPP · AI 泡沫：风险、推演与二阶/三阶机会</span><span>2026-11-03 更新版</span></div>"""
+footer = """<div style="width:100%;font-family:'Microsoft YaHei';font-size:6.8pt;color:#8A8F98;padding:2mm 18mm 0;display:flex;justify-content:space-between;border-top:0.5pt solid #E3DED2;">
+<span>研究框架，不构成投资建议。</span><span><span class="pageNumber"></span> / <span class="totalPages"></span></span></div>"""
 
 with sync_playwright() as p:
     browser = p.chromium.launch(channel="msedge", headless=True)
@@ -50,7 +50,7 @@ for f in (cover_pdf, body_pdf):
 writer.add_metadata({
     "/Title": "AI 泡沫：风险、推演与二阶/三阶机会",
     "/Author": "Deep-Risk-OPP",
-    "/Subject": "人话版研究框架",
+    "/Subject": "人话版研究框架（2026-11-03 更新版）",
     "/Keywords": "AI bubble, capex, credit, GPU, power, second-order, third-order",
 })
 with open(final_pdf, "wb") as fh:
