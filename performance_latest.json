@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-04 09:21",
+ "as_of": "2026-11-05 09:28",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -13,7 +13,7 @@
   "completeness_pct": 70.0,
   "within_24h": 3,
   "within_7d": 5,
-  "overdue_24h": 2,
+  "overdue_24h": 3,
   "overdue_7d": 2,
   "status": "breach"
  },
@@ -87,7 +87,7 @@
    "measured_at": null,
    "within_24h": false,
    "within_7d": false,
-   "overdue_24h": false,
+   "overdue_24h": true,
    "overdue_7d": false,
    "note": "已发 2026-11-03 约 22:00 BJT（Document post，14 页英文 PDF）；24h due 11/04、7d due 11/10；待 URL/URN 与曝光/互动数据"
   },
