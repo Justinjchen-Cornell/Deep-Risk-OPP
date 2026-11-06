@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-06 09:32",
+ "as_of": "2026-11-06 21:23",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -70,6 +70,27 @@
   }
  },
  "entries": [
+  {
+   "id": "028-centripetal-us-asia-li",
+   "publish_date": "2026-11-06",
+   "platform": "LinkedIn",
+   "title": "The US sold off. Korea had a circuit breaker. That's not contagion — that's the plumbing.",
+   "piece": "028",
+   "language": "EN",
+   "scope": "contract",
+   "status": "planned",
+   "impressions": null,
+   "engagements": null,
+   "followers": null,
+   "clicks": null,
+   "measured": false,
+   "measured_at": null,
+   "within_24h": false,
+   "within_7d": false,
+   "overdue_24h": false,
+   "overdue_7d": false,
+   "note": "draft ready；建议 11/06 21:45–22:15 BJT；配图 centripetal_us_asia.png；发后回填 24h/7d"
+  },
   {
    "id": "027-ai-bubble-doc-en-li",
    "publish_date": "2026-11-03",
@@ -533,6 +554,27 @@
    "overdue_24h": false,
    "overdue_7d": false,
    "note": "计划 10/27 21:00–22:00 BJT；EIA 物理数据 vs 战争风险溢价；CTA = Q4 checklist"
+  },
+  {
+   "id": "028-centripetal-us-asia-li",
+   "publish_date": "2026-11-06",
+   "platform": "LinkedIn",
+   "title": "The US sold off. Korea had a circuit breaker. That's not contagion — that's the plumbing.",
+   "piece": "028",
+   "language": "EN",
+   "scope": "contract",
+   "status": "planned",
+   "impressions": null,
+   "engagements": null,
+   "followers": null,
+   "clicks": null,
+   "measured": false,
+   "measured_at": null,
+   "within_24h": false,
+   "within_7d": false,
+   "overdue_24h": false,
+   "overdue_7d": false,
+   "note": "draft ready；建议 11/06 21:45–22:15 BJT；配图 centripetal_us_asia.png；发后回填 24h/7d"
   }
  ]
 }
