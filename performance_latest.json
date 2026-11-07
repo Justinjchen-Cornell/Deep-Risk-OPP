@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-07 08:56",
+ "as_of": "2026-11-07 21:41",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -8,12 +8,12 @@
  },
  "contract6": {
   "baseline_start": "2026-10-16",
-  "published": 10,
-  "measured": 7,
-  "completeness_pct": 70.0,
-  "within_24h": 3,
-  "within_7d": 5,
-  "overdue_24h": 3,
+  "published": 11,
+  "measured": 9,
+  "completeness_pct": 81.8,
+  "within_24h": 4,
+  "within_7d": 7,
+  "overdue_24h": 2,
   "overdue_7d": 2,
   "status": "breach"
  },
@@ -28,24 +28,24 @@
   "follower_rate_pct": 0.0
  },
  "totals": {
-  "published": 16,
-  "measured": 9,
-  "impressions": 4515,
-  "engagements": 10,
+  "published": 17,
+  "measured": 11,
+  "impressions": 4890,
+  "engagements": 16,
   "followers": 0,
   "clicks": 0,
-  "engagement_rate_pct": 0.22,
+  "engagement_rate_pct": 0.33,
   "follower_rate_pct": 0.0
  },
  "by_platform": {
   "LinkedIn": {
-   "published": 10,
-   "measured": 9,
-   "impressions": 4515,
-   "engagements": 10,
+   "published": 11,
+   "measured": 11,
+   "impressions": 4890,
+   "engagements": 16,
    "followers": 0,
    "clicks": 0,
-   "engagement_rate_pct": 0.22,
+   "engagement_rate_pct": 0.33,
    "follower_rate_pct": 0.0
   },
   "知乎": {
@@ -78,18 +78,18 @@
    "piece": "028",
    "language": "EN",
    "scope": "contract",
-   "status": "planned",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
+   "status": "measured",
+   "impressions": 127,
+   "engagements": 1,
+   "followers": 0,
+   "clicks": 0,
+   "measured": true,
+   "measured_at": "2026-11-07T21:40+08:00",
+   "within_24h": true,
+   "within_7d": true,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "draft ready；建议 11/06 21:45–22:15 BJT；配图 centripetal_us_asia.png；发后回填 24h/7d"
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-07，发布后约 24h）；127 曝光 / 58 触达（45.7%，触达率新高）/ 1 评论 / 0 反应；受众 London、Senior/Director/VP、FS/IM；24h 回填完成；7d 复查 11/13"
   },
   {
    "id": "027-ai-bubble-doc-en-li",
@@ -99,18 +99,18 @@
    "piece": "027",
    "language": "EN",
    "scope": "contract",
-   "status": "pending",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
+   "status": "measured",
+   "impressions": 248,
+   "engagements": 5,
+   "followers": 0,
+   "clicks": 0,
+   "measured": true,
+   "measured_at": "2026-11-07T21:40+08:00",
    "within_24h": false,
-   "within_7d": false,
-   "overdue_24h": true,
+   "within_7d": true,
+   "overdue_24h": false,
    "overdue_7d": false,
-   "note": "已发 2026-11-03 约 22:00 BJT（Document post，14 页英文 PDF）；24h due 11/04、7d due 11/10；待 URL/URN 与曝光/互动数据"
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-07，发布后约 4 天）；248 曝光 / 77 触达（31.0%）/ 5 互动（1 反应、4 评论，互动率 2.0%）/ 0 涨粉；受众 Ithaca + NYC、Senior/Entry/CXO、FS/IM/咨询；24h 未取到（逾期），7d 复查 11/10"
   },
   {
    "id": "026-us-liquidity-narrative-li",
@@ -554,27 +554,6 @@
    "overdue_24h": false,
    "overdue_7d": false,
    "note": "计划 10/27 21:00–22:00 BJT；EIA 物理数据 vs 战争风险溢价；CTA = Q4 checklist"
-  },
-  {
-   "id": "028-centripetal-us-asia-li",
-   "publish_date": "2026-11-06",
-   "platform": "LinkedIn",
-   "title": "The US sold off. Korea had a circuit breaker. That's not contagion — that's the plumbing.",
-   "piece": "028",
-   "language": "EN",
-   "scope": "contract",
-   "status": "planned",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
-   "overdue_24h": false,
-   "overdue_7d": false,
-   "note": "draft ready；建议 11/06 21:45–22:15 BJT；配图 centripetal_us_asia.png；发后回填 24h/7d"
   }
  ]
 }
