@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07 08:56",
+ "updated": "2026-11-08 08:35",
  "rows": [
   {
    "date": "2026-06-19",
@@ -1765,6 +1765,28 @@
    "brent": 97.76,
    "vix": 25.64,
    "dxy": 102.28,
+   "us10y": 4.84,
+   "position": 30,
+   "regime": "修复周期",
+   "verdict": "绿",
+   "contract_completion": 0.543,
+   "flow": {
+    "total": "收缩",
+    "direction": "向心坍缩",
+    "speed": "加速中"
+   },
+   "source": "daily"
+  },
+  {
+   "date": "2026-11-08",
+   "time": "08:35",
+   "gor_wti": 45.16,
+   "gor_brent": 41.49,
+   "gold": 4079.6,
+   "wti": 90.34,
+   "brent": 98.32,
+   "vix": 25.64,
+   "dxy": 102.3,
    "us10y": 4.84,
    "position": 30,
    "regime": "修复周期",
