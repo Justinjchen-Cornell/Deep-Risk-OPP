@@ -1,9 +1,9 @@
 {
-  "updated": "2026-11-09 08:54",
-  "gor_brent": 41.96,
-  "gor_wti": 45.2,
+  "updated": "2026-11-10 11:34",
+  "gor_brent": 44.97,
+  "gor_wti": 48.0,
   "brent_source": "yahoo",
-  "brent_asof": "2026-11-09T00:44:03+00:00",
+  "brent_asof": "2026-11-10T03:23:21+00:00",
   "regime": "修复周期",
   "final_position": 30,
   "allocation": {
@@ -16,70 +16,70 @@
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=102.19 > 99 强美元压制",
+      "title": "DXY=101.69 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
       "level": "warning",
-      "title": "10Y=4.84% > 4.3% 高利率压制",
+      "title": "10Y=4.86% > 4.3% 高利率压制",
       "detail": "仓位-10%"
     }
   ],
   "screener": {
-    "d_gold": 0.0032,
-    "d_oil": 0.4478,
+    "d_gold": 0.0087,
+    "d_oil": 0.3931,
     "leg": "油腿主导",
     "s1": true,
-    "vix": 25.64,
-    "vix_thr": 22.89,
-    "s2": true,
-    "oil": 90.72,
-    "oil_pctl": 0.892,
+    "vix": 19.92,
+    "vix_thr": 22.46,
+    "s2": false,
+    "oil": 85.89,
+    "oil_pctl": 0.875,
     "s3": false,
-    "npass": 2,
-    "verdict": "绿",
-    "oil_cap_factor": 1.0,
-    "ts": "2026-11-09 00:54",
+    "npass": 1,
+    "verdict": "红",
+    "oil_cap_factor": 0.0,
+    "ts": "2026-11-10 03:34",
     "history_last": "fetched"
   },
   "data": {
     "黄金期货": {
-      "price": 4100.1,
+      "price": 4122.7,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 90.72,
+      "price": 85.89,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 97.71,
+      "price": 91.68,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 102.19,
+      "price": 101.69,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
-      "price": 4.84,
+      "price": 4.86,
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 25.64,
+      "price": 19.92,
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.289,
+      "price": 6.3515,
       "change_pct": 0.0
     }
   },
   "capital_three_flows": {
     "total": "收缩",
     "direction": "向心坍缩",
-    "speed": "加速中",
-    "dxy": 102.19,
-    "vix": 25.64,
-    "tenyear": 4.84,
-    "thirtyyear": 5.25,
+    "speed": "放缓",
+    "dxy": 101.69,
+    "vix": 19.92,
+    "tenyear": 4.86,
+    "thirtyyear": 5.26,
     "fed_balance": 6.75,
     "m2": 23.41,
     "fed_rate": 3.88,
