@@ -450,9 +450,9 @@
   },
   {
    "id": "029-gor-roundtrip-li",
-   "publish_date": "2026-11-09",
+   "publish_date": "2026-11-12",
    "platform": "LinkedIn",
-   "title": "Gold/oil is back above 40. I don't think that's a buy signal for oil.",
+   "title": "WTI is down 16% in 11 days. US distillate inventories are at a five-year low. Those two facts don't fit.",
    "piece": "029",
    "language": "EN",
    "url": "",
@@ -464,7 +464,7 @@
    "followers": null,
    "clicks": null,
    "measured_at": null,
-   "note": "draft ready；计划 11/09 21:00–22:00 BJT；配图 gor_four_week_roundtrip.png；发前刷新早卡与 FRED"
+   "note": "深度版；计划 11/12 21:00–22:00 BJT（11/11 为美国假日，避开）；配图 gor_four_week_roundtrip.png；数据：价格 11/11、EIA 10/30、FRED 11/09"
   }
  ]
 }
