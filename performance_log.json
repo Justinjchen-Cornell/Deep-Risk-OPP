@@ -456,7 +456,7 @@
    "piece": "029",
    "language": "EN",
    "url": "",
-   "status": "planned",
+   "status": "pending",
    "impressions": null,
    "likes": null,
    "comments": null,
@@ -464,7 +464,7 @@
    "followers": null,
    "clicks": null,
    "measured_at": null,
-   "note": "GOR Pulse #009；计划 11/12 21:00–21:30 BJT（EIA 11:00am ET 前）；配图 gor_four_week_roundtrip.png；数据：价格 11/11、EIA 10/30、FRED 11/09"
+   "note": "GOR Pulse #009；已发 2026-11-12 约 21:55 BJT；24h due 11/13、7d due 11/19；待 URL/URN 与数据；EIA 11/12 23:30 BJT 后补首评"
   }
  ]
 }

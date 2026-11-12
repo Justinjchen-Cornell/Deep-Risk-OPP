@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-12 20:33",
+ "as_of": "2026-11-12 21:51",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -8,9 +8,9 @@
  },
  "contract6": {
   "baseline_start": "2026-10-16",
-  "published": 11,
+  "published": 12,
   "measured": 9,
-  "completeness_pct": 81.8,
+  "completeness_pct": 75.0,
   "within_24h": 4,
   "within_7d": 7,
   "overdue_24h": 2,
@@ -28,7 +28,7 @@
   "follower_rate_pct": 0.0
  },
  "totals": {
-  "published": 17,
+  "published": 18,
   "measured": 11,
   "impressions": 4890,
   "engagements": 16,
@@ -39,7 +39,7 @@
  },
  "by_platform": {
   "LinkedIn": {
-   "published": 11,
+   "published": 12,
    "measured": 11,
    "impressions": 4890,
    "engagements": 16,
@@ -78,7 +78,7 @@
    "piece": "029",
    "language": "EN",
    "scope": "contract",
-   "status": "planned",
+   "status": "pending",
    "impressions": null,
    "engagements": null,
    "followers": null,
@@ -89,7 +89,7 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "GOR Pulse #009；计划 11/12 21:00–21:30 BJT（EIA 11:00am ET 前）；配图 gor_four_week_roundtrip.png；数据：价格 11/11、EIA 10/30、FRED 11/09"
+   "note": "GOR Pulse #009；已发 2026-11-12 约 21:55 BJT；24h due 11/13、7d due 11/19；待 URL/URN 与数据；EIA 11/12 23:30 BJT 后补首评"
   },
   {
    "id": "028-centripetal-us-asia-li",
@@ -575,27 +575,6 @@
    "overdue_24h": false,
    "overdue_7d": false,
    "note": "计划 10/27 21:00–22:00 BJT；EIA 物理数据 vs 战争风险溢价；CTA = Q4 checklist"
-  },
-  {
-   "id": "029-gor-roundtrip-li",
-   "publish_date": "2026-11-12",
-   "platform": "LinkedIn",
-   "title": "GOR Pulse #009 — the ratio stalled. The barrels didn't change.",
-   "piece": "029",
-   "language": "EN",
-   "scope": "contract",
-   "status": "planned",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
-   "overdue_24h": false,
-   "overdue_7d": false,
-   "note": "GOR Pulse #009；计划 11/12 21:00–21:30 BJT（EIA 11:00am ET 前）；配图 gor_four_week_roundtrip.png；数据：价格 11/11、EIA 10/30、FRED 11/09"
   }
  ]
 }
