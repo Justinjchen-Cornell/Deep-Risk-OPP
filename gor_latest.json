@@ -1,9 +1,9 @@
 {
-  "updated": "2026-11-11 09:14",
-  "gor_brent": 43.82,
-  "gor_wti": 46.62,
+  "updated": "2026-11-12 10:16",
+  "gor_brent": 43.34,
+  "gor_wti": 46.57,
   "brent_source": "yahoo",
-  "brent_asof": "2026-11-11T01:04:29+00:00",
+  "brent_asof": "2026-11-12T02:05:13+00:00",
   "regime": "修复周期",
   "final_position": 30,
   "allocation": {
@@ -16,7 +16,7 @@
   "alerts": [
     {
       "level": "warning",
-      "title": "DXY=102.25 > 99 强美元压制",
+      "title": "DXY=102.85 > 99 强美元压制",
       "detail": "仓位-10%"
     },
     {
@@ -26,37 +26,37 @@
     }
   ],
   "screener": {
-    "d_gold": -0.0118,
-    "d_oil": 0.4017,
+    "d_gold": -0.0239,
+    "d_oil": 0.3908,
     "leg": "油腿主导",
     "s1": true,
-    "vix": 19.46,
+    "vix": 17.49,
     "vix_thr": 22.46,
     "s2": false,
-    "oil": 86.63,
+    "oil": 85.69,
     "oil_pctl": 0.875,
     "s3": false,
     "npass": 1,
     "verdict": "红",
     "oil_cap_factor": 0.0,
-    "ts": "2026-11-11 01:14",
+    "ts": "2026-11-12 02:16",
     "history_last": "fetched"
   },
   "data": {
     "黄金期货": {
-      "price": 4039.0,
+      "price": 3990.5,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 86.63,
+      "price": 85.69,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 92.17,
+      "price": 92.07,
       "change_pct": 0.0
     },
     "美元指数DXY": {
-      "price": 102.25,
+      "price": 102.85,
       "change_pct": 0.0
     },
     "10Y美债收益率": {
@@ -64,11 +64,11 @@
       "change_pct": 0.0
     },
     "VIX恐慌指数": {
-      "price": 19.46,
+      "price": 17.49,
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.277,
+      "price": 6.265,
       "change_pct": 0.0
     }
   },
@@ -76,8 +76,8 @@
     "total": "收缩",
     "direction": "向心坍缩",
     "speed": "放缓",
-    "dxy": 102.25,
-    "vix": 19.46,
+    "dxy": 102.85,
+    "vix": 17.49,
     "tenyear": 4.88,
     "thirtyyear": 5.26,
     "fed_balance": 6.75,
