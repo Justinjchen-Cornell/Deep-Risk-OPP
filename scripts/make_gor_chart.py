@@ -27,7 +27,7 @@ ax.annotate("Oct 12\n46.8", (datetime(2026,10,12), 46.8), xytext=(-8,22), textco
 ax.annotate("Oct 31" + chr(10) + "37.7", (datetime(2026,10,31), 37.73), xytext=(-54,-20), textcoords="offset points", fontsize=9, color=COPPER, ha="right")
 ax.annotate("Nov 10" + chr(10) + "48.0", (datetime(2026,11,10), 48.0), xytext=(0,12), textcoords="offset points", fontsize=9, color=COPPER, fontweight="bold", ha="center")
 ax.annotate("46.6", (dates[-1]+timedelta(days=2), gw[-1]), fontsize=9, color=COPPER, fontweight="bold", ha="left", va="center")
-ax.annotate("43.8", (dates[-1]+timedelta(days=2), gb[-1]), fontsize=9, color=NAVY, fontweight="bold", ha="left", va="center")
+ax.annotate("43.3", (dates[-1]+timedelta(days=2), gb[-1]), fontsize=9, color=NAVY, fontweight="bold", ha="left", va="center")
 ax.set_ylim(33, 50.5)
 ax.set_xlim(dates[0]-timedelta(days=1), dates[-1]+timedelta(days=8))
 ax.legend(loc="lower left", frameon=False, fontsize=9.5)
