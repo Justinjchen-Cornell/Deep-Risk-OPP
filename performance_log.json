@@ -456,16 +456,19 @@
    "piece": "029",
    "language": "EN",
    "url": "https://www.linkedin.com/posts/justin-chen-b28b5838_oil-gold-macro-share-7526642144942620672-XjUx",
-   "status": "pending",
-   "impressions": null,
-   "likes": null,
-   "comments": null,
-   "shares": null,
-   "followers": null,
-   "clicks": null,
-   "measured_at": null,
-   "note": "GOR Pulse #009；已发 2026-11-12 21:48 BJT；早期快照（约11h）：203 曝光 / 72 触达（35.5%）/ 1 评论；24h due 11/13 21:48，届时重导；EIA 11/06 首个累库反例已在首评公开",
-   "linkedin_urn": "7526642146129379330"
+   "status": "measured",
+   "impressions": 203,
+   "likes": 0,
+   "comments": 1,
+   "shares": 0,
+   "followers": 0,
+   "clicks": 0,
+   "measured_at": "2026-11-13T23:30+08:00",
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-13，发布后约 25.8h）；203 曝光 / 72 触达（35.5%）/ 1 评论 / 0 反应；受众 London、Senior/Director/Entry、FS；EIA 11/06 首个累库反例已在首评公开；7d 复查 11/19",
+   "linkedin_urn": "7526642146129379330",
+   "engagements": 1,
+   "members_reached": 72,
+   "profile_viewers": 0
   }
  ]
 }
