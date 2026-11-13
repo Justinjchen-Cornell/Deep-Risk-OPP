@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-13 23:34",
+ "as_of": "2026-11-13 23:36",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -11,7 +11,7 @@
   "published": 12,
   "measured": 10,
   "completeness_pct": 83.3,
-  "within_24h": 5,
+  "within_24h": 4,
   "within_7d": 8,
   "overdue_24h": 2,
   "overdue_7d": 2,
@@ -30,22 +30,22 @@
  "totals": {
   "published": 18,
   "measured": 12,
-  "impressions": 5093,
+  "impressions": 5483,
   "engagements": 17,
   "followers": 0,
   "clicks": 0,
-  "engagement_rate_pct": 0.33,
+  "engagement_rate_pct": 0.31,
   "follower_rate_pct": 0.0
  },
  "by_platform": {
   "LinkedIn": {
    "published": 12,
    "measured": 12,
-   "impressions": 5093,
+   "impressions": 5483,
    "engagements": 17,
    "followers": 0,
    "clicks": 0,
-   "engagement_rate_pct": 0.33,
+   "engagement_rate_pct": 0.31,
    "follower_rate_pct": 0.0
   },
   "知乎": {
@@ -89,7 +89,7 @@
    "within_7d": true,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "LinkedIn 官方 XLSX 导出（2026-11-13，发布后约 25.8h）；203 曝光 / 72 触达（35.5%）/ 1 评论 / 0 反应；受众 London、Senior/Director/Entry、FS；EIA 11/06 首个累库反例已在首评公开；7d 复查 11/19"
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-13，发布后约 25.8h）；203 曝光 / 72 触达（35.5%）/ 1 评论 / 0 反应；受众 London、Senior/Director/Entry、FS；EIA 11/06 首个累库反例已在首评公开；7d 复查 11/19；EIA 首评已于 11/13 发布"
   },
   {
    "id": "028-centripetal-us-asia-li",
@@ -100,17 +100,17 @@
    "language": "EN",
    "scope": "contract",
    "status": "measured",
-   "impressions": 127,
+   "impressions": 517,
    "engagements": 1,
    "followers": 0,
    "clicks": 0,
    "measured": true,
-   "measured_at": "2026-11-07T21:40+08:00",
-   "within_24h": true,
+   "measured_at": "2026-11-13T23:45+08:00",
+   "within_24h": false,
    "within_7d": true,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "LinkedIn 官方 XLSX 导出（2026-11-07，发布后约 24h）；127 曝光 / 58 触达（45.7%，触达率新高）/ 1 评论 / 0 反应；受众 London、Senior/Director/VP、FS/IM；24h 回填完成；7d 复查 11/13"
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-13，7d 累计）；517 曝光 / 93 触达（18.0%）/ 1 评论 / 1 主页浏览 / 0 涨粉；24h 快照为 127 曝光 / 58 触达（45.7%）；受众 London + Ithaca、Senior/Entry/VP/Director、FS/IM/教育；7d 复查完成"
   },
   {
    "id": "027-ai-bubble-doc-en-li",
