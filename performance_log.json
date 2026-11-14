@@ -469,6 +469,42 @@
    "engagements": 1,
    "members_reached": 72,
    "profile_viewers": 0
+  },
+  {
+   "id": "030-nvda-keyman-li",
+   "publish_date": "2026-11-16",
+   "platform": "LinkedIn",
+   "title": "Nvidia lost its CEO. The Nasdaq fell 0.4%.",
+   "piece": "030",
+   "language": "EN",
+   "url": "",
+   "status": "planned",
+   "impressions": null,
+   "likes": null,
+   "comments": null,
+   "shares": null,
+   "followers": null,
+   "clicks": null,
+   "measured_at": null,
+   "note": "draft ready；计划 11/16 21:00–22:00 BJT；配图 nvda_keyman_shock.png；数据 NVDA/SOX/Nasdaq 11/13、FRED 11/12"
+  },
+  {
+   "id": "031-ai-chain-2nd-3rd-li",
+   "publish_date": "2026-11-19",
+   "platform": "LinkedIn",
+   "title": "The anchor broke. The chain didn't. That's where the opportunity is.",
+   "piece": "031",
+   "language": "EN",
+   "url": "",
+   "status": "planned",
+   "impressions": null,
+   "likes": null,
+   "comments": null,
+   "shares": null,
+   "followers": null,
+   "clicks": null,
+   "measured_at": null,
+   "note": "draft ready；计划 11/19 21:00–22:00 BJT（NVDA 11/18 盘后财报后）；二阶/三阶框架"
   }
  ]
 }
