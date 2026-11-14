@@ -61,6 +61,28 @@ When frameworks conflict, resolve in this order:
 - **Disclaimer at end.** "Research framework. Not investment advice."
 - **Chinese responses** when user writes in Chinese. Bilingual capability.
 
+## Skills Toolkit (P0/P1)
+
+Vendored discipline tools in `skills/` (adapted from the MIT-licensed
+`tradermonty/claude-trading-skills`; only quality/review/risk layers, no equity screeners).
+
+**P0 — run before publishing or trading**
+```bash
+python skills/data-quality-checker/dq_check.py          # card/history/portfolio/performance/cache
+python skills/signal-postmortem/postmortem.py           # hit/miss/open for signals_log.json
+python skills/pre-trade-discipline-gate/gate.py --help  # mechanical pre-trade gate
+```
+
+**P1 — research**
+```bash
+python skills/scenario-analyzer/scenario.py --headline "..."
+python skills/backtest-harness/backtest.py              # toy GOR-zone backtest
+```
+
+These tools are read-only/advisory. They do not change `gor_latest.json`, the
+GOR single-ratio contract, or the priority chain. `signals_log.json` is the
+append-only falsifiable-signal ledger used by the postmortem.
+
 ## Data Sources
 
 - `gor_latest.json` — GOR, allocation, alerts (updated daily)

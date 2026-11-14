@@ -1,0 +1,38 @@
+version: 1
+updated: 2026-11-14
+skills:
+  - id: data-quality-checker
+    path: skills/data-quality-checker
+    category: quality
+    priority: P0
+    entrypoint: dq_check.py
+    status: active
+    description: Validate card, history, portfolio, performance and cache data before publication.
+  - id: signal-postmortem
+    path: skills/signal-postmortem
+    category: review
+    priority: P0
+    entrypoint: postmortem.py
+    status: active
+    description: Score falsifiable signals at 5/20/60-day horizons; track hit rate and open theses.
+  - id: pre-trade-discipline-gate
+    path: skills/pre-trade-discipline-gate
+    category: risk
+    priority: P0
+    entrypoint: gate.py
+    status: active
+    description: Mechanical pre-trade checklist; blocks planless, oversized, stale or regime-blocked adds.
+  - id: scenario-analyzer
+    path: skills/scenario-analyzer
+    category: research
+    priority: P1
+    entrypoint: scenario.py
+    status: active
+    description: Generate an 18-month scenario pack with 1st/2nd/3rd-order prompts.
+  - id: backtest-harness
+    path: skills/backtest-harness
+    category: research
+    priority: P1
+    entrypoint: backtest.py
+    status: active
+    description: Toy GOR-zone backtest with transaction costs and walk-forward split.

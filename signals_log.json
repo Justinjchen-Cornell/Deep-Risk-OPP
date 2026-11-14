@@ -1,0 +1,83 @@
+{
+ "updated": "2026-11-14",
+ "note": "Append-only log of falsifiable market signals. Postmortem scores each at its horizon.",
+ "signals": [
+  {
+   "id": "contract-wti-10760",
+   "date": "2026-10-16",
+   "type": "contract",
+   "metric": "wti",
+   "baseline": 69.87,
+   "target": 107.60,
+   "deadline": "2027-06-30",
+   "status": "open",
+   "note": "Handoff falsification contract: WTI 69.87 -> 107.60 before 2027-06"
+  },
+  {
+   "id": "gor-wti-above-45-2026-11-05",
+   "date": "2026-11-05",
+   "type": "threshold",
+   "metric": "gor_wti",
+   "condition": "above",
+   "threshold": 45.0,
+   "horizon_days": 5,
+   "status": "open",
+   "note": "Extreme-alarm line; hit same day at 46.89"
+  },
+  {
+   "id": "gor-brent-above-40-2026-11-03",
+   "date": "2026-11-03",
+   "type": "threshold",
+   "metric": "gor_brent",
+   "condition": "above",
+   "threshold": 40.0,
+   "horizon_days": 5,
+   "status": "open",
+   "note": "40 resistance break; hit 11/05 at 43.54"
+  },
+  {
+   "id": "gor-wti-below-40-2026-10-31",
+   "date": "2026-10-31",
+   "type": "threshold",
+   "metric": "gor_wti",
+   "condition": "below",
+   "threshold": 40.0,
+   "horizon_days": 5,
+   "status": "open",
+   "note": "Round-trip low; 37.73 on 10/31"
+  },
+  {
+   "id": "vix-above-22-5-2026-10-16",
+   "date": "2026-10-16",
+   "type": "threshold",
+   "metric": "vix",
+   "condition": "above",
+   "threshold": 22.5,
+   "horizon_days": 30,
+   "status": "open",
+   "note": "Panic gate; hit 11/06 at 28.18"
+  },
+  {
+   "id": "hy-above-400-2026-10-16",
+   "date": "2026-10-16",
+   "type": "threshold",
+   "metric": "hy_oas",
+   "condition": "above",
+   "threshold": 400.0,
+   "horizon_days": 60,
+   "status": "open",
+   "note": "Credit stress gate; FRED HY OAS in bp"
+  },
+  {
+   "id": "ccc-above-1500-2026-10-16",
+   "date": "2026-10-16",
+   "type": "threshold",
+   "metric": "ccc_oas",
+   "condition": "above",
+   "threshold": 1500.0,
+   "horizon_days": 60,
+   "status": "open",
+   "note": "Credit tail gate; FRED CCC OAS in bp"
+  }
+ ]
+}
