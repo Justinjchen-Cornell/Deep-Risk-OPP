@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-14 17:21",
+ "as_of": "2026-11-14 17:26",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -93,7 +93,7 @@
   },
   {
    "id": "030-nvda-keyman-li",
-   "publish_date": "2026-11-16",
+   "publish_date": "2026-11-18",
    "platform": "LinkedIn",
    "title": "Nvidia lost its CEO. The Nasdaq fell 0.4%.",
    "piece": "030",
@@ -110,7 +110,28 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "draft ready；计划 11/16 21:00–22:00 BJT；配图 nvda_keyman_shock.png；数据 NVDA/SOX/Nasdaq 11/13、FRED 11/12"
+   "note": "备选（NVDA 11/18 盘后财报前）；若 11/16 发 Megaspeed 故事，本条顺延或与 031 合并；配图 nvda_keyman_shock.png"
+  },
+  {
+   "id": "032-megaspeed-collateral-li",
+   "publish_date": "2026-11-16",
+   "platform": "LinkedIn",
+   "title": "A company with $5.7M in cash bought $4.8B of Nvidia GPUs. The collateral chain explains it.",
+   "piece": "032",
+   "language": "EN",
+   "scope": "contract",
+   "status": "planned",
+   "impressions": null,
+   "engagements": null,
+   "followers": null,
+   "clicks": null,
+   "measured": false,
+   "measured_at": null,
+   "within_24h": false,
+   "within_7d": false,
+   "overdue_24h": false,
+   "overdue_7d": false,
+   "note": "故事版；计划 11/16 21:00–22:00 BJT；含黄乐/康伟（reported 口径）；发前法律审读；如风险高改用匿名版"
   },
   {
    "id": "029-gor-roundtrip-li",
@@ -620,7 +641,7 @@
   },
   {
    "id": "030-nvda-keyman-li",
-   "publish_date": "2026-11-16",
+   "publish_date": "2026-11-18",
    "platform": "LinkedIn",
    "title": "Nvidia lost its CEO. The Nasdaq fell 0.4%.",
    "piece": "030",
@@ -637,7 +658,7 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "draft ready；计划 11/16 21:00–22:00 BJT；配图 nvda_keyman_shock.png；数据 NVDA/SOX/Nasdaq 11/13、FRED 11/12"
+   "note": "备选（NVDA 11/18 盘后财报前）；若 11/16 发 Megaspeed 故事，本条顺延或与 031 合并；配图 nvda_keyman_shock.png"
   },
   {
    "id": "031-ai-chain-2nd-3rd-li",
@@ -659,6 +680,27 @@
    "overdue_24h": false,
    "overdue_7d": false,
    "note": "draft ready；计划 11/19 21:00–22:00 BJT（NVDA 11/18 盘后财报后）；二阶/三阶框架"
+  },
+  {
+   "id": "032-megaspeed-collateral-li",
+   "publish_date": "2026-11-16",
+   "platform": "LinkedIn",
+   "title": "A company with $5.7M in cash bought $4.8B of Nvidia GPUs. The collateral chain explains it.",
+   "piece": "032",
+   "language": "EN",
+   "scope": "contract",
+   "status": "planned",
+   "impressions": null,
+   "engagements": null,
+   "followers": null,
+   "clicks": null,
+   "measured": false,
+   "measured_at": null,
+   "within_24h": false,
+   "within_7d": false,
+   "overdue_24h": false,
+   "overdue_7d": false,
+   "note": "故事版；计划 11/16 21:00–22:00 BJT；含黄乐/康伟（reported 口径）；发前法律审读；如风险高改用匿名版"
   }
  ]
 }
