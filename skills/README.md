@@ -1,3 +1,5 @@
+> Lazy-loaded: the root `SKILL.md` only carries a one-line pointer. Read this file only when a skill is explicitly requested.
+
 # Deep-Risk-OPP · Skills Toolkit
 
 Adapted from the MIT-licensed `tradermonty/claude-trading-skills` project.
