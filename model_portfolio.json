@@ -2,7 +2,7 @@
  "name": "Deep-Risk-OPP Model Portfolio",
  "start_date": "2026-10-18",
  "base_nav": 100.0,
- "nav": 96.7664,
+ "nav": 96.7632,
  "currency": "USD",
  "mandate": "按公开卡片权重持有；卡片权重变化时下一交易日按收盘再平衡；按单边换手计入 5 bps 成本；不计税、不加杠杆。",
  "benchmark": "SPY / 60-40（60% SPY + 40% AGG，每日再平衡、不计成本）",
@@ -14,14 +14,14 @@
   "铜": 0.0
  },
  "last_prices": {
-  "wti": 88.27,
-  "gold": 3914.3,
-  "copper": 6.2295,
-  "ashare": 30.45,
-  "spy": 757.12,
-  "agg": 95.22
+  "wti": 88.92,
+  "gold": 3887.6,
+  "copper": 6.1525,
+  "ashare": 30.24,
+  "spy": 754.37,
+  "agg": 95.09
  },
- "updated": "2026-11-13",
+ "updated": "2026-11-14",
  "history": [
   {
    "date": "2026-10-18",
@@ -211,6 +211,13 @@
    "bench_spy": 99.1969,
    "bench_6040": 99.5012,
    "note": "ret +0.248% (oil +3.02% / gold -1.91% / A -1.01% / copper -0.57%); bench SPY -0.35% / 60-40 -0.47%"
+  },
+  {
+   "date": "2026-11-14",
+   "nav": 96.7632,
+   "bench_spy": 98.8366,
+   "bench_6040": 99.23,
+   "note": "ret -0.003% (oil +0.74% / gold -0.68% / A -0.69% / copper -2.67%); bench SPY -0.36% / 60-40 -0.27%"
   }
  ],
  "trades": [
@@ -232,16 +239,16 @@
  ],
  "benchmarks": {
   "spy": {
-   "nav": 99.19685555191613,
+   "nav": 98.83655420897476,
    "start": "2026-10-18",
-   "last_price": 757.12
+   "last_price": 754.37
   },
   "6040": {
-   "nav": 99.50120342068895,
+   "nav": 99.23002136495937,
    "start": "2026-10-18",
    "mix": "60% SPY + 40% AGG",
-   "last_price_spy": 757.12,
-   "last_price_agg": 95.22
+   "last_price_spy": 754.37,
+   "last_price_agg": 95.09
   }
  },
  "costs_paid": 0.021,

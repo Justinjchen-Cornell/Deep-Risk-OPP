@@ -1,12 +1,12 @@
 {
-  "updated": "2026-11-13 09:49",
-  "week_of": "2026-11-13",
+  "updated": "2026-11-14 09:27",
+  "week_of": "2026-11-14",
   "data_source": "FRED (DGS10/DGS30/DTWEXBGS/VIXCLS/DFF/WALCL/M2SL) + akshare (commodities)",
   "bonds": {
-    "us_10y": 4.98,
-    "us_30y": 5.35,
-    "us_5y": 4.73,
-    "spread_30y_10y": 0.37,
+    "us_10y": 5.1,
+    "us_30y": 5.43,
+    "us_5y": 4.85,
+    "spread_30y_10y": 0.33,
     "yield_curve": "陡峭化",
     "seesaw": {
       "treasury_vs_stocks": "科技股抛售→资金涌入国债（避险）",
@@ -45,7 +45,7 @@
     "fed_balance_trillion": 6.76,
     "m2_trillion": 23.41,
     "fed_rate_pct": 3.88,
-    "dgs30_pct": 5.35,
+    "dgs30_pct": 5.43,
     "net_interest_trillion": 1.33
   },
   "gold_flows": {
@@ -59,7 +59,7 @@
     }
   },
   "oil_flows": {
-    "wti_price": 88.27,
+    "wti_price": 88.92,
     "spr_level": "3.7亿桶",
     "producer_discipline": "OPEC+减产·伊朗和平恢复出口"
   },
@@ -73,7 +73,7 @@
     "usdeur": 1.115
   },
   "currency_flows": {
-    "dxy_signal": "DXY=103.1>101=向心坍缩加速",
-    "dxy": 103.14
+    "dxy_signal": "DXY=103.4>101=向心坍缩加速",
+    "dxy": 103.41
   }
 }
