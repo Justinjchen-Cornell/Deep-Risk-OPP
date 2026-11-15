@@ -486,7 +486,7 @@
    "followers": null,
    "clicks": null,
    "measured_at": null,
-   "note": "备选（NVDA 11/18 盘后财报前）；若 11/16 发 Megaspeed 故事，本条顺延或与 031 合并；配图 nvda_keyman_shock.png"
+   "note": "备选；若 11/16 发 033（表外业务），本条取消或并入长文；NVDA 11/17 盘后财报前"
   },
   {
    "id": "031-ai-chain-2nd-3rd-li",
@@ -504,7 +504,7 @@
    "followers": null,
    "clicks": null,
    "measured_at": null,
-   "note": "draft ready；计划 11/19 21:00–22:00 BJT（NVDA 11/18 盘后财报后）；二阶/三阶框架"
+   "note": "draft ready；计划 11/19 21:00–22:00 BJT（NVDA 11/17 盘后财报后）；二阶/三阶框架"
   },
   {
    "id": "032-megaspeed-collateral-li",
@@ -527,6 +527,24 @@
    "engagements": 5,
    "members_reached": 235,
    "profile_viewers": 3
+  },
+  {
+   "id": "033-nvda-offbalance-li",
+   "publish_date": "2026-11-16",
+   "platform": "LinkedIn",
+   "title": "Jensen Huang is out. The $530B he left behind is the story.",
+   "piece": "033",
+   "language": "EN",
+   "url": "",
+   "status": "planned",
+   "impressions": null,
+   "likes": null,
+   "comments": null,
+   "shares": null,
+   "followers": null,
+   "clicks": null,
+   "measured_at": null,
+   "note": "表外业务/信用中介；计划 11/16 21:00–22:00 BJT（NVDA 11/17 盘后财报前）；$530B 为转述口径"
   }
  ]
 }
