@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-15 09:02",
+ "as_of": "2026-11-15 21:07",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -8,11 +8,11 @@
  },
  "contract6": {
   "baseline_start": "2026-10-16",
-  "published": 12,
-  "measured": 10,
-  "completeness_pct": 83.3,
-  "within_24h": 4,
-  "within_7d": 8,
+  "published": 13,
+  "measured": 11,
+  "completeness_pct": 84.6,
+  "within_24h": 5,
+  "within_7d": 9,
   "overdue_24h": 2,
   "overdue_7d": 2,
   "status": "breach"
@@ -28,25 +28,25 @@
   "follower_rate_pct": 0.0
  },
  "totals": {
-  "published": 18,
-  "measured": 12,
-  "impressions": 5483,
-  "engagements": 17,
-  "followers": 0,
+  "published": 19,
+  "measured": 13,
+  "impressions": 6086,
+  "engagements": 22,
+  "followers": 1,
   "clicks": 0,
-  "engagement_rate_pct": 0.31,
-  "follower_rate_pct": 0.0
+  "engagement_rate_pct": 0.36,
+  "follower_rate_pct": 0.016
  },
  "by_platform": {
   "LinkedIn": {
-   "published": 12,
-   "measured": 12,
-   "impressions": 5483,
-   "engagements": 17,
-   "followers": 0,
+   "published": 13,
+   "measured": 13,
+   "impressions": 6086,
+   "engagements": 22,
+   "followers": 1,
    "clicks": 0,
-   "engagement_rate_pct": 0.31,
-   "follower_rate_pct": 0.0
+   "engagement_rate_pct": 0.36,
+   "follower_rate_pct": 0.016
   },
   "知乎": {
    "published": 3,
@@ -114,24 +114,24 @@
   },
   {
    "id": "032-megaspeed-collateral-li",
-   "publish_date": "2026-11-16",
+   "publish_date": "2026-11-14",
    "platform": "LinkedIn",
    "title": "A company with $5.7M in cash bought $4.8B of Nvidia GPUs. The collateral chain explains it.",
    "piece": "032",
    "language": "EN",
    "scope": "contract",
-   "status": "planned",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
+   "status": "measured",
+   "impressions": 603,
+   "engagements": 5,
+   "followers": 1,
+   "clicks": 0,
+   "measured": true,
+   "measured_at": "2026-11-15T21:05+08:00",
+   "within_24h": true,
+   "within_7d": true,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "故事版；计划 11/16 21:00–22:00 BJT；含黄乐/康伟（reported 口径）；发前法律审读；如风险高改用匿名版"
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-15，发布后约 27h）；603 曝光 / 235 触达（39.0%）/ 5 互动（2 反应、2 评论、1 收藏）/ 1 涨粉（首个）/ 3 主页浏览；受众 Founder/CEO/CXO、Singapore/NYC/London/Sydney、FS/Tech/VC；若本条实际为 NVDA key-man 帖，请改挂 030"
   },
   {
    "id": "029-gor-roundtrip-li",
@@ -680,27 +680,6 @@
    "overdue_24h": false,
    "overdue_7d": false,
    "note": "draft ready；计划 11/19 21:00–22:00 BJT（NVDA 11/18 盘后财报后）；二阶/三阶框架"
-  },
-  {
-   "id": "032-megaspeed-collateral-li",
-   "publish_date": "2026-11-16",
-   "platform": "LinkedIn",
-   "title": "A company with $5.7M in cash bought $4.8B of Nvidia GPUs. The collateral chain explains it.",
-   "piece": "032",
-   "language": "EN",
-   "scope": "contract",
-   "status": "planned",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
-   "overdue_24h": false,
-   "overdue_7d": false,
-   "note": "故事版；计划 11/16 21:00–22:00 BJT；含黄乐/康伟（reported 口径）；发前法律审读；如风险高改用匿名版"
   }
  ]
 }
