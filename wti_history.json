@@ -1,13 +1,5 @@
 [
   {
-    "date": "2026-08-14",
-    "wti": 81.29,
-    "gold": 4383.7,
-    "vix": 14.55,
-    "gor_wti": 53.93,
-    "gor_brent": 50.87
-  },
-  {
     "date": "2026-08-15",
     "wti": 82.4,
     "gold": 4431.9,
@@ -718,5 +710,13 @@
     "vix": 19.3,
     "gor_wti": 43.72,
     "gor_brent": 40.46
+  },
+  {
+    "date": "2026-11-15",
+    "wti": null,
+    "gold": null,
+    "vix": 19.3,
+    "gor_wti": null,
+    "gor_brent": null
   }
 ]

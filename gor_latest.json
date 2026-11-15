@@ -1,15 +1,15 @@
 {
-  "updated": "2026-11-14 09:27",
-  "gor_brent": 40.46,
-  "gor_wti": 43.72,
+  "updated": "2026-11-15 09:02",
+  "gor_brent": null,
+  "gor_wti": null,
   "brent_source": "yahoo",
   "brent_asof": "2026-11-13T21:59:30+00:00",
-  "regime": "修复周期",
-  "final_position": 30,
+  "regime": "原油泡沫",
+  "final_position": 5,
   "allocation": {
-    "油气": 20,
-    "黄金": 15,
-    "现金": 58,
+    "油气": 0,
+    "黄金": 7,
+    "现金": 86,
     "A股": 7,
     "铜": 0
   },
@@ -26,33 +26,33 @@
     }
   ],
   "screener": {
-    "d_gold": -0.05,
-    "d_oil": 0.4278,
+    "d_gold": 0.0115,
+    "d_oil": 0.4446,
     "leg": "油腿主导",
     "s1": true,
     "vix": 19.3,
     "vix_thr": 22.46,
     "s2": false,
-    "oil": 88.92,
-    "oil_pctl": 0.883,
+    "oil": null,
+    "oil_pctl": 0.925,
     "s3": false,
     "npass": 1,
     "verdict": "红",
     "oil_cap_factor": 0.0,
-    "ts": "2026-11-14 01:27",
+    "ts": "2026-11-15 01:02",
     "history_last": "fetched"
   },
   "data": {
     "黄金期货": {
-      "price": 3887.6,
+      "price": null,
       "change_pct": 0.0
     },
     "WTI原油": {
-      "price": 88.92,
+      "price": null,
       "change_pct": 0.0
     },
     "布伦特原油": {
-      "price": 96.08,
+      "price": 95.84,
       "change_pct": 0.0
     },
     "美元指数DXY": {
@@ -68,7 +68,7 @@
       "change_pct": 0.0
     },
     "COMEX铜": {
-      "price": 6.1525,
+      "price": null,
       "change_pct": 0.0
     }
   },
@@ -91,19 +91,20 @@
     "trigger": "A股<10%无需对冲"
   },
   "data_quality": {
-    "ok": true,
-    "degraded_fields": [],
+    "ok": false,
+    "degraded_fields": [
+      "黄金期货",
+      "WTI原油",
+      "COMEX铜"
+    ],
     "fallbacks": {},
     "sources": {
-      "黄金": "akshare GC",
-      "WTI": "akshare CL",
       "布伦特": "Yahoo BZ=F",
-      "铜": "akshare HG",
       "10Y": "FRED",
       "DXY": "yfinance",
       "VIX": "cboe"
     },
     "warnings": [],
-    "note": "全部数据源正常"
+    "note": "部分数据源缺失或降级，相关判断可能不可靠"
   }
 }

@@ -2,26 +2,26 @@
  "name": "Deep-Risk-OPP Model Portfolio",
  "start_date": "2026-10-18",
  "base_nav": 100.0,
- "nav": 96.7632,
+ "nav": 96.6665,
  "currency": "USD",
  "mandate": "按公开卡片权重持有；卡片权重变化时下一交易日按收盘再平衡；按单边换手计入 5 bps 成本；不计税、不加杠杆。",
  "benchmark": "SPY / 60-40（60% SPY + 40% AGG，每日再平衡、不计成本）",
  "weights": {
-  "油气": 20.0,
-  "黄金": 15.0,
-  "现金": 58.0,
+  "油气": 0.0,
+  "黄金": 7.0,
+  "现金": 86.0,
   "A股": 7.0,
   "铜": 0.0
  },
  "last_prices": {
-  "wti": 88.92,
-  "gold": 3887.6,
-  "copper": 6.1525,
+  "wti": 88.56,
+  "gold": 3886.3,
+  "copper": 6.09,
   "ashare": 30.24,
   "spy": 754.37,
   "agg": 95.09
  },
- "updated": "2026-11-14",
+ "updated": "2026-11-15",
  "history": [
   {
    "date": "2026-10-18",
@@ -218,6 +218,13 @@
    "bench_spy": 98.8366,
    "bench_6040": 99.23,
    "note": "ret -0.003% (oil +0.74% / gold -0.68% / A -0.69% / copper -2.67%); bench SPY -0.36% / 60-40 -0.27%"
+  },
+  {
+   "date": "2026-11-15",
+   "nav": 96.6665,
+   "bench_spy": 98.8366,
+   "bench_6040": 99.23,
+   "note": "ret -0.086% (oil -0.40% / gold -0.03% / A +0.00% / copper -1.02%); bench SPY +0.00% / 60-40 +0.00%; rebalance turnover 28.0% cost 0.0135"
   }
  ],
  "trades": [
@@ -229,6 +236,15 @@
    "cost": 0.021,
    "cost_bps": 5.0,
    "note": "initial allocation: 42% invested x 5 bps"
+  },
+  {
+   "date": "2026-11-15",
+   "action": "rebalance",
+   "nav": 96.6665,
+   "turnover_pct": 28.0,
+   "cost": 0.0135,
+   "cost_bps": 5.0,
+   "note": "weights {'油气': 20.0, '黄金': 15.0, '现金': 58.0, 'A股': 7.0, '铜': 0.0} -> {'油气': 0.0, '黄金': 7.0, '现金': 86.0, 'A股': 7.0, '铜': 0.0}; turnover 28.0%; cost 0.0135"
   }
  ],
  "notes": [
@@ -251,7 +267,7 @@
    "last_price_agg": 95.09
   }
  },
- "costs_paid": 0.021,
+ "costs_paid": 0.034535,
  "inception_cost_paid": true,
  "cost_bps": 5.0,
  "data_sources": {
