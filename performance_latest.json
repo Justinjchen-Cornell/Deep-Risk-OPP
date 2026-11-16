@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-16 13:31",
+ "as_of": "2026-11-16 21:43",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -8,9 +8,9 @@
  },
  "contract6": {
   "baseline_start": "2026-10-16",
-  "published": 13,
+  "published": 14,
   "measured": 11,
-  "completeness_pct": 84.6,
+  "completeness_pct": 78.6,
   "within_24h": 4,
   "within_7d": 9,
   "overdue_24h": 2,
@@ -28,7 +28,7 @@
   "follower_rate_pct": 0.0
  },
  "totals": {
-  "published": 19,
+  "published": 20,
   "measured": 13,
   "impressions": 11309,
   "engagements": 48,
@@ -39,7 +39,7 @@
  },
  "by_platform": {
   "LinkedIn": {
-   "published": 13,
+   "published": 14,
    "measured": 13,
    "impressions": 11309,
    "engagements": 48,
@@ -116,11 +116,11 @@
    "id": "033-nvda-offbalance-li",
    "publish_date": "2026-11-16",
    "platform": "LinkedIn",
-   "title": "Jensen Huang is out. The $530B he left behind is the story.",
+   "title": "The Founder Is Temporarily Leaving Nvidia — With a $530B Guarantee Book.",
    "piece": "033",
    "language": "EN",
    "scope": "contract",
-   "status": "planned",
+   "status": "pending",
    "impressions": null,
    "engagements": null,
    "followers": null,
@@ -131,7 +131,7 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "表外业务/信用中介；计划 11/16 21:00–22:00 BJT（NVDA 11/17 盘后财报前）；$530B 为转述口径；配图 nvda_offbalance_gap.png（$550B gap vs $530B book）"
+   "note": "已发 2026-11-16 约 21:00 BJT；表外业务/信用中介故事版；配图 nvda_offbalance_gap.png；24h due 11/17、7d due 11/23；待 URL/URN 与数据"
   },
   {
    "id": "032-megaspeed-collateral-li",
@@ -701,27 +701,6 @@
    "overdue_24h": false,
    "overdue_7d": false,
    "note": "draft ready；计划 11/19 21:00–22:00 BJT（NVDA 11/17 盘后财报后）；二阶/三阶框架"
-  },
-  {
-   "id": "033-nvda-offbalance-li",
-   "publish_date": "2026-11-16",
-   "platform": "LinkedIn",
-   "title": "Jensen Huang is out. The $530B he left behind is the story.",
-   "piece": "033",
-   "language": "EN",
-   "scope": "contract",
-   "status": "planned",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
-   "overdue_24h": false,
-   "overdue_7d": false,
-   "note": "表外业务/信用中介；计划 11/16 21:00–22:00 BJT（NVDA 11/17 盘后财报前）；$530B 为转述口径；配图 nvda_offbalance_gap.png（$550B gap vs $530B book）"
   }
  ]
 }
