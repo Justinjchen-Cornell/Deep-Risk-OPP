@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-15 21:30",
+ "as_of": "2026-11-16 13:26",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -11,7 +11,7 @@
   "published": 13,
   "measured": 11,
   "completeness_pct": 84.6,
-  "within_24h": 5,
+  "within_24h": 4,
   "within_7d": 9,
   "overdue_24h": 2,
   "overdue_7d": 2,
@@ -30,23 +30,23 @@
  "totals": {
   "published": 19,
   "measured": 13,
-  "impressions": 6086,
-  "engagements": 22,
-  "followers": 1,
+  "impressions": 11309,
+  "engagements": 48,
+  "followers": 2,
   "clicks": 0,
-  "engagement_rate_pct": 0.36,
-  "follower_rate_pct": 0.016
+  "engagement_rate_pct": 0.42,
+  "follower_rate_pct": 0.018
  },
  "by_platform": {
   "LinkedIn": {
    "published": 13,
    "measured": 13,
-   "impressions": 6086,
-   "engagements": 22,
-   "followers": 1,
+   "impressions": 11309,
+   "engagements": 48,
+   "followers": 2,
    "clicks": 0,
-   "engagement_rate_pct": 0.36,
-   "follower_rate_pct": 0.016
+   "engagement_rate_pct": 0.42,
+   "follower_rate_pct": 0.018
   },
   "知乎": {
    "published": 3,
@@ -142,17 +142,17 @@
    "language": "EN",
    "scope": "contract",
    "status": "measured",
-   "impressions": 603,
-   "engagements": 5,
-   "followers": 1,
+   "impressions": 5826,
+   "engagements": 31,
+   "followers": 2,
    "clicks": 0,
    "measured": true,
-   "measured_at": "2026-11-15T21:05+08:00",
-   "within_24h": true,
+   "measured_at": "2026-11-16T13:25+08:00",
+   "within_24h": false,
    "within_7d": true,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "LinkedIn 官方 XLSX 导出（2026-11-15，发布后约 27h）；603 曝光 / 235 触达（39.0%）/ 5 互动（2 反应、2 评论、1 收藏）/ 1 涨粉（首个）/ 3 主页浏览；受众 Founder/CEO/CXO、Singapore/NYC/London/Sydney、FS/Tech/VC；若本条实际为 NVDA key-man 帖，请改挂 030"
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-16，发布后约 43h）；5,826 曝光 / 4,058 触达（69.7%）/ 31 互动（14 反应、5 评论、1 转发、10 收藏、1 发送）/ 2 涨粉 / 30 主页浏览；受众 NVIDIA、AWS、Goldman、Qualcomm、JPM、Citi、Google、Morgan Stanley、HSBC；24h 快照 603/235；7d 复查 11/21"
   },
   {
    "id": "029-gor-roundtrip-li",
