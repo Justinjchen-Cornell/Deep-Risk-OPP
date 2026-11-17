@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-17 18:35",
+ "as_of": "2026-11-17 18:51",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -71,6 +71,27 @@
  },
  "entries": [
   {
+   "id": "034-nvda-shorts-vs-book-li",
+   "publish_date": "2026-11-30",
+   "platform": "LinkedIn",
+   "title": "The market is debating whether Huang comes back. The shorts have already answered.",
+   "piece": "034",
+   "language": "EN",
+   "scope": "contract",
+   "status": "planned",
+   "impressions": null,
+   "engagements": null,
+   "followers": null,
+   "clicks": null,
+   "measured": false,
+   "measured_at": null,
+   "within_24h": false,
+   "within_7d": false,
+   "overdue_24h": false,
+   "overdue_7d": false,
+   "note": "暂缓，不排期；触发条件：财报/信用事件/政策听证/黄仁勋实际回归；内容与 032/033 同主题，避免审美疲劳"
+  },
+  {
    "id": "031-ai-chain-2nd-3rd-li",
    "publish_date": "2026-11-19",
    "platform": "LinkedIn",
@@ -89,7 +110,7 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "draft ready；计划 11/19 21:00–22:00 BJT（NVDA 11/17 盘后财报后）；二阶/三阶框架"
+   "note": "暂缓至财报后；视事件决定 11/19 是否发；若 034 不发，本条可作为下一篇"
   },
   {
    "id": "030-nvda-keyman-li",
@@ -110,28 +131,7 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "备选；若 11/16 发 033（表外业务），本条取消或并入长文；NVDA 11/17 盘后财报前"
-  },
-  {
-   "id": "034-nvda-shorts-vs-book-li",
-   "publish_date": "2026-11-17",
-   "platform": "LinkedIn",
-   "title": "The market is debating whether Huang comes back. The shorts have already answered.",
-   "piece": "034",
-   "language": "EN",
-   "scope": "contract",
-   "status": "planned",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
-   "within_24h": false,
-   "within_7d": false,
-   "overdue_24h": false,
-   "overdue_7d": false,
-   "note": "短卖方/支柱叙事；计划 11/17 21:00 BJT（NVDA 11/17 盘后财报前）；配图 nvda_keyman_shock.png；24h due 11/18"
+   "note": "取消/并入长文；与 032/033 主题重复，不再单独发"
   },
   {
    "id": "033-nvda-offbalance-li",
@@ -700,7 +700,7 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "备选；若 11/16 发 033（表外业务），本条取消或并入长文；NVDA 11/17 盘后财报前"
+   "note": "取消/并入长文；与 032/033 主题重复，不再单独发"
   },
   {
    "id": "031-ai-chain-2nd-3rd-li",
@@ -721,11 +721,11 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "draft ready；计划 11/19 21:00–22:00 BJT（NVDA 11/17 盘后财报后）；二阶/三阶框架"
+   "note": "暂缓至财报后；视事件决定 11/19 是否发；若 034 不发，本条可作为下一篇"
   },
   {
    "id": "034-nvda-shorts-vs-book-li",
-   "publish_date": "2026-11-17",
+   "publish_date": "2026-11-30",
    "platform": "LinkedIn",
    "title": "The market is debating whether Huang comes back. The shorts have already answered.",
    "piece": "034",
@@ -742,7 +742,7 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "短卖方/支柱叙事；计划 11/17 21:00 BJT（NVDA 11/17 盘后财报前）；配图 nvda_keyman_shock.png；24h due 11/18"
+   "note": "暂缓，不排期；触发条件：财报/信用事件/政策听证/黄仁勋实际回归；内容与 032/033 同主题，避免审美疲劳"
   }
  ]
 }
