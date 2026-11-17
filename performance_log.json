@@ -536,7 +536,28 @@
    "piece": "033",
    "language": "EN",
    "url": "",
-   "status": "pending",
+   "status": "measured",
+   "impressions": 663,
+   "likes": 0,
+   "comments": 0,
+   "shares": 0,
+   "followers": 0,
+   "clicks": 0,
+   "measured_at": "2026-11-17T18:30+08:00",
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-17，发布后约 20.9h）；663 曝光 / 324 触达（48.9%）/ 0 互动 / 0 涨粉 / 1 主页浏览；受众 Founder/MD/CEO、NYC/London/SF/Singapore；24h 后可再拉；7d 11/23",
+   "engagements": 0,
+   "members_reached": 324,
+   "profile_viewers": 1
+  },
+  {
+   "id": "034-nvda-shorts-vs-book-li",
+   "publish_date": "2026-11-17",
+   "platform": "LinkedIn",
+   "title": "The market is debating whether Huang comes back. The shorts have already answered.",
+   "piece": "034",
+   "language": "EN",
+   "url": "",
+   "status": "planned",
    "impressions": null,
    "likes": null,
    "comments": null,
@@ -544,7 +565,7 @@
    "followers": null,
    "clicks": null,
    "measured_at": null,
-   "note": "已发 2026-11-16 约 21:00 BJT；表外业务/信用中介故事版；配图 nvda_offbalance_gap.png；24h due 11/17、7d due 11/23；待 URL/URN 与数据"
+   "note": "短卖方/支柱叙事；计划 11/17 21:00 BJT（NVDA 11/17 盘后财报前）；配图 nvda_keyman_shock.png；24h due 11/18"
   }
  ]
 }

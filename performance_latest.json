@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-16 21:43",
+ "as_of": "2026-11-17 18:35",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -9,10 +9,10 @@
  "contract6": {
   "baseline_start": "2026-10-16",
   "published": 14,
-  "measured": 11,
-  "completeness_pct": 78.6,
-  "within_24h": 4,
-  "within_7d": 9,
+  "measured": 12,
+  "completeness_pct": 85.7,
+  "within_24h": 5,
+  "within_7d": 10,
   "overdue_24h": 2,
   "overdue_7d": 2,
   "status": "breach"
@@ -29,24 +29,24 @@
  },
  "totals": {
   "published": 20,
-  "measured": 13,
-  "impressions": 11309,
+  "measured": 14,
+  "impressions": 11972,
   "engagements": 48,
   "followers": 2,
   "clicks": 0,
-  "engagement_rate_pct": 0.42,
-  "follower_rate_pct": 0.018
+  "engagement_rate_pct": 0.4,
+  "follower_rate_pct": 0.017
  },
  "by_platform": {
   "LinkedIn": {
    "published": 14,
-   "measured": 13,
-   "impressions": 11309,
+   "measured": 14,
+   "impressions": 11972,
    "engagements": 48,
    "followers": 2,
    "clicks": 0,
-   "engagement_rate_pct": 0.42,
-   "follower_rate_pct": 0.018
+   "engagement_rate_pct": 0.4,
+   "follower_rate_pct": 0.017
   },
   "知乎": {
    "published": 3,
@@ -113,14 +113,14 @@
    "note": "备选；若 11/16 发 033（表外业务），本条取消或并入长文；NVDA 11/17 盘后财报前"
   },
   {
-   "id": "033-nvda-offbalance-li",
-   "publish_date": "2026-11-16",
+   "id": "034-nvda-shorts-vs-book-li",
+   "publish_date": "2026-11-17",
    "platform": "LinkedIn",
-   "title": "The Founder Is Temporarily Leaving Nvidia — With a $530B Guarantee Book.",
-   "piece": "033",
+   "title": "The market is debating whether Huang comes back. The shorts have already answered.",
+   "piece": "034",
    "language": "EN",
    "scope": "contract",
-   "status": "pending",
+   "status": "planned",
    "impressions": null,
    "engagements": null,
    "followers": null,
@@ -131,7 +131,28 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "已发 2026-11-16 约 21:00 BJT；表外业务/信用中介故事版；配图 nvda_offbalance_gap.png；24h due 11/17、7d due 11/23；待 URL/URN 与数据"
+   "note": "短卖方/支柱叙事；计划 11/17 21:00 BJT（NVDA 11/17 盘后财报前）；配图 nvda_keyman_shock.png；24h due 11/18"
+  },
+  {
+   "id": "033-nvda-offbalance-li",
+   "publish_date": "2026-11-16",
+   "platform": "LinkedIn",
+   "title": "The Founder Is Temporarily Leaving Nvidia — With a $530B Guarantee Book.",
+   "piece": "033",
+   "language": "EN",
+   "scope": "contract",
+   "status": "measured",
+   "impressions": 663,
+   "engagements": 0,
+   "followers": 0,
+   "clicks": 0,
+   "measured": true,
+   "measured_at": "2026-11-17T18:30+08:00",
+   "within_24h": true,
+   "within_7d": true,
+   "overdue_24h": false,
+   "overdue_7d": false,
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-17，发布后约 20.9h）；663 曝光 / 324 触达（48.9%）/ 0 互动 / 0 涨粉 / 1 主页浏览；受众 Founder/MD/CEO、NYC/London/SF/Singapore；24h 后可再拉；7d 11/23"
   },
   {
    "id": "032-megaspeed-collateral-li",
@@ -701,6 +722,27 @@
    "overdue_24h": false,
    "overdue_7d": false,
    "note": "draft ready；计划 11/19 21:00–22:00 BJT（NVDA 11/17 盘后财报后）；二阶/三阶框架"
+  },
+  {
+   "id": "034-nvda-shorts-vs-book-li",
+   "publish_date": "2026-11-17",
+   "platform": "LinkedIn",
+   "title": "The market is debating whether Huang comes back. The shorts have already answered.",
+   "piece": "034",
+   "language": "EN",
+   "scope": "contract",
+   "status": "planned",
+   "impressions": null,
+   "engagements": null,
+   "followers": null,
+   "clicks": null,
+   "measured": false,
+   "measured_at": null,
+   "within_24h": false,
+   "within_7d": false,
+   "overdue_24h": false,
+   "overdue_7d": false,
+   "note": "短卖方/支柱叙事；计划 11/17 21:00 BJT（NVDA 11/17 盘后财报前）；配图 nvda_keyman_shock.png；24h due 11/18"
   }
  ]
 }
