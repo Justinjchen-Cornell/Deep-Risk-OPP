@@ -566,6 +566,24 @@
    "clicks": null,
    "measured_at": null,
    "note": "暂缓，不排期；触发条件：财报/信用事件/政策听证/黄仁勋实际回归；内容与 032/033 同主题，避免审美疲劳"
+  },
+  {
+   "id": "035-anthropic-ipo-break-li",
+   "publish_date": "2026-11-20",
+   "platform": "LinkedIn",
+   "title": "The biggest IPO in history is already back near its issue price.",
+   "piece": "035",
+   "language": "EN",
+   "url": "",
+   "status": "planned",
+   "impressions": null,
+   "likes": null,
+   "comments": null,
+   "shares": null,
+   "followers": null,
+   "clicks": null,
+   "measured_at": null,
+   "note": "Anthropic IPO/模型层公开定价；计划 11/20 23:00–23:30 BJT；配图 anthropic_ipo_break.png；发前刷新 ANT 现价"
   }
  ]
 }
