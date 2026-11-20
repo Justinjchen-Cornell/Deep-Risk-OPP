@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-20 22:47",
+ "as_of": "2026-11-20 22:53",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -95,7 +95,7 @@
    "id": "035-anthropic-ipo-break-li",
    "publish_date": "2026-11-20",
    "platform": "LinkedIn",
-   "title": "Nvidia was the shadow central bank of AI. Anthropic's IPO just turned on the lights.",
+   "title": "Anthropic's IPO is the biggest gray rhino of the year.",
    "piece": "035",
    "language": "EN",
    "scope": "contract",
@@ -110,7 +110,7 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "Anthropic IPO/模型层公开定价（shadow central bank 故事版）；计划 11/20 23:00–23:30 BJT；配图 anthropic_ipo_break.png；发前刷新 ANT 现价"
+   "note": "Anthropic IPO=最大灰犀牛（shadow bank + 公开定价逻辑）；计划 11/20 23:00–23:30 BJT；配图 anthropic_ipo_break.png；发前刷新 ANT 现价"
   },
   {
    "id": "031-ai-chain-2nd-3rd-li",
@@ -769,7 +769,7 @@
    "id": "035-anthropic-ipo-break-li",
    "publish_date": "2026-11-20",
    "platform": "LinkedIn",
-   "title": "Nvidia was the shadow central bank of AI. Anthropic's IPO just turned on the lights.",
+   "title": "Anthropic's IPO is the biggest gray rhino of the year.",
    "piece": "035",
    "language": "EN",
    "scope": "contract",
@@ -784,7 +784,7 @@
    "within_7d": false,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "Anthropic IPO/模型层公开定价（shadow central bank 故事版）；计划 11/20 23:00–23:30 BJT；配图 anthropic_ipo_break.png；发前刷新 ANT 现价"
+   "note": "Anthropic IPO=最大灰犀牛（shadow bank + 公开定价逻辑）；计划 11/20 23:00–23:30 BJT；配图 anthropic_ipo_break.png；发前刷新 ANT 现价"
   }
  ]
 }
