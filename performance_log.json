@@ -571,11 +571,11 @@
    "id": "035-anthropic-ipo-break-li",
    "publish_date": "2026-11-20",
    "platform": "LinkedIn",
-   "title": "Anthropic's IPO is the biggest gray rhino of the year.",
+   "title": "🦏 Anthropic's IPO is the Biggest Gray Rhino of the Year.",
    "piece": "035",
    "language": "EN",
    "url": "",
-   "status": "planned",
+   "status": "pending",
    "impressions": null,
    "likes": null,
    "comments": null,
@@ -583,7 +583,7 @@
    "followers": null,
    "clicks": null,
    "measured_at": null,
-   "note": "Anthropic IPO=最大灰犀牛（shadow bank + 公开定价逻辑）；计划 11/20 23:00–23:30 BJT；配图 anthropic_ipo_break.png；发前刷新 ANT 现价"
+   "note": "已发 2026-11-20 约 23:00 BJT；版本为 shadow bank / quiet part 版（非 supply-demand 版）；24h due 11/21、7d due 11/27；待 URL/URN 与数据"
   }
  ]
 }
