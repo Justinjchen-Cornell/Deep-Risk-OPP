@@ -575,15 +575,18 @@
    "piece": "035",
    "language": "EN",
    "url": "",
-   "status": "pending",
-   "impressions": null,
-   "likes": null,
-   "comments": null,
-   "shares": null,
-   "followers": null,
-   "clicks": null,
-   "measured_at": null,
-   "note": "已发 2026-11-20 约 23:00 BJT；版本为 shadow bank / quiet part 版（非 supply-demand 版）；24h due 11/21、7d due 11/27；待 URL/URN 与数据"
+   "status": "measured",
+   "impressions": 323,
+   "likes": 1,
+   "comments": 2,
+   "shares": 0,
+   "followers": 0,
+   "clicks": 0,
+   "measured_at": "2026-11-23T00:55+08:00",
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-23，发布后约 50h）；323 曝光 / 164 触达（50.8%）/ 3 互动（1 反应、2 评论）/ 0 涨粉 / 0 收藏 / 1 主页浏览；受众 MD/Co-Founder/VP、London/NYC/SF/Bengaluru；24h 未单独拉；7d 11/27",
+   "engagements": 3,
+   "members_reached": 164,
+   "profile_viewers": 1
   }
  ]
 }

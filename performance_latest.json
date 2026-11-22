@@ -1,5 +1,5 @@
 {
- "as_of": "2026-11-20 23:17",
+ "as_of": "2026-11-23 00:59",
  "contract": {
   "clause": 6,
   "baseline_start": "2026-10-16",
@@ -9,10 +9,10 @@
  "contract6": {
   "baseline_start": "2026-10-16",
   "published": 15,
-  "measured": 12,
-  "completeness_pct": 80.0,
+  "measured": 13,
+  "completeness_pct": 86.7,
   "within_24h": 5,
-  "within_7d": 10,
+  "within_7d": 11,
   "overdue_24h": 2,
   "overdue_7d": 2,
   "status": "breach"
@@ -29,24 +29,24 @@
  },
  "totals": {
   "published": 21,
-  "measured": 14,
-  "impressions": 11972,
-  "engagements": 48,
+  "measured": 15,
+  "impressions": 12295,
+  "engagements": 51,
   "followers": 2,
   "clicks": 0,
-  "engagement_rate_pct": 0.4,
-  "follower_rate_pct": 0.017
+  "engagement_rate_pct": 0.41,
+  "follower_rate_pct": 0.016
  },
  "by_platform": {
   "LinkedIn": {
    "published": 15,
-   "measured": 14,
-   "impressions": 11972,
-   "engagements": 48,
+   "measured": 15,
+   "impressions": 12295,
+   "engagements": 51,
    "followers": 2,
    "clicks": 0,
-   "engagement_rate_pct": 0.4,
-   "follower_rate_pct": 0.017
+   "engagement_rate_pct": 0.41,
+   "follower_rate_pct": 0.016
   },
   "知乎": {
    "published": 3,
@@ -99,18 +99,18 @@
    "piece": "035",
    "language": "EN",
    "scope": "contract",
-   "status": "pending",
-   "impressions": null,
-   "engagements": null,
-   "followers": null,
-   "clicks": null,
-   "measured": false,
-   "measured_at": null,
+   "status": "measured",
+   "impressions": 323,
+   "engagements": 3,
+   "followers": 0,
+   "clicks": 0,
+   "measured": true,
+   "measured_at": "2026-11-23T00:55+08:00",
    "within_24h": false,
-   "within_7d": false,
+   "within_7d": true,
    "overdue_24h": false,
    "overdue_7d": false,
-   "note": "已发 2026-11-20 约 23:00 BJT；版本为 shadow bank / quiet part 版（非 supply-demand 版）；24h due 11/21、7d due 11/27；待 URL/URN 与数据"
+   "note": "LinkedIn 官方 XLSX 导出（2026-11-23，发布后约 50h）；323 曝光 / 164 触达（50.8%）/ 3 互动（1 反应、2 评论）/ 0 涨粉 / 0 收藏 / 1 主页浏览；受众 MD/Co-Founder/VP、London/NYC/SF/Bengaluru；24h 未单独拉；7d 11/27"
   },
   {
    "id": "031-ai-chain-2nd-3rd-li",
