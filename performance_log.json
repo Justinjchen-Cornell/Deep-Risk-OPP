@@ -587,6 +587,24 @@
    "engagements": 3,
    "members_reached": 164,
    "profile_viewers": 1
+  },
+  {
+   "id": "036-nvda-math-electron-li",
+   "publish_date": "2026-11-25",
+   "platform": "LinkedIn",
+   "title": "The man is back. The math isn't. And the collateral is moving.",
+   "piece": "036",
+   "language": "EN",
+   "url": "",
+   "status": "planned",
+   "impressions": null,
+   "likes": null,
+   "comments": null,
+   "shares": null,
+   "followers": null,
+   "clicks": null,
+   "measured_at": null,
+   "note": "md ready；计划 11/25 23:00–23:30 BJT；纯文字；数据 11/25 盘中；发前刷新 NVDA/ANT"
   }
  ]
 }
