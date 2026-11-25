@@ -596,7 +596,7 @@
    "piece": "036",
    "language": "EN",
    "url": "",
-   "status": "planned",
+   "status": "pending",
    "impressions": null,
    "likes": null,
    "comments": null,
@@ -604,7 +604,7 @@
    "followers": null,
    "clicks": null,
    "measured_at": null,
-   "note": "md ready；计划 11/25 23:00–23:30 BJT；纯文字；数据 11/25 盘中；发前刷新 NVDA/ANT"
+   "note": "已发 2026-11-25 约 23:00 BJT；NVDA round-trip/算力供需/电币复合；纯文字；24h due 11/26、7d due 12/02；待 URL/URN 与数据"
   }
  ]
 }
